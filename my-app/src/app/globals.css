@@ -9,7 +9,146 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Three starts here */
 
+.three {
+    width: 100%;    
+}
+
+.three-in {
+    width: 90%;
+    margin: auto;
+    padding: 3rem 0rem;
+}
+
+.three-one {
+    width: 100%;
+}
+
+.three-one-in {
+    width: 100%;
+}
+
+.three-one-in h1{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.three-two {
+    width: 90%;
+    margin: auto;
+    padding: 1rem 0rem;
+}
+
+.three-two-in p{
+    font-size: 1.8rem;
+    text-align: center;
+    color: rgb(151, 0, 3);
+}
+
+.three-three {
+    width: 100%;
+    padding: 2rem 0rem;
+}
+
+.three-three-one {
+    width: 100%;
+    display: flex;
+    row-gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem 0rem;
+}
+
+
+.count-cm {
+    width: 33.33%;
+}
+
+.count-cm h1{
+    font-size: 2.5rem;
+    text-align: center;
+    padding: .5rem 0rem;
+}
+
+.count-cm h2{
+    text-align: center;
+    padding: .5rem 0rem;
+    color: gray;
+}
+
+
+/* Eight starts here */
+
+.eight {
+  width: 100%;
+  background-color: rgb(243, 243, 243);
+}
+
+.eight-in {
+  width: 90%;
+  margin: auto;
+  padding: 3rem 0rem;
+}
+
+.eight-in-head {
+  padding: 0rem 0rem;
+}
+
+.eight-one {
+  width: 100%;
+}
+
+.eight-one-in {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+}
+
+.Event-cm {
+    width: 24%;
+}
+
+/* Nine starts here */
+
+.nine {
+  width: 100%;
+}
+
+.nine-in {
+  width: 80%;
+  margin: auto;
+  padding: 3rem 0rem;
+}
+
+.nine-one {
+    width: 100%;    
+}
+
+.nine-one h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.nine-two {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0rem;
+}
+
+.nine-two button {
+    padding: 1rem;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+}
 
 
 
@@ -80,6 +219,8 @@
   background-color: rgb(243, 243, 243);
 }
 
+
+
 .Twelve-in {
   width: 90%;
   margin: auto;
@@ -129,8 +270,6 @@
   background-color: rgb(155, 0, 3);
   color: white;
 }
-
-
 
 
 
