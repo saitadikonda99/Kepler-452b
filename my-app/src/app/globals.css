@@ -9,3 +9,50 @@
   font-family: 'Poppins', sans-serif;
 }
 
+
+
+/* Twelve starts here */
+
+.Twelve {
+  width: 100%;
+  background-color: rgb(243, 243, 243);
+}
+
+.Twelve-in {
+  width: 90%;
+  margin: auto;
+  padding: 3rem 0rem;
+}
+
+.Twelve-in-head {
+  padding: 0rem 0rem;
+}
+
+.Twelve-one {
+  width: 100%;
+}
+
+.Twelve-one-in {
+  width: 100%;
+}
+
+.Twelve-one-in-item {
+  width: 100%;
+}
+
+.Twelve-one-in-item-ques {
+  width: 100%;
+  padding: 1.5rem 0rem .5rem 0rem;
+  border-bottom: 1px solid black;
+}
+
+.Twelve-one-in-item-ques:hover {
+  cursor: pointer;
+}
+
+.Twelve-one-in-item-ans {
+  width: 100%;
+  padding: 1rem;
+  background-color: rgb(155, 0, 3);
+  color: white;
+}
