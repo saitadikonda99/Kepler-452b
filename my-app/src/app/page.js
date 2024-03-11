@@ -225,6 +225,9 @@ const page = () => {
 
             <div className="eight">
                 <div className="eight-in">
+                    <div className="breadcrumb">
+                        <span>Home / Upcoming Events</span>
+                    </div>
                     <div className="eight-in-head">
                         <h1>Upcoming Events</h1>
                     </div>
