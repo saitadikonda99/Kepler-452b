@@ -54,6 +54,8 @@
 }
 
 .Navbar-two ul {
+    width: 80%;
+    margin: auto;
     list-style: none;
     height: 100%;
     display: flex;
