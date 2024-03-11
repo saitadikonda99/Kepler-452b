@@ -162,6 +162,9 @@ const page = () => {
             </div>
 
 
+
+
+
           {/* five starts here */}
 
           <div className="five">
@@ -257,7 +260,103 @@ const page = () => {
           </div>
             
 
+          {/* Section four starts here */}
+
+          <div className="four">
+            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/GroupPhoto%2FGroupPhoto.png?alt=media&token=9b5d582f-fb7d-4628-b187-7af43fdd6932" alt="" />
+          </div>
+
       
+
+          <div className="seven">
+            <div className="seven-in">
+              <div className="seven-in-header cmn-heading">
+                <div className="breadcrumb">
+                  <span>Home / News</span>
+                </div>
+                <h1>News from Community</h1>
+              </div>
+
+              <div className="seven-in-one">
+                <div className="seven-in-one-one">
+
+                  <div className="seven-in-one-one-box">
+                    <div className="seven-in-one-one-box-in">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Sample.png?alt=media&token=e4d7112b-45d7-4379-b355-7c2f824446e0" alt="" />
+                        <div className="seven-in-one-one-box-in-desc">
+                          <h4>ZeroOne Code Club</h4>
+                          <p>ZeroOne Code Club is a community of coders who are passionate about coding and are always ready to learn and explore new technologies.</p>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div className="seven-in-one-one-box">
+                    <div className="seven-in-one-one-box-in">
+                          <div className="seven-in-one-one-box-in-one">
+                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                          </div>
+                          <div className="seven-in-one-one-box-in-two">
+                            <h4>ZeroOne Code Club</h4>
+                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                          </div>
+                    </div>
+                  </div>
+
+                  <div className="seven-in-one-one-box">
+                    <div className="seven-in-one-one-box-in">
+                          <div className="seven-in-one-one-box-in-one">
+                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                          </div>
+                          <div className="seven-in-one-one-box-in-two">
+                            <h4>ZeroOne Code Club</h4>
+                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div className="seven-in-one-one">
+
+                  <div className="seven-in-one-one-box">
+                    <div className="seven-in-one-one-box-in">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Sample.png?alt=media&token=e4d7112b-45d7-4379-b355-7c2f824446e0" alt="" />
+                        <div className="seven-in-one-one-box-in-desc">
+                          <h4>ZeroOne Code Club</h4>
+                          <p>ZeroOne Code Club is a community of coders who are passionate about coding and are always ready to learn and explore new technologies.</p>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div className="seven-in-one-one-box">
+                    <div className="seven-in-one-one-box-in">
+                          <div className="seven-in-one-one-box-in-one">
+                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                          </div>
+                          <div className="seven-in-one-one-box-in-two">
+                            <h4>ZeroOne Code Club</h4>
+                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                          </div>
+                    </div>
+                  </div>
+
+                  <div className="seven-in-one-one-box">
+                    <div className="seven-in-one-one-box-in">
+                          <div className="seven-in-one-one-box-in-one">
+                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                          </div>
+                          <div className="seven-in-one-one-box-in-two">
+                            <h4>ZeroOne Code Club</h4>
+                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
             {/* Section eight starts here */}
 
