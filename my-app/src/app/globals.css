@@ -11,6 +11,68 @@
 
 
 
+
+
+.five {
+  width: 100%;
+  padding: 3rem 0rem;
+}
+.five-in {
+  width: 90%;
+  margin: auto;
+}
+.five-in-heading h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+.five-in-heading p {
+  font-size: 1.8rem;
+  color: rgb(155, 0, 3);
+  font-weight: 400;
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  padding: 1rem 0rem;
+}
+
+.five-in-one {
+  margin-top: 1rem;
+}
+.five-in-one {
+  display: flex;
+  justify-content: space-between;
+}
+.five-in-one-card {
+  width: 19%;
+  border-bottom: 1px solid rgb(155, 0, 3);
+  padding-bottom: 0.5rem;
+}
+.five-in-one-card-in {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.five-in-one-card-in-one img {
+  width: 100%;
+}
+.five-in-one-card-in-two h2 {
+  font-size: 1.3rem;
+  color: black;
+  font-weight: 700;
+}
+.five-in-one-card-in-two p {
+  font-size: 1rem;
+  color: grey;
+  margin-bottom: 1rem;
+}
+.five-in-one-card-in-two-link {
+  text-decoration: none;
+  color: rgb(155, 0, 3);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
 /* Twelve starts here */
 
 .Twelve {
@@ -24,8 +86,19 @@
   padding: 3rem 0rem;
 }
 
-.Twelve-in-head {
+.Twelve-in-head, .cmh-heading {
   padding: 0rem 0rem;
+}
+
+.cmh-heading h1 {
+  font-size: 2rem;
+  color: black;
+  font-weight: 700;
+}
+
+.breadcrumb span {
+  font-size: 0.8rem;
+  color: grey;
 }
 
 .Twelve-one {
@@ -55,4 +128,61 @@
   padding: 1rem;
   background-color: rgb(155, 0, 3);
   color: white;
+}
+
+
+
+
+
+/* thirteen starts here */
+.thirteen {
+  width: 100%;
+}
+.thirteen-in {
+  width: 90%;
+  margin: auto;
+  padding: 3rem 0rem;
+}
+.thirteen-in-one {
+  display: flex;
+  margin-top: 1rem;
+}
+.thirteen-box {
+  width: 20%;
+}
+.thirteen-box-in {
+  width: 95%;
+  border-top: 2px solid rgb(155, 0, 3);
+
+  padding-bottom: 1rem;
+}
+.thirteen-box-in h2 {
+  color: rgb(155, 0, 3);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.thirteen-box-in-desc {
+  width: 90%;
+  height: 6vh;
+}
+.thirteen-box-in-desc p {
+  font-size: 0.7rem;
+  color: grey;
+}
+
+.thirteen-box-in-one {
+  width: 100%;
+}
+.thirteen-box-in-one-in {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.thirteen-box-in-one-in-link {
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+  padding: 0.3rem 0rem;
+
 }
