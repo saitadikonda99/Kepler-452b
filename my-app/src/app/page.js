@@ -17,10 +17,10 @@ import VisibilitySensor from 'react-visibility-sensor';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // icons imports start here
-import { FaYoutube } from "react-icons/fa";
-import { RiInstagramFill } from "react-icons/ri";
-import { FaLinkedin } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaYoutube } from 'react-icons/fa';
+import { RiInstagramFill } from 'react-icons/ri';
+import { FaLinkedin } from 'react-icons/fa';
+import { FaSquareXTwitter } from 'react-icons/fa6';
 
 
 const page = () => {
