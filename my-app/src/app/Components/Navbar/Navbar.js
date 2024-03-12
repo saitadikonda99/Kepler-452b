@@ -112,7 +112,7 @@ const Navbar = () => {
                 Events
               </Scroll>
             </li>
-            <li>
+            {/* <li>
               <Scroll
                 className='nav-scroll-links'
                 activeClass="active"
@@ -124,10 +124,7 @@ const Navbar = () => {
               >
                 Leadership
               </Scroll>
-            </li>
-            <li>
-              <Link href="/clubs/tec/zeroonecodeclub" target='_blank'>Z</Link>
-            </li>
+            </li> */}
             <li>
               <Link href='https://sac-svr.vercel.app' target='_blank'>
                   SVR

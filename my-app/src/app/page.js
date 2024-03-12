@@ -288,10 +288,10 @@ const page = () => {
 
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Sample.png?alt=media&token=e4d7112b-45d7-4379-b355-7c2f824446e0" alt="" />
+                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FZeroOne.png?alt=media&token=27811623-fd4a-4a46-aaf5-ed485cf9e9b6" alt="" />
                         <div className="seven-in-one-one-box-in-desc">
                           <h4>ZeroOne Code Club</h4>
-                          <p>ZeroOne Code Club is a community of coders who are passionate about coding and are always ready to learn and explore new technologies.</p>
+                          <p>A picture perfect day at our workshop on Linux system administration. Swipe through to catch a glimpse of coding adventures from our workshop. We're proud of the skills and memories created</p>
                         </div>
                     </div>
                   </div>
@@ -299,11 +299,11 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Domains%2FJiraUpdatd-2.png?alt=media&token=327fcc16-7b60-42bd-9e18-00b0f9cc5da1" alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>ZeroOne Code Club</h4>
-                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                            <h4>AeroElectric & Automation Club</h4>
+                            <p>Luminous SIEP E-bike challenge Season-4, 2024  </p>
                           </div>
                     </div>
                   </div>
@@ -311,11 +311,11 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FJiraUpdatd.png?alt=media&token=9b13b2bc-5078-4cee-b4e3-268221aaf8b8" alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>ZeroOne Code Club</h4>
-                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                            <h4>AeroElectric & Automation Club</h4>
+                            <p>AITEM Go-Karting Championship Season-1, 2024 (AGKC)</p>
                           </div>
                     </div>
                   </div>
@@ -326,10 +326,10 @@ const page = () => {
 
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Sample.png?alt=media&token=e4d7112b-45d7-4379-b355-7c2f824446e0" alt="" />
+                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYoga.png?alt=media&token=c78edaf7-6094-4ec4-8088-33ed886aa53a" alt="" />
                         <div className="seven-in-one-one-box-in-desc">
-                          <h4>ZeroOne Code Club</h4>
-                          <p>ZeroOne Code Club is a community of coders who are passionate about coding and are always ready to learn and explore new technologies.</p>
+                          <h4>Yoga Club</h4>
+                          <p>Embark on a journey of serenity and vitality at Surabhi 2024, KL University, Vaddeswaram. Discover the enchanting allure of yoga on our captivating stage.</p>
                         </div>
                     </div>
                   </div>
@@ -337,7 +337,7 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-0b5.appspot.com/o/Domains%2FJiraUpdatd-2.png?alt=media&token=327fcc16-7b60-42bd-9e18-00b0f9cc5da1" alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
                             <h4>ZeroOne Code Club</h4>
@@ -349,7 +349,7 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://www.stanford.edu/wp-content/uploads/2024/03/audience_kickstarter_q_summit_2024_cropped_reduced_0.jpeg" alt="" />
+                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYoga.png?alt=media&token=c78edaf7-6094-4ec4-8088-33ed886aaa" alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
                             <h4>ZeroOne Code Club</h4>

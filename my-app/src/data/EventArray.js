@@ -1,16 +1,16 @@
 export const eventData = [
     { 
-        name: 'Event Name',
-        date: '13th Oct 2003',
-        image: 'https://s3.amazonaws.com/assets.mlh.io/events/splashes/000/212/054/thumb/hack_and_snack_discord-icon.png?1665079646',
-        venue: 'Event Venue'
+        name: 'Frontend web Dev',
+        date: '4th March 2024',
+        image: 'https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2Fwebdev.png?alt=media&token=b5433148-e92d-476b-90d1-b8102252e666',
+        venue: 'R&D Theatre'
     },
 
     {
-        name: 'Event Name',
-        date: '13th Oct 2003',
-        image: 'https://s3.amazonaws.com/assets.mlh.io/events/splashes/000/212/323/thumb/Hero_Title_Only.png?1667812364',
-        venue: 'Event Venue'
+        name: ' Yoga for flexibility',
+        date: '14th March 2024',
+        image: 'https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FYoga.png?alt=media&token=3bb9b888-be78-4f5f-87cd-5a6a0570bd6e',
+        venue: 'R 301B'
     },
 
     {
