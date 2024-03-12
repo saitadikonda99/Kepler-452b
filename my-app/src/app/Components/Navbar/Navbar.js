@@ -126,6 +126,9 @@ const Navbar = () => {
               </Scroll>
             </li>
             <li>
+              <Link href="/clubs/tec/zeroonecodeclub" target='_blank'>Z</Link>
+            </li>
+            <li>
               <Link href='https://sac-svr.vercel.app' target='_blank'>
                   SVR
               </Link>
