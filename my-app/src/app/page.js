@@ -50,13 +50,13 @@ const page = () => {
      <div className="HomeComponent">
         <div className="HomeComponent-in">
 
-            {/* Section starts here */}
+{/* ------------------------------ navigation bar ----------------------------------- */}
 
             <div className="Navbar">
                 <Navbar />
             </div>
 
-            {/* Section Hero starts here */}
+{/* ------------------------------ navigation bar ----------------------------------- */}
 
             <div className="hero">
                 <div className="hero-in">
@@ -78,7 +78,7 @@ const page = () => {
                 </div>
             </div>
 
-              {/* Section three starts here */}
+{/* ------------------------------ section three ----------------------------------- */}
 
               <div className="three">
                 <div className="three-in">
@@ -171,8 +171,8 @@ const page = () => {
 
 
 
-          {/* five starts here */}
 
+{/* ------------------------------ section five ----------------------------------- */}
           <div className="five">
             <div className="five-in">
               <div className="five-in-heading cmn-heading">
@@ -266,14 +266,14 @@ const page = () => {
           </div>
             
 
-          {/* Section four starts here */}
+{/* ------------------------------ section four ----------------------------------- */}
 
           <div className="four">
             <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/GroupPhoto%2FGroupPhoto.png?alt=media&token=9b5d582f-fb7d-4628-b187-7af43fdd6932" alt="" />
           </div>
 
       
-
+{/* ------------------------------ section seven ----------------------------------- */}
           <div className="seven">
             <div className="seven-in">
               <div className="seven-in-header cmn-heading">
@@ -364,7 +364,7 @@ const page = () => {
 
 
 
-            {/* Section eight starts here */}
+{/* ------------------------------ section eight ----------------------------------- */}
 
             <div className="eight">
                 <div className="eight-in">
@@ -391,7 +391,7 @@ const page = () => {
                 </div>
             </div>
 
-            {/* Section nine starts here */}
+{/* ------------------------------ section nine ----------------------------------- */}
 
             <div className="nine">
                 <div className="nine-in">
@@ -407,7 +407,7 @@ const page = () => {
           
 
 
-            {/* Section Eleven starts here */}
+{/* ------------------------------ section eleven ----------------------------------- */}
 
             <div className="Eleven">
                 <div className="Eleven-in">
@@ -490,7 +490,7 @@ const page = () => {
                 
 
 
-            {/* Section Twelve starts here */}
+{/* ------------------------------ section twelve ----------------------------------- */}
 
             <div className="Twelve">
                 <div className="Twelve-in">
@@ -519,7 +519,7 @@ const page = () => {
                 </div>
             </div>
 
-            {/* thirteen starts here */}
+{/* ------------------------------ section thirteen ----------------------------------- */}
           <div className="thirteen">
             <div className="thirteen-in">
               <div className="breadcrumb">
@@ -648,6 +648,7 @@ const page = () => {
           </div>
 
 
+{/* ------------------------------ Footer section ----------------------------------- */}
 
             <div className="Footer">
                 <Footer />
