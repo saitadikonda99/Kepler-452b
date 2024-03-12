@@ -23,6 +23,8 @@ import { FaLinkedin } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 
 
+
+
 const page = () => {
 
 
@@ -394,16 +396,94 @@ const page = () => {
 {/* ------------------------------ section nine ----------------------------------- */}
 
             <div className="nine">
-                <div className="nine-in">
-                    <div className="nine-one">
-                        <h1>Experience the power of community. Join us today and be a part of something truly special.</h1>
-                    </div>
-                    <div className="nine-two">
-                        <Link href='https://t.me/kl_sac' >Join the Community</Link>
-                    </div>
+              <div className="nine-in">
+                <div className="nine-in-one">
+                  <div className="nine-in-one-in">
+                    <h4>Think like a Champion</h4>
+                    <h1>Unlocking your Creativity with SAC</h1>
+                    <p>We got you covered! Get started with the basics with our guide to containers, including what they are, their advantage over virtual machines, and more.</p>
+                    <Link className='nine-in-one-link' href='/'>Read the container guide</Link>
+                  </div>
                 </div>
+                <div className="nine-in-two">
+                  <div className="nine-in-two-in">
+                    {/* Image */}
+
+                    {/* <LazyLoadImage className='nine-in-two-in-image'
+                      src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/GroupPhoto%2FGroupPhoto.png?alt=media&token=9b5d582f-fb7d-4628-b187-7af43fdd6932"
+                      alt="image"
+                    /> */}
+
+                  </div>
+                </div>
+              </div>
             </div>
 
+
+            <div className="fourteen">
+              
+              <div className="fourteen-in">
+                <div className="fourteen-in-header">
+                  <h4>How to get started</h4>
+                  <h1>Your path to accelerated application development starts here.</h1>
+                </div>
+                <div className="fourteen-in-one">
+
+                  <div className="fourteen-in-one-box">
+                    <div className="fourteen-in-one-box-in">
+                      <div className="fourteen-in-one-box-in-one">
+                        <FaLinkedin className='fourteen-in-one-box-in-one-icon' />  
+                      </div>
+                      <div className="fourteen-in-one-box-in-two">
+                        <h3>Start Exploring Categories</h3>
+                      </div>
+                      <div className="fourteen-in-one-box-in-three">
+                        <p>Learn how to install Docker for Mac, Windows, or Linux and explore our developer tools.</p>
+                      </div>
+                      <div className="fourteen-in-one-box-in-four">
+                        <Link className='fourteen-in-one-box-in-four-link' href='/'>Get Started</Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="fourteen-in-one-box">
+                    <div className="fourteen-in-one-box-in">
+                      <div className="fourteen-in-one-box-in-one">
+                        <FaLinkedin className='fourteen-in-one-box-in-one-icon' />  
+                      </div>
+                      <div className="fourteen-in-one-box-in-two">
+                        <h3>Start Exploring Categories</h3>
+                      </div>
+                      <div className="fourteen-in-one-box-in-three">
+                        <p>Learn how to install Docker for Mac, Windows, or Linux and explore our developer tools.</p>
+                      </div>
+                      <div className="fourteen-in-one-box-in-four">
+                        <Link className='fourteen-in-one-box-in-four-link' href='/'>Get Started</Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="fourteen-in-one-box">
+                    <div className="fourteen-in-one-box-in">
+                      <div className="fourteen-in-one-box-in-one">
+                        <FaLinkedin className='fourteen-in-one-box-in-one-icon' />  
+                      </div>
+                      <div className="fourteen-in-one-box-in-two">
+                        <h3>Start Exploring Categories</h3>
+                      </div>
+                      <div className="fourteen-in-one-box-in-three">
+                        <p>Learn how to install Docker for Mac, Windows, or Linux and explore our developer tools.</p>
+                      </div>
+                      <div className="fourteen-in-one-box-in-four">
+                        <Link className='fourteen-in-one-box-in-four-link' href='/'>Get Started</Link>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
           
 
 

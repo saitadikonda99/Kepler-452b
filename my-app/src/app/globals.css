@@ -319,41 +319,146 @@
 
 .nine {
   width: 100%;
-}
-
-.nine-in {
-  width: 80%;
-  margin: auto;
   padding: 3rem 0rem;
 }
-
-.nine-one {
-    width: 100%;    
+.nine-in {
+  width: 90%;
+  margin: auto;
+  display: flex;
+}
+.nine-in-one {
+  width: 50%;
 }
 
-.nine-one h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    text-align: center;
+.nine-in-two {
+  width: 50%;
 }
 
-.nine-two {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0rem;
+.nine-in-one-in {
+  width: 100%;
 }
 
-.nine-two a {
-    text-decoration: none;
-    padding: 1rem;
-    background-color: black;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 1rem;
+.nine-in-one-in h4 {
+  font-size: 1.5rem;
+  color: rgb(155, 0, 3);
+  font-weight: 400;
+  background: -webkit-linear-gradient(rgb(155, 0, 3), rgb(74, 2, 4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.nine-in-one-in h1 {
+  font-size: 3rem;
+  color: black;
+  font-weight: 700;
+  padding: 0.5rem 0rem;
+}
+
+.nine-in-one-in p {
+  font-size: 1.2rem;
+  color: rgb(75, 74, 74);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.nine-in-one-link {
+  text-decoration: none;
+  color: rgb(155, 0, 3);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 0rem;
+}
+
+.nine-in-two-in-image {
+  width: 100%;
+  padding: 1rem 0rem;
+}
+
+
+
+
+/* fourteen */
+
+.fourteen {
+  width: 100%;
+  padding: 3rem 0rem;
+}
+.fourteen-in {
+  width: 90%;
+  margin: auto;
+}
+.fourteen-in-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.fourteen-in-header h4 {
+  font-size: 1.5rem;
+  color: rgb(155, 0, 3);
+  font-weight: 400;
+  background: -webkit-linear-gradient(rgb(155, 0, 3), rgb(74, 2, 4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fourteen-in-header h1 {
+  font-size: 3rem;
+  color: black;
+  font-weight: 700;
+  padding: 0.5rem 0rem;
+}
+
+.fourteen-in-one {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0rem;
+}
+.fourteen-in-one-box {
+  width: 30%;
+}
+.fourteen-in-one-box-in {
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.fourteen-in-one-box-in-one {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.3rem 0rem;
+}
+.fourteen-in-one-box-in-one-icon {
+  width: fit-content;
+  font-size: 1.7rem;
+}
+.fourteen-in-one-box-in-two {
+  width: 100%;
+}
+.fourteen-in-one-box-in-two h3 {
+  font-size: 1.3rem;
+  color: black;
+  font-weight: 500;
+}
+.fourteen-in-one-box-in-three {
+  width: 100%;
+}
+.fourteen-in-one-box-in-three p {
+  font-size: 1rem;
+  color: grey;
+  margin-bottom: 1rem;
+  padding: 0.3rem 0rem;
+}
+
+.fourteen-in-one-box-in-four-link {
+  text-decoration: none;
+  color: rgb(155, 0, 3);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.2rem 0rem;
+
+}
+
+/* five */
 
 
 
