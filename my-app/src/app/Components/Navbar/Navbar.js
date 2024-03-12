@@ -73,7 +73,7 @@ const Navbar = () => {
                 Clubs
               </Scroll>
             </li>
-            <li>
+            {/* <li>
               <Scroll
                 className='nav-scroll-links'
                 activeClass="active"
@@ -85,7 +85,7 @@ const Navbar = () => {
               >
                 Blogs
               </Scroll>
-            </li>
+            </li> */}
             <li>
               <Scroll
                 className='nav-scroll-links'
@@ -110,19 +110,6 @@ const Navbar = () => {
                 duration={200}
               >
                 Events
-              </Scroll>
-            </li>
-            <li>
-              <Scroll
-                className='nav-scroll-links'
-                activeClass="active"
-                to="eleven"
-                spy={true}
-                smooth={true}
-                offset={-60}
-                duration={200}
-              >
-                Reports
               </Scroll>
             </li>
             <li>
