@@ -404,7 +404,122 @@ const page = () => {
                 </div>
             </div>
 
-          {/* thirteen starts here */}
+          
+
+
+            {/* Section Eleven starts here */}
+
+            <div className="Eleven">
+                <div className="Eleven-in">
+                    <div className="breadcrumb">
+                        <span>Home  / Socials</span>
+                    </div>
+                    <div className="Eleven-in-head cmh-heading">
+                        <h1>Follow Student Activity Center at KLEF</h1>
+                    </div>
+                    <div className="Eleven-one">
+                        <div className="Eleven-one-in">
+                            <div className="Social">
+                                <div className="Social-in">
+                                    <div className="Social-one YT">
+                                        <FaYoutube />   
+                                    </div>
+                                    <div className="Social-two">
+                                        <h1>YouTube</h1>
+                                    </div>
+                                    <div className="Social-three">
+                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
+                                    </div>
+                                    <div className="Social-four">
+                                        <Link href="https://www.youtube.com/@studentactivitycenter_klu">Subscribe</Link>        
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="Social">
+                                <div className="Social-in">
+                                    <div className="Social-one Insta">
+                                        <RiInstagramFill />   
+                                    </div>
+                                    <div className="Social-two">
+                                        <h1>Instagram</h1>
+                                    </div>
+                                    <div className="Social-three">
+                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
+                                    </div>
+                                    <div className="Social-four">
+                                        <Link href='https://www.instagram.com/klu_sac/'>Follow</Link>        
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="Social">
+                                <div className="Social-in">
+                                    <div className="Social-one Linked">
+                                        <FaLinkedin />   
+                                    </div>
+                                    <div className="Social-two">
+                                        <h1>LinkedIn</h1>
+                                    </div>
+                                    <div className="Social-three">
+                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
+                                    </div>
+                                    <div className="Social-four">
+                                        <Link href="https://www.linkedin.com/in/klu-sac/">Connect</Link>        
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="Social">
+                                <div className="Social-in">
+                                    <div className="Social-one Twitter">
+                                        <FaSquareXTwitter />   
+                                    </div>
+                                    <div className="Social-two">
+                                        <h1>Twitter</h1>
+                                    </div>
+                                    <div className="Social-three">
+                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
+                                    </div>
+                                    <div className="Social-four">
+                                        <Link href="https://twitter.com/klsac_vja">Follow</Link>        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+
+
+            {/* Section Twelve starts here */}
+
+            <div className="Twelve">
+                <div className="Twelve-in">
+                    <div className="Twelve-in-head cmh-heading">
+                        <div className="breadcrumb">
+                          <span>Home  / FAQs</span>
+                        </div>
+                        <h1>Frequently Asked Questions</h1>
+                    </div>
+                    <div className="Twelve-one">
+                        <div className="Twelve-one-in">
+                            {faqData.map((faq, index) => (
+                                <div key={index} className="Twelve-one-in-item">
+                                    <div className="Twelve-one-in-item-ques">
+                                        <p onClick={() => toggleAnswer(index)}>{faq.question}</p>
+                                    </div>
+                                    {expandedQuestions.includes(index) && (
+                                        <div className="Twelve-one-in-item-ans">
+                                            <p>{faq.answer}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* thirteen starts here */}
           <div className="thirteen">
             <div className="thirteen-in">
               <div className="breadcrumb">
@@ -531,119 +646,6 @@ const page = () => {
               </div>
             </div>
           </div>
-
-
-            {/* Section Eleven starts here */}
-
-            <div className="Eleven">
-                <div className="Eleven-in">
-                    <div className="breadcrumb">
-                        <span>Home  / Socials</span>
-                    </div>
-                    <div className="Eleven-in-head cmh-heading">
-                        <h1>Follow Student Activity Center at KLEF</h1>
-                    </div>
-                    <div className="Eleven-one">
-                        <div className="Eleven-one-in">
-                            <div className="Social">
-                                <div className="Social-in">
-                                    <div className="Social-one YT">
-                                        <FaYoutube />   
-                                    </div>
-                                    <div className="Social-two">
-                                        <h1>YouTube</h1>
-                                    </div>
-                                    <div className="Social-three">
-                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
-                                    </div>
-                                    <div className="Social-four">
-                                        <Link href="https://www.youtube.com/@studentactivitycenter_klu">Subscribe</Link>        
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="Social">
-                                <div className="Social-in">
-                                    <div className="Social-one Insta">
-                                        <RiInstagramFill />   
-                                    </div>
-                                    <div className="Social-two">
-                                        <h1>Instagram</h1>
-                                    </div>
-                                    <div className="Social-three">
-                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
-                                    </div>
-                                    <div className="Social-four">
-                                        <Link href='https://www.instagram.com/klu_sac/'>Follow</Link>        
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="Social">
-                                <div className="Social-in">
-                                    <div className="Social-one Linked">
-                                        <FaLinkedin />   
-                                    </div>
-                                    <div className="Social-two">
-                                        <h1>LinkedIn</h1>
-                                    </div>
-                                    <div className="Social-three">
-                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
-                                    </div>
-                                    <div className="Social-four">
-                                        <Link href="https://www.linkedin.com/in/klu-sac/">Connect</Link>        
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="Social">
-                                <div className="Social-in">
-                                    <div className="Social-one Twitter">
-                                        <FaSquareXTwitter />   
-                                    </div>
-                                    <div className="Social-two">
-                                        <h1>Twitter</h1>
-                                    </div>
-                                    <div className="Social-three">
-                                        <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
-                                    </div>
-                                    <div className="Social-four">
-                                        <Link href="https://twitter.com/klsac_vja">Follow</Link>        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                
-
-
-            {/* Section Twelve starts here */}
-
-            <div className="Twelve">
-                <div className="Twelve-in">
-                    <div className="Twelve-in-head cmh-heading">
-                        <div className="breadcrumb">
-                          <span>Home  / FAQs</span>
-                        </div>
-                        <h1>Frequently Asked Questions</h1>
-                    </div>
-                    <div className="Twelve-one">
-                        <div className="Twelve-one-in">
-                            {faqData.map((faq, index) => (
-                                <div key={index} className="Twelve-one-in-item">
-                                    <div className="Twelve-one-in-item-ques">
-                                        <p onClick={() => toggleAnswer(index)}>{faq.question}</p>
-                                    </div>
-                                    {expandedQuestions.includes(index) && (
-                                        <div className="Twelve-one-in-item-ans">
-                                            <p>{faq.answer}</p>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
 
