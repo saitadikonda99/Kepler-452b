@@ -299,7 +299,7 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Domains%2FJiraUpdatd-2.png?alt=media&token=327fcc16-7b60-42bd-9e18-00b0f9cc5da1" alt="" />
+                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=c7c09bda-6e52-495e-a718-08eed3fd810a" alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
                             <h4>AeroElectric & Automation Club</h4>
@@ -337,11 +337,11 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-0b5.appspot.com/o/Domains%2FJiraUpdatd-2.png?alt=media&token=327fcc16-7b60-42bd-9e18-00b0f9cc5da1" alt="" />
+                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Fnews1.jpeg?alt=media&token=8f459ff7-c275-4732-91f1-fcb9be6452e4" alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>ZeroOne Code Club</h4>
-                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                            <h4>Voters Awareness</h4>
+                            <p>KL Students join SVR and local Police for Voter's Awareness Rally at Reddygudem village, promoting civic engagement.</p>
                           </div>
                     </div>
                   </div>
@@ -349,11 +349,11 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYoga.png?alt=media&token=c78edaf7-6094-4ec4-8088-33ed886aaa" alt="" />
+                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Ftg_image_767744520.jpeg?alt=media&token=9bdf4f5d-c7fb-4281-85ef-aa8bc923eb5e" alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>ZeroOne Code Club</h4>
-                            <p>ZeroOne Code Club is a community of coders who are passionate</p>
+                            <h4>Film Clubs's King of Kotha</h4>
+                            <p>"King of Kotha," from the Film Club, arrives soon, promising an exciting cinematic experience for audiences.</p>
                           </div>
                     </div>
                   </div>
