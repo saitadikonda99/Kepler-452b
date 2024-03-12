@@ -399,7 +399,7 @@ const page = () => {
                         <h1>Experience the power of community. Join us today and be a part of something truly special.</h1>
                     </div>
                     <div className="nine-two">
-                        <button>Join the Community</button>
+                        <Link href='https://t.me/kl_sac' >Join the Community</Link>
                     </div>
                 </div>
             </div>
@@ -456,7 +456,7 @@ const page = () => {
                         <Link href='/' className="thirteen-box-in-one-in-link">Dance Club (NARTHANA)</Link>
                         <Link href='/' className="thirteen-box-in-one-in-link">Dramatics Club</Link>
                         <Link href='/' className="thirteen-box-in-one-in-link">F.E.K (FASHION DESIGNING)</Link>
-                        <Link href='/' className="thirteen-box-in-one-in-link">Film Making Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Film Technology Club</Link>
                         <Link href='/' className="thirteen-box-in-one-in-link">Handicrafts Club</Link>
                         <Link href='/' className="thirteen-box-in-one-in-link">KL Talks Club</Link>
                         <Link href='/' className="thirteen-box-in-one-in-link">Literature Club (VACHAS)</Link>
@@ -557,7 +557,7 @@ const page = () => {
                                         <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
                                     </div>
                                     <div className="Social-four">
-                                        <button>Subscribe</button>        
+                                        <Link href="https://www.youtube.com/@studentactivitycenter_klu">Subscribe</Link>        
                                     </div>
                                 </div>
                             </div>
@@ -573,7 +573,7 @@ const page = () => {
                                         <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
                                     </div>
                                     <div className="Social-four">
-                                        <button>Follow</button>        
+                                        <Link href='https://www.instagram.com/klu_sac/'>Follow</Link>        
                                     </div>
                                 </div>
                             </div>
@@ -589,7 +589,7 @@ const page = () => {
                                         <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
                                     </div>
                                     <div className="Social-four">
-                                        <button>Connect</button>        
+                                        <Link href="https://www.linkedin.com/in/klu-sac/">Connect</Link>        
                                     </div>
                                 </div>
                             </div>
@@ -605,7 +605,7 @@ const page = () => {
                                         <p>Subscribe to join a community of creative developers and learn the latest in Google technology.</p>
                                     </div>
                                     <div className="Social-four">
-                                        <button>Follow</button>        
+                                        <Link href="https://twitter.com/klsac_vja">Follow</Link>        
                                     </div>
                                 </div>
                             </div>

@@ -345,7 +345,8 @@
     padding: 2rem 0rem;
 }
 
-.nine-two button {
+.nine-two a {
+    text-decoration: none;
     padding: 1rem;
     background-color: black;
     border: none;
@@ -414,6 +415,8 @@
   font-weight: 500;
 }
 
+
+
 /* Eleven starts here */
 
 .Eleven {
@@ -479,9 +482,9 @@
     padding: 1rem 0rem;
 }
 
-.Social-four button {
+.Social-four a {
+    text-decoration: none;
     padding: .5rem 1rem;
-    /* background-color: rgb(151, 0, 3); */
     background-color: white;
     border: .1px solid gray;
     color: black;

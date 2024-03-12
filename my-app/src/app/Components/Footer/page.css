@@ -63,6 +63,11 @@
     font-weight: 400;
 }
 
+.footer-in-three a {
+    text-decoration: none;
+    color: white;
+}
+
 .footer-in-one {
     display: flex;
     padding: 1rem 0rem;

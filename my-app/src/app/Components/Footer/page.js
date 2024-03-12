@@ -46,7 +46,7 @@ const page = () => {
                 </div>
             </div>
             <div className="footer-in-three">
-                <p>2024 KLEF - Student Activity Center | Designed & Developed by Deepak Reddy Gathpa & Tadikonda Sai Manikanta</p>
+                <p>2023 KLEF - Student Activity Center | Designed & Developed by <Link href="https://www.linkedin.com/in/deepakreddygathpa/">Deepak Reddy Gathpa</Link> & <Link href="https://www.linkedin.com/in/tadikondasaimanikanta/">Tadikonda Sai Manikanta</Link></p>
             </div>
         </div>        
     </div>
