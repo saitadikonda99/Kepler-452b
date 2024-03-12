@@ -112,19 +112,19 @@ const Navbar = () => {
                 Events
               </Scroll>
             </li>
-            {/* <li>
+            <li>
               <Scroll
                 className='nav-scroll-links'
                 activeClass="active"
-                to="Footer"
+                to="eleven"
                 spy={true}
                 smooth={true}
                 offset={-60}
                 duration={200}
               >
-                Leadership
+                Reports
               </Scroll>
-            </li> */}
+            </li>
             <li>
               <Link href='https://sac-svr.vercel.app' target='_blank'>
                   SVR
