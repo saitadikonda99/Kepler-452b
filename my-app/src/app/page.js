@@ -600,7 +600,7 @@ const page = () => {
             </div>
 
 {/* ------------------------------ section thirteen ----------------------------------- */}
-          <div className="thirteen">
+          <div className="thirteen clubs-list">
             <div className="thirteen-in">
               <div className="breadcrumb">
                 <span>Home / Clubs</span>

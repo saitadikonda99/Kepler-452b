@@ -5,9 +5,18 @@ import { Link as Scroll } from 'react-scroll';
 import Link from 'next/link';
 
 import './Navbar.css';
-import { imageConfigDefault } from 'next/dist/shared/lib/image-config';
 
 const Navbar = () => {
+
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleHover = () => {
+    setShowDropdown(true);
+  };
+
+  const handleLeave = () => {
+    setShowDropdown(false);
+  };
 
     const [showDiv, setShowDiv] = useState(false);
       
@@ -47,7 +56,7 @@ const Navbar = () => {
         </div>
         <div className="Navbar-two">
           <ul>
-            <li>
+          <li>
               <Scroll
                 className='nav-scroll-links'
                 activeClass="active"
@@ -55,7 +64,7 @@ const Navbar = () => {
                 spy={true}
                 smooth={true}
                 offset={-10}
-                duration={200}
+                duration={400}
               >
                 About
               </Scroll>
@@ -67,34 +76,34 @@ const Navbar = () => {
                 to="five"
                 spy={true}
                 smooth={true}
-                offset={-50}
-                duration={200}
+                offset={-10}
+                duration={400}
               >
-                Clubs
+                Domains
               </Scroll>
             </li>
-            {/* <li>
-              <Scroll
-                className='nav-scroll-links'
-                activeClass="active"
-                to="nine"
-                spy={true}
-                smooth={true}
-                offset={-50}
-                duration={200}
-              >
-                Blogs
-              </Scroll>
-            </li> */}
             <li>
               <Scroll
                 className='nav-scroll-links'
-                activeClass="Twelve"
-                to="news"
+                activeClass="active"
+                to="four"
                 spy={true}
                 smooth={true}
-                offset={-60}
-                duration={200}
+                offset={-10}
+                duration={400}
+              >
+                Team
+              </Scroll>
+            </li>
+            <li>
+              <Scroll
+                className='nav-scroll-links'
+                activeClass="active"
+                to="seven"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
               >
                 News
               </Scroll>
@@ -103,15 +112,173 @@ const Navbar = () => {
               <Scroll
                 className='nav-scroll-links'
                 activeClass="active"
-                to="ten"
+                to="eight"
                 spy={true}
                 smooth={true}
-                offset={-60}
-                duration={200}
+                offset={-10}
+                duration={400}
               >
-                Events
+                Upcoming Events
               </Scroll>
             </li>
+            <li>
+              <Scroll
+                className='nav-scroll-links'
+                activeClass="active"
+                to="Twelve"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
+              >
+                FAQs
+              </Scroll>
+            </li>
+            <li className='clubs-hover' onMouseEnter={handleHover} onMouseLeave={handleLeave}>
+              <Scroll
+                className='nav-scroll-links'
+                activeClass="active"
+                to="thirteen"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
+              >
+                Clubs
+              </Scroll>
+
+              <div className="clubs-dropdown">
+              <div className="thirteen clubs-list">
+            <div className="thirteen-in">
+              <div className="breadcrumb">
+                <span>Home / Clubs</span>
+              </div>
+
+              <div className="cmn-heading">
+                <h1>Explore Various Categories of Clubs</h1>
+              </div>
+
+              <div className="thirteen-in-one">
+                <div className="thirteen-box">
+                  <div className="thirteen-box-in">
+                    <h2>TEC</h2>
+                    <div className="thirteen-box-in-desc">
+                      <p>Central Technology Clubs under SAC</p>
+                    </div>
+                    <div className="thirteen-box-in-one">
+                      <div className="thirteen-box-in-one-in">
+                        <Link href='/' className="thirteen-box-in-one-in-link">Aero Electric Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Agriculture Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Cryptography Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Cyber Security Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Design Sphere Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Luminary Digital Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Mobile E-Sports Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Prompt-o-Ventures</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Respawn (Game Development)</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Review Tech Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">WebApps Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Zero One Code Club</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="thirteen-box">
+                  <div className="thirteen-box-in">
+                    <h2>LCH</h2>
+                    <div className="thirteen-box-in-desc">
+                      <p>Liberal Arts, Creative Arts and Hobby Clubs</p>
+                    </div>
+
+                    <div className="thirteen-box-in-one">
+                      <div className="thirteen-box-in-one-in">
+                        <Link href='/' className="thirteen-box-in-one-in-link">Adventure Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Arts Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Dance Club (Fusion)</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Dance Club (NARTHANA)</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Dramatics Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">F.E.K (FASHION DESIGNING)</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Film Technology Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Handicrafts Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">KL Talks Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Literature Club (VACHAS)</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Music Club (Swara)</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Script Writing Club (Versatales)</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Social Media Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Standup Comedy</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div className="thirteen-box">
+                  <div className="thirteen-box-in">
+                    <h2>ESO</h2>
+                    <div className="thirteen-box-in-desc">
+                      <p>Extension & Society Outreach Clubs</p>
+                    </div>
+
+                    <div className="thirteen-box-in-one">
+                      <div className="thirteen-box-in-one-in">
+                        <Link href='/' className="thirteen-box-in-one-in-link">CEA</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Electoral Literacy Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">KL SAC - Empower</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">KL-Radio Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Kutumb Society</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Ohana</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Smart Village Revolution</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Yuva Tourism Club</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="thirteen-box">
+                  <div className="thirteen-box-in">
+                    <h2>IIE</h2>
+                    <div className="thirteen-box-in-desc">
+                      <p>Innovation, Incubation and Entrepreneurship Clubs</p>
+                    </div>
+
+                    <div className="thirteen-box-in-one">
+                      <div className="thirteen-box-in-one-in">
+                        <Link href='/' className="thirteen-box-in-one-in-link">KL ACIC</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">KL TBI</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div className="thirteen-box">
+                  <div className="thirteen-box-in">
+                    <h2>HWB</h2>
+                    <div className="thirteen-box-in-desc">
+                      <p>Health and Wellbeing Clubs</p>
+                    </div>
+
+                    <div className="thirteen-box-in-one">
+                      <div className="thirteen-box-in-one-in">
+                        <Link href='/' className="thirteen-box-in-one-in-link">Safe Life Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Spiritual Science Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">Yoga Club</Link>
+                        <Link href='/' className="thirteen-box-in-one-in-link">YRC</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+              </div>
+
+            </li>
+
+
             <li>
               <Link href='https://sac-svr.vercel.app' target='_blank'>
                   SVR
@@ -121,6 +288,10 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+
+    
+
+
   );
 };
 
