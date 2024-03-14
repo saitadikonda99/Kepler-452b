@@ -38,7 +38,7 @@ const page = () => {
             
 
         } catch (error) {
-            alert(error)
+            toast.error(error)
         }
     }
 

@@ -6,8 +6,9 @@ const page = () => {
       <div className="DashboardComponent">
           <div className="DashboardComponent-in">
             <div className="Dashboard-one">
-              <h1>SAC</h1>
-              <Link href="events">Upload Events</Link>
+                <h1>SAC</h1>
+                <Link href="events">Upload Events</Link>
+                <Link href="news">news</Link>
             </div>
           </div>
       </div>

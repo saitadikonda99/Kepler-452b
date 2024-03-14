@@ -23,9 +23,36 @@ CREATE TABLE events (
     eventName VARCHAR(255) NOT NULL,
     eventDate DATE NOT NULL,
     eventVenue VARCHAR(255) NOT NULL,
-    eventCardNum INT NOT NULL,
     uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
 INSERT INTO events (eventLink, eventName, eventDate, eventTime, eventCardNum) VALUES (?, ?, ?, ?, ?)
+
+
+-- news tables 
+
+-- news table for landscapes
+
+CREATE TABLE news_landscape (
+    id INT NOT NULL AUTO_INCREMENT,
+    newsLink VARCHAR(255) NOT NULL,
+    clubName VARCHAR(255) NOT NULL,
+    newsContent VARCHAR(255) NOT NULL,
+    uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO news_landscape (clubName, newsContent)
+            VALUES (?, ?, ?, ?)
+
+-- news table for portraits
+
+CREATE TABLE news_portrait (
+    id INT NOT NULL AUTO_INCREMENT,
+    newsLink VARCHAR(255) NOT NULL,
+    clubName VARCHAR(255) NOT NULL,
+    newsContent VARCHAR(255) NOT NULL,
+    uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
