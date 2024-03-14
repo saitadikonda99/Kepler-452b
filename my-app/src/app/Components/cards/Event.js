@@ -3,13 +3,13 @@ import Image from 'next/image'
 
 import './Event.css'
 
-const Event = ({eventImage, eventName, eventDate, eventVenue}) => {
+const Event = ({eventLink, eventName, eventDate, eventVenue}) => {
   return (
         <div className="EventComponent">
             <div className="EventComponent-in">
                 <div className="Event-one">
                     <img 
-                        src={eventImage}
+                        src={eventLink}
                         alt="Event Image" 
                         width={300} 
                         height={300} 

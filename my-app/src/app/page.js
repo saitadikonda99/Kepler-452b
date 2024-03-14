@@ -1,14 +1,15 @@
 "use client"
 import React from 'react'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // imports start here 
-import { faqData } from '@/data/FaqArray'
+import { faqData } from '../data/FaqArray';
 import Footer from './Components/Footer/page'
 import Link from 'next/link'
-import Event from '@/app/Components/cards/Event'
-import { eventData } from '@/data/EventArray'
-import Navbar from '@/app/Components/Navbar/Navbar'
+import Event from './Components/cards/Event'
+// import { eventData } from '../data/EventArray'
+import Navbar from './Components/Navbar/Navbar'
 
 
 // package imports start here
@@ -23,11 +24,11 @@ import { FaLinkedin } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 
 
+
 const page = () => {
 
-
-
     const [expandedQuestions, setExpandedQuestions] = useState([])
+    const [eventData, setEventData] = useState([])
     
     const toggleAnswer = (index) => {
         if (expandedQuestions.includes(index)) {
@@ -43,6 +44,19 @@ const page = () => {
             behavior: "smooth"
         })
     }
+
+    useEffect(() => {
+        const handleEvent = async () => {
+          try {
+            const response = await axios.get('/api/events');
+            setEventData(response.data);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        handleEvent();
+      }, []);
+    
 
 
   return (
@@ -376,16 +390,16 @@ const page = () => {
                     </div>
                     <div className="eight-one">
                         <div className="eight-one-in">
-                            {eventData.map((event, index) => (
-                                <div className="eight-event-one Event-cm" key={index}>
-                                    <Event 
-                                        eventImage={event.image}
-                                        eventName={event.name}
-                                        eventDate={event.date}
-                                        eventVenue={event.venue}
-                                    />
-                                </div>
-                            ))}
+                        {eventData.map((event, index) => (
+                            <div className="eight-event-one Event-cm" key={index}>
+                                <Event
+                                    eventLink={event.eventLink}
+                                    eventName={event.eventName}
+                                    eventDate={event.eventDate}
+                                    eventVenue={event.eventVenue}
+                                />
+                            </div>
+                        ))}
                         </div>
                     </div>
                 </div>
@@ -502,7 +516,7 @@ const page = () => {
                     </div>
                     <div className="Twelve-one">
                         <div className="Twelve-one-in">
-                            {faqData.map((faq, index) => (
+                            {faqData?.map((faq, index) => (
                                 <div key={index} className="Twelve-one-in-item">
                                     <div className="Twelve-one-in-item-ques">
                                         <p onClick={() => toggleAnswer(index)}>{faq.question}</p>
