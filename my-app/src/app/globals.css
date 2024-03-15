@@ -332,7 +332,20 @@
 
 .nine-in-two {
   width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.nine-in-two-in {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nine-in-two-in img {
+  width: 80%;
+}
+
 
 .nine-in-one-in {
   width: 100%;

@@ -407,13 +407,7 @@ const page = () => {
                 </div>
                 <div className="nine-in-two">
                   <div className="nine-in-two-in">
-                    {/* Image */}
-
-                    {/* <LazyLoadImage className='nine-in-two-in-image'
-                      src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/GroupPhoto%2FGroupPhoto.png?alt=media&token=9b5d582f-fb7d-4628-b187-7af43fdd6932"
-                      alt="image"
-                    /> */}
-
+                    <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Home%2FInnovation.jpg?alt=media&token=8ada740c-bf29-4b45-82d1-c9f329a5c62b" alt="" />
                   </div>
                 </div>
               </div>
