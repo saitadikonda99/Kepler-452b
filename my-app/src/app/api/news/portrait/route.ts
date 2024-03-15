@@ -1,7 +1,6 @@
 import { pool } from '../../../../config/db'
 import { NextRequest, NextResponse } from 'next/server';
 
-
 export const POST = async (req: any) => {
     try {
 
@@ -40,7 +39,6 @@ export const GET = async (req: NextRequest) => {
             SELECT * FROM news_portrait ORDER BY uploadAt DESC LIMIT 4;
             `
         )
-
 
         const News_portrait = response[0];
 
