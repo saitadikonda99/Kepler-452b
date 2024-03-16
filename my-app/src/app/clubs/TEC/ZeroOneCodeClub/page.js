@@ -16,17 +16,20 @@ const page = () => {
                 <div className="ClubPageNavbar">
                     <Navbar ClubName={ClubsArray[0].clubName} ClubImg={ClubsArray[0].clubImg} />
                 </div>
-                <div className="ClubPage">
-                    <div className="ClubPage-in">
 
-                        <div className="Club-one">
-                            <div className="Club-one-one">
-                                <img src={ClubsArray[0].heroImg} alt="" />
-                            </div>
-                        </div>
-
+                <div className="clubpage-hero">
+                    <div className="clubpage-hero-in">
+                        <img className='clubpage-hero-in-img' src={ClubsArray[0].heroImg} alt="" />
                     </div>
-                </div>  
+
+                    <div className="clubpage-hero-one">
+                        <div className="clubpage-hero-one-in">
+                            <h1>Docker Builds: Now Lightning Fast</h1>
+                            <h3>Announcing Docker Build Cloud general availability</h3>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="ClubPageFooter">
                     <Footer />
                 </div>
