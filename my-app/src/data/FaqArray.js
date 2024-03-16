@@ -19,5 +19,4 @@ export const faqData = [
       question: 'Are first year allowed in SAC?',
       answer: 'First years freshers they are always welcomed. SAC is a place where your talents flourish and also you gain new skills with coming time.',
     },
-
-];
+  ]

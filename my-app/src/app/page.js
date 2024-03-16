@@ -1,14 +1,15 @@
 "use client"
 import React from 'react'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // imports start here 
-import { faqData } from '@/data/FaqArray'
+import { faqData } from '../data/FaqArray';
 import Footer from './Components/Footer/page'
 import Link from 'next/link'
-import Event from '@/app/Components/cards/Event'
-import { eventData } from '@/data/EventArray'
-import Navbar from '@/app/Components/Navbar/Navbar'
+import Event from './Components/cards/Event'
+// import { eventData } from '../data/EventArray'
+import Navbar from './Components/Navbar/Navbar'
 
 
 // package imports start here
@@ -23,13 +24,12 @@ import { FaLinkedin } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 
 
-
-
 const page = () => {
 
-
-
     const [expandedQuestions, setExpandedQuestions] = useState([])
+    const [eventData, setEventData] = useState([])
+    const [newsLandscape, setNewsLandscape] = useState([])
+    const [newsPortrait, setNewsPortrait] = useState([])
     
     const toggleAnswer = (index) => {
         if (expandedQuestions.includes(index)) {
@@ -45,6 +45,43 @@ const page = () => {
             behavior: "smooth"
         })
     }
+
+    useEffect(() => {
+        const handleEvent = async () => {
+          try {
+            const response = await axios.get('/api/events');
+            setEventData(response.data);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+
+        const handleNewsLandscape = async () => {
+          try {
+            const response = await axios.get('/api/news/landscape');
+            setNewsLandscape(response.data);
+          }
+          catch (error) {
+            console.log(error);
+          }
+        };
+
+        const handleNewsPortrait = async () => {
+          try {
+            const response = await axios.get('/api/news/portrait');
+            setNewsPortrait(response.data);
+          }
+          catch (error) {
+            console.log(error);
+          }
+        };
+
+        handleEvent();
+        handleNewsLandscape();
+        handleNewsPortrait();
+
+      }, []);
+    
 
 
   return (
@@ -290,34 +327,35 @@ const page = () => {
 
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FZeroOne.png?alt=media&token=27811623-fd4a-4a46-aaf5-ed485cf9e9b6" alt="" />
+                        <img src={newsLandscape[0]?.newsLink} alt="" />
                         <div className="seven-in-one-one-box-in-desc">
-                          <h4>ZeroOne Code Club</h4>
-                          <p>A picture perfect day at our workshop on Linux system administration. Swipe through to catch a glimpse of coding adventures from our workshop. We're proud of the skills and memories created</p>
+                          <h4>{newsLandscape[0]?.clubName}</h4>
+                          <p>{newsLandscape[0]?.newsContent}</p>
                         </div>
                     </div>
                   </div>
 
+
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=c7c09bda-6e52-495e-a718-08eed3fd810a" alt="" />
+                            <img src={newsPortrait[0]?.newsLink} alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>AeroElectric & Automation Club</h4>
-                            <p>Luminous SIEP E-bike challenge Season-4, 2024  </p>
+                            <h4>{newsPortrait[0]?.clubName}</h4>
+                            <p>{newsPortrait[0]?.newsContent}</p>
                           </div>
                     </div>
                   </div>
 
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
-                          <div className="seven-in-one-one-box-in-one">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FJiraUpdatd.png?alt=media&token=9b13b2bc-5078-4cee-b4e3-268221aaf8b8" alt="" />
+                         <div className="seven-in-one-one-box-in-one">
+                            <img src={newsPortrait[1]?.newsLink} alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>AeroElectric & Automation Club</h4>
-                            <p>AITEM Go-Karting Championship Season-1, 2024 (AGKC)</p>
+                            <h4>{newsPortrait[1]?.clubName}</h4>
+                            <p>{newsPortrait[1]?.newsContent}</p>
                           </div>
                     </div>
                   </div>
@@ -328,22 +366,22 @@ const page = () => {
 
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYoga.png?alt=media&token=c78edaf7-6094-4ec4-8088-33ed886aa53a" alt="" />
+                        <img src={newsLandscape[1]?.newsLink} alt="" />
                         <div className="seven-in-one-one-box-in-desc">
-                          <h4>Yoga Club</h4>
-                          <p>Embark on a journey of serenity and vitality at Surabhi 2024, KL University, Vaddeswaram. Discover the enchanting allure of yoga on our captivating stage.</p>
+                          <h4>{newsLandscape[1]?.clubName}</h4>
+                          <p>{newsLandscape[1]?.newsContent}</p>
                         </div>
                     </div>
                   </div>
 
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
-                          <div className="seven-in-one-one-box-in-one">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Fnews1.jpeg?alt=media&token=8f459ff7-c275-4732-91f1-fcb9be6452e4" alt="" />
+                         <div className="seven-in-one-one-box-in-one">
+                            <img src={newsPortrait[2]?.newsLink} alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>Voters Awareness</h4>
-                            <p>KL Students join SVR and local Police for Voter's Awareness Rally at Reddygudem village, promoting civic engagement.</p>
+                            <h4>{newsPortrait[2]?.clubName}</h4>
+                            <p>{newsPortrait[2]?.newsContent}</p>
                           </div>
                     </div>
                   </div>
@@ -351,11 +389,11 @@ const page = () => {
                   <div className="seven-in-one-one-box">
                     <div className="seven-in-one-one-box-in">
                           <div className="seven-in-one-one-box-in-one">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Ftg_image_767744520.jpeg?alt=media&token=9bdf4f5d-c7fb-4281-85ef-aa8bc923eb5e" alt="" />
+                            <img src={newsPortrait[3]?.newsLink} alt="" />
                           </div>
                           <div className="seven-in-one-one-box-in-two">
-                            <h4>Film Clubs's King of Kotha</h4>
-                            <p>"King of Kotha," from the Film Club, arrives soon, promising an exciting cinematic experience for audiences.</p>
+                            <h4>{newsPortrait[3]?.clubName}</h4>
+                            <p>{newsPortrait[3]?.newsContent}</p>
                           </div>
                     </div>
                   </div>
@@ -378,16 +416,16 @@ const page = () => {
                     </div>
                     <div className="eight-one">
                         <div className="eight-one-in">
-                            {eventData.map((event, index) => (
-                                <div className="eight-event-one Event-cm" key={index}>
-                                    <Event 
-                                        eventImage={event.image}
-                                        eventName={event.name}
-                                        eventDate={event.date}
-                                        eventVenue={event.venue}
-                                    />
-                                </div>
-                            ))}
+                        {eventData?.map((event, index) => (
+                            <div className="eight-event-one Event-cm" key={index}>
+                                <Event
+                                    eventLink={event.eventLink}
+                                    eventName={event.eventName}
+                                    eventDate={event.eventDate}
+                                    eventVenue={event.eventVenue}
+                                />
+                            </div>
+                        ))}
                         </div>
                     </div>
                 </div>
@@ -576,7 +614,7 @@ const page = () => {
                     </div>
                     <div className="Twelve-one">
                         <div className="Twelve-one-in">
-                            {faqData.map((faq, index) => (
+                            {faqData?.map((faq, index) => (
                                 <div key={index} className="Twelve-one-in-item">
                                     <div className="Twelve-one-in-item-ques">
                                         <p onClick={() => toggleAnswer(index)}>{faq.question}</p>
