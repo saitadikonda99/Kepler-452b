@@ -31,15 +31,25 @@ const page = () => {
                     <Navbar ClubName={ClubsArray[0].clubName} ClubImg={ClubsArray[0].clubImg} />
                 </div>
 
-                <div className="clubpage-hero">
-                    <div className="clubpage-hero-in">
-                        <img className='clubpage-hero-in-img' src={ClubsArray[0].heroImg} alt="" />
 
-                        <div className="Club-one">
-                            <div className="Club-one-one">
-                            
+
+                
+
+                <div className="club-hero">
+                    <div className="club-hero-in">
+                            <img className='clubpage-hero-in-img' src={ClubsArray[0].heroImg} alt="" />
+
+                            <div className="club-hero-in-description">
+                                <h1>Docker Builds: Now Lightning Fast</h1>
+                                <h3>Announcing Docker Build Cloud general availability</h3>
+
+                                <a href="fonts.google.com">Join the community</a>
                             </div>
-                        </div>
+                    </div>
+                </div>
+
+
+
 
                         <div className="Club-two">
                             <div className="Club-two-one">
@@ -149,23 +159,14 @@ const page = () => {
                                 
                             </div>
                         </div>
+
+
                     
-
-
-                    </div>
-
-                    <div className="clubpage-hero-one">
-                        <div className="clubpage-hero-one-in">
-                            <h1>Docker Builds: Now Lightning Fast</h1>
-                            <h3>Announcing Docker Build Cloud general availability</h3>
-                        </div>
-                    </div>
                 </div>
 
                 <div className="ClubPageFooter">
                     <Footer />
                 </div>
-            </div>
         </div>
    )
 }
