@@ -211,9 +211,114 @@
 
 .ClubPage-six {
     width: 100%;
-    height: 10vh;
-    border-top-left-radius: 80%;
-    border-top-right-radius: 10%; 
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+}
+
+.ClubPage-six-in {
+    width: 100%;
+    background-color: rgb(243, 243, 243);
+    padding: 4rem 0rem 6rem 0rem;   
+}
+
+.ClubPage-six-one {
+    width: 100%;
+    text-align: center;
+}
+
+.ClubPage-six-one p {
+    font-size: 1.5rem;
+    background-clip: text;
+    -webkit-background-clip: text;  
+    color: transparent;
+    background-image: linear-gradient(to right, black, rgb(151, 0, 3));
+}
+
+.ClubPage-six-two {
+    width: 100%;
+    text-align: center;
+}
+
+.ClubPage-six-two h1 {
+    font-size: 3.4rem;
+}
+
+.ClubPage-six-three {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.ClubPage-six-three p {
+    font-size: 1rem;
+    color: rgb(64, 63, 63);
+}
+
+.ClubPage-six-four {
+    width: 100%;
+    padding: 2rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.ClubPage-six-four a {
+    text-decoration: none;
+    color: rgb(151, 0, 3);
+    font-weight: 500;
+}
+
+.connect-icon {
+    color: rgb(151, 0, 3);
+    font-weight: 500;
+}
+
+.ClubPage-six-five {
+    width: 100%;
+}
+
+.ClubPage-six-five-in {
+    width: 90%;
+    padding: 2rem 0rem;
+    margin: auto;
+    background-color: rgb(151, 0, 3);
+    border-radius: 20px;
+    display: flex;
+}
+
+.ClubPage-six-five-one {
+    width: 75%;
+}
+
+.ClubPage-six-five-one-in {
+    width: 90%;
+    margin: auto;
+    padding: 4rem 0rem;
+}
+
+.ClubPage-six-five-one-in h1 {
+    font-size: 2.2rem;
+    color: white;
+}
+
+.ClubPage-six-five-one-in p {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 300;
+}
+
+.ClubPage-six-five-two {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ClubPage-six-five-two button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    color: rgb(151, 0, 3);
+    font-size: 1rem;
+    font-weight: 500;
 }

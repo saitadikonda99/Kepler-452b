@@ -1,6 +1,7 @@
 "use client";
 import React from 'react'
 import { useState } from 'react'
+import Link from 'next/link'
 
 import './page.css'
 
@@ -11,6 +12,7 @@ import { ClubsArray } from '../../../../data/ClubsArray'
 
 // import start here 
 import { MdLocalActivity } from "react-icons/md";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 
 const page = () => {
@@ -145,7 +147,34 @@ const page = () => {
 
                         <div className="ClubPage-six">
                             <div className="ClubPage-six-in">
-                                
+                                <div className="ClubPage-six-one">
+                                    <p>Connect</p>
+                                </div>
+                                <div className="ClubPage-six-two">
+                                    <h1>Meet the community</h1>
+                                </div>
+                                <div className="ClubPage-six-three">
+                                    <p>Stop by any of the hundreds of meetups around the world for in-person banter or join our Slack and Discourse for virtual peer support. Our Docker Captains are also a great source of developer insight and expertise.</p>
+                                </div>
+                                <div className="ClubPage-six-four">
+                                    <Link href='/'>Connect with us</Link>
+                                    <FaArrowRightLong className='connect-icon'/>    
+                                </div>
+
+                                <div className="ClubPage-six-five">
+                                    <div className="ClubPage-six-five-in">
+                                        <div className="ClubPage-six-five-one">
+                                            <div className="ClubPage-six-five-one-in">
+                                                <h1>Choose a subscription that's right for you</h1>
+                                                <p>Find your perfect balance of collaboration, security, and support with a Docker subscription.</p>
+                                            </div>
+                                        </div>
+                                        <div className="ClubPage-six-five-two">
+                                            <button>Find Pricing</button>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     
