@@ -1,8 +1,21 @@
+"use client"
 import React from 'react';
 import './page.css';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const page = () => {
+
+    const [translated, setTranslated] = useState(false);
+
+    const handleMouseEnter = () => {
+      setTranslated(true);
+    };
+  
+    const handleMouseLeave = () => {
+      setTranslated(false);
+    };
+
   return (
     <div className='footer'>
         <div className="footer-in">
@@ -31,7 +44,9 @@ const page = () => {
                 <div className="footer-in-two-one">
                     <h2>The Mission Statement</h2>
                     <p>The mission of Student Activity Center at esteemed Koneru Lakshmaiah Education Foundation is to develop principled, innovative leaders who improve the world and to generate ideas that advance management practice.</p>
-                    <p>今日のリーダーを力強く支え、明日のリーダーを育てる</p>
+                    <p onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  className="translatable-text" >
+                        {translated ? "Supporting today's leaders strongly and nurturing tomorrow's leaders" : "今日のリーダーを力強く支え、明日のリーダーを育てる"}
+                    </p>
                 </div>
                 <div className="footer-in-two-two">
                     <div className="footer-in-two-two-one">

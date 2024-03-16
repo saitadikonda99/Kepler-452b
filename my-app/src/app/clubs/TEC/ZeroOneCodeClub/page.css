@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ClubPageComponent {
+    width: 100%;
+}
+
+.ClubPageComponent-in {
+    width: 100%;
+}
+
+.ClubPageNavbar {
+    width: 100%;
+    position: fixed;
+    top: 1;
+    z-index: 1000;
+}
+
+.ClubPage {
+    width: 100%;
+}
+
+.ClubPage-in {
+    width: 100%;
+}
+
+.Club-one {
+    width: 100%;
+    height: 100vh;
+}
+
+.Club-one-one {
+    width: 100%;
+    height: 80vh;
+}
+
+.Club-one-one img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -96,3 +96,7 @@
     display: block;
     text-decoration: none;
 }
+
+.translatable-text {
+    cursor: pointer;
+  }
