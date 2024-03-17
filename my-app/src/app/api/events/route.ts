@@ -43,6 +43,8 @@ export const GET = async (req: NextRequest) => {
 
         const events = response[0];
 
+        console.log(events)
+
         if(!events) {
             return NextResponse.json({ message: 'No events found', status: 404 })
         }

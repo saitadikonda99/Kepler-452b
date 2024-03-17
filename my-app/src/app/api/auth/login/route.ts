@@ -48,7 +48,6 @@ export const POST = async (req: NextRequest) => {
              [Authenticated[0].username]
         )
 
-
         const role = roles[0] as any[];
 
         // create a JWT token 

@@ -1,3 +1,10 @@
+
+-- create database
+
+CREATE DATABASE sac;
+
+-- users database
+
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
     username BIGINT NOT NULL UNIQUE,
@@ -8,11 +15,29 @@ CREATE TABLE users (
     PRIMARY KEY (id)    
 );
 
-INSERT INTO users (username, password, email, role) 
-VALUES 
-(2200030805, 'sai@1234', '220030805@kluniversity.in', 'Admin'),
-(2100031817, 'deepak@1234', '2100031817@kluniversity.in', 'Admin'),
-(2200031219, 'pavan@1234', '2200031219@kluniversity.in', 'Admin')
+
+-- clubs table for presidents
+
+CREATE TABLE club (
+    id INT NOT NULL AUTO_INCREMENT,
+    club_name VARCHAR(255) NOT NULL UNIQUE,
+    president_id INT NOT NULL UNIQUE,   
+    FOREIGN KEY (president_id) REFERENCES users(id),
+    PRIMARY KEY (id)
+);
+
+-- club Data
+
+CREATE TABLE club_data (
+    id INT NOT NULL AUTO_INCREMENT,
+    club_id INT NOT NULL,
+    club_name VARCHAR(255) NOT NULL,
+    club_description VARCHAR(255) NOT NULL,
+    club_logo VARCHAR(255) NOT NULL,
+    uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (club_id) REFERENCES club(id),
+    PRIMARY KEY (id)
+);
 
 
 -- event table
@@ -27,7 +52,6 @@ CREATE TABLE events (
     PRIMARY KEY (id)
 );
 
-INSERT INTO events (eventLink, eventName, eventDate, eventTime, eventCardNum) VALUES (?, ?, ?, ?, ?)
 
 
 -- news tables 
@@ -42,9 +66,6 @@ CREATE TABLE news_landscape (
     uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-
-INSERT INTO news_landscape (clubName, newsContent)
-            VALUES (?, ?, ?, ?)
 
 -- news table for portraits
 

@@ -36,7 +36,6 @@ const Login = () => {
 
 			if (response.status === 200) {
 				toast.success('Login successful')
-				router.push('/admin/dashboard')
 			}
 
 			if(response.data.status === 401) {
@@ -45,9 +44,21 @@ const Login = () => {
 			if(response.data.status === 500) {
 				toast.error('Internal server error')
 			}
+
+			const role = response.data.role
+
+			switch (role) {
+				case 'Admin':
+					router.push('/admin/dashboard')
+					break;
+				case 'President':
+					router.push('/president/dashboard')
+					break;
+				default:
+					router.push('/')
+					break;
+			}
 			
-
-
 		} catch (error) {
 			toast.error((error).response.data.message)
 		}
