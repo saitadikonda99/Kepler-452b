@@ -21,17 +21,19 @@ export const GET = async (req: NextRequest) => {
 
         const clubId = clubIdRes[0] as any[];
 
+        console.log(clubId[0].id)
+
         // get the club details
 
         const clubDetails = await pool.query(
             `SELECT * FROM club_data 
-             WHERE club_id = 3 
+             WHERE club_id = ?
              ORDER BY uploadAt DESC LIMIT 1`,
              [clubId[0].id]
         )
 
         const club = clubDetails[0] as any[];
-        
+
         console.log(club)
 
         return NextResponse.json(club, { status: 200 })
