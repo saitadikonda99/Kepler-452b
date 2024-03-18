@@ -39,7 +39,6 @@ CREATE TABLE club_data (
     PRIMARY KEY (id)
 );
 
-
 -- event table
 
 CREATE TABLE events (
