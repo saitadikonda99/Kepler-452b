@@ -73,7 +73,7 @@ const page = () => {
                                     <div className="C-option-one c-op-cm">
                                         <div className="C-option-one-in c-op-cm-in" onClick={() => handleClick(1)}>
                                             <MdLocalActivity className='icon-op'/>
-                                            <p>Build</p>
+                                            <p>Glimpse</p>
                                         </div>
                                     </div>
                                     <div className="C-option-two c-op-cm">
@@ -85,13 +85,13 @@ const page = () => {
                                     <div className="C-option-three c-op-cm">
                                         <div className="C-option-three-in c-op-cm-in" onClick={() => handleClick(3)}>
                                             <MdLocalActivity className='icon-op' />
-                                            <p>Run</p>
+                                            <p>Activities</p>
                                         </div>
                                     </div>
                                     <div className="C-option-four c-op-cm">
                                         <div className="C-option-four-in c-op-cm-in" onClick={() => handleClick(4)}>
                                             <MdLocalActivity className='icon-op' />
-                                            <p>verify</p>
+                                            <p>Team</p>
                                         </div>
                                     </div>
                                  </div>

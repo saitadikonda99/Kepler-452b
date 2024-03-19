@@ -662,7 +662,7 @@ const page = () => {
                         <Link href='/' className="thirteen-box-in-one-in-link">Respawn (Game Development)</Link>
                         <Link href='/' className="thirteen-box-in-one-in-link">Review Tech Club</Link>
                         <Link href='/' className="thirteen-box-in-one-in-link">WebApps Club</Link>
-                        <Link href='/clubs/TEC/ZeroOneCodeClub' className="thirteen-box-in-one-in-link">Zero One Code Club</Link>
+                        <Link href='/clubs/tec/zeroonecodeclub' className="thirteen-box-in-one-in-link">Zero One Code Club</Link>
                       </div>
                     </div>
                   </div>
