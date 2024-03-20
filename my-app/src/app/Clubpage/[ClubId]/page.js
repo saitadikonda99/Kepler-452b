@@ -15,7 +15,7 @@ const Page = ({ params }) => {
                 <div className="club-page-header-in">
                     <div className="club-page-header-in-one">
                         <h3>{club?.ClubName}</h3>
-                        <h1> {club?.ClubName} Club</h1>
+                        <h1> {club?.ClubName}</h1>
                         <h4>{club?.Manager}</h4>
                     </div>
                     <div className="club-page-header-in-two">
