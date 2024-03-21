@@ -24,7 +24,7 @@ import { FaLinkedin } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 
 
-const page = ({sai}) => {
+const page = () => {
 
     const [expandedQuestions, setExpandedQuestions] = useState([])
     const [eventData, setEventData] = useState([])
