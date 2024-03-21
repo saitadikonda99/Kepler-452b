@@ -6,6 +6,19 @@
     width: 90%;
     margin: auto;
 }
+
+.back-to-home {
+    width: 100%;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.back-to-home-link {
+    text-decoration: none;
+    padding: 0.5rem 0rem;
+    color: black;
+}
 .club-page-header {
     padding: 1rem 0rem;
     /* linear-gradient(90deg, black, rgb(151, 0, 3)) border bottom */

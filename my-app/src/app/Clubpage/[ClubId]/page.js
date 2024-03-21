@@ -1,6 +1,9 @@
 import React from 'react';
 import './page.css';
 
+
+import Link from 'next/link';
+
 import Footer from '../../Components/Footer/page';
 import { ClubArray } from '../../../data/ClubArray'
 
@@ -11,6 +14,9 @@ const Page = ({ params }) => {
   return (
     <div className='club-page'>
         <div className="club-page-in">
+            <div className="back-to-home">
+                <Link className='back-to-home-link' href='/'>Back to Home</Link>
+            </div>
             <div className="club-page-header">
                 <div className="club-page-header-in">
                     <div className="club-page-header-in-one">
