@@ -20,25 +20,25 @@ const Page = ({ params }) => {
             <div className="club-page-header">
                 <div className="club-page-header-in">
                     <div className="club-page-header-in-one">
-                        <h3>{club?.ClubName}</h3>
-                        <h1> {club?.ClubName}</h1>
-                        <h4>{club?.Manager}</h4>
+                        <h3>{club?.Club_Categ}</h3>
+                        <h1> {club?.Club_Name}</h1>
+                        <h4>{club?.Club_Lead_Name}</h4>
                     </div>
                     <div className="club-page-header-in-two">
-                        <h1>{club?.Department}</h1>
-                        <span>{club?.DepartmentDescription}</span>
+                        <h1>Department of Student Activity Center</h1>
+                        <span>A department where learning occurs beyond the confines of the traditional classroom walls</span>
                     </div>
                 </div>
             </div>
 
             <div className="club-page-in-one">
                 <div className="club-page-in-one-one">
-                    <img src={club?.ClubImg} alt={club?.ClubName} />
+                    <img src={club?.Club_Image} alt={club?.Club_Name} />
                 </div>
                 <div className="club-page-in-one-two">
                     <div className="club-page-in-one-two-in">
-                        <h2>What is {club?.ClubName}?</h2>
-                        <p>{club?.Description}</p>
+                        <h2>What is {club?.Club_Name}?</h2>
+                        <p>{club?.Club_Description}</p>
                     </div>
                 </div>
 
