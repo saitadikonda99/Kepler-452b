@@ -167,10 +167,11 @@
 }
 
 .c-op-cm {
-    width: 18%;
+    /* width: 18%; */
 }
 
 .c-op-cm-in {
+    padding: 1rem 1.5rem;
     width: 100%;
     display: flex;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -178,7 +179,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 4rem;
-    padding: .8rem 0rem;
+    /* padding: 1rem 0rem; */
     gap: 1rem;
 }
 
@@ -192,7 +193,9 @@
 }
 
 .c-op-cm-in:hover {
-    background-color: rgb(151, 0, 3);
+    /* background-color: rgb(151, 0, 3); */
+    /* background color as gradient */
+    background-image: linear-gradient(to right, black, rgb(151, 0, 3));
     color: white;
 }
 
