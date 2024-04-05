@@ -53,29 +53,45 @@ const page = () => {
         <div className="NewsLandScapeComponent">
             <div className="NewsLandScapeComponent-in">
                 <div className="NewsLandScape-one">
-                    <h1>News LandScape</h1>
-                    <input 
-                        type="text" 
-                        placeholder="NewsLink"
-                        name='newsLink'
-                        value={newsData.newsLink}
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="text" 
-                        placeholder="ClubName"
-                        name='clubName'
-                        value={newsData.clubName}
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="text" 
-                        placeholder="NewsContent"
-                        name='newsContent'
-                        value={newsData.newsContent}
-                        onChange={handleChange}
-                    />
-                    <button onClick={handleSubmit}>Submit</button>
+                    <h1>News Upload</h1>
+                    <p>Please carefully update the News links</p>
+                </div>
+                <div className="NewsLandScape-two">
+                    <div className="NewsLandScape-two-in">
+                        <div className="NewsLandScape-in-one">
+                            <input 
+                                type="text" 
+                                placeholder="NewsLink"
+                                name='newsLink'
+                                value={newsData.newsLink}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="NewsLandScape-in-two">
+                            <input 
+                                type="text" 
+                                placeholder="ClubName"
+                                name='clubName'
+                                value={newsData.clubName}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="NewsLandScape-in-three">
+                            <input 
+                                type="text" 
+                                placeholder="NewsContent"
+                                name='newsContent'
+                                value={newsData.newsContent}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="NewsLandScape-in-four">
+                            <button onClick={handleSubmit}>Submit</button>
+                        </div>
+                        <div className="NewsLandScape-in-five">
+                            <Link href='/admin/dashboard'>Go Back</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

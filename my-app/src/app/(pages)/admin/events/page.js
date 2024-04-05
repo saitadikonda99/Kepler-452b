@@ -3,6 +3,10 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-hot-toast';
+import Link from 'next/link'
+
+
+import './page.css'
 
 
 const page = () => {
@@ -56,36 +60,54 @@ const page = () => {
         <div className="EventsComponent">
             <div className="EventsComponent-in">
                 <div className="Events-one">
-                    <input 
-                        type="text"
-                        placeholder="Event poster Link"
-                        name='eventLink'
-                        value={eventData.eventLink}
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="text"
-                        placeholder="Event Name"
-                        name='eventName'
-                        value={eventData.eventName}
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="date"
-                        placeholder="Event date"
-                        name='eventDate'
-                        value={eventData.eventDate}
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="text"
-                        placeholder="Event Venue"
-                        name='eventVenue'
-                        value={eventData.eventVenue}
-                        onChange={handleChange}
-                    />
-                     
-                    <button onClick={handleSubmit}>Enter</button>
+                    <h1>Events Upload</h1>
+                    <p>Please carefully update the event links</p>
+                </div>
+                <div className="Events-two">
+                    <div className="Events-two-in">
+                        <div className="Events-in-one">
+                            <input 
+                                type="text"
+                                placeholder="Event poster Link"
+                                name='eventLink'
+                                value={eventData.eventLink}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="Events-in-two">
+                            <input 
+                                type="text"
+                                placeholder="Event Name"
+                                name='eventName'
+                                value={eventData.eventName}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="Events-in-three">
+                            <input 
+                                type="date"
+                                placeholder="Event date"
+                                name='eventDate'
+                                value={eventData.eventDate}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="Events-in-four">
+                            <input 
+                                type="text"
+                                placeholder="Event Venue"
+                                name='eventVenue'
+                                value={eventData.eventVenue}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="Events-in-five">
+                            <button onClick={handleSubmit}>Enter</button>
+                        </div>
+                        <div className="Events-in-six">
+                            <Link href='/admin/dashboard'>Go Back</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

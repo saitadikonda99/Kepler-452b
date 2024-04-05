@@ -1,0 +1,22 @@
+                    <input 
+                        type="text" 
+                        placeholder="NewsLink"
+                        name='newsLink'
+                        value={newsData.newsLink}
+                        onChange={handleChange}
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="ClubName"
+                        name='clubName'
+                        value={newsData.clubName}
+                        onChange={handleChange}
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="NewsContent"
+                        name='newsContent'
+                        value={newsData.newsContent}
+                        onChange={handleChange}
+                    />
+                    <button onClick={handleSubmit}>Submit</button>
