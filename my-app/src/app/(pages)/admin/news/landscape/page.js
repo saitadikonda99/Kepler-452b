@@ -3,6 +3,9 @@ import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast';
+import Link from 'next/link'
+
+import './page.css'
 
 const page = () => {
 

@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-
 import './page.css';
 
 import { silArray } from '../../../data/silArray';
