@@ -1,59 +1,112 @@
-table {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.SilComponent {
+    width: 100%;
+}
+
+.SilComponent-in {
+    width: 100%;
+}
+
+.Sil-one {
     width: 90%;
     margin: auto;
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 2rem 0rem;
 }
 
-table td {
-    padding: 10px;
-    border: 1px solid #000;
+.Sil-one-in {
+    width: 100%;
+    background-color: black;
+    padding: .8rem 0rem;
+    border-radius: 2rem;
 }
 
-table th {
-    padding: 10px;
-    border: 1px solid #000;
+.Sil-two {
+    width: 90%;
+    margin: auto;
 }
 
 .week-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+}
+
+.week-selector button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.week-selector button:hover {
+    background-color: white;
+    color: black;
+}
+
+.Sil-three {
     width: 90%;
     margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 2rem 0rem;
 }
 
-.sil-header h1{
-    padding: 2rem 4rem;
+.Sil-three table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
-.silactivities-in button {
-    border: 1px solid #000;
-    padding: .5rem 1rem;
-    color: black;
-    background-color: white;
-    border-radius: 10px;
+.Sil-three table th {
+    border: 1px solid black;
+    padding: .5rem;
 }
 
-.silactivities-in button:hover {
-    background-color: #000;
+.Sil-three table td {
+    border: 1px solid black;
+    padding: .5rem;
+}
+
+.Sil-three table thead tr:nth-child(1) {
+    background-color: rgb(151, 3, 0);
+    color: white;
+}
+
+.Sil-three table thead th:nth-child(1) {
+    width: 2%;
+}
+
+.Sil-three table thead th:nth-child(2) {
+    width: 18%;
+}
+
+.Sil-three table thead th:nth-child(3) {
+    width: 46%;
+}
+
+.Sil-three table thead th:nth-child(4) {
+    width: 12%;
+}
+
+.Sil-three table thead th:nth-child(5) {
+    width: 12%;
+}
+
+
+
+.Sil-three table td:nth-child(1) {
+    background-color: rgb(151, 3, 0);
     color: white;
 }
 
 
-/* make table header and si black */
-
-table th {
-    background-color: rgb(151, 0, 3);
-    color: white;
-}
-
-table td:nth-child(1) {
-    text-align: center;
-    background-color: rgb(151, 0, 3);
-    color: white;
-
+.Sil-three table tr:nth-child(even) {
+    background-color: rgb(240, 240, 240);
 }

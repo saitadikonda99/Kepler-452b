@@ -280,6 +280,12 @@ const Navbar = () => {
 
 
             <li>
+              <Link href='/sil' >
+                  SIL
+              </Link>
+            </li>
+            
+            <li>
               <Link href='https://sac-svr.vercel.app' target='_blank'>
                   SVR
               </Link>
