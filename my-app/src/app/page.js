@@ -3,6 +3,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import data from '../data/data.json'
+
 // imports start here 
 import { faqData } from '../data/FaqArray';
 import Footer from './Components/Footer/page'
@@ -26,10 +28,18 @@ import { FaSquareXTwitter } from 'react-icons/fa6';
 
 const page = () => {
 
-    const [expandedQuestions, setExpandedQuestions] = useState([])
-    const [eventData, setEventData] = useState([])
-    const [newsLandscape, setNewsLandscape] = useState([])
-    const [newsPortrait, setNewsPortrait] = useState([])
+  const [expandedQuestions, setExpandedQuestions] = useState([]);
+  const [eventData, setEventData] = useState([]);
+  const [newsLandscape, setNewsLandscape] = useState([]);
+  const [newsPortrait, setNewsPortrait] = useState([]);
+
+  useEffect(() => {
+
+    setExpandedQuestions(data.expandedQuestions);
+    setEventData(data.eventData);
+    setNewsLandscape(data.newsLandscape);
+    setNewsPortrait(data.newsPortrait);
+  }, []);
     
     const toggleAnswer = (index) => {
         if (expandedQuestions.includes(index)) {
@@ -46,41 +56,41 @@ const page = () => {
         })
     }
 
-    useEffect(() => {
-        const handleEvent = async () => {
-          try {
-            const response = await axios.get('/api/events');
-            setEventData(response.data);
-          } catch (error) {
-            console.log(error);
-          }
-        };
+    // useEffect(() => {
+    //     const handleEvent = async () => {
+    //       try {
+    //         const response = await axios.get('/api/events');
+    //         setEventData(response.data);
+    //       } catch (error) {
+    //         console.log(error);
+    //       }
+    //     };
 
-        const handleNewsLandscape = async () => {
-          try {
-            const response = await axios.get('/api/news/landscape');
-            setNewsLandscape(response.data);
-          }
-          catch (error) {
-            console.log(error);
-          }
-        };
+    //     const handleNewsLandscape = async () => {
+    //       try {
+    //         const response = await axios.get('/api/news/landscape');
+    //         setNewsLandscape(response.data);
+    //       }
+    //       catch (error) {
+    //         console.log(error);
+    //       }
+    //     };
 
-        const handleNewsPortrait = async () => {
-          try {
-            const response = await axios.get('/api/news/portrait');
-            setNewsPortrait(response.data);
-          }
-          catch (error) {
-            console.log(error);
-          }
-        };
+    //     const handleNewsPortrait = async () => {
+    //       try {
+    //         const response = await axios.get('/api/news/portrait');
+    //         setNewsPortrait(response.data);
+    //       }
+    //       catch (error) {
+    //         console.log(error);
+    //       }
+    //     };
 
-        handleEvent();
-        handleNewsLandscape();
-        handleNewsPortrait();
+    //     handleEvent();
+    //     handleNewsLandscape();
+    //     handleNewsPortrait();
 
-      }, []);
+    //   }, []);
     
 
 

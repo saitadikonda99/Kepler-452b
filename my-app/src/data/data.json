@@ -1,0 +1,84 @@
+{
+    "expandedQuestions": [],
+    "eventData": [
+      {
+        "id": 1,
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2Fwebdev.png?alt=media&token=b5433148-e92d-476b-90d1-b8102252e666",
+        "eventName": "Frontend web Dev",
+        "eventDate": "2024-03-04",
+        "eventVenue": "R&D Theatre",
+        "uploadAt": "2024-08-03 14:03:34"
+      },
+      {
+        "id": 2,
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FYoga.png?alt=media&token=3bb9b888-be78-4f5f-87cd-5a6a0570bd6e",
+        "eventName": "Yoga for flexibility",
+        "eventDate": "2024-03-14",
+        "eventVenue": "R 301B",
+        "uploadAt": "2024-08-03 14:03:34"
+      },
+      {
+        "id": 3,
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499",
+        "eventName": "Jira Fundamentals",
+        "eventDate": "2024-03-26",
+        "eventVenue": "R301A",
+        "uploadAt": "2024-08-03 14:03:34"
+      },
+      {
+        "id": 4,
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F2%20(1).png?alt=media&token=7b444e5c-4f93-4b39-8008-38558ec2c0f1",
+        "eventName": "NodeJS:Authentication",
+        "eventDate": "2024-03-21",
+        "eventVenue": "SAC Hall",
+        "uploadAt": "2024-08-03 14:03:34"
+      }
+    ],
+    "newsLandscape": [
+      {
+        "id": 3,
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FZeroOne.png?alt=media&token=27811623-fd4a-4a46-aaf5-ed485cf9e9b6",
+        "clubName": "ZeroOne Club",
+        "newsContent": "ZeroOne Club News Content",
+        "uploadAt": "2024-08-03 14:03:34"
+      },
+      {
+        "id": 4,
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYoga.png?alt=media&token=c78edaf7-6094-4ec4-8088-33ed886aa53a",
+        "clubName": "Yoga Club",
+        "newsContent": "Yoga Club News Content",
+        "uploadAt": "2024-08-03 14:03:34"
+      }
+    ],
+    "newsPortrait": [
+      {
+        "id": 1,
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=c7c09bda-6e52-495e-a718-08eed3fd810a",
+        "clubName": "Aero Club",
+        "newsContent": "Aero Club Additional News Content",
+        "uploadAt": "2024-08-03 14:03:34"
+      },
+      {
+        "id": 2,
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=c7c09bda-6e52-495e-a718-08eed3fd810a",
+        "clubName": "Aero Club",
+        "newsContent": "Aero Club News Content",
+        "uploadAt": "2024-08-03 14:03:34"
+      },
+      {
+        "id": 5,
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Fnews1.jpeg?alt=media&token=8f459ff7-c275-4732-91f1-fcb9be6452e4",
+        "clubName": "General News",
+        "newsContent": "General News Content",
+        "uploadAt": "2024-08-03 14:03:34"
+      },
+      {
+        "id": 6,
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Ftg_image_767744520.jpeg?alt=media&token=9bdf4f5d-c7fb-4281-85ef-aa8bc923eb5e",
+        "clubName": "Tech Club",
+        "newsContent": "Tech Club News Content",
+        "uploadAt": "2024-08-03 14:03:34"
+      }
+    ]
+  }
+  
