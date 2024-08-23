@@ -8,6 +8,9 @@ import Footer from '../../Components/Footer/page';
 
 const Page = () => {
   const [weeks, setWeeks] = useState([]);
+  const [selectedWeek , setSelectedWeek] = useState(1);
+//   const [searchTerm , setSelectedTerm]  = useState('');
+//   const [sortOption, setSortOption] = useState('date');
 
   const extractAndSortWeeks = () => {
     const uniqueWeeks = Array.from(new Set(silArray.map(activity => activity.Week)));
@@ -18,8 +21,6 @@ const Page = () => {
   useEffect(() => {
     extractAndSortWeeks();
   }, []);
-
-  const [selectedWeek, setSelectedWeek] = useState(1);
 
   const filteredActivities = silArray.filter(activity => activity.Week === selectedWeek);
 
@@ -40,7 +41,19 @@ const Page = () => {
 				</div>
 			</div>
 			<div className="Sil-two">
-				<p>List of Activities & Events for Week {selectedWeek}</p>
+				<div className="sil-two-in">
+					<p>List of Activities & Events for Week {selectedWeek}</p>
+					<div className="Sil-two-search">
+						<label htmlFor="">Search</label>
+						<input type="text" name="" id="" />
+					</div>
+					<div className="sil-two-fliter">
+						<select name="" id="">
+							<option value=""></option>
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
 			</div>
 			<div className="Sil-three">
 				<table>
