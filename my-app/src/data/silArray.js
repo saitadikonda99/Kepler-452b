@@ -3,7 +3,7 @@ export const silArray = [
         "Sno": 1,
         "Name of the Club ": "Student Council",
         "Event Title": "Quiz Contest",
-        "Date of the Event": "2023-11-12 ",
+        "Date of the Event": "12/11/2023",
         "Venue": "NA",
         "Week": 1
     },
@@ -11,7 +11,7 @@ export const silArray = [
         "Sno": 2,
         "Name of the Club ": "Student Council",
         "Event Title": "Poster Making Contest",
-        "Date of the Event": "2023-12-12 ",
+        "Date of the Event": "12/12/2023",
         "Venue": "NA",
         "Week": 1
     },
@@ -34,7 +34,7 @@ export const silArray = [
     {
         "Sno": 5,
         "Name of the Club ": "Student Council",
-        "Event Title": "Selfie Contest( on the pledge day)",
+        "Event Title": "Selfie Contest (on the pledge day)",
         "Date of the Event": "15/12/2023",
         "Venue": "NA",
         "Week": 1
@@ -43,7 +43,7 @@ export const silArray = [
         "Sno": 6,
         "Name of the Club ": "ZeroOne Code Club",
         "Event Title": "Jira Fundamentals: A Beginner's Guide to Project Management",
-        "Date of the Event": "2023-12-12 ",
+        "Date of the Event": "12/12/2023",
         "Venue": "R301A",
         "Week": 1
     },
@@ -51,7 +51,7 @@ export const silArray = [
         "Sno": 7,
         "Name of the Club ": "Automobile Club",
         "Event Title": "Session of Thermal Analysis using ANSYS",
-        "Date of the Event": "2023-12-12 ",
+        "Date of the Event": "12/12/2023",
         "Venue": "M Block CAD Lab",
         "Week": 1
     },
@@ -59,7 +59,7 @@ export const silArray = [
         "Sno": 8,
         "Name of the Club ": "Versatales Club",
         "Event Title": "Rainbow wizards",
-        "Date of the Event": "2023-12-12 ",
+        "Date of the Event": "12/12/2023",
         "Venue": "Jasmine Hall",
         "Week": 1
     },
@@ -67,7 +67,7 @@ export const silArray = [
         "Sno": 9,
         "Name of the Club ": "Mobile Esports club",
         "Event Title": "Esports training",
-        "Date of the Event": "2023-12-12 ",
+        "Date of the Event": "12/12/2023",
         "Venue": "R306A and R306B",
         "Week": 1
     },
@@ -130,7 +130,7 @@ export const silArray = [
     {
         "Sno": 17,
         "Name of the Club ": "KL Empower",
-        "Event Title": "Poster making and Poetry Writing- \"What goes on in the mind of a person who has been abused\"",
+        "Event Title": "Poster making and Poetry Writing - 'What goes on in the mind of a person who has been abused'",
         "Date of the Event": "14/12/2023",
         "Venue": "R306B",
         "Week": 1
