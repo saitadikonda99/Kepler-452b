@@ -1,0 +1,19 @@
+.club-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.club-container-in{
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.club-container-hero{
+    height:60vh;
+    width: 100%;
+    border: 2px solid red;
+}

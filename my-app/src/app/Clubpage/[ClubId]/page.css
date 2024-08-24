@@ -35,7 +35,7 @@
     font-size: 4rem;
     font-weight: 700;
     background: linear-gradient(90deg, black, rgb(151, 0, 3));
-    -webkit-background-clip: text;
+    /* -webkit-background-clip: text; */
     -webkit-text-fill-color: transparent;
 }
 .club-page-header-in-one h3 {
