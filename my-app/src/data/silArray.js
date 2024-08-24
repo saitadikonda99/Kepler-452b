@@ -2750,5 +2750,327 @@ export const silArray = [
         "Date of the Event": "2024-03-26 ",
         "Venue": "Yoga Hall(Indoor)",
         "Week": 12
+    },
+    {
+        "Name of the Club": "Cryptography",
+        "Event Title": "Data hack using passcode breaks and cryptography techniques",
+        "Category of the Event": "TEC",
+        "Date of the event": "2/8/2024",
+        "Venue": "R301B"
+    },
+    {
+        "Name of the Club": "WebApps Club",
+        "Event Title": "MOBILE APP DEVELOPMENT",
+        "Category of the Event": "TEC",
+        "Date of the event": "3/8/2024",
+        "Venue": "R 301A"
+    },
+    {
+        "Name of the Club": "ZeroOne Code Club",
+        "Event Title": "ZeroOne Coding Ladder 0.1",
+        "Category of the Event": "TEC",
+        "Date of the event": "2/8/2024",
+        "Venue": "Virtual"
+    },
+    {
+        "Name of the Club": "Cybersecurity & Ethical Hacking Club",
+        "Event Title": "Safe Browsing",
+        "Category of the Event": "TEC",
+        "Date of the event": "1/8/2024",
+        "Venue": "R301A"
+    },
+    {
+        "Name of the Club": "Cybersecurity & Ethical Hacking Club",
+        "Event Title": "Password Security",
+        "Category of the Event": "TEC",
+        "Date of the event": "10/8/2024",
+        "Venue": "R301A"
+    },
+    {
+        "Name of the Club": "Cryptography",
+        "Event Title": "Cryptography in Pacemakers",
+        "Category of the Event": "TEC",
+        "Date of the event": "22-08-2024",
+        "Venue": "R301B"
+    },
+    {
+        "Name of the Club": "Cryptography",
+        "Event Title": "password storing and how they work",
+        "Category of the Event": "TEC",
+        "Date of the event": "24/07/2024",
+        "Venue": "R301A"
+    },
+    {
+        "Name of the Club": "WebApps Club",
+        "Event Title": "WEB DEVELOPMENT WORK SHOP",
+        "Category of the Event": "TEC",
+        "Date of the event": "25/07/2024",
+        "Venue": "New Seminar Hall"
+    },
+    {
+        "Name of the Club": "Cybersecurity & Ethical Hacking Club",
+        "Event Title": "Social Media Awareness Program",
+        "Category of the Event": "TEC",
+        "Date of the event": "23/07/2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Swara",
+        "Event Title": "Spotlight Sessions: Open Mic Night",
+        "Category of the Event": "LCH",
+        "Date of the event": "22-07-2024",
+        "Venue": "New Seminar Hall"
+    },
+    {
+        "Name of the Club": "Narthna ",
+        "Event Title": "Dance Dynamics: Masterclass Series",
+        "Category of the Event": "LCH",
+        "Date of the event": "23-07-2024",
+        "Venue": "New Seminar Hall"
+    },
+    {
+        "Name of the Club": "Dramatics",
+        "Event Title": "Acting Lab: Unleash Your Dramatic Potential",
+        "Category of the Event": "LCH",
+        "Date of the event": "24-07-2024",
+        "Venue": "Rose Hall"
+    },
+    {
+        "Name of the Club": "Film Making",
+        "Event Title": "Short Film Showcase: Celebrating Student Creativity",
+        "Category of the Event": "LCH",
+        "Date of the event": "25-07-2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Painting & Embroidery",
+        "Event Title": "Brush Strokes: Painting Workshop Series",
+        "Category of the Event": "LCH",
+        "Date of the event": "26-07-2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Vachas",
+        "Event Title": "Debate with Words: Literary Debates for Critical Thinkers",
+        "Category of the Event": "LCH",
+        "Date of the event": "27-07-2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Swara",
+        "Event Title": "Melody Masters: Music Workshop",
+        "Category of the Event": "LCH",
+        "Date of the event": "2/8/2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Narthna ",
+        "Event Title": "Groove Fusion: Dance Showcase",
+        "Category of the Event": "LCH",
+        "Date of the event": "3/8/2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Fusion",
+        "Event Title": "Groove Fusion: Dance Showcase",
+        "Category of the Event": "LCH",
+        "Date of the event": "3/8/2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Dramatics",
+        "Event Title": "Script Craft: Write, Perform, Create",
+        "Category of the Event": "LCH",
+        "Date of the event": "9/8/2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Film Making",
+        "Event Title": "Filmmaking Masterclass: From Script to Screen",
+        "Category of the Event": "LCH",
+        "Date of the event": "10/8/2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Painting & Embroidery",
+        "Event Title": "Crafty Creations: Handicraft Making Sessions",
+        "Category of the Event": "LCH",
+        "Date of the event": "16-08-2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Vachas",
+        "Event Title": "In Conversation with Authors: Exploring Literary Worlds",
+        "Category of the Event": "LCH",
+        "Date of the event": "17-08-2024",
+        "Venue": "SAC Hall"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "VRIKSHAROPAM MAHOTSAV (Tree Plantation Drive)",
+        "Category of the Event": "ESO",
+        "Date of the event": "22-07-2024",
+        "Venue": "Guntur Channel Walking Track, Undavalli"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Rural Agroforestry Workshop",
+        "Category of the Event": "ESO",
+        "Date of the event": "22-07-2024",
+        "Venue": "Undavalli"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Community Tree Census",
+        "Category of the Event": "ESO",
+        "Date of the event": "23-07-2024",
+        "Venue": "Brahmanandapuram"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Safai Abhiyan (Cleanliness Drive) (Phase-1)",
+        "Category of the Event": "ESO",
+        "Date of the event": "23-07-2024",
+        "Venue": "Undavalli centre"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Sanitation Awareness Workshop",
+        "Category of the Event": "ESO",
+        "Date of the event": "24-07-2024",
+        "Venue": "Dolasnagar"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Education Awareness workshop",
+        "Category of the Event": "ESO",
+        "Date of the event": "24-07-2024",
+        "Venue": "Prakash Nagar"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Personal hygiene & sanitation awareness workshop",
+        "Category of the Event": "ESO",
+        "Date of the event": "25-07-2024",
+        "Venue": "Nulakapeta"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "First-Aid training workshop (CPR)(Phase-1)",
+        "Category of the Event": "ESO",
+        "Date of the event": "26-07-2024",
+        "Venue": "Kolanukonda"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Awareness workshop on waterborne diseases",
+        "Category of the Event": "ESO",
+        "Date of the event": "27-07-2024",
+        "Venue": "Mahanadu"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Mobile security workshop",
+        "Category of the Event": "ESO",
+        "Date of the event": "29-07-2024",
+        "Venue": "Navodaya Colony"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Workshops on Compost Making",
+        "Category of the Event": "ESO",
+        "Date of the event": "30-07-2024",
+        "Venue": "Chirravuru"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Water Management Workshop",
+        "Category of the Event": "ESO",
+        "Date of the event": "31-07-2024",
+        "Venue": "Penumaka"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "          Nutrition & diseases prevention workshop",
+        "Category of the Event": "ESO",
+        "Date of the event": "5/8/2024",
+        "Venue": "Revendrapadu"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Tree Care and maintenance seminar (Phase-1) ",
+        "Category of the Event": "ESO",
+        "Date of the event": "6/8/2024",
+        "Venue": "Gundimeda,chirravuru"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Safai Abhiyan (Cleanliness Drive) (Phase-2)",
+        "Category of the Event": "ESO",
+        "Date of the event": "7/8/2024",
+        "Venue": "Undavalli Center"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Swatch bharath(clean drive)",
+        "Category of the Event": "ESO",
+        "Date of the event": "15-08-2024",
+        "Venue": "Undavalli Center"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "ODF Campaign (Phase-1)",
+        "Category of the Event": "ESO",
+        "Date of the event": "15-08-2024",
+        "Venue": "dolasnagar"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Memorial Walk Independance Day",
+        "Category of the Event": "ESO",
+        "Date of the event": "15-08-2024",
+        "Venue": "Kunchanpalli"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Vriksharopam Mahotsav Tree Plantation Drive",
+        "Category of the Event": "ESO",
+        "Date of the event": "15-08-2024",
+        "Venue": "GUNDIMEDA"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Library development program (Phase-1)",
+        "Category of the Event": "ESO",
+        "Date of the event": "16-08-2024",
+        "Venue": "Nutakki"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Vaccination drive (Phase-1)",
+        "Category of the Event": "ESO",
+        "Date of the event": "17-08-2024",
+        "Venue": "Konduru"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "First-Aid training workshop (CPR)(Phase-2) ",
+        "Category of the Event": "ESO",
+        "Date of the event": "19-08-2024",
+        "Venue": "Kolanukonda"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Water quality testing camps",
+        "Category of the Event": "ESO",
+        "Date of the event": "20-08-2024",
+        "Venue": "prathuru"
+    },
+    {
+        "Name of the Club": "Smart Village Revolution (SVR)",
+        "Event Title": "Workshop on Rain water Harvesting techniques (Phase-1)",
+        "Category of the Event": "ESO",
+        "Date of the event": "21-08-2024",
+        "Venue": "pedapalem"
     }
 ]
