@@ -81,6 +81,7 @@
 
 .Sil-three table {
     width: 100%;
+    height: 70vh;
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -101,19 +102,19 @@
 }
 
 .Sil-three table thead th:nth-child(1) {
-    width: 2%;
+    width: 15%;
 }
 
 .Sil-three table thead th:nth-child(2) {
-    width: 18%;
+    width: 44%;
 }
 
 .Sil-three table thead th:nth-child(3) {
-    width: 46%;
+    width: 8%;
 }
 
 .Sil-three table thead th:nth-child(4) {
-    width: 12%;
+    width: 14%;
 }
 
 .Sil-three table thead th:nth-child(5) {
@@ -123,8 +124,9 @@
 
 
 .Sil-three table td:nth-child(1) {
-    background-color: rgb(151, 3, 0);
-    color: white;
+    /* background-color: rgb(151, 3, 0); */
+    /* color: white; */
+    color: black;
 }
 
 
