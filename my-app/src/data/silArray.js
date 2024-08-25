@@ -38,7 +38,7 @@ const silArrayData = [
         "Sno": 1,
         "Name of the Club ": "Student Council",
         "Event Title": "Quiz Contest",
-        "Date of the Event": "12/11/2023",
+        "Date of the Event": "2023-12-11",
         "Venue": "NA",
         "Week": 1
     },
@@ -46,7 +46,7 @@ const silArrayData = [
         "Sno": 2,
         "Name of the Club ": "Student Council",
         "Event Title": "Poster Making Contest",
-        "Date of the Event": "12-12-2023",
+        "Date of the Event": "2023-12-12",
         "Venue": "NA",
         "Week": 1
     },
@@ -54,7 +54,7 @@ const silArrayData = [
         "Sno": 3,
         "Name of the Club ": "Student Council",
         "Event Title": "Reels making Contest",
-        "Date of the Event": "13-12-2023",
+        "Date of the Event": "2023-12-13",
         "Venue": "NA",
         "Week": 1
     },
@@ -62,7 +62,7 @@ const silArrayData = [
         "Sno": 4,
         "Name of the Club ": "Student Council",
         "Event Title": "Story Writing Contest",
-        "Date of the Event": "14-12-2023",
+        "Date of the Event": "2023-12-14",
         "Venue": "NA",
         "Week": 1
     },
@@ -70,7 +70,7 @@ const silArrayData = [
         "Sno": 5,
         "Name of the Club ": "Student Council",
         "Event Title": "Selfie Contest (on the pledge day)",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "NA",
         "Week": 1
     },
@@ -78,7 +78,7 @@ const silArrayData = [
         "Sno": 6,
         "Name of the Club ": "ZeroOne Code Club",
         "Event Title": "Jira Fundamentals: A Beginner's Guide to Project Management",
-        "Date of the Event": "12-12-2023",
+        "Date of the Event": "2023-12-12",
         "Venue": "R301A",
         "Week": 1
     },
@@ -86,7 +86,7 @@ const silArrayData = [
         "Sno": 7,
         "Name of the Club ": "Automobile Club",
         "Event Title": "Session of Thermal Analysis using ANSYS",
-        "Date of the Event": "12-12-2023",
+        "Date of the Event": "2023-12-12",
         "Venue": "M Block CAD Lab",
         "Week": 1
     },
@@ -94,7 +94,7 @@ const silArrayData = [
         "Sno": 8,
         "Name of the Club ": "Versatales Club",
         "Event Title": "Rainbow wizards",
-        "Date of the Event": "12-12-2023",
+        "Date of the Event": "2023-12-12",
         "Venue": "Jasmine Hall",
         "Week": 1
     },
@@ -102,7 +102,7 @@ const silArrayData = [
         "Sno": 9,
         "Name of the Club ": "Mobile Esports club",
         "Event Title": "Esports training",
-        "Date of the Event": "12-12-2023",
+        "Date of the Event": "2023-12-12",
         "Venue": "R306A and R306B",
         "Week": 1
     },
@@ -110,7 +110,7 @@ const silArrayData = [
         "Sno": 10,
         "Name of the Club ": "ZeroOne Code Club",
         "Event Title": "CRUD Operations in PHP: Interactive Admin Panel",
-        "Date of the Event": "13-12-2023",
+        "Date of the Event": "2023-12-13",
         "Venue": "R301A",
         "Week": 1
     },
@@ -118,7 +118,7 @@ const silArrayData = [
         "Sno": 11,
         "Name of the Club ": "Web Apps Club",
         "Event Title": "Mastery With Web Development",
-        "Date of the Event": "13-12-2023",
+        "Date of the Event": "2023-12-13",
         "Venue": "R301B",
         "Week": 1
     },
@@ -126,7 +126,7 @@ const silArrayData = [
         "Sno": 12,
         "Name of the Club ": "Tech Huma Club",
         "Event Title": "Remote learning platforms in Biomedical",
-        "Date of the Event": "13-12-2023",
+        "Date of the Event": "2023-12-13",
         "Venue": "R306A",
         "Week": 1
     },
@@ -134,7 +134,7 @@ const silArrayData = [
         "Sno": 13,
         "Name of the Club ": "Vachas Club",
         "Event Title": "Salad Bowl",
-        "Date of the Event": "13-12-2023",
+        "Date of the Event": "2023-12-13",
         "Venue": "R306B",
         "Week": 1
     },
@@ -142,7 +142,7 @@ const silArrayData = [
         "Sno": 14,
         "Name of the Club ": "ZeroOne Code Club",
         "Event Title": "Nginx Crash Course",
-        "Date of the Event": "14-12-2023",
+        "Date of the Event": "2023-12-14",
         "Venue": "R301A",
         "Week": 1
     },
@@ -150,7 +150,7 @@ const silArrayData = [
         "Sno": 15,
         "Name of the Club ": "KL Empower",
         "Event Title": "Elocution - A World Without Abuse",
-        "Date of the Event": "14-12-2023",
+        "Date of the Event": "2023-12-14",
         "Venue": "R306A",
         "Week": 1
     },
@@ -158,7 +158,7 @@ const silArrayData = [
         "Sno": 16,
         "Name of the Club ": "Narthana Club",
         "Event Title": "Free Soul",
-        "Date of the Event": "14-12-2023",
+        "Date of the Event": "2023-12-14",
         "Venue": "Indoor (Narthana Club space)",
         "Week": 1
     },
@@ -166,7 +166,7 @@ const silArrayData = [
         "Sno": 17,
         "Name of the Club ": "KL Empower",
         "Event Title": "Poster making and Poetry Writing - 'What goes on in the mind of a person who has been abused'",
-        "Date of the Event": "14-12-2023",
+        "Date of the Event": "2023-12-14",
         "Venue": "R306B",
         "Week": 1
     },
@@ -174,7 +174,7 @@ const silArrayData = [
         "Sno": 18,
         "Name of the Club ": "ZeroOne Code Club",
         "Event Title": "JavaScript Foundations: Understanding Syntax, DataTypes, and Control Flow",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "R301A",
         "Week": 1
     },
@@ -182,7 +182,7 @@ const silArrayData = [
         "Sno": 19,
         "Name of the Club ": "Web Apps Club",
         "Event Title": "DESIGN WITH FIGMA",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "R301B",
         "Week": 1
     },
@@ -190,7 +190,7 @@ const silArrayData = [
         "Sno": 20,
         "Name of the Club ": "Aero Electric Club",
         "Event Title": "Basics of Electronics",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "R306A",
         "Week": 1
     },
@@ -198,7 +198,7 @@ const silArrayData = [
         "Sno": 21,
         "Name of the Club ": "Luminary Digital",
         "Event Title": "Digital Marketing & Entrepreneurship",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "R306B",
         "Week": 1
     },
@@ -206,7 +206,7 @@ const silArrayData = [
         "Sno": 22,
         "Name of the Club ": "FUSION CLUB",
         "Event Title": "Freaking Friday",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "Indoor (Fusion Club workspace)",
         "Week": 1
     },
@@ -214,7 +214,7 @@ const silArrayData = [
         "Sno": 23,
         "Name of the Club ": "Film technology club",
         "Event Title": "how to make a short film",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "Jasmine Hall",
         "Week": 1
     },
@@ -222,10 +222,10 @@ const silArrayData = [
         "Sno": 24,
         "Name of the Club ": "Electoral Literacy Club",
         "Event Title": "Youth Engagement in Decision-Making",
-        "Date of the Event": "15-12-2023",
+        "Date of the Event": "2023-12-15",
         "Venue": "R307A",
         "Week": 1
-    },
+    },    
     {
         "Sno": 25,
         "Name of the Club ": "ZeroOne Code Club",
@@ -3073,7 +3073,7 @@ const silArrayData = [
         "Date of the event": "15-08-2024",
         "Venue": "GUNDIMEDA"
     },
-    {
+        {
         "Name of the Club": "Smart Village Revolution (SVR)",
         "Event Title": "Library development program (Phase-1)",
         "Category of the Event": "ESO",

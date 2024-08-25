@@ -81,7 +81,7 @@
 
 .Sil-three table {
     width: 100%;
-    height: 70vh;
+    height: 80vh;
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -132,4 +132,47 @@
 
 .Sil-three table tr:nth-child(even) {
     background-color: rgb(240, 240, 240);
+}
+
+.page-active{
+    background-color: rgba(0, 0, 0, 0.582);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow */
+
+}
+
+.page-num{
+    width:2rem;
+    text-align: center;
+    /* padding: 0 1rem; */
+    cursor: pointer;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+}
+
+.previous,.next{
+    padding: 0 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+}
+
+.page-num:hover,
+.previous:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.582);
+    color: white;
+    font-weight: bold; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); 
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .2rem;
+    padding: 1rem 0rem;
 }
