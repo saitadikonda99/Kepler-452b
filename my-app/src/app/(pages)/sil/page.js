@@ -77,7 +77,7 @@ const Page = () => {
 
         <div className="Sil-two">
           <div className="sil-two-in">
-            <p>List of Activities & Events</p>
+            {/* <p>List of Activities & Events</p> */}
             <div className="Sil-two-search">
               <label htmlFor="search">Search</label>
               <input
@@ -88,12 +88,13 @@ const Page = () => {
               />
             </div>
             <div className="sil-two-fliter">
+              <label htmlFor="sort">Filter by Year   </label>
               <select id="sort" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                  <option value="">All Activities</option>
                  {uniqueYears.map(year => (
                    <option key={year} value={year}>{year}</option>
                  ))}
-                <option value="no-date">No Date</option> {/* Option for activities with no dates */}
+                {/* <option value="no-date">No Date</option> Option for activities with no dates */}
               </select>
             </div>
           </div>

@@ -43,39 +43,25 @@
 .Sil-two-search{
     /* border: 2px solid red; */
     /* gap: 5px; */
-    width: 19%;
+    width: 50%;
     display: flex;
-    justify-content: space-around;
+    gap: 1rem;
+    justify-content: flex-start;
     padding: 0.3rem;
 }
 .sil-two-fliter{
-    border: 2px solid red;
-    width: 15%;
-}
-.week-selector {
+    /* border: 2px solid red; */
+    width: 50%;
     display: flex;
-    align-items: center;
-    justify-content: space-around; 
-}
-
-.week-selector button {
-    background-color: black;
-    color: white;
-    border: none;
-    padding: .2rem 1rem;
-    border-radius: 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.week-selector button:hover {
-    background-color: white;
-    color: black;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 50;
 }
 
 .Sil-three {
     width: 90%;
-    margin: auto;
+    margin: 0 auto;
+    margin-top: -1rem;
     padding: 2rem 0rem;
 }
 
