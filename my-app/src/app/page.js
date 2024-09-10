@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Footer from "./Components/Footer/page";
 import Navbar from "./Components/Navbar/Navbar";
 
+
 // UI imports start here
 import Home from "./UI/home/page";
 import Stats from "./UI/stats/page";
