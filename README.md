@@ -1,5 +1,13 @@
 # Kepler-452b
 
+
+## Tech Stack
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
 ## Project Structure Overview
 
 ### Front-End
@@ -118,15 +126,6 @@ This project includes several configuration files that manage various aspects of
 
 - **`docker-compose.yml`**  Configuration for Docker Compose to manage multi-container Docker applications.
 
-- **`nginx.conf`**  Configuration file for the Nginx web server used in this project.
-
-## Tech Stack
-
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
 
 ## Installation
 
@@ -145,7 +144,7 @@ This project includes several configuration files that manage various aspects of
 
 3. **Set up environment variables:**
 
-    Create a `.env` file in the root directory of the project with the following content:
+    Create a `.env.local` file in the root directory of the project with the following content:
 
     ```env
     DB_HOST=your_database_host

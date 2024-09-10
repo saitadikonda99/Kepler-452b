@@ -26,7 +26,7 @@ const page = () => {
   useEffect(() => {
     const someRequest = () => {
       return new Promise((resolve) => {
-        setTimeout(resolve, 10);
+        setTimeout(resolve, 4000);
       });
     };
 
