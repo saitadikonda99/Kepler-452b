@@ -97,20 +97,33 @@ const page = () => {
     //   }, []);
 
 
-    const [showLoader, setShowLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(() => {
+      const savedLoaderState = localStorage.getItem('showLoader');
+      return savedLoaderState !== null ? JSON.parse(savedLoaderState) : true;
+  });
 
-    useEffect(() => {
-        const someRequest = () => {
-            return new Promise((resolve) => {
-                setTimeout(resolve, 4000);
-            });
-        };
+  useEffect(() => {
+      const someRequest = () => {
+          return new Promise((resolve) => {
+              setTimeout(resolve, 4000);
+          });
+      };
 
-        someRequest().then(() => {
-            setShowLoader(false);
-        });
-    }, []);
-    
+      someRequest().then(() => {
+          setShowLoader(false);
+          localStorage.setItem('showLoader', JSON.stringify(false));
+      });
+
+      const handleBeforeUnload = () => {
+          localStorage.removeItem('showLoader');
+      };
+
+      window.addEventListener('beforeunload', handleBeforeUnload);
+
+      return () => {
+          window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+  }, []);
 
 
   return (
