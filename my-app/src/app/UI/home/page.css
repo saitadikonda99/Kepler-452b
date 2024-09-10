@@ -1,0 +1,52 @@
+.hero {
+  width: 100%;
+}
+
+.hero-in {
+  width: 100%;
+  height: 100vh;
+}
+
+.here-text {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.here-text h1 {
+  font-size: 4rem;
+  padding: 1rem 0rem;
+  text-shadow: rgb(0, 0, 0) 1px 0 10px;
+}
+
+.here-text p {
+  font-size: 1.5rem;
+  text-shadow: rgb(0, 0, 0) 1px 0 10px;
+}
+
+.hero-in video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-explore {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 0.5rem 0rem;
+  background-color: rgb(151, 0, 3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-explore p {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}

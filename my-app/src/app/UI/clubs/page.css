@@ -1,0 +1,58 @@
+.HomeClubs {
+  width: 100%;
+}
+
+.HomeClubs-in {
+  width: 90%;
+  margin: auto;
+  padding: 3rem 0rem;
+}
+
+.HomeClubs-in-one {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.HomeClubs-box {
+  width: 20%;
+}
+
+.HomeClubs-box-in {
+  width: 95%;
+  border-top: 2px solid rgb(155, 0, 3);
+  padding-bottom: 1rem;
+}
+
+.HomeClubs-box-in h2 {
+  color: rgb(155, 0, 3);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.HomeClubs-box-in-desc {
+  width: 90%;
+  height: 6vh;
+}
+
+.HomeClubs-box-in-desc p {
+  font-size: 0.7rem;
+  color: grey;
+}
+
+.HomeClubs-box-in-one {
+  width: 100%;
+}
+
+.HomeClubs-box-in-one-in {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.HomeClubs-box-in-one-in-link {
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+  padding: 0.3rem 0rem;
+}

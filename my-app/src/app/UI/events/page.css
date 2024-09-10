@@ -1,0 +1,29 @@
+.eight {
+  width: 100%;
+  background-color: rgb(243, 243, 243);
+}
+
+.eight-in {
+  width: 90%;
+  margin: auto;
+  padding: 3rem 0rem;
+}
+
+.eight-in-head {
+  padding: 0rem 0rem;
+}
+
+.eight-one {
+  width: 100%;
+}
+
+.eight-one-in {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+}
+
+.Event-cm {
+  width: 24%;
+}

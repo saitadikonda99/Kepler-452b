@@ -1,99 +1,98 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .NewsPortraitScapeComponent {
-    width: 100%;
+  width: 100%;
 }
 
 .NewsPortraitScapeComponent-in {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .NewsPortraitScape-one {
-    width: 50%;
-    text-align: center;
-    padding: 2rem;
+  width: 50%;
+  text-align: center;
+  padding: 2rem;
 }
 
 .NewsPortraitScape-two {
-    width: 50%;
+  width: 50%;
 }
 
 .NewsPortraitScape-two-in {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .NewsPortraitScape-in-one {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .NewsPortraitScape-in-one input {
-    width: 100%;
-    padding: .8rem;
-    border: .1px solid gray;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .NewsPortraitScape-in-two {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .NewsPortraitScape-in-two input {
-    width: 100%;
-    padding: .8rem;
-    border: .1px solid gray;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .NewsPortraitScape-in-three {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .NewsPortraitScape-in-three input {
-    width: 100%;
-    padding: .8rem;
-    border: .1px solid gray;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .NewsPortraitScape-in-four {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
-
 .NewsPortraitScape-in-four button {
-    width: 100%;
-    padding: .8rem;
-    border: .1px solid gray;
-    border-radius: 5px;
-    background-color: rgb(16, 19, 24);
-    color: rgb(249, 249, 251);
-    cursor: pointer;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  background-color: rgb(16, 19, 24);
+  color: rgb(249, 249, 251);
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .NewsPortraitScape-in-five a {
-    text-decoration: none;
-    color: rgb(16, 19, 24);
-    font-size: 1rem;
+  text-decoration: none;
+  color: rgb(16, 19, 24);
+  font-size: 1rem;
 }

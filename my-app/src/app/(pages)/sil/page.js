@@ -1,45 +1,65 @@
 "use client";
-import React, { useState } from 'react';
-import './page.css';
+import React, { useState } from "react";
+import "./page.css";
 
-import silArray from '../../../data/silArray'; // Adjust the path as needed
-import Navbar from './Navbar';
-import Footer from '../../Components/Footer/page';
+import silArray from "../../../data/silArray"; // Adjust the path as needed
+import Navbar from "./Navbar";
+import Footer from "../../Components/Footer/page";
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [activitiesPerPage] = useState(10);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedYear, setSelectedYear] = useState(''); // New state for year filter
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedYear, setSelectedYear] = useState(""); // New state for year filter
 
   // Parse and sort activities by date (latest to oldest)
   const sortedActivities = silArray.sort((a, b) => {
     const dateA = new Date(a["Date of the Event"]);
     const dateB = new Date(b["Date of the Event"]);
-    return dateB - dateA; 
+    return dateB - dateA;
   });
 
   // Get unique years from the activities that have dates
-  const uniqueYears = [...new Set(sortedActivities
-    .filter(activity => activity["Date of the Event"]) // Filter only those with dates
-    .map(activity => new Date(activity["Date of the Event"]).getFullYear()))];
+  const uniqueYears = [
+    ...new Set(
+      sortedActivities
+        .filter((activity) => activity["Date of the Event"]) // Filter only those with dates
+        .map((activity) =>
+          new Date(activity["Date of the Event"]).getFullYear()
+        )
+    ),
+  ];
 
   const indexOfLastActivity = currentPage * activitiesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
 
   // Filter activities based on the search term and selected year
-  const filteredActivities = sortedActivities.filter(activity => {
-    const matchesSearchTerm = (activity["Name of the Club "]?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
-      (activity["Event Title"]?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
-      (activity["Date of the Event"]?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+  const filteredActivities = sortedActivities.filter((activity) => {
+    const matchesSearchTerm =
+      (activity["Name of the Club "]?.toLowerCase() || "").includes(
+        searchTerm.toLowerCase()
+      ) ||
+      (activity["Event Title"]?.toLowerCase() || "").includes(
+        searchTerm.toLowerCase()
+      ) ||
+      (activity["Date of the Event"]?.toLowerCase() || "").includes(
+        searchTerm.toLowerCase()
+      ) ||
       (activity.Venue?.toLowerCase() || "").includes(searchTerm.toLowerCase());
 
-    const matchesYear = selectedYear === '' || (activity["Date of the Event"] && new Date(activity["Date of the Event"]).getFullYear() === parseInt(selectedYear));
+    const matchesYear =
+      selectedYear === "" ||
+      (activity["Date of the Event"] &&
+        new Date(activity["Date of the Event"]).getFullYear() ===
+          parseInt(selectedYear));
 
     return matchesSearchTerm && matchesYear;
   });
 
-  const currentActivities = filteredActivities.slice(indexOfFirstActivity, indexOfLastActivity);
+  const currentActivities = filteredActivities.slice(
+    indexOfFirstActivity,
+    indexOfLastActivity
+  );
 
   const totalPages = Math.ceil(filteredActivities.length / activitiesPerPage);
 
@@ -69,7 +89,7 @@ const Page = () => {
   }
 
   return (
-    <div className='SilComponent'>
+    <div className="SilComponent">
       <div className="SilComponent-in">
         <div className="SilNavbar">
           <Navbar />
@@ -89,11 +109,17 @@ const Page = () => {
             </div>
             <div className="sil-two-fliter">
               <label htmlFor="sort">Filter by Year </label>
-              <select id="sort" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
-                 <option value="">All Activities</option>
-                 {uniqueYears.map(year => (
-                   <option key={year} value={year}>{year}</option>
-                 ))}
+              <select
+                id="sort"
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+              >
+                <option value="">All Activities</option>
+                {uniqueYears.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
                 {/* <option value="no-date">No Date</option> Option for activities with no dates */}
               </select>
             </div>
@@ -111,11 +137,14 @@ const Page = () => {
               </tr>
             </thead>
             <tbody>
-              {currentActivities.map(activity => (
+              {currentActivities.map((activity) => (
                 <tr key={activity.Sno}>
                   <td>{activity["Name of the Club "]}</td>
                   <td>{activity["Event Title"]}</td>
-                  <td>{activity["Date of the Event"] || "No Date Available"}</td> {/* Handle no date */}
+                  <td>
+                    {activity["Date of the Event"] || "No Date Available"}
+                  </td>{" "}
+                  {/* Handle no date */}
                   <td>{activity.Venue}</td>
                 </tr>
               ))}
@@ -123,20 +152,32 @@ const Page = () => {
           </table>
 
           <div className="pagination">
-            <button className="previous" onClick={handlePrevious} disabled={currentPage === 1} aria-label="Previous Page">
+            <button
+              className="previous"
+              onClick={handlePrevious}
+              disabled={currentPage === 1}
+              aria-label="Previous Page"
+            >
               Prev
             </button>
-            {pageNumbers.map(number => (
+            {pageNumbers.map((number) => (
               <button
                 key={number}
                 onClick={() => paginate(number)}
-                className={`page-num ${currentPage === number ? 'page-active' : ''}`}
+                className={`page-num ${
+                  currentPage === number ? "page-active" : ""
+                }`}
                 aria-label={`Page ${number}`}
               >
                 {number}
               </button>
             ))}
-            <button className="next" onClick={handleNext} disabled={currentPage === totalPages} aria-label="Next Page">
+            <button
+              className="next"
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+              aria-label="Next Page"
+            >
               Next
             </button>
           </div>

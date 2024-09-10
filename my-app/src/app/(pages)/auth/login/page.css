@@ -1,79 +1,79 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .LoginComponent {
-    width: 100%;
+  width: 100%;
 }
 
 .LoginComponent-in {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .Login-one {
-    width: 50%;
-    text-align: center;
-    padding: 2rem;
+  width: 50%;
+  text-align: center;
+  padding: 2rem;
 }
 
 .Login-two {
-    width: 50%;
+  width: 50%;
 }
 
 .Login-two-in {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .Login-in-one {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .Login-in-one input {
-    width: 100%;
-    padding: .8rem;
-    border: .1px solid gray;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .Login-in-two {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .Login-in-two input {
-    width: 100%;
-    padding: .8rem;
-    border: .1px solid gray;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .Login-in-three {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .Login-in-three button {
-    width: 100%;
-    padding: .8rem;
-    border: .1px solid gray;
-    border-radius: 5px;
-    background-color: rgb(16, 19, 24);
-    color: rgb(249, 249, 251);
-    cursor: pointer;
-    font-size: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  background-color: rgb(16, 19, 24);
+  color: rgb(249, 249, 251);
+  cursor: pointer;
+  font-size: 1rem;
 }

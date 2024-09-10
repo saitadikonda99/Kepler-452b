@@ -1,0 +1,72 @@
+.Eleven {
+    width: 100%;
+  }
+  
+  .Eleven-in {
+      width: 90%;
+      margin: auto;
+      padding: 3rem 0rem;
+  }
+  
+  .Eleven-one {
+      width: 100%;
+  }
+  
+  .Eleven-one-in {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 2.5rem 0rem;
+  }
+  
+  .Social {
+      width: 23%;
+      border: 2px solid lightgray;
+      border-radius: 20px;
+  }
+  
+  .Social-in {
+      width: 100%;
+      padding: 1rem;
+  }
+  
+  .Social-one {
+      width: 100%;
+      font-size: 3rem;
+  }
+  
+  .YT {
+      color: red;
+  }
+  
+  .Insta {
+      color: black;
+  }
+  
+  .Linked {
+      color: rgb(0, 119, 181);
+  }
+  
+  .Social-two {
+      width: 100%;
+  }
+  
+  .Social-three {
+      width: 100%;
+      padding: 1rem 0rem;
+  }
+  
+  .Social-four {
+      width: 100%;
+      padding: 1rem 0rem;
+  }
+  
+  .Social-four a {
+      text-decoration: none;
+      padding: .5rem 1rem;
+      background-color: white;
+      border: .1px solid gray;
+      color: black;
+      font-size: 1rem;
+      border-radius: 10px;
+  }

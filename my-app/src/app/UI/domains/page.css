@@ -1,0 +1,67 @@
+.five {
+  width: 100%;
+  padding: 3rem 0rem;
+}
+
+.five-in {
+  width: 90%;
+  margin: auto;
+}
+
+.five-in-heading h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.five-in-heading p {
+  font-size: 1.8rem;
+  color: rgb(155, 0, 3);
+  font-weight: 400;
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  padding: 1rem 0rem;
+}
+
+.five-in-one {
+  margin-top: 1rem;
+}
+
+.five-in-one {
+  display: flex;
+  justify-content: space-between;
+}
+
+.five-in-one-card {
+  width: 19%;
+  padding-bottom: 0.5rem;
+}
+
+.five-in-one-card-in {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.five-in-one-card-in-one img {
+  width: 100%;
+}
+
+.five-in-one-card-in-two h2 {
+  font-size: 1.3rem;
+  color: black;
+  font-weight: 700;
+}
+
+.five-in-one-card-in-two p {
+  font-size: 1rem;
+  color: grey;
+  margin-bottom: 1rem;
+}
+
+.five-in-one-card-in-two-link {
+  text-decoration: none;
+  color: rgb(155, 0, 3);
+  font-size: 0.9rem;
+  font-weight: 500;
+}

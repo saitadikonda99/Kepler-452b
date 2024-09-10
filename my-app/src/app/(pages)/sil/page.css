@@ -1,165 +1,152 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
 .SilComponent {
-    width: 100%;
+  width: 100%;
 }
 
 .SilComponent-in {
-    width: 100%;
+  width: 100%;
 }
 
 .Sil-one {
-    width: 90%;
-    margin: auto;
-    padding: 2rem 0rem;
+  width: 90%;
+  margin: auto;
+  padding: 2rem 0rem;
 }
 .Sil-one-in {
-    width: 100%;
-    background-color: black;
-    padding: .8rem 0rem;
-    border-radius: 2rem;
+  width: 100%;
+  background-color: black;
+  padding: 0.8rem 0rem;
+  border-radius: 2rem;
 }
 
 .Sil-two {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    /* padding: 0.5rem; */
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
 }
-.sil-two-in{
-    /* border: 2px solid red; */
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* padding: 0.3rem; */
+.sil-two-in {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.Sil-two-search{
-    /* border: 2px solid red; */
-    /* gap: 5px; */
-    width: 50%;
-    display: flex;
-    gap: 1rem;
-    padding: 2rem 0rem;
-    justify-content: flex-start;
-    padding: 0.3rem;
+.Sil-two-search {
+  width: 50%;
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 0rem;
+  justify-content: flex-start;
+  padding: 0.3rem;
 }
-.sil-two-fliter{
-    /* border: 2px solid red; */
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    width: 50;
+.sil-two-fliter {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 50;
 }
 
 .Sil-three {
-    width: 90%;
-    margin: 0 auto;
-    margin-top: -1rem;
-    padding: 2rem 0rem;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: -1rem;
+  padding: 2rem 0rem;
 }
 
 .Sil-three table {
-    width: 100%;
-    height: 80vh;
-    border: 1px solid black;
-    border-collapse: collapse;
+  width: 100%;
+  height: 80vh;
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 .Sil-three table th {
-    border: 1px solid black;
-    padding: .5rem;
+  border: 1px solid black;
+  padding: 0.5rem;
 }
 
 .Sil-three table td {
-    border: 1px solid black;
-    padding: .5rem;
+  border: 1px solid black;
+  padding: 0.5rem;
 }
 
 .Sil-three table thead tr:nth-child(1) {
-    background-color: rgb(151, 3, 0);
-    color: white;
+  background-color: rgb(151, 3, 0);
+  color: white;
 }
 
 .Sil-three table thead th:nth-child(1) {
-    width: 15%;
+  width: 15%;
 }
 
 .Sil-three table thead th:nth-child(2) {
-    width: 44%;
+  width: 44%;
 }
 
 .Sil-three table thead th:nth-child(3) {
-    width: 8%;
+  width: 8%;
 }
 
 .Sil-three table thead th:nth-child(4) {
-    width: 14%;
+  width: 14%;
 }
 
 .Sil-three table thead th:nth-child(5) {
-    width: 12%;
+  width: 12%;
 }
-
-
 
 .Sil-three table td:nth-child(1) {
-    /* background-color: rgb(151, 3, 0); */
-    /* color: white; */
-    color: black;
+  color: black;
 }
-
 
 .Sil-three table tr:nth-child(even) {
-    background-color: rgb(240, 240, 240);
+  background-color: rgb(240, 240, 240);
 }
 
-.page-active{
-    background-color: rgba(0, 0, 0, 0.582);
-    color: white;
-    font-weight: bold;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow */
-
+.page-active {
+  background-color: rgba(0, 0, 0, 0.582);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.page-num{
-    width:2rem;
-    text-align: center;
-    /* padding: 0 1rem; */
-    cursor: pointer;
-    font-size: 1.2rem;
-    border: none;
-    outline: none;
+.page-num {
+  width: 2rem;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
 }
 
-.previous,.next{
-    padding: 0 1rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    border: none;
-    outline: none;
+.previous,
+.next {
+  padding: 0 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
 }
 
 .page-num:hover,
 .previous:hover,
 .next:hover {
-    background-color: rgba(0, 0, 0, 0.582);
-    color: white;
-    font-weight: bold; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); 
+  background-color: rgba(0, 0, 0, 0.582);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.pagination{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .2rem;
-    padding: 1rem 0rem;
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 1rem 0rem;
 }
