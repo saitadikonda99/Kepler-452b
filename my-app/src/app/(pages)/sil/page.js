@@ -16,7 +16,7 @@ const Page = () => {
   const sortedActivities = silArray.sort((a, b) => {
     const dateA = new Date(a["Date of the Event"]);
     const dateB = new Date(b["Date of the Event"]);
-    return dateB - dateA; // Descending order
+    return dateB - dateA; 
   });
 
   // Get unique years from the activities that have dates
@@ -88,7 +88,7 @@ const Page = () => {
               />
             </div>
             <div className="sil-two-fliter">
-              <label htmlFor="sort">Filter by Year   </label>
+              <label htmlFor="sort">Filter by Year </label>
               <select id="sort" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                  <option value="">All Activities</option>
                  {uniqueYears.map(year => (

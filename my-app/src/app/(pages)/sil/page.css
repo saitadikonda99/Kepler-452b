@@ -46,6 +46,7 @@
     width: 50%;
     display: flex;
     gap: 1rem;
+    padding: 2rem 0rem;
     justify-content: flex-start;
     padding: 0.3rem;
 }

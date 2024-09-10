@@ -26,6 +26,10 @@ import { FaLinkedin } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 
 
+import  LoaderComponent from "./Components/loader/loader";
+
+
+
 const page = () => {
 
   const [expandedQuestions, setExpandedQuestions] = useState([]);
@@ -91,10 +95,27 @@ const page = () => {
     //     handleNewsPortrait();
 
     //   }, []);
+
+
+    const [showLoader, setShowLoader] = useState(true);
+
+    useEffect(() => {
+        const someRequest = () => {
+            return new Promise((resolve) => {
+                setTimeout(resolve, 4000);
+            });
+        };
+
+        someRequest().then(() => {
+            setShowLoader(false);
+        });
+    }, []);
     
 
 
   return (
+
+    showLoader ? <LoaderComponent /> :  
 
      <div className="HomeComponent">
         <div className="HomeComponent-in">
