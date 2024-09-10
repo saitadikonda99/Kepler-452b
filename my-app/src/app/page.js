@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import Footer from "./Components/Footer/page";
 import Navbar from "./Components/Navbar/Navbar";
 
-
 // UI imports start here
 import Home from "./UI/home/page";
 import Stats from "./UI/stats/page";
@@ -19,12 +18,14 @@ import Clubs from "./UI/clubs/page";
 import LoaderComponent from "./Components/loader/loader";
 
 const page = () => {
-  const [showLoader, setShowLoader] = useState(() => {
-    const savedLoaderState = localStorage.getItem("showLoader");
-    return savedLoaderState !== null ? JSON.parse(savedLoaderState) : true;
-  });
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
+    const savedLoaderState = localStorage.getItem("showLoader");
+    if (savedLoaderState !== null) {
+      setShowLoader(JSON.parse(savedLoaderState));
+    }
+
     const someRequest = () => {
       return new Promise((resolve) => {
         setTimeout(resolve, 4000);
@@ -35,16 +36,6 @@ const page = () => {
       setShowLoader(false);
       localStorage.setItem("showLoader", JSON.stringify(false));
     });
-
-    const handleBeforeUnload = () => {
-      localStorage.removeItem("showLoader");
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
   }, []);
 
   return showLoader ? (
