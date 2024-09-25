@@ -12,8 +12,8 @@ export const GET = async (req: NextRequest) => {
 
     const clubIdRes = await pool.query(
       `SELECT id
-             FROM club
-             WHERE president_id = ?`,
+            FROM club
+            WHERE lead_id = ?`,
       [userId]
     );
 
@@ -24,10 +24,10 @@ export const GET = async (req: NextRequest) => {
     // get the club details
 
     const clubDetails = await pool.query(
-      `SELECT * FROM club_data 
-             WHERE club_id = ?
-             ORDER BY uploadAt DESC LIMIT 1`,
-      [clubId[0].id]
+       `SELECT * FROM club_data 
+            WHERE club_id = ?
+            ORDER BY uploadAt DESC LIMIT 1`,
+        [clubId[0].id]
     );
 
     const club = clubDetails[0] as any[];

@@ -21,6 +21,7 @@ export async function middleware(req: NextRequest) {
   const userData: any = decodedToken?.payload;
 
   const { valid, payload } = await verifyJWT();
+  
 
   const role = userData?.role[0];
 
@@ -46,7 +47,7 @@ export async function middleware(req: NextRequest) {
   // president pages
   else if (
     path.includes("/president") &&
-    role !== "President" &&
+    role !== "club_lead" &&
     role !== "Admin"
   ) {
     return NextResponse.json(

@@ -21,7 +21,8 @@ const page = () => {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const savedLoaderState = localStorage.getItem("showLoader");
+    const savedLoaderState = sessionStorage.getItem("showLoader");
+
     if (savedLoaderState !== null) {
       setShowLoader(JSON.parse(savedLoaderState));
     }
@@ -34,8 +35,9 @@ const page = () => {
 
     someRequest().then(() => {
       setShowLoader(false);
-      localStorage.setItem("showLoader", JSON.stringify(false));
+      sessionStorage.setItem("showLoader", JSON.stringify(false));
     });
+    
   }, []);
 
   return showLoader ? (

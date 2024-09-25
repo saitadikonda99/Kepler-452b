@@ -9,6 +9,7 @@ const page = () => {
           <h1>SAC</h1>
           <Link href="events">Upload Events</Link>
           <Link href="news">news</Link>
+          <Link href="addClub">add Club</Link>
         </div>
       </div>
     </div>

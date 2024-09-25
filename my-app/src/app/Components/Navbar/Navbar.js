@@ -155,9 +155,9 @@ const Navbar = () => {
                 duration={400}
               >
                 Clubs
-              </Scroll>
+              </Scroll> 
 
-              <div className="clubs-dropdown">
+              {/* <div className="clubs-dropdown">
                 <div className="thirteen clubs-list">
                   <div className="thirteen-in">
                     <div className="breadcrumb">
@@ -482,7 +482,7 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </li>
 
             <li>

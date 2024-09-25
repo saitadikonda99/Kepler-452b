@@ -46,11 +46,19 @@ const Login = () => {
 
       const role = response.data.role;
 
+      const user = {
+        id: response.data.id,
+        username: response.data.username,
+        role: response.data.role
+      };
+      
+      localStorage.setItem('user', JSON.stringify(user));
+
       switch (role) {
         case "Admin":
           router.push("/admin/dashboard");
           break;
-        case "President":
+        case "club_lead":
           router.push("/president/dashboard");
           break;
         default:

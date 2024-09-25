@@ -20,7 +20,7 @@ export const verifyJWT = async () => {
 
         console.log('payload', payload)
 
-        if (payload) {
+        if (payload) {            
             return { valid: true, payload: payload };
         } else {
             return { valid: false, reason: 'Invalid JWT' };
