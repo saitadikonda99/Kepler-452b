@@ -52,7 +52,7 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json({ status: 200 });
   } catch (error) {
-
+    await pool.rollback;
     return NextResponse.json({ message: error, status: 500 });
   }
 };

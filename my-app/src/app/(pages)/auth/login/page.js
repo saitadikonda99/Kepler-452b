@@ -48,6 +48,7 @@ const Login = () => {
 
       const user = {
         id: response.data.id,
+        name: response.data.name,
         username: response.data.username,
         role: response.data.role
       };

@@ -11,7 +11,7 @@ const page = () => {
     clubId: null,
     clubName: "",
     clubLogo: "",
-    clubDes: ""
+    clubDes: "",
   });
 
   const handleChange = (e) => {
@@ -20,18 +20,17 @@ const page = () => {
       ...updateData,
       [name]: value,
     });
-  }
+  };
 
   const handleClick = (clubId) => {
     setShow(!show);
     setUpdateData((prevData) => ({
       ...prevData,
-      clubId: clubId, 
+      clubId: clubId,
     }));
   };
 
   const handleSubmit = async () => {
-
     try {
       const response = await axios.post("/api/clubUpdate", updateData, {
         headers: {
@@ -42,13 +41,11 @@ const page = () => {
 
       if (response.status === 200) {
         toast.success("Update successful");
-      }
-      else {
+      } else {
         toast.success("Internal server error");
       }
-
     } catch (error) {
-        toast.error("Internal server error");
+      toast.error("Internal server error");
     }
   };
 
@@ -84,35 +81,52 @@ const page = () => {
             </div>
           ))
         ) : (
-            <p>No clubs available.</p>
+          <p>No clubs available.</p>
         )}
-        
 
         {show ? (
           <div className="UpdateComponent">
             <div className="UpdateComponent-in">
-              <input 
-                type="text"
-                value={updateData.clubName}
-                placeholder="name of the club"
-                name='clubName'
-                onChange={handleChange}
-             />
-              <input 
-                type="text" 
-                placeholder="club logo link" 
-                value={updateData.clubLogo}
-                name='clubLogo'
-                onChange={handleChange}
-            />
-              <input 
-                type="text" 
-                placeholder="club des"
-                name='clubDes'
-                value={updateData.clubDes}
-                onChange={handleChange}
-             />
-              <button onClick={handleSubmit}>Submit</button>
+              <div className="update-one">
+                <h1>Update</h1>
+                <p>Please carefully enter the details</p>
+              </div>
+
+              <div className="AddClub-two">
+                <div className="AddClub-two-in">
+                  <div className="AddClub-in-one">
+                    <input
+                      type="text"
+                      value={updateData.clubName}
+                      placeholder="name of the club"
+                      name="clubName"
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="AddClub-in-two">
+                    <input
+                      type="text"
+                      placeholder="club logo link"
+                      value={updateData.clubLogo}
+                      name="clubLogo"
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="AddClub-in-three">
+                    <input
+                      type="text"
+                      placeholder="club des"
+                      name="clubDes"
+                      value={updateData.clubDes}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="AddClub-in-four">
+                    <button onClick={handleSubmit}>Submit</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         ) : null}

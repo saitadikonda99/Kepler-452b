@@ -1,15 +1,30 @@
 import React from "react";
 import Link from "next/link";
 
+
+// imports start here
+import Sidebar from '../../components/sidebar/sidebar'
+import Navbar from '../../components/navbar/navbar'
+import Footer from '../../components/footer/page'
+
+import './page.css'
+
 const page = () => {
   return (
     <div className="DashboardComponent">
       <div className="DashboardComponent-in">
-        <div className="Dashboard-one">
-          <h1>SAC</h1>
-          <Link href="events">Upload Events</Link>
-          <Link href="news">news</Link>
-          <Link href="addClub">add Club</Link>
+        <div className="DashboardComponent-Nav">
+          <Navbar />
+        </div>
+        <div className="DashboardComponent-Sidebar">
+          <div className="DashboardComponent-Sidebar-in">
+          <Sidebar />
+          </div>
+        </div>
+        <div className="DashboardComponent-Footer">
+          <div className="DashboardComponent-Footer-in">
+            <Footer />
+          </div>
         </div>
       </div>
     </div>
@@ -17,3 +32,19 @@ const page = () => {
 };
 
 export default page;
+
+
+{/* <div className="Dashboard-one">
+          <div className="">
+            <Link href="events">Events</Link>
+          </div>
+          <div className="">
+            <Link href="news">News</Link>
+          </div>
+          <div className="">
+            <Link href="addClub">addClub</Link>
+          </div>
+          <div className="">
+            <Link href="update">updateClub</Link>
+          </div>
+        </div> */}

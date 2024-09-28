@@ -53,6 +53,7 @@ export const POST = async (req: NextRequest) => {
     const accessToken = jwt.sign(
       {
         username: Authenticated[0].username,
+        name: Authenticated[0].name,
         role: [role[0].role],
         id: Authenticated[0].id,
       },
@@ -63,6 +64,7 @@ export const POST = async (req: NextRequest) => {
     const refreshToken = jwt.sign(
       {
         username: Authenticated[0].username,
+        name: Authenticated[0].name,
         role: [role[0].role],
         id: Authenticated[0].id,
       },
@@ -95,10 +97,12 @@ export const POST = async (req: NextRequest) => {
       message: "Authenticated",
       id: Authenticated[0].id,
       username: Authenticated[0].username,
+      name: Authenticated[0].name,
       role: role[0].role,
       accessToken: accessToken,
       refreshToken: refreshToken,
     });
+
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error.message }, { status: 500 });
