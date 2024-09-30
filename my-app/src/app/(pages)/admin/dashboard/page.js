@@ -16,11 +16,17 @@ const page = () => {
         <div className="DashboardComponent-Nav">
           <Navbar />
         </div>
-        <div className="DashboardComponent-Sidebar">
-          <div className="DashboardComponent-Sidebar-in">
-          <Sidebar />
+        <div className="DashboardComponent-one">
+          <div className="DashboardComponent-one-in">
+            <div className="DC-sideBar">
+                <Sidebar />
+            </div>
+            <div className="DC-one">
+
+            </div>
           </div>
         </div>
+
         <div className="DashboardComponent-Footer">
           <div className="DashboardComponent-Footer-in">
             <Footer />

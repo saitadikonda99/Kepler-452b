@@ -4,95 +4,32 @@
   box-sizing: border-box;
 }
 
-.NewsPortraitScapeComponent {
+.NewsPortraitScape {
   width: 100%;
 }
 
-.NewsPortraitScapeComponent-in {
+.NewsPortraitScape-in {
   width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+.NewsPortraitScape-Nav {
+  width: 100%;
 }
 
 .NewsPortraitScape-one {
-  width: 50%;
-  text-align: center;
-  padding: 2rem;
+  width: 100%;
 }
 
-.NewsPortraitScape-two {
-  width: 50%;
-}
-
-.NewsPortraitScape-two-in {
+.NewsPortraitScape-one-in {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
 }
 
-.NewsPortraitScape-in-one {
-  width: 50%;
-  margin: auto;
+.NC-sideBar {
+  width: 16%;
 }
 
-.NewsPortraitScape-in-one input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 0.1px solid gray;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.NewsPortraitScape-in-two {
-  width: 50%;
-  margin: auto;
-}
-
-.NewsPortraitScape-in-two input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 0.1px solid gray;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.NewsPortraitScape-in-three {
-  width: 50%;
-  margin: auto;
-}
-
-.NewsPortraitScape-in-three input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 0.1px solid gray;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.NewsPortraitScape-in-four {
-  width: 50%;
-  margin: auto;
-}
-
-.NewsPortraitScape-in-four button {
-  width: 100%;
-  padding: 0.8rem;
-  border: 0.1px solid gray;
-  border-radius: 5px;
-  background-color: rgb(16, 19, 24);
-  color: rgb(249, 249, 251);
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.NewsPortraitScape-in-five a {
-  text-decoration: none;
-  color: rgb(16, 19, 24);
-  font-size: 1rem;
+.NC-one {
+  width: 84%;
+  border: 2px solid black;   
 }

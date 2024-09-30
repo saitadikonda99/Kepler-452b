@@ -3,56 +3,92 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { leadUsername, leadName, leadEmail, clubName, clubLogo, clubDes } =
-      await req.json();
 
-    if (!clubName || !clubLogo || !clubDes || !leadName) {
+    const { leadUsername, leadPassword, leadConfirmPassword, leadName, leadEmail, clubId, clubDomain, clubName, clubLogo, clubDes } = await req.json();
+
+
+
+    if (leadPassword !== leadConfirmPassword) {
       return NextResponse.json(
-        {
-          message:
-            "All fields (clubName, clubLogo, clubDes, leadName, leadEmail) are required",
-        },
-        { status: 400 }
+        { message: "Passwords do not match" },
+        { status: 400 } 
       );
     }
 
-    console.log("sai");
+    if (!leadUsername || !leadPassword || !leadConfirmPassword || !leadName || !leadEmail || !clubId || !clubDomain || !clubName || !clubLogo || !clubDes) {
+      return NextResponse.json(
+        {
+          message: "All fields are required",
+        },
+        { status: 401 } 
+      );
+    }
 
-    await pool.beginTransaction;
+    
+    const userCheck :any = await pool.query(
+      `SELECT * FROM users WHERE username = ? OR email = ?`,
+      [leadUsername, leadEmail]
+    );
 
-    const [userData] = await pool.query(
+    
+    if (userCheck[0].length > 0) {
+      return NextResponse.json(
+        { message: "User already exists" },
+        { status: 409 }
+      );
+    }
+    
+    const clubCheck: any = await pool.query(
+      `SELECT * FROM clubs WHERE club_id = ? OR club_name = ?`,
+      [clubId, clubName]
+    );
+    
+    if (clubCheck[0].length > 0) {
+      return NextResponse.json(
+        { message: "Club already exists" },
+        { status: 409 } 
+      );
+    }
+
+    pool.beginTransaction;
+
+    const [result]: any = await pool.query(
       `
         INSERT INTO users (username, name, password, email, role, RefreshToken)
         VALUES (?, ?, ?, ?, ?, ?)
         `,
-      [leadUsername, leadName, "1234", leadEmail, "club_lead", null]
+      [leadUsername, leadName, leadPassword, leadEmail, "club_lead", null]
     );
 
-    const leadId = (userData as any).insertId;
+    const leadId = (result as any).insertId;
 
-    const [clubResult] = await pool.query(
+    console.log(leadId);
+
+    const [club]: any = await pool.query(
       `
-      INSERT INTO club (club_name, lead_id)
-      VALUES (?, ?)
+      INSERT INTO clubs (club_id, club_name, lead_id)
+      VALUES (?, ?, ?)
       `,
-      [clubName, leadId]
+      [clubId, clubName, leadId]
     );
 
-    const clubId = (clubResult as any).insertId;
+    const club_id = (club as any).insertId;
 
     await pool.query(
       `
-      INSERT INTO club_data (club_id, club_name, club_lead_id, club_description, club_logo)
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO club_data (club_id, club_domain, club_description, club_logo)
+      VALUES (?, ?, ?, ?)
       `,
-      [clubId, clubName, leadId, clubDes, clubLogo]
+      [club_id, clubDomain, clubDes, clubLogo]
     );
 
-    await pool.commit;
+    pool.commit;
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({ message: "Club added successfully", status: 200 });
+
   } catch (error) {
-    await pool.rollback;
-    return NextResponse.json({ message: error, status: 500 });
+    pool.rollback;
+
+    return NextResponse.json({ message: error.message || "Server error", status: 500 });
   }
 };

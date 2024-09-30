@@ -13,6 +13,8 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
+    console.log(clubName, clubLogo, clubDes, clubId, "saiiiii");
+
     const [result] = await pool.query(
         `
             UPDATE club_data

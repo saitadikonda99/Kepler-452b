@@ -1,22 +1,22 @@
 
 
-.DashboardComponent {
+.ViewClubs {
     width: 100%;
 }
 
-.DashboardComponent-in {
+.ViewClubs-in {
     width: 100%;
 }
 
-.DashboardComponent-Nav {
+.ViewClubs-Nav {
     width: 100%;
 }
 
-.DashboardComponent-one {
+.ViewClubs-one {
     width: 100%;
 }
 
-.DashboardComponent-one-in {
+.ViewClubs-one-in {
     width: 100%;
     display: flex;
 }
@@ -27,4 +27,5 @@
 
 .DC-one {
     width: 84%;
+    border: 2px solid black;   
 }

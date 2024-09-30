@@ -1,93 +1,153 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 
 import "./page.css";
 
-const page = () => {
-  const [newsData, setNewsData] = useState({
+// Import components
+import Sidebar from "../../../components/sidebar/sidebar";
+import Navbar from "../../../components/navbar/navbar";
+import Footer from "../../../components/footer/page";
+
+const Page = () => {
+  const [newsData, setNewsData] = useState([]);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [updateData, setUpdateData] = useState({
+    newsId: null,
     newsLink: "",
     clubName: "",
     newsContent: "",
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/news/landscape');
+        if (response.status === 200) {
+          setNewsData(response.data);
+        } else {
+          toast.error("Failed to fetch news");
+        }
+      } catch (error) {
+        toast.error("Internal server error");
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleUpdateClick = (newsId) => {
+    const selectedNews = newsData.find((news) => news.id === newsId);
+    setUpdateData({
+      newsId: selectedNews.id,
+      newsLink: selectedNews.newsLink,
+      clubName: selectedNews.clubName,
+      newsContent: selectedNews.newsContent,
+    });
+    setShowUpdateForm(true);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUpdateData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/news/landscape", newsData, {
+      const response = await axios.post("/api/news/landscape", updateData, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       });
 
-      // alert(response.data.message)
-
-      if (response.data.status === 201) {
-        toast.success(response.data.message);
-      }
-      if (response.data.status === 400) {
-        toast.error(response.data.message);
-      }
-      if (response.data.status === 500) {
-        toast.error(response.data.message);
+      if (response.status === 200) {
+        toast.success("News updated successfully!");
+        setShowUpdateForm(false);
+        setNewsData((prevData) =>
+          prevData.map((news) =>
+            news.id === updateData.newsId ? { ...news, ...updateData } : news
+          )
+        );
+      } else {
+        toast.error("Failed to update news");
       }
     } catch (error) {
-      toast.error(error);
+      console.log(error);
+      toast.error("Error updating the news");
     }
   };
 
-  const handleChange = (e) => {
-    setNewsData({
-      ...newsData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
-    <div className="NewsLandScapeComponent">
-      <div className="NewsLandScapeComponent-in">
-        <div className="NewsLandScape-one">
-          <h1>News Upload</h1>
-          <p>Please carefully update the News links</p>
+    <div className="NewsLandScape">
+      <div className="NewsLandScape-in">
+        <div className="NewsLandScape-Nav">
+          <Navbar />
         </div>
-        <div className="NewsLandScape-two">
-          <div className="NewsLandScape-two-in">
-            <div className="NewsLandScape-in-one">
-              <input
-                type="text"
-                placeholder="NewsLink"
-                name="newsLink"
-                value={newsData.newsLink}
-                onChange={handleChange}
-              />
+        <div className="NewsLandScape-one">
+          <div className="NewsLandScape-one-in">
+            <div className="LC-sideBar">
+              <Sidebar />
             </div>
-            <div className="NewsLandScape-in-two">
-              <input
-                type="text"
-                placeholder="ClubName"
-                name="clubName"
-                value={newsData.clubName}
-                onChange={handleChange}
-              />
+            <div className="LC-one">
+              {showUpdateForm ? (
+                <div className="updateForm">
+                  <h1>Update News</h1>
+                  <p>Please carefully update the news details</p>
+                  <input
+                    type="text"
+                    placeholder="News Link"
+                    name="newsLink"
+                    value={updateData.newsLink}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Club Name"
+                    name="clubName"
+                    value={updateData.clubName}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    placeholder="News Content"
+                    name="newsContent"
+                    value={updateData.newsContent}
+                    onChange={handleChange}
+                  />
+                  <button onClick={handleSubmit}>Update</button>
+                  <button onClick={() => setShowUpdateForm(false)}>Cancel</button>
+                </div>
+              ) : (
+                <div className="NewsLandScape-content">
+                  <h1>News List</h1>
+                  {Array.isArray(newsData) && newsData.length > 0 ? (
+                    newsData.map((news) => (
+                      <div key={news.id}>
+                        <h2>{news.clubName}</h2>
+                        <p>{news.newsContent}</p>
+                        <Link href={news.newsLink} target="_blank" rel="noopener noreferrer">Read More</Link>
+                        <button onClick={() => handleUpdateClick(news.id)}>Update</button>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No news available.</p>
+                  )}
+                  <div className="goBackLink">
+                    <Link href="/admin/dashboard">Go Back</Link>
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="NewsLandScape-in-three">
-              <input
-                type="text"
-                placeholder="NewsContent"
-                name="newsContent"
-                value={newsData.newsContent}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="NewsLandScape-in-four">
-              <button onClick={handleSubmit}>Submit</button>
-            </div>
-            <div className="NewsLandScape-in-five">
-              <Link href="/admin/dashboard">Go Back</Link>
-            </div>
+          </div>
+        </div>
+        <div className="NewsLandScape-Footer">
+          <div className="NewsLandScape-Footer-in">
+            <Footer />
           </div>
         </div>
       </div>
@@ -95,4 +155,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -1,104 +1,166 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 
 import "./page.css";
 
-const page = () => {
-  const [eventData, setEventData] = useState({
+// import components here
+import Sidebar from "../../components/sidebar/sidebar";
+import Navbar from "../../components/navbar/navbar";
+import Footer from "../../components/footer/page";
+
+const Page = () => {
+  const [eventData, setEventData] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const [updateData, setUpdateData] = useState({
+    eventId: null,
     eventLink: "",
     eventName: "",
     eventDate: "",
     eventVenue: "",
   });
 
+  const handleClick = (eventId) => {
+    const selectedEvent = eventData.find((event) => event.id === eventId);
+
+    setUpdateData({
+      eventId: selectedEvent.id,
+      eventLink: selectedEvent.eventLink,
+      eventName: selectedEvent.eventName,
+      eventDate: selectedEvent.eventDate,
+      eventVenue: selectedEvent.eventVenue,
+    });
+
+    setShow(true);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUpdateData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/events", eventData, {
+      const response = await axios.post("/api/events", updateData, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       });
 
-      // alert(response.data.message)
-
-      if (response.data.status === 201) {
-        toast.success(response.data.message);
-      }
-      if (response.data.status === 400) {
-        toast.error(response.data.message);
-      }
-      if (response.data.status === 500) {
-        toast.error(response.data.message);
+      if (response.data.status === 200) {
+        toast.success("Event updated successfully!");
+        setShow(false);
+        setEventData((prevData) =>
+          prevData.map((event) =>
+            event.event_id === updateData.eventId ? { ...event, ...updateData } : event
+          )
+        );
+      } else {
+        toast.error("Failed to update event");
       }
     } catch (error) {
-      toast.error(error);
+      console.log(error);
+      toast.error("Error updating the event");
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEventData({
-      ...eventData,
-      [name]: value,
-    });
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/events", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+
+        if (response.status === 200) {
+          setEventData(response.data);
+        } else {
+          toast.error("Failed to fetch events");
+        }
+      } catch (error) {
+        toast.error("Internal server error");
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <div className="EventsComponent">
-      <div className="EventsComponent-in">
-        <div className="Events-one">
-          <h1>Events Upload</h1>
-          <p>Please carefully update the event links</p>
+    <div className="EventComponent">
+      <div className="EventComponent-in">
+        <div className="EventComponent-Nav">
+          <Navbar />
         </div>
-        <div className="Events-two">
-          <div className="Events-two-in">
-            <div className="Events-in-one">
-              <input
-                type="text"
-                placeholder="Event poster Link"
-                name="eventLink"
-                value={eventData.eventLink}
-                onChange={handleChange}
-              />
+        <div className="EventComponent-one">
+          <div className="EventComponent-one-in">
+            <div className="EC-sideBar">
+              <Sidebar />
             </div>
-            <div className="Events-in-two">
-              <input
-                type="text"
-                placeholder="Event Name"
-                name="eventName"
-                value={eventData.eventName}
-                onChange={handleChange}
-              />
+            <div className="EC-one">
+              {show ? (
+                <div className="updateForm">
+                  <h1>Update Event</h1>
+                  <p>Please carefully enter the details</p>
+                  <input
+                    type="text"
+                    placeholder="Event poster Link"
+                    name="eventLink"
+                    value={updateData.eventLink}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Event Name"
+                    name="eventName"
+                    value={updateData.eventName}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="date"
+                    placeholder="Event date"
+                    name="eventDate"
+                    value={updateData.eventDate}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Event Venue"
+                    name="eventVenue"
+                    value={updateData.eventVenue}
+                    onChange={handleChange}
+                  />
+                  <button onClick={handleSubmit}>Update</button>
+                </div>
+              ) : Array.isArray(eventData) && eventData.length > 0 ? (
+                eventData.map((event) => (
+                  <div key={event.event_id}>
+                    <h2>Event Name: {event.eventName}</h2>
+                    <img src={event.eventLink} alt={event.eventLink} />
+                    <p>Date: {event.eventDate}</p>
+                    <p>Venue: {event.eventVenue}</p>
+                    <button onClick={() => handleClick(event.id)}>
+                      Update
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <p>No events available.</p>
+              )}
             </div>
-            <div className="Events-in-three">
-              <input
-                type="date"
-                placeholder="Event date"
-                name="eventDate"
-                value={eventData.eventDate}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="Events-in-four">
-              <input
-                type="text"
-                placeholder="Event Venue"
-                name="eventVenue"
-                value={eventData.eventVenue}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="Events-in-five">
-              <button onClick={handleSubmit}>Enter</button>
-            </div>
-            <div className="Events-in-six">
-              <Link href="/admin/dashboard">Go Back</Link>
-            </div>
+          </div>
+        </div>
+        <div className="EventComponent-Footer">
+          <div className="EventComponent-Footer-in">
+            <Footer />
           </div>
         </div>
       </div>
@@ -106,4 +168,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

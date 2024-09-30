@@ -1,73 +1,70 @@
--- create database
-
+-- Create database
 CREATE DATABASE sac;
+USE sac;
 
-use sac;
-
--- users database
-
+-- Users table
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
-    username BIGINT NOT NULL UNIQUE,
+    username VARCHAR(255) NOT NULL UNIQUE, -- Changed from BIGINT to VARCHAR for consistency
     name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    role VARCHAR(255) NOT NULL,
-    RefreshToken VARCHAR(255) Default NULL,
-    PRIMARY KEY (id)    
-);
-
--- clubs table for leads
-CREATE TABLE club (
-    id INT NOT NULL AUTO_INCREMENT,
-    club_name VARCHAR(255) NOT NULL UNIQUE,
-    lead_id INT NOT NULL UNIQUE,   
-    FOREIGN KEY (lead_id) REFERENCES users(id),
+    role ENUM('Admin', 'club_lead') NOT NULL, 
+    RefreshToken VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (id)
 );
 
--- club Data
+-- Clubs table for leads
+CREATE TABLE clubs ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    club_id INT,
+    club_name VARCHAR(100) NOT NULL UNIQUE,
+    lead_id INT UNIQUE, 
+    FOREIGN KEY (lead_id) REFERENCES users(id) ON DELETE SET NULL, 
+    PRIMARY KEY (id)
+);
+
+-- Club data table (linked to club_id)
 CREATE TABLE club_data (
     id INT NOT NULL AUTO_INCREMENT,
-    club_id INT NOT NULL,
-    club_name VARCHAR(255) NOT NULL,
-    club_lead_id INT NOT NULL,
+    club_id INT,
+    club_domain ENUM('TEC', 'LCH', 'ESO', 'TIE', 'HWB') NOT NULL,
     club_description VARCHAR(255) NOT NULL,
     club_logo VARCHAR(255) NOT NULL,
-    uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (club_id) REFERENCES club(id),
-    FOREIGN KEY (club_lead_id) REFERENCES users(id),
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
--- event table
+-- Events table
 CREATE TABLE events (
     id INT NOT NULL AUTO_INCREMENT,
-    eventLink VARCHAR(255) NOT NULL,
-    eventName VARCHAR(255) NOT NULL,
-    eventDate DATE NOT NULL,
-    eventVenue VARCHAR(255) NOT NULL,
-    uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    event_link VARCHAR(255) NOT NULL,
+    event_name VARCHAR(255) NOT NULL,
+    event_date DATE NOT NULL,
+    event_venue VARCHAR(255) NOT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
--- news tables 
+-- News tables 
 
--- news table for landscapes
+-- News table for landscapes
 CREATE TABLE news_landscape (
     id INT NOT NULL AUTO_INCREMENT,
-    newsLink VARCHAR(255) NOT NULL,
-    clubName VARCHAR(255) NOT NULL,
-    newsContent VARCHAR(255) NOT NULL,
-    uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    news_link VARCHAR(255) NOT NULL, -- Changed to lowercase for consistency
+    club_name VARCHAR(255) NOT NULL,
+    news_content VARCHAR(255) NOT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
+-- News table for portraits
 CREATE TABLE news_portrait (
     id INT NOT NULL AUTO_INCREMENT,
-    newsLink VARCHAR(255) NOT NULL,
-    clubName VARCHAR(255) NOT NULL,
-    newsContent VARCHAR(255) NOT NULL,
-    uploadAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    news_link VARCHAR(255) NOT NULL, -- Changed to lowercase for consistency
+    club_name VARCHAR(255) NOT NULL,
+    news_content VARCHAR(255) NOT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );

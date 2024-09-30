@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: any) => {
   try {
-    const { newsLink, clubName, newsContent } = await req.json();
+    const { newsId, newsLink, clubName, newsContent } = await req.json();
 
     if (!newsLink || !clubName || !newsContent) {
       return NextResponse.json({
@@ -12,13 +12,17 @@ export const POST = async (req: any) => {
       });
     }
 
+    console.log(newsLink, clubName, newsContent, newsId);
+
     const response = await pool.query(
       `
-            INSERT INTO news_portrait (newsLink, clubName, newsContent)
-            VALUES (?, ?, ?)
-            `,
-      [newsLink, clubName, newsContent]
-    );
+          UPDATE news_portrait 
+          SET newsLink = ?, clubName = ?, newsContent = ? 
+          WHERE id = ?
+      `,
+      [newsLink, clubName, newsContent, newsId]
+  );
+  
 
     const News_portrait = response[0];
 

@@ -1,31 +1,31 @@
 
 
-.AddClub {
+.updateComponent {
     width: 100%;
 }
 
-.AddClub-in {
+.updateComponent-in {
     width: 100%;
 }
 
-.AddClub-Nav {
+.updateComponent-Nav {
     width: 100%;
 }
 
-.AddClub-one {
+.updateComponent-one {
     width: 100%;
 }
 
-.AddClub-one-in {
+.updateComponent-one-in {
     width: 100%;
     display: flex;
 }
 
-.DC-sideBar {
+.UC-sideBar {
     width: 16%;
 }
 
-.DC-one {
+.UC-one {
     width: 84%;
     border: 2px solid black;   
 }

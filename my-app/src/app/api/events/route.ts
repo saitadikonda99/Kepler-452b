@@ -1,11 +1,14 @@
 import { pool } from "../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 
+
 export const POST = async (req: any) => {
   try {
-    const { eventLink, eventName, eventDate, eventVenue } = await req.json();
+    const { eventId, eventLink, eventName, eventDate, eventVenue } = await req.json();
 
-    if (!eventLink || !eventName || !eventDate || !eventVenue) {
+    console.log(eventDate);
+
+    if (!eventLink || !eventName || !eventDate || !eventVenue || !eventId) {
       return NextResponse.json({
         message: "All fields are required",
         status: 400,
@@ -14,10 +17,11 @@ export const POST = async (req: any) => {
 
     const response = await pool.query(
       `
-            INSERT INTO events (eventLink, eventName, eventDate, eventVenue)
-            VALUES (?, ?, ?, ?)
+          UPDATE events
+          SET eventLink = ?, eventName = ?, eventDate = ?, eventVenue = ?
+          WHERE id = ?
             `,
-      [eventLink, eventName, eventDate, eventVenue]
+      [eventLink, eventName, eventDate, eventVenue, eventId]
     );
 
     const event = response[0];
@@ -26,7 +30,7 @@ export const POST = async (req: any) => {
       return NextResponse.json({ message: "Event not created", status: 500 });
     }
 
-    return NextResponse.json({ message: "Event created", status: 201 });
+    return NextResponse.json({ message: "Event created", status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error, status: 500 });

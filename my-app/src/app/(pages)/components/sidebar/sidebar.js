@@ -1,6 +1,8 @@
-import React from 'react'
-import Link from 'next/link'
-import './page.css'
+"use client";
+import React from "react";
+import Link from "next/link";
+import { useState } from "react";
+import "./page.css";
 
 // import icons here
 import { IoMdHome } from "react-icons/io";
@@ -10,56 +12,105 @@ import { HiUserGroup } from "react-icons/hi";
 import { GrUpdate } from "react-icons/gr";
 
 const sidebar = () => {
+  const [openSubMenu, setOpenSubMenu] = useState(null);
+  const [isOpen, setIsOpen] = useState(null);
 
-    const sidebarOptions = [
-        {
-            name: 'Home',
-            icon: <IoMdHome className='sideBar-icon' />,
-            link: ''
-        },
-        {
-            name: 'Events',
-            icon: <MdEventAvailable className='sideBar-icon' />,
-            link: 'events'
-        },
-        {
-            name: 'News',
-            icon: <ImNewspaper className='sideBar-icon' />,
-            link: 'news'
-        },
-        {
-            name: 'Add Club',
-            icon: <HiUserGroup className='sideBar-icon' />,
-            link: 'addClub'
-        },
-        {
-            name: 'Update Club',
-            icon: <GrUpdate className='sideBar-icon' />,
-            link: 'update'
-        },
-        {
-            name: 'view Club',
-            icon: <IoMdHome className='sideBar-icon' />,
-            link: ''
-        }
-    ]
+  const toggleSubMenu = (option) => {
+    return () => {
+      if (openSubMenu !== null) {
+        setIsOpen(null);
+        setOpenSubMenu(null);
+      } else {
+        setIsOpen(option.name);
+        setOpenSubMenu(option.name);
+      }
+    };
+  };
+
+  const handleNav = (link) => {
+    return () => {
+      if (link) {
+        window.location.href = link;
+      }
+    };
+  };
+
+  const sidebarOptions = [
+    {
+      name: "Home",
+      icon: <IoMdHome className="sideBar-icon" />,
+      link: "/admin/dashboard",
+    },
+    {
+      name: "Events",
+      icon: <MdEventAvailable className="sideBar-icon" />,
+      link: "/admin/events",
+    },
+    {
+      name: "News",
+      icon: <ImNewspaper className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "Portrait", link: "/admin/news/portrait" },
+        { name: "Landscape", link: "/admin/news/landscape" },
+      ],
+    },
+    {
+      name: "Add Club",
+      icon: <HiUserGroup className="sideBar-icon" />,
+      link: "/admin/addClub",
+    },
+    {
+      name: "Update Club",
+      icon: <GrUpdate className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "Update Lead", link: "/admin/update/clubUpdate/lead" },
+        { name: "Update Details", link: "/admin/update/clubUpdate/details" },
+      ],
+    },
+    {
+      name: "view Clubs",
+      icon: <IoMdHome className="sideBar-icon" />,
+      link: "/admin/viewClubs",
+    },
+    {
+      name: "add admin",
+      icon: <IoMdHome className="sideBar-icon" />,
+      link: "",
+    },
+    {
+      name: "Change Password",
+      icon: <IoMdHome className="sideBar-icon" />,
+      link: "",
+    },
+  ];
 
   return (
-        <div className="SidebarComponent">
-            <div className="SidebarComponent-in">
-                <div className="SidebarComponent-in-in">
-                    {sidebarOptions.map((option) => (
-                        <div className="Sidebar-box">
-                        <div className="Sidebar-box-in">
-                            {option.icon}
-                            <Link href={option.link}>{option.name}</Link>
-                        </div>
-                        </div>
-                    ))}
+    <div className="SidebarComponent">
+      <div className="SidebarComponent-in">
+        <div className="SidebarComponent-in-in">
+        {sidebarOptions.map((option, index) => (
+            <div className="Sidebar-box" key={index} onClick={handleNav(option.link)}>
+              <div className="Sidebar-box-in" onClick={toggleSubMenu(option)}>
+                {option.icon}
+                <p>{option.name}</p>
+              </div>
+              {option.subOptions && openSubMenu === option.name && (
+                <div className="Sidebar-box">
+                  {option.subOptions.map((subOption, subIndex) => (
+                    <div className="Sidebar-box-in" key={subIndex} onClick={handleNav(subOption.link)}>
+                      <p>{subOption.name}</p>
+                    </div>
+                  ))}
                 </div>
+              )}
             </div>
+          ))}
         </div>
-  )
-}
+      </div>
+    </div>
+  );
+};
 
-export default sidebar
+export default sidebar;
