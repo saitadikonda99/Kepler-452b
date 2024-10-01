@@ -22,7 +22,6 @@ export async function middleware(req: NextRequest) {
 
   const { valid, payload } = await verifyJWT();
   
-
   const role = userData?.role[0];
 
   if (!valid && path !== isPublic) {
@@ -44,9 +43,9 @@ export async function middleware(req: NextRequest) {
       { status: 401 }
     );
   }
-  // president pages
+  // lead pages
   else if (
-    path.includes("/president") &&
+    path.includes("/lead") &&
     role !== "club_lead" &&
     role !== "Admin"
   ) {
@@ -61,5 +60,5 @@ export async function middleware(req: NextRequest) {
 
 // Supports both a single string value or an array of matchers
 export const config = {
-  matcher: ["/", "/", "/auth/login", "/admin/:path*", "/president/:path*"],
+  matcher: ["/", "/", "/auth/login", "/admin/:path*", "/lead/:path*"],
 };

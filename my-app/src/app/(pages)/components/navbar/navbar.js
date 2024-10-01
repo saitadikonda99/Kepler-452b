@@ -4,12 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { MdOutlineLogout } from "react-icons/md";
 import { usePathname } from 'next/navigation'
+import Logout from '../../../../lib/logout'
 
 import "./page.css";
 
 const navbar = () => {
 
     const pathname = usePathname()
+
+    const handleLogout = Logout();
 
     const [userDetails, setUserDetails] = useState({
         username: "",
@@ -54,7 +57,7 @@ const navbar = () => {
         <div className="AdminNavComponent-two">
             <div className="AdminNavComponent-two-in">
                 <p>{pathname}</p>
-                <button> Logout <MdOutlineLogout/> </button>
+                <button onClick={handleLogout} > Logout <MdOutlineLogout/> </button>
             </div>
         </div>
       </div>

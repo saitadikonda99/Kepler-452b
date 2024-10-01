@@ -1,9 +1,29 @@
 import { pool } from "../../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyJWT } from "../../../../../lib/verifyJWT";
+import { verifyRoles } from "../../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
-  try {
 
+  const { valid, payload } = await verifyJWT();
+
+  if (!valid) {
+    return NextResponse.json({ message: "Unauthorized", status: 401 });
+  }
+
+  if (!payload) {
+    return NextResponse.json({ message: "Unauthorized", status: 401 });
+  }
+
+  const { authorized, reason: roleReason } = verifyRoles({ ...payload, role: payload.role || 'User' }, 'Admin');
+
+  if (!authorized) {
+    return NextResponse.json({ message: roleReason, status: 403 });
+  }
+
+
+  
+  try {
 
     const { leadUsername, clubName, leadName, leadEmail, leadPassword, leadConfirmPassword} = await req.json();
 

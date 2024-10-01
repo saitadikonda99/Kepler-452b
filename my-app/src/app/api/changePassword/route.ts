@@ -7,7 +7,11 @@ export const POST = async (req: NextRequest) => {
 
     const { password, confirmPassword } = await req.json();
 
+
+    console.log(password + " " + confirmPassword);
+
     const {valid, payload} = await verifyJWT();
+
 
     if (!valid) {
       return NextResponse.json({ message: "Invalid token", status: 401 });
@@ -20,8 +24,7 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    // Start a transaction
-    await pool.beginTransaction;
+    pool.beginTransaction;
 
     const [userResult] = await pool.query(
       `
@@ -29,9 +32,10 @@ export const POST = async (req: NextRequest) => {
         SET password = ?
         WHERE username = ?
       `,
-      [password, payload.username] // Updating password of the user by username
+      [password, payload.username]  
     );
-    await pool.commit;
+    
+    pool.commit;
 
     return NextResponse.json({ status: 200, message: "Lead, club, and club data updated successfully" });
   } catch (error) {

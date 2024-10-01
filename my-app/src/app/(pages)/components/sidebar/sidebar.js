@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Link from "next/link";
+import { useRouter } from 'next/navigation'
 import { useState } from "react";
 import "./page.css";
 
@@ -14,6 +14,8 @@ import { GrUpdate } from "react-icons/gr";
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
   const [isOpen, setIsOpen] = useState(null);
+
+  const router = useRouter() 
 
   const toggleSubMenu = (option) => {
     return () => {
@@ -30,7 +32,7 @@ const sidebar = () => {
   const handleNav = (link) => {
     return () => {
       if (link) {
-        window.location.href = link;
+        void router.push(link);
       }
     };
   };
@@ -77,12 +79,17 @@ const sidebar = () => {
     {
       name: "add admin",
       icon: <IoMdHome className="sideBar-icon" />,
-      link: "",
+      link: "/admin/addAdmin",
     },
     {
       name: "Change Password",
       icon: <IoMdHome className="sideBar-icon" />,
-      link: "",
+      link: "/admin/changePassword",
+    },
+    {
+      name: "Manage Users",
+      icon: <IoMdHome className="sideBar-icon" />,
+      link: "/admin/manageUsers",
     },
   ];
 

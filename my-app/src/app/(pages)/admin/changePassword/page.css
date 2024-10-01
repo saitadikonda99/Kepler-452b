@@ -1,0 +1,30 @@
+
+
+.ChangePasswordComponent {
+    width: 100%;
+}
+
+.ChangePasswordComponent-in {
+    width: 100%;
+}
+
+.ChangePasswordComponent-Nav {
+    width: 100%;
+}
+
+.ChangePasswordComponent-one {
+    width: 100%;
+}
+
+.ChangePasswordComponent-one-in {
+    width: 100%;
+    display: flex;
+}
+
+.CP-sideBar {
+    width: 16%;
+}
+
+.CP-one {
+    width: 84%;
+}

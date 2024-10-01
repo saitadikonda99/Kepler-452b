@@ -33,7 +33,7 @@ const Page = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/news/portrait');
+        const response = await axios.get('/api/admin/news/portrait');
 
         console.log(response)
 
@@ -53,9 +53,9 @@ const Page = () => {
     const selectedNews = newsData.find((news) => news.id === newsId);
     setUpdateData({
       newsId: selectedNews.id,
-      newsLink: selectedNews.newsLink,
-      clubName: selectedNews.clubName,
-      newsContent: selectedNews.newsContent,
+      newsLink: selectedNews.news_link,
+      clubName: selectedNews.club_name,
+      newsContent: selectedNews.news_content,
     });
     setShowUpdateForm(true);
   };
@@ -70,7 +70,7 @@ const Page = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/news/portrait", updateData, {
+      const response = await axios.post("/api/admin/news/portrait", updateData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -140,9 +140,9 @@ const Page = () => {
                   {Array.isArray(newsData) && newsData.length > 0 ? (
                     newsData.map((news) => (
                       <div key={news.id}>
-                        <h2>{news.clubName}</h2>
-                        <p>{news.newsContent}</p>
-                        <Link href={news.newsLink} target="_blank" rel="noopener noreferrer">Read More</Link>
+                        <h2>{news.club_name}</h2>
+                        <p>{news.news_content}</p>
+                        <Link href={news.news_link} target="_blank" rel="noopener noreferrer">Read More</Link>
                         <button onClick={() => handleUpdateClick(news.id)}>Update</button>
                       </div>
                     ))

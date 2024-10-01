@@ -26,7 +26,7 @@ const Page = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/addClub", clubData, {
+      const response = await axios.post("/api/admin/addClub", clubData, {
         headers: {
           "Content-Type": "application/json",
         },

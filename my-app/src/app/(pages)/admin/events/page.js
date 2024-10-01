@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Link from "next/link";
 
 import "./page.css";
 
@@ -28,14 +27,18 @@ const Page = () => {
 
     setUpdateData({
       eventId: selectedEvent.id,
-      eventLink: selectedEvent.eventLink,
-      eventName: selectedEvent.eventName,
-      eventDate: selectedEvent.eventDate,
-      eventVenue: selectedEvent.eventVenue,
+      eventLink: selectedEvent.event_link,
+      eventName: selectedEvent.event_name,
+      eventDate: selectedEvent.event_date,
+      eventVenue: selectedEvent.event_venue,
     });
 
     setShow(true);
   };
+
+  const handleCancel = () => {
+    setShow(false);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +50,7 @@ const Page = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/events", updateData, {
+      const response = await axios.post("/api/admin/events", updateData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -74,7 +77,7 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/events", {
+        const response = await axios.get("/api/admin/events", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -139,14 +142,15 @@ const Page = () => {
                     onChange={handleChange}
                   />
                   <button onClick={handleSubmit}>Update</button>
+                  <button onClick={handleCancel}>Cancel</button>
                 </div>
               ) : Array.isArray(eventData) && eventData.length > 0 ? (
                 eventData.map((event) => (
-                  <div key={event.event_id}>
-                    <h2>Event Name: {event.eventName}</h2>
-                    <img src={event.eventLink} alt={event.eventLink} />
-                    <p>Date: {event.eventDate}</p>
-                    <p>Venue: {event.eventVenue}</p>
+                  <div key={event.id}>
+                    <h2>Event Name: {event.event_name}</h2>
+                    <img src={event.event_link} alt={event.eventLink} />
+                    <p>Date: {event.event_date}</p>
+                    <p>Venue: {event.event_venue}</p>
                     <button onClick={() => handleClick(event.id)}>
                       Update
                     </button>

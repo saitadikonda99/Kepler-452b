@@ -1,6 +1,6 @@
-import { pool } from "../../../config/db";
+import { pool } from "../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
-import { verifyJWT } from "../../../lib/verifyJWT";
+import { verifyJWT } from "../../../../lib/verifyJWT";
 
 export const GET = async (req: NextRequest) => {
   try {
@@ -8,7 +8,7 @@ export const GET = async (req: NextRequest) => {
 
     const { valid, payload } = await verifyJWT();
 
-    const userId = payload.id;
+    const userId = payload?.id;
 
     const clubIdRes = await pool.query(
       `SELECT id

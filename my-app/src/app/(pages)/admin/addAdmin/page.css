@@ -1,0 +1,28 @@
+.AddAdminComponent {
+    width: 100%;
+}
+
+.AddAdminComponent-in {
+    width: 100%;
+}
+
+.AddAdminComponent-Nav {
+    width: 100%;
+}
+
+.AddAdminComponent-one {
+    width: 100%;
+}
+
+.AddAdminComponent-one-in {
+    width: 100%;
+    display: flex;
+}
+
+.AC-sideBar {
+    width: 16%;
+}
+
+.AC-one {
+    width: 84%;
+}

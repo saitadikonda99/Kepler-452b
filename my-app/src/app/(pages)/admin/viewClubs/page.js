@@ -70,15 +70,13 @@ const page = () => {
                             </p>
                           </div>
                           <div className="DC-one-card-details-description">
-                            <p>{club.club_description}</p>
+                            <p>DES: {club.club_description}</p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
-          
-
             </div>
           </div>
         </div>
