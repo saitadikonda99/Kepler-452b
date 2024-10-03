@@ -216,11 +216,13 @@ const page = () => {
 
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
-                  <Link
-                    href="/Clubpage/33"
+                  <Link legacyBehavior
+                    href="https://www.acickl.in/"
                     className="HomeClubs-box-in-one-in-link"
                   >
-                    KL ACIC
+                    <a target="_blank">
+                        KL ACIC
+                    </a>
                   </Link>
                   <Link
                     href="/Clubpage/34"
