@@ -1,10 +1,8 @@
 import { cookies } from 'next/headers'
-import { jwtVerify } from "jose";
 import { pool } from "../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 
-
-export const GET = async (req: any) => {
+export const GET = async (req: NextRequest) => {
     try {
         
         const cookieStore = cookies()
@@ -12,7 +10,7 @@ export const GET = async (req: any) => {
 
         console.log(JWT);
         if (!JWT) {
-            return { valid: false, reason: 'JWT missing' };
+            return NextResponse.json({ valid: false, reason: 'JWT missing' }, { status: 400 });
         }
 
         await pool.query(`
