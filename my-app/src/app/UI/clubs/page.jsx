@@ -55,30 +55,6 @@ const page = () => {
                     Design Sphere Club
                   </Link>
                   <Link
-                    href="/Clubpage/5"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Luminary Digital Club
-                  </Link>
-                  <Link
-                    href="/Clubpage/6"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Mobile E-Sports Club
-                  </Link>
-                  <Link
-                    href="/Clubpage/7"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Prompt-o-Ventures
-                  </Link>
-                  <Link
-                    href="/Clubpage/8"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Review Tech Club
-                  </Link>
-                  <Link
                     href="/Clubpage/9"
                     className="HomeClubs-box-in-one-in-link"
                   >
@@ -123,22 +99,10 @@ const page = () => {
                     Dance Club (Fusion)
                   </Link>
                   <Link
-                    href="/Clubpage/14"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Dance Club (NARTHANA)
-                  </Link>
-                  <Link
                     href="/Clubpage/15"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Dramatics Club
-                  </Link>
-                  <Link
-                    href="/Clubpage/16"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    F.E.K (FASHION DESIGNING)
                   </Link>
                   <Link
                     href="/Clubpage/17"
@@ -177,12 +141,6 @@ const page = () => {
                     Script Writing Club (Versatales)
                   </Link>
                   <Link
-                    href="/Clubpage/23"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Social Media Club
-                  </Link>
-                  <Link
                     href="/Clubpage/24"
                     className="HomeClubs-box-in-one-in-link"
                   >
@@ -203,10 +161,10 @@ const page = () => {
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
                   <Link
-                    href="/Clubpage/25"
+                    href="/Clubpage/31"
                     className="HomeClubs-box-in-one-in-link"
                   >
-                    CEA
+                    Smart Village Revolution
                   </Link>
                   <Link
                     href="/Clubpage/26"
@@ -237,12 +195,6 @@ const page = () => {
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Ohana
-                  </Link>
-                  <Link
-                    href="/Clubpage/31"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Smart Village Revolution
                   </Link>
                   <Link
                     href="/Clubpage/32"
@@ -297,22 +249,10 @@ const page = () => {
                     Safe Life Club
                   </Link>
                   <Link
-                    href="/Clubpage/36"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Spiritual Science Club
-                  </Link>
-                  <Link
                     href="/Clubpage/37"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Yoga Club
-                  </Link>
-                  <Link
-                    href="/Clubpage/38"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    YRC
                   </Link>
                 </div>
               </div>
