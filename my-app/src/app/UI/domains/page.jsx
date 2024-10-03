@@ -97,8 +97,10 @@ const page = () => {
                   coding to robotics, in our vibrant tech enthusiast community.
                 </p>
 
-                <Link href="/" className="five-in-one-card-in-two-link">
-                  Explore
+                <Link legacyBehavior href="https://www.acickl.in/" className="five-in-one-card-in-two-link">
+                  <a target="_blank"> 
+                    Explore
+                  </a>
                 </Link>
               </div>
             </div>

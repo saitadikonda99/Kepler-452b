@@ -26,7 +26,7 @@ const Page = () => {
         </div>
         <div className="three-three">
           <div className="three-three-one">
-            <div className="three-three-in-one count-cm">
+            {/* <div className="three-three-in-one count-cm">
               <h2>Collaborations</h2>
               <CountUp start={0} duration={4} end={100} redraw={true}>
                 {({ countUpRef, start }) => (
@@ -35,7 +35,7 @@ const Page = () => {
                   </VisibilitySensor>
                 )}
               </CountUp>
-            </div>
+            </div> */}
             <div className="three-three-in-two count-cm">
               <h2>Clubs</h2>
               <CountUp start={1} duration={4} end={33} redraw={true}>
@@ -77,7 +77,7 @@ const Page = () => {
               </CountUp>
             </div>
             <div className="three-three-in-three count-cm">
-              <h2>Projects</h2>
+              <h2>Workshops</h2>
               <CountUp start={1} duration={4} end={104} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
