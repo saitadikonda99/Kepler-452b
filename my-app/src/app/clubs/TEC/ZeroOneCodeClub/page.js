@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import "./page.css";
 
-import Navbar from "../../../Components/Navbar/Navbar";
+import ClubNavbar from "../../../Components/Navbar/ClubpageNavbar";
 import Footer from "../../../Components/Footer/page";
 import { ClubsArray } from "../../../../data/ZeroOne";
 
@@ -95,7 +95,7 @@ const page = () => {
     <div className="ClubPageComponent">
       <div className="ClubPageComponent-in">
         <div className="ClubPageNavbar">
-          <Navbar ClubName={ClubsArray[0].clubName} />
+          <ClubNavbar ClubName={ClubsArray[0].clubName} />
         </div>
 
         <div className="club-hero">
@@ -113,7 +113,7 @@ const page = () => {
         </div>
 
         <div className="Club-two">
-          <div className="Club-two-one">
+          <div className="Club-two-one" id="about">
             <div className="Club-two-one-one">
               <p>What is ZeroOne Code Club</p>
             </div>
@@ -185,6 +185,7 @@ const page = () => {
               </div>
             </div>
 
+            <div className="navigate" id="upcoming">
             <div className="Club-four-two" id={option == 2 ? "" : "hide-club"}>
               <div className="Club-four-two-in">
                 <div className="Club-four-two-in-one">
@@ -244,7 +245,10 @@ const page = () => {
                 </div>
               </div>
             </div>
+            </div>
+            
 
+            <div className="navigate" id="activities">
             <div
               className="Club-four-three"
               id={option == 3 ? "" : "hide-club"}
@@ -307,7 +311,10 @@ const page = () => {
                 </div>
               </div>
             </div>
+            </div>
 
+
+            <div className="navigate" id="team">
             <div className="Club-four-four" id={option == 4 ? "" : "hide-club"}>
               <div className="Club-four-four-in">
               <img
@@ -316,6 +323,7 @@ const page = () => {
                   alt="Sliding Image"
                 />
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -347,7 +355,7 @@ const page = () => {
 
         {/* ------------ */}
 
-        <div className="HomeFaq">
+        <div className="HomeFaq" id="FAQ's">
           <div className="HomeFaq-in">
             <div className="HomeFaq-in-one">
               <div className="HomeFaq-in-one-one">
@@ -411,13 +419,13 @@ const page = () => {
               <p>Connect</p>
             </div>
             <div className="ClubPage-six-two">
-              <h1>Meet the community</h1>
+              <h1>Join the community</h1>
             </div>
             <div className="ClubPage-six-three">
               <p>
-                Stop by any of the hundreds of meetups around the world for
-                in-person banter or join our Slack and Discourse for virtual
-                peer support.
+              Join our on-campus meetups for in-person networking with fellow coders, 
+              or engage with us for collaborative discussions and technical support 
+              within our university coding community.
               </p>
             </div>
             <div className="ClubPage-six-four">
