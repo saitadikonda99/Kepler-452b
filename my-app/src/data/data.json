@@ -3,34 +3,34 @@
     "eventData": [
       {
         "id": 1,
-        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2Fwebdev.png?alt=media&token=b5433148-e92d-476b-90d1-b8102252e666",
-        "eventName": "Frontend web Dev",
-        "eventDate": "2024-03-04",
-        "eventVenue": "R&D Theatre",
-        "uploadAt": "2024-08-03 14:03:34"
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%204.png?alt=media&token=03a0daad-7d4d-4113-9c36-01203d9c4397",
+        "eventName": "Product Innovation",
+        "eventDate": "2024-08-24",
+        "eventVenue": "R 301B",
+        "uploadAt": "2024-08-24 14:03:34"
       },
       {
         "id": 2,
-        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FYoga.png?alt=media&token=3bb9b888-be78-4f5f-87cd-5a6a0570bd6e",
-        "eventName": "Yoga for flexibility",
-        "eventDate": "2024-03-14",
-        "eventVenue": "R 301B",
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%202.png?alt=media&token=c3882b17-6ba8-4b7f-9b79-a08142eed598",
+        "eventName": "Web development Workshop",
+        "eventDate": "2024-07-25",
+        "eventVenue": "New Seminar Hall",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 3,
-        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499",
-        "eventName": "Jira Fundamentals",
-        "eventDate": "2024-03-26",
-        "eventVenue": "R301A",
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%203.png?alt=media&token=24c60728-2c4e-465a-b80d-d5965e84abef",
+        "eventName": "Crytography in Pacemakers",
+        "eventDate": "2024-08-22",
+        "eventVenue": "R 301B",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 4,
-        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F2%20(1).png?alt=media&token=7b444e5c-4f93-4b39-8008-38558ec2c0f1",
-        "eventName": "NodeJS:Authentication",
-        "eventDate": "2024-03-21",
-        "eventVenue": "SAC Hall",
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%201.png?alt=media&token=c84c6cd3-5b36-4f8e-925f-83b2d7e94068",
+        "eventName": "First Aid Techniques",
+        "eventDate": "2024-08-27",
+        "eventVenue": "R 301B",
         "uploadAt": "2024-08-03 14:03:34"
       }
     ],
@@ -44,7 +44,7 @@
       },
       {
         "id": 4,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYoga.png?alt=media&token=c78edaf7-6094-4ec4-8088-33ed886aa53a",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYOGA.png?alt=media&token=1c421eac-f14b-4f86-b2ab-94c357acccb3",
         "clubName": "Yoga Club",
         "newsContent": "Yoga Club News Content",
         "uploadAt": "2024-08-03 14:03:34"
@@ -53,30 +53,30 @@
     "newsPortrait": [
       {
         "id": 1,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=c7c09bda-6e52-495e-a718-08eed3fd810a",
-        "clubName": "Aero Club",
-        "newsContent": "Aero Club Additional News Content",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FWebApps.png?alt=media&token=9612c590-06bd-4fb1-8498-62aed3c153e9",
+        "clubName": "WebApps Club",
+        "newsContent": "WebApps News Content",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 2,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=c7c09bda-6e52-495e-a718-08eed3fd810a",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FJiraUpdatd.png?alt=media&token=9b13b2bc-5078-4cee-b4e3-268221aaf8b8",
         "clubName": "Aero Club",
         "newsContent": "Aero Club News Content",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 5,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Fnews1.jpeg?alt=media&token=8f459ff7-c275-4732-91f1-fcb9be6452e4",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FSVR.png?alt=media&token=29149d47-77a6-4ca1-a31d-2bec8c5f3c11",
         "clubName": "General News",
         "newsContent": "General News Content",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 6,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2Ftg_image_767744520.jpeg?alt=media&token=9bdf4f5d-c7fb-4281-85ef-aa8bc923eb5e",
-        "clubName": "Tech Club",
-        "newsContent": "Tech Club News Content",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FFilm.png?alt=media&token=ca1277e4-d74c-4665-9540-7628ccf57008",
+        "clubName": "Film Technology Club",
+        "newsContent": "Film Technology Club News Content",
         "uploadAt": "2024-08-03 14:03:34"
       }
     ]

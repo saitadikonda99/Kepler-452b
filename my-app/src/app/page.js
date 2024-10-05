@@ -57,12 +57,12 @@ const page = () => {
         <Domains />
 
         {/* Home Image */}
-        <div className="four">
+       {/* <div className="four">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/GroupPhoto%2FGroupPhoto.png?alt=media&token=9b5d582f-fb7d-4628-b187-7af43fdd6932"
             alt=""
           />
-        </div>
+        </div> */}
 
         {/* Home News */}
         <News />
