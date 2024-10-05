@@ -34,7 +34,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(151, 0, 3);
   position: relative;
 }
 
@@ -48,7 +47,7 @@
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0.4),
-    rgba(151, 0, 3, 0.4)
+    rgb(151, 0, 3),
   );
 }
 
@@ -72,7 +71,7 @@
   width: 60%;
   text-align: center;
   line-height: 6rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 4px 4px 4px rgba(5, 5, 5, 0.5);
   margin-bottom: 1rem;
 }
 
@@ -80,20 +79,8 @@
   color: white;
   font-size: 1.5rem;
   font-weight: 400;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 2rem;
-}
-
-.club-hero-in-description a {
-  padding: 0.7rem 1.5rem;
-  text-decoration: none;
-  color: white;
-  background-image: linear-gradient(to right, black, rgb(151, 0, 3));
-  border: 2px solid white;
-  border-radius: 2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
 }
 
 .Club-two {
@@ -316,7 +303,8 @@
 
 .ClubPage-six-four {
   width: 100%;
-  padding: 2rem 0rem;
+  min-height: 10vh;
+  padding: 1rem 0rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -327,10 +315,26 @@
   text-decoration: none;
   color: rgb(151, 0, 3);
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
 }
 
 .connect-icon {
   color: rgb(151, 0, 3);
+  font-weight: 500;
+}
+
+.ClubPage-six-four a:hover {
+  background-color: rgb(151, 0, 3);
+  color: white;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+}
+
+.ClubPage-six-four a:hover .connect-icon {
+  color: white;
   font-weight: 500;
 }
 
@@ -339,48 +343,155 @@
 }
 
 .ClubPage-six-five-in {
+
+}
+
+
+/* ----------------- Home Faq's ----------------- */
+
+.HomeFaq {
+  width: 100%;
+  background-color: white;
+}
+
+.HomeFaq-in {
+  width: 100%;
+  padding: 5rem 0rem;
+}
+
+.HomeFaq-in-one {
   width: 90%;
-  padding: 2rem 0rem;
   margin: auto;
-  background-color: rgb(151, 0, 3);
-  border-radius: 20px;
+}
+
+.HomeFaq-in-one-one {
+  width: 100%;
+}
+
+.HomeFaq-in-one-one p {
+  color: rgb(67, 67, 67);
+  font-weight: 600;
+}
+
+.HomeFaq-in-one-two {
+  width: 100%;
+}
+
+.HomeFaq-in-one-two h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: black;
+}
+
+.HomeFaq-in-two {
+  width: 90%;
+  margin: auto;
+}
+
+.HomeFaq-in-two-in {
+  width: 100%;
   display: flex;
 }
 
-.ClubPage-six-five-one {
-  width: 75%;
+.HomeFaq-in-two-one {
+  width: 40%;
 }
 
-.ClubPage-six-five-one-in {
-  width: 90%;
-  margin: auto;
-  padding: 4rem 0rem;
+.HomeFaq-find {
+  width: 60%;
+  padding: 4rem 0rem 0rem 0rem;
 }
 
-.ClubPage-six-five-one-in h1 {
-  font-size: 2.2rem;
-  color: white;
+
+.HomeFaq-find p {
+  color: rgb(67, 67, 67);
+  font-weight: 600;
 }
 
-.ClubPage-six-five-one-in p {
-  font-size: 1.2rem;
-  color: white;
-  font-weight: 300;
+.HomeFaq-find h1 {
+  padding: 1rem 0rem;
+  color: black;
+  font-size: 1.8rem;
 }
 
-.ClubPage-six-five-two {
-  width: 25%;
+.HomeFaq-icon {
+  width: 100%;
+}
+
+.msg-icon {
+  color: rgb(10, 119, 237);
+  font-size: 5rem;
+}
+
+.HomeFaq-in-two-two {
+  width: 60%;
+}
+
+.HomeFaq-in-two-two-in {
+  width: 100%;
+  padding: 4rem 0rem 0rem 0rem;
+}
+
+.HomeFaq-ques-component {
+  width: 100%;
+  border-bottom: 1px solid rgb(67, 67, 67);
+  padding: 1rem 0;
+}
+
+.HomeFaq-ques {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding-top: 1rem;
 }
 
-.ClubPage-six-five-two button {
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 10px;
-  background-color: white;
-  color: rgb(151, 0, 3);
-  font-size: 1rem;
-  font-weight: 500;
+.HomeFaq-ques h1 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: black;
+}
+
+.HomeFaq-ans {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out, padding 0.3s ease-out;
+}
+
+.HomeFaq-ans-show {
+  max-height: 200px; 
+  padding: 1rem 0rem 0rem 0rem;
+}
+
+.HomeFaq-ans-hide {
+  max-height: 0;
+  padding: 0;
+}
+
+.icon {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: rotate 0.3s ease-out;
+}
+
+@keyframes rotate {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(180deg);
+  }
+}
+
+.icon-close {
+  font-size: 1.5rem;
+  color: black;
+  animation: rotate 0.3s ease-out;
+}
+
+.icon-active {
+  transform: rotate(45deg);
 }

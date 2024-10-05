@@ -12,8 +12,41 @@ import { ClubsArray } from "../../../../data/ZeroOne";
 // import start here
 import { MdLocalActivity } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { BiSolidMessageDetail } from "react-icons/bi";
+import { AiOutlinePlus } from "react-icons/ai";
+import { IoMdClose } from "react-icons/io";
 
 const page = () => {
+
+   const FaqArray = [
+    {
+        question: "What is Coding Club?",
+        answer: "Coding Club is a student organization at the University of Texas at Austin that aims to foster a community of coders and provide resources for students to learn and grow in the field of computer science."
+    },
+    {
+        question: "How can I join Coding Club?",
+        answer: "You can join Coding Club by attending our general meetings, which are held every other Wednesday at 6:30 PM in GDC 6.302. You can also join our Slack channel to stay updated on events and opportunities."
+    },
+    {
+        question: "What programming languages does Coding Club teach?",
+        answer: "Coding Club teaches a variety of programming languages, including Python, Java, C++, and more. We also offer workshops on web development, data science, and other topics."
+    },
+    {
+        question: "What events does Coding Club host?",
+        answer: "Coding Club hosts a variety of events, including workshops, hackathons, and socials. We also collaborate with other student organizations and companies to provide networking opportunities for our members."
+    },
+    {
+        question: "How can I get involved with Coding Club?",
+        answer: "You can get involved with Coding Club by attending our events, joining a project team, or becoming an officer. We also welcome suggestions for new events and workshops that you would like to see."
+    }
+]
+
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleQues = (index) => {
+      setActiveIndex(activeIndex === index ? null : index);
+  };
+
   const [option, setOption] = useState(1);
 
   const handleClick = (num) => {
@@ -26,7 +59,6 @@ const page = () => {
         <div className="ClubPageNavbar">
           <Navbar
             ClubName={ClubsArray[0].clubName}
-            ClubImg={ClubsArray[0].clubImg}
           />
         </div>
 
@@ -34,15 +66,13 @@ const page = () => {
           <div className="club-hero-in">
             <img
               className="clubpage-hero-in-img"
-              src={ClubsArray[0].heroImg}
+              src="https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/MPaEbz-/videoblocks-high-angle-view-of-group-of-young-people-of-different-ethnicities-using-laptop-computers-to-write-codes-during-programming-workshop_hrxr05l_1n_thumbnail-1080_01.png"
               alt=""
             />
 
             <div className="club-hero-in-description">
-              <h1>Docker Builds: Now Lightning Fast</h1>
-              <h3>Announcing Docker Build Cloud general availability</h3>
-
-              <a href="fonts.google.com">Join the community</a>
+              <h1>ZeroOne Code Club</h1>
+              <h3>Nice community where the people are nice help to each other to code</h3>
             </div>
           </div>
         </div>
@@ -50,13 +80,13 @@ const page = () => {
         <div className="Club-two">
           <div className="Club-two-one">
             <div className="Club-two-one-one">
-              <p>What is {ClubsArray[0].clubName}?</p>
+              <p>What is ZeroOne Code Club</p>
             </div>
             <div className="Club-two-one-two">
-              <h1>{ClubsArray[0].About}</h1>
+              <h1>Accelerate how you build, share, and run applications</h1>
             </div>
             <div className="Club-two-one-three">
-              <p>{ClubsArray[0].AboutDes}</p>
+              <p>ZeroOne helps developers build, share, run, and verify applications anywhere — without tedious environment configuration or management.</p>
             </div>
           </div>
         </div>
@@ -79,7 +109,7 @@ const page = () => {
                   onClick={() => handleClick(2)}
                 >
                   <MdLocalActivity className="icon-op" />
-                  <p>Share</p>
+                  <p>Upcoming Events</p>
                 </div>
               </div>
               <div className="C-option-three c-op-cm">
@@ -160,6 +190,55 @@ const page = () => {
           </div>
         </div>
 
+
+                  {/* ------------ */}
+
+                  <div className="HomeFaq">
+                <div className="HomeFaq-in">
+                   <div className="HomeFaq-in-one">
+                        <div className="HomeFaq-in-one-one">
+                            <p>Home / FAQ&apos;s</p>
+                        </div>
+                        <div className="HomeFaq-in-one-two">
+                            <h1>Frequently Asked Questions</h1>
+                        </div>
+                   </div>    
+                   <div className="HomeFaq-in-two">
+                        <div className="HomeFaq-in-two-in">
+                            <div className="HomeFaq-in-two-one">
+                                <div className="HomeFaq-find">
+                                    <p>Can&apos;t find what you are looking for?</p>
+                                    <h1>We would like to chat with you.</h1>
+                                </div>
+                                <div className="HomeFaq-icon">
+                                    <BiSolidMessageDetail className='msg-icon'/>
+                                </div>
+                            </div>
+                            <div className="HomeFaq-in-two-two">
+                                <div className="HomeFaq-in-two-two-in">
+                                    {FaqArray.map((item, index) => {
+                                        const isActive = index === activeIndex;
+                                        return (
+                                            <div key={index} className="HomeFaq-ques-component">
+                                                <div onClick={() => handleQues(index)} className="HomeFaq-ques">
+                                                    <h1>{item?.question}</h1>
+                                                    {isActive ? <IoMdClose className='icon-close' /> : <AiOutlinePlus className='icon' />}
+                                                </div>
+                                                <div className={`HomeFaq-ans ${isActive ? 'HomeFaq-ans-show' : 'HomeFaq-ans-hide'}`}>
+                                                    <p>{item?.answer}</p>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                   </div>    
+                </div>
+            </div>
+
+
+            {/* ------------ */}
         <div className="ClubPage-six">
           <div className="ClubPage-six-in">
             <div className="ClubPage-six-one">
@@ -172,33 +251,15 @@ const page = () => {
               <p>
                 Stop by any of the hundreds of meetups around the world for
                 in-person banter or join our Slack and Discourse for virtual
-                peer support. Our Docker Captains are also a great source of
-                developer insight and expertise.
+                peer support.
               </p>
             </div>
             <div className="ClubPage-six-four">
-              <Link href="/">Connect with us</Link>
-              <FaArrowRightLong className="connect-icon" />
-            </div>
-
-            <div className="ClubPage-six-five">
-              <div className="ClubPage-six-five-in">
-                <div className="ClubPage-six-five-one">
-                  <div className="ClubPage-six-five-one-in">
-                    <h1>Choose a subscription that's right for you</h1>
-                    <p>
-                      Find your perfect balance of collaboration, security, and
-                      support with a Docker subscription.
-                    </p>
-                  </div>
-                </div>
-                <div className="ClubPage-six-five-two">
-                  <button>Find Pricing</button>
-                </div>
-              </div>
-            </div>
+              <Link href="/">Connect with us   <FaArrowRightLong className="connect-icon" /> </Link>
+            </div>            
           </div>
         </div>
+
       </div>
 
       <div className="ClubPageFooter">
