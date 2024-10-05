@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import "./page.css";
@@ -8,6 +8,8 @@ import "./page.css";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/page";
 import { ClubsArray } from "../../../../data/ZeroOne";
+
+import HeroImg from "../../../Assets/sampleimg.jpg";
 
 // import start here
 import { MdLocalActivity } from "react-icons/md";
@@ -17,37 +19,73 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 
 const page = () => {
-
-   const FaqArray = [
+  const FaqArray = [
     {
-        question: "What is Coding Club?",
-        answer: "Coding Club is a student organization at the University of Texas at Austin that aims to foster a community of coders and provide resources for students to learn and grow in the field of computer science."
+      question: "What is Coding Club?",
+      answer:
+        "Coding Club is a student organization at the University of Texas at Austin that aims to foster a community of coders and provide resources for students to learn and grow in the field of computer science.",
     },
     {
-        question: "How can I join Coding Club?",
-        answer: "You can join Coding Club by attending our general meetings, which are held every other Wednesday at 6:30 PM in GDC 6.302. You can also join our Slack channel to stay updated on events and opportunities."
+      question: "How can I join Coding Club?",
+      answer:
+        "You can join Coding Club by attending our general meetings, which are held every other Wednesday at 6:30 PM in GDC 6.302. You can also join our Slack channel to stay updated on events and opportunities.",
     },
     {
-        question: "What programming languages does Coding Club teach?",
-        answer: "Coding Club teaches a variety of programming languages, including Python, Java, C++, and more. We also offer workshops on web development, data science, and other topics."
+      question: "What programming languages does Coding Club teach?",
+      answer:
+        "Coding Club teaches a variety of programming languages, including Python, Java, C++, and more. We also offer workshops on web development, data science, and other topics.",
     },
     {
-        question: "What events does Coding Club host?",
-        answer: "Coding Club hosts a variety of events, including workshops, hackathons, and socials. We also collaborate with other student organizations and companies to provide networking opportunities for our members."
+      question: "What events does Coding Club host?",
+      answer:
+        "Coding Club hosts a variety of events, including workshops, hackathons, and socials. We also collaborate with other student organizations and companies to provide networking opportunities for our members.",
     },
     {
-        question: "How can I get involved with Coding Club?",
-        answer: "You can get involved with Coding Club by attending our events, joining a project team, or becoming an officer. We also welcome suggestions for new events and workshops that you would like to see."
-    }
-]
+      question: "How can I get involved with Coding Club?",
+      answer:
+        "You can get involved with Coding Club by attending our events, joining a project team, or becoming an officer. We also welcome suggestions for new events and workshops that you would like to see.",
+    },
+  ];
 
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleQues = (index) => {
-      setActiveIndex(activeIndex === index ? null : index);
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   const [option, setOption] = useState(1);
+
+  const [currentImageIndex1, setCurrentImageIndex1] = useState(0);
+  const [currentImageIndex4, setCurrentImageIndex4] = useState(0);
+
+  const images = [HeroImg, HeroImg, HeroImg, HeroImg];
+
+  useEffect(() => {
+    if (option === 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex1(
+          (prevIndex) => (prevIndex + 1) % images.length
+        );
+      }, 3000); 
+      return () => clearInterval(interval);
+    }
+  }, [option]);
+
+
+  useEffect(() => {
+    if (option === 4) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex4(
+          (prevIndex) => (prevIndex + 1) % images.length
+        );
+      }, 3000); 
+      return () => clearInterval(interval);
+    }
+  }, [option]);
+  
+  const handleQue = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   const handleClick = (num) => {
     setOption(num);
@@ -57,22 +95,19 @@ const page = () => {
     <div className="ClubPageComponent">
       <div className="ClubPageComponent-in">
         <div className="ClubPageNavbar">
-          <Navbar
-            ClubName={ClubsArray[0].clubName}
-          />
+          <Navbar ClubName={ClubsArray[0].clubName} />
         </div>
 
         <div className="club-hero">
           <div className="club-hero-in">
-            <img
-              className="clubpage-hero-in-img"
-              src="https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/MPaEbz-/videoblocks-high-angle-view-of-group-of-young-people-of-different-ethnicities-using-laptop-computers-to-write-codes-during-programming-workshop_hrxr05l_1n_thumbnail-1080_01.png"
-              alt=""
-            />
+            <img className="clubpage-hero-in-img" src={HeroImg} alt="image" />
 
             <div className="club-hero-in-description">
               <h1>ZeroOne Code Club</h1>
-              <h3>Nice community where the people are nice help to each other to code</h3>
+              <h3>
+                Nice community where the people are nice help to each other to
+                code
+              </h3>
             </div>
           </div>
         </div>
@@ -86,7 +121,11 @@ const page = () => {
               <h1>Accelerate how you build, share, and run applications</h1>
             </div>
             <div className="Club-two-one-three">
-              <p>ZeroOne helps developers build, share, run, and verify applications anywhere — without tedious environment configuration or management.</p>
+              <p>
+                ZeroOne helps developers build, share, run, and verify
+                applications anywhere — without tedious environment
+                configuration or management.
+              </p>
             </div>
           </div>
         </div>
@@ -138,13 +177,71 @@ const page = () => {
           <div className="Club-four-in">
             <div className="Club-four-one" id={option == 1 ? "" : "hide-club"}>
               <div className="Club-four-one-in">
-                <p>one</p>
+              <img
+                  className="club-slider-image"
+                  src={images[currentImageIndex1]}
+                  alt="Sliding Image"
+                />
               </div>
             </div>
 
             <div className="Club-four-two" id={option == 2 ? "" : "hide-club"}>
               <div className="Club-four-two-in">
-                <p>two</p>
+                <div className="Club-four-two-in-one">
+                  <div className="Club-four-two-in-one-boxe">
+                    <div className="Club-four-two-in-one-boxes">
+                      <div className="Club-four-two-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-two-in-one-boxes-text">
+                        <h1>HTML Bootcamp</h1>
+                      </div>
+                    </div>
+
+                    <div className="Club-four-two-in-one-boxes">
+                      <div className="Club-four-two-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-two-in-one-boxes-text">
+                        <h1>Nextjs workshop</h1>
+                      </div>
+                    </div>
+
+                    <div className="Club-four-two-in-one-boxes">
+                      <div className="Club-four-two-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-two-in-one-boxes-text">
+                        <h1>Code for Cause</h1>
+                      </div>
+                    </div>
+
+                    <div className="Club-four-two-in-one-boxes">
+                      <div className="Club-four-two-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-two-in-one-boxes-text">
+                        <h1>Code Jam</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -153,13 +250,71 @@ const page = () => {
               id={option == 3 ? "" : "hide-club"}
             >
               <div className="Club-four-three-in">
-                <p>three</p>
+                <div className="Club-four-three-in-one">
+                  <div className="Club-four-three-in-one-boxe">
+                    <div className="Club-four-three-in-one-boxes">
+                      <div className="Club-four-three-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-three-in-one-boxes-text">
+                        <h1>Linux Bootcamp</h1>
+                      </div>
+                    </div>
+
+                    <div className="Club-four-three-in-one-boxes">
+                      <div className="Club-four-three-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-three-in-one-boxes-text">
+                        <h1>React workshop</h1>
+                      </div>
+                    </div>
+
+                    <div className="Club-four-three-in-one-boxes">
+                      <div className="Club-four-three-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-three-in-one-boxes-text">
+                        <h1>Code for Cause</h1>
+                      </div>
+                    </div>
+
+                    <div className="Club-four-three-in-one-boxes">
+                      <div className="Club-four-three-in-one-boxes-img">
+                        <img
+                          className="clubpage-hero-in-img"
+                          src={HeroImg}
+                          alt="image"
+                        />
+                      </div>
+                      <div className="Club-four-three-in-one-boxes-text">
+                        <h1>Code Jam</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="Club-four-four" id={option == 4 ? "" : "hide-club"}>
               <div className="Club-four-four-in">
-                <p>four</p>
+              <img
+                  className="club-slider-image"
+                  src={images[currentImageIndex4]}
+                  alt="Sliding Image"
+                />
               </div>
             </div>
           </div>
@@ -190,55 +345,64 @@ const page = () => {
           </div>
         </div>
 
+        {/* ------------ */}
 
-                  {/* ------------ */}
-
-                  <div className="HomeFaq">
-                <div className="HomeFaq-in">
-                   <div className="HomeFaq-in-one">
-                        <div className="HomeFaq-in-one-one">
-                            <p>Home / FAQ&apos;s</p>
-                        </div>
-                        <div className="HomeFaq-in-one-two">
-                            <h1>Frequently Asked Questions</h1>
-                        </div>
-                   </div>    
-                   <div className="HomeFaq-in-two">
-                        <div className="HomeFaq-in-two-in">
-                            <div className="HomeFaq-in-two-one">
-                                <div className="HomeFaq-find">
-                                    <p>Can&apos;t find what you are looking for?</p>
-                                    <h1>We would like to chat with you.</h1>
-                                </div>
-                                <div className="HomeFaq-icon">
-                                    <BiSolidMessageDetail className='msg-icon'/>
-                                </div>
-                            </div>
-                            <div className="HomeFaq-in-two-two">
-                                <div className="HomeFaq-in-two-two-in">
-                                    {FaqArray.map((item, index) => {
-                                        const isActive = index === activeIndex;
-                                        return (
-                                            <div key={index} className="HomeFaq-ques-component">
-                                                <div onClick={() => handleQues(index)} className="HomeFaq-ques">
-                                                    <h1>{item?.question}</h1>
-                                                    {isActive ? <IoMdClose className='icon-close' /> : <AiOutlinePlus className='icon' />}
-                                                </div>
-                                                <div className={`HomeFaq-ans ${isActive ? 'HomeFaq-ans-show' : 'HomeFaq-ans-hide'}`}>
-                                                    <p>{item?.answer}</p>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                   </div>    
-                </div>
+        <div className="HomeFaq">
+          <div className="HomeFaq-in">
+            <div className="HomeFaq-in-one">
+              <div className="HomeFaq-in-one-one">
+                <p>Home / FAQ&apos;s</p>
+              </div>
+              <div className="HomeFaq-in-one-two">
+                <h1>Frequently Asked Questions</h1>
+              </div>
             </div>
+            <div className="HomeFaq-in-two">
+              <div className="HomeFaq-in-two-in">
+                <div className="HomeFaq-in-two-one">
+                  <div className="HomeFaq-find">
+                    <p>Can&apos;t find what you are looking for?</p>
+                    <h1>We would like to chat with you.</h1>
+                  </div>
+                  <div className="HomeFaq-icon">
+                    <BiSolidMessageDetail className="msg-icon" />
+                  </div>
+                </div>
+                <div className="HomeFaq-in-two-two">
+                  <div className="HomeFaq-in-two-two-in">
+                    {FaqArray.map((item, index) => {
+                      const isActive = index === activeIndex;
+                      return (
+                        <div key={index} className="HomeFaq-ques-component">
+                          <div
+                            onClick={() => handleQues(index)}
+                            className="HomeFaq-ques"
+                          >
+                            <h1>{item?.question}</h1>
+                            {isActive ? (
+                              <IoMdClose className="icon-close" />
+                            ) : (
+                              <AiOutlinePlus className="icon" />
+                            )}
+                          </div>
+                          <div
+                            className={`HomeFaq-ans ${
+                              isActive ? "HomeFaq-ans-show" : "HomeFaq-ans-hide"
+                            }`}
+                          >
+                            <p>{item?.answer}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-
-            {/* ------------ */}
+        {/* ------------ */}
         <div className="ClubPage-six">
           <div className="ClubPage-six-in">
             <div className="ClubPage-six-one">
@@ -255,11 +419,12 @@ const page = () => {
               </p>
             </div>
             <div className="ClubPage-six-four">
-              <Link href="/">Connect with us   <FaArrowRightLong className="connect-icon" /> </Link>
-            </div>            
+              <Link href="/">
+                Connect with us <FaArrowRightLong className="connect-icon" />{" "}
+              </Link>
+            </div>
           </div>
         </div>
-
       </div>
 
       <div className="ClubPageFooter">
