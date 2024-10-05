@@ -21,29 +21,29 @@ import { IoMdClose } from "react-icons/io";
 const page = () => {
   const FaqArray = [
     {
-      question: "What is Coding Club?",
+      question: "What is ZeroOne Code Club?",
       answer:
-        "Coding Club is a student organization at the University of Texas at Austin that aims to foster a community of coders and provide resources for students to learn and grow in the field of computer science.",
+        "The ZeroOne Code CLub is a student organization at the KL University at Vaddeswaram that aims to foster a community of coders and provide resources for students to learn and grow in the field of computer science.",
     },
     {
-      question: "How can I join Coding Club?",
+      question: "How can I join ZeroOne Code Club?",
       answer:
-        "You can join Coding Club by attending our general meetings, which are held every other Wednesday at 6:30 PM in GDC 6.302. You can also join our Slack channel to stay updated on events and opportunities.",
+        "You can join ZeroOne Code Club by attending our general meetings, collaborating with us in doing projects, workshops, etc which will take place every month. You can also join our telegram community to stay updated on events and opportunities.",
     },
     {
-      question: "What programming languages does Coding Club teach?",
+      question: "What programming languages does ZeroOne Code Club teach?",
       answer:
-        "Coding Club teaches a variety of programming languages, including Python, Java, C++, and more. We also offer workshops on web development, data science, and other topics.",
+        "ZeroOne COde CLub teaches a variety of programming languages, including Python, Java, C++, and more. We also offer workshops on web development, linux system administration, data science, and other topics.",
     },
     {
-      question: "What events does Coding Club host?",
+      question: "What events does ZeroOne Code Club host?",
       answer:
-        "Coding Club hosts a variety of events, including workshops, hackathons, and socials. We also collaborate with other student organizations and companies to provide networking opportunities for our members.",
+        "ZeroOne Code Club hosts a variety of events, including workshops, hackathons, and socials. We also collaborate with other student organizations and companies to provide networking opportunities for our members.",
     },
     {
-      question: "How can I get involved with Coding Club?",
+      question: "How can I get involved with ZeroOne Code CLub?",
       answer:
-        "You can get involved with Coding Club by attending our events, joining a project team, or becoming an officer. We also welcome suggestions for new events and workshops that you would like to see.",
+        "You can get involved with ZeroOne Code Club by attending our events, joining a project team, or becoming an official member. We also welcome suggestions for new events and workshops that you would like to see.",
     },
   ];
 
@@ -362,11 +362,13 @@ const page = () => {
                 <div className="HomeFaq-in-two-one">
                   <div className="HomeFaq-find">
                     <p>Can&apos;t find what you are looking for?</p>
-                    <h1>We would like to chat with you.</h1>
+                    <h1>We are available to assist you via chat.</h1>
                   </div>
                   <div className="HomeFaq-icon">
-                    <BiSolidMessageDetail className="msg-icon" />
-                  </div>
+                   <a href="https://t.me/zeroOneCommunity" target="_blank" rel="noopener noreferrer">
+                     <BiSolidMessageDetail className="msg-icon" />
+                   </a>
+                 </div>
                 </div>
                 <div className="HomeFaq-in-two-two">
                   <div className="HomeFaq-in-two-two-in">
