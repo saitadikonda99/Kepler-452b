@@ -4,47 +4,47 @@
       {
         "id": 1,
         "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%204.png?alt=media&token=03a0daad-7d4d-4113-9c36-01203d9c4397",
-        "eventName": "Product Innovation",
+        "eventName": "Product Innovation (Aero Club)",
         "eventDate": "2024-08-24",
         "eventVenue": "R 301B",
         "uploadAt": "2024-08-24 14:03:34"
       },
       {
         "id": 2,
-        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%202.png?alt=media&token=c3882b17-6ba8-4b7f-9b79-a08142eed598",
-        "eventName": "Web development Workshop",
-        "eventDate": "2024-07-25",
-        "eventVenue": "New Seminar Hall",
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2Fsvr2.png?alt=media&token=58503ad6-f597-40c0-9bbf-f4292080d69b",
+        "eventName": "Tree Adoption Campaign",
+        "eventDate": "2024-10-02",
+        "eventVenue": "Mangalagiri",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 3,
-        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%203.png?alt=media&token=24c60728-2c4e-465a-b80d-d5965e84abef",
-        "eventName": "Crytography in Pacemakers",
-        "eventDate": "2024-08-22",
-        "eventVenue": "R 301B",
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2Fsvr1.png?alt=media&token=6e9647d4-10b6-4e9c-98dc-8690eb486000",
+        "eventName": "Clean Water & Sanitation",
+        "eventDate": "2024-10-08",
+        "eventVenue": "Ramachandrapuram",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 4,
-        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2FEvent%201.png?alt=media&token=c84c6cd3-5b36-4f8e-925f-83b2d7e94068",
-        "eventName": "First Aid Techniques",
-        "eventDate": "2024-08-27",
-        "eventVenue": "R 301B",
+        "eventLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2Fsvr3.png?alt=media&token=b4ae80db-0d4a-49bd-b252-4b691fbfcd7a",
+        "eventName": "Vriksharopam Mahotsav",
+        "eventDate": "2024-10-01",
+        "eventVenue": "Gudimeda",
         "uploadAt": "2024-08-03 14:03:34"
       }
     ],
     "newsLandscape": [
       {
         "id": 3,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FZeroOne.png?alt=media&token=27811623-fd4a-4a46-aaf5-ed485cf9e9b6",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FZeroOne.png?alt=media&token=888a4e31-33c4-4fa2-9009-3d80ee4b87e6",
         "clubName": "ZeroOne Club",
         "newsContent": "ZeroOne Club News Content",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 4,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYOGA.png?alt=media&token=1c421eac-f14b-4f86-b2ab-94c357acccb3",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYOGA.png?alt=media&token=e8d43678-8379-4fdf-9cb9-1684de9b1d04",
         "clubName": "Yoga Club",
         "newsContent": "Yoga Club News Content",
         "uploadAt": "2024-08-03 14:03:34"
@@ -53,28 +53,28 @@
     "newsPortrait": [
       {
         "id": 1,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FWebApps.png?alt=media&token=9612c590-06bd-4fb1-8498-62aed3c153e9",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FWebApps.png?alt=media&token=5b450b40-5947-4caf-82a2-e3a838ce112d",
         "clubName": "WebApps Club",
         "newsContent": "WebApps News Content",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 2,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FJiraUpdatd.png?alt=media&token=9b13b2bc-5078-4cee-b4e3-268221aaf8b8",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=9c80f1ff-351f-4c33-bcbb-e10a6b1312e5",
         "clubName": "Aero Club",
         "newsContent": "Aero Club News Content",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 5,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FSVR.png?alt=media&token=29149d47-77a6-4ca1-a31d-2bec8c5f3c11",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FSvr.png?alt=media&token=e28a632e-2b3e-490b-bcc6-6fa9195f217c",
         "clubName": "General News",
         "newsContent": "General News Content",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 6,
-        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FFilm.png?alt=media&token=ca1277e4-d74c-4665-9540-7628ccf57008",
+        "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FFilm.png?alt=media&token=018d17e1-7aef-43de-b4aa-c6d32d432c22",
         "clubName": "Film Technology Club",
         "newsContent": "Film Technology Club News Content",
         "uploadAt": "2024-08-03 14:03:34"
