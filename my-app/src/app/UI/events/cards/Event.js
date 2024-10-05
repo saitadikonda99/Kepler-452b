@@ -11,7 +11,7 @@ const Event = ({ eventLink, eventName, eventDate, eventVenue }) => {
           <img src={eventLink} alt="Event Image" width={300} height={300} />
         </div>
         <div className="Event-two">
-          <h2>{eventName}</h2>
+        <h2 style={{ fontSize: eventName.length > 20 ? '1.292rem' : '1.5rem' }}>{eventName}</h2>
           <p>{eventDate}</p>
           <p>{eventVenue}</p>
         </div>
