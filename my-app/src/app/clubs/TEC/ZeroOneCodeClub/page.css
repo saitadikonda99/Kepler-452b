@@ -54,6 +54,7 @@
 .club-hero-in img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .club-hero-in-description {
@@ -72,7 +73,8 @@
   width: 60%;
   text-align: center;
   line-height: 6rem;
-  text-shadow: 4px 4px 4px rgba(5, 5, 5, 0.5);
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+
   margin-bottom: 1rem;
 }
 
@@ -86,7 +88,7 @@
 
 .Club-two {
   width: 100%;
-  padding: 3rem 0rem;
+  padding: 2rem 0rem 0rem 0rem;
 }
 
 .Club-two-one {
@@ -148,40 +150,7 @@
   justify-content: space-around;
 }
 
-.Club-four-three-in-one-boxe{
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 20px;
-}
 
-.Club-four-three-in-one-boxes{
-border:1px solid black;
-width:20rem;
-height: 20rem;
-}
-
-.Club-four-three-in-one-boxes-text h1{
-font-size: 1.5rem;
-}
-
-.Club-four-two-in-one-boxe{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  }
-  
-  .Club-four-two-in-one-boxes{
-  border:1px solid black;
-  width:20rem;
-  height: 20rem;
-  }
-  
-  .Club-four-two-in-one-boxes-text h1{
-  font-size: 1.5rem;
-  }
-  
   .club-slider-image {
     width: 100%;
     height: auto;
@@ -237,7 +206,6 @@ font-size: 1.5rem;
   width: 90%;
   margin: auto;
   padding: 2rem 0rem;
-  border: 2px solid blue;
   height: 50vh;
 }
 
@@ -283,6 +251,30 @@ font-size: 1.5rem;
   justify-content: space-around;
 }
 
+
+/* Club-four-two */
+
+.Club-four-two {
+  width: 100%;
+}
+
+.Club-four-two-in {
+  width: 100%;
+}
+
+.Club-four-two-in-one-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 0rem;
+}
+
+.club-event {
+  width: 24%;
+  border: 2px solid black;
+}
+
+
 .cm-club-stats {
   width: 33%;
   display: flex;
@@ -311,7 +303,7 @@ font-size: 1.5rem;
 .ClubPage-six-in {
   width: 100%;
   background-color: rgb(243, 243, 243);
-  padding: 4rem 0rem 6rem 0rem;
+  padding: 4rem 0rem 4rem 0rem;
 }
 
 .ClubPage-six-one {
@@ -349,47 +341,22 @@ font-size: 1.5rem;
 
 .ClubPage-six-four {
   width: 100%;
-  min-height: 10vh;
   padding: 1rem 0rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-}
-
-.ClubPage-six-four a {
-  text-decoration: none;
-  color: rgb(151, 0, 3);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
+  font-size: 2.2rem;
 }
 
 .connect-icon {
+  color: rgb(165, 162, 162);
+  font-weight: 500;
+}
+
+.connect-icon:hover {
   color: rgb(151, 0, 3);
   font-weight: 500;
-}
-
-.ClubPage-six-four a:hover {
-  background-color: rgb(151, 0, 3);
-  color: white;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-}
-
-.ClubPage-six-four a:hover .connect-icon {
-  color: white;
-  font-weight: 500;
-}
-
-.ClubPage-six-five {
-  width: 100%;
-}
-
-.ClubPage-six-five-in {
-
 }
 
 
@@ -424,7 +391,7 @@ font-size: 1.5rem;
 }
 
 .HomeFaq-in-one-two h1 {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 800;
   color: black;
 }
@@ -494,7 +461,7 @@ font-size: 1.5rem;
 }
 
 .HomeFaq-ques h1 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: black;
 }

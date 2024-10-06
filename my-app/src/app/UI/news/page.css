@@ -21,6 +21,7 @@
   width: 50%;
   position: relative;
   background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  border: 2px solid black;
 }
 
 .seven-in-one-one .seven-in-one-one-box:first-child:before {
@@ -37,11 +38,14 @@
   width: 100%;
   height: 100%;
 }
+
 .seven-in-one-one
   .seven-in-one-one-box:first-child
   .seven-in-one-one-box-in
   img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .seven-in-one-one-box-in-desc {
@@ -125,6 +129,7 @@
   .seven-in-one-one-box-in-one
   img {
   width: 100%;
+  height: 100%;
 }
 
 .seven-in-one-one

@@ -148,7 +148,7 @@ const Navbar = () => {
               <Scroll
                 className="nav-scroll-links"
                 activeClass="active"
-                to="thirteen"
+                to="HomeClubs"
                 spy={true}
                 smooth={true}
                 offset={-10}

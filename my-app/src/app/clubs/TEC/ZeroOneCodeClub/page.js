@@ -9,7 +9,7 @@ import ClubNavbar from "../../../Components/Navbar/ClubpageNavbar";
 import Footer from "../../../Components/Footer/page";
 import { ClubsArray } from "../../../../data/ZeroOne";
 
-import HeroImg from "../../../Assets/sampleimg.jpg";
+import HeroImg from "../../../Assets/hersectionimg.jpg";
 
 // import start here
 import { MdLocalActivity } from "react-icons/md";
@@ -17,6 +17,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { BiSolidMessageDetail } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
+import { FaInstagram } from "react-icons/fa";
 
 const page = () => {
   const FaqArray = [
@@ -63,26 +64,21 @@ const page = () => {
   useEffect(() => {
     if (option === 1) {
       const interval = setInterval(() => {
-        setCurrentImageIndex1(
-          (prevIndex) => (prevIndex + 1) % images.length
-        );
-      }, 3000); 
+        setCurrentImageIndex1((prevIndex) => (prevIndex + 1) % images.length);
+      }, 3000);
       return () => clearInterval(interval);
     }
   }, [option]);
-
 
   useEffect(() => {
     if (option === 4) {
       const interval = setInterval(() => {
-        setCurrentImageIndex4(
-          (prevIndex) => (prevIndex + 1) % images.length
-        );
-      }, 3000); 
+        setCurrentImageIndex4((prevIndex) => (prevIndex + 1) % images.length);
+      }, 3000);
       return () => clearInterval(interval);
     }
   }, [option]);
-  
+
   const handleQue = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -100,7 +96,10 @@ const page = () => {
 
         <div className="club-hero">
           <div className="club-hero-in">
-            <img className="clubpage-hero-in-img" src={HeroImg} alt="image" />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubs%2FZeroOneHero.jpg?alt=media&token=a765b8fc-b356-4ebb-98e2-1574f693d6ab"
+              alt="image"
+            />
 
             <div className="club-hero-in-description">
               <h1>ZeroOne Code Club</h1>
@@ -175,69 +174,53 @@ const page = () => {
 
         <div className="Club-four">
           <div className="Club-four-in">
+            {/* glimpse */}
             <div className="Club-four-one" id={option == 1 ? "" : "hide-club"}>
               <div className="Club-four-one-in">
-              <img
-                  className="club-slider-image"
-                  src={images[currentImageIndex1]}
-                  alt="Sliding Image"
-                />
+                <img src="" alt="Sliding Image" />
               </div>
             </div>
 
-            <div className="navigate" id="upcoming">
+            {/* Upcoming Events */}
             <div className="Club-four-two" id={option == 2 ? "" : "hide-club"}>
               <div className="Club-four-two-in">
                 <div className="Club-four-two-in-one">
-                  <div className="Club-four-two-in-one-boxe">
-                    <div className="Club-four-two-in-one-boxes">
-                      <div className="Club-four-two-in-one-boxes-img">
-                        <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
-                          alt="image"
-                        />
+                  <div className="Club-four-two-in-one-box">
+                    <div className="club-event">
+                      <div className="club-event-img">
+                        <img src="" alt="image" />
                       </div>
-                      <div className="Club-four-two-in-one-boxes-text">
+                      <div className="club-event-text">
                         <h1>HTML Bootcamp</h1>
                       </div>
                     </div>
 
-                    <div className="Club-four-two-in-one-boxes">
-                      <div className="Club-four-two-in-one-boxes-img">
+                    <div className="club-event">
+                      <div className="club-event-img">
                         <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
+                          src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubs%2F2.png?alt=media&token=635f1a42-1242-41a2-8f9f-c708366a0872"
                           alt="image"
                         />
                       </div>
-                      <div className="Club-four-two-in-one-boxes-text">
+                      <div className="club-event-text">
                         <h1>Nextjs workshop</h1>
                       </div>
                     </div>
 
-                    <div className="Club-four-two-in-one-boxes">
-                      <div className="Club-four-two-in-one-boxes-img">
-                        <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
-                          alt="image"
-                        />
+                    <div className="club-event">
+                      <div className="club-event-img">
+                        <img src={HeroImg} alt="image" />
                       </div>
-                      <div className="Club-four-two-in-one-boxes-text">
+                      <div className="club-event-text">
                         <h1>Code for Cause</h1>
                       </div>
                     </div>
 
-                    <div className="Club-four-two-in-one-boxes">
-                      <div className="Club-four-two-in-one-boxes-img">
-                        <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
-                          alt="image"
-                        />
+                    <div className="club-event">
+                      <div className="club-event-img">
+                        <img src="" alt="image" />
                       </div>
-                      <div className="Club-four-two-in-one-boxes-text">
+                      <div className="club-event-text">
                         <h1>Code Jam</h1>
                       </div>
                     </div>
@@ -245,65 +228,51 @@ const page = () => {
                 </div>
               </div>
             </div>
-            </div>
-            
 
-            <div className="navigate" id="activities">
+
+            {/* activities */}
             <div
               className="Club-four-three"
               id={option == 3 ? "" : "hide-club"}
             >
               <div className="Club-four-three-in">
                 <div className="Club-four-three-in-one">
-                  <div className="Club-four-three-in-one-boxe">
-                    <div className="Club-four-three-in-one-boxes">
-                      <div className="Club-four-three-in-one-boxes-img">
-                        <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
-                          alt="image"
-                        />
+                  <div className="Club-four-two-in-one-box">
+                    <div className="club-event">
+                      <div className="club-event-img">
+                        <img src="" alt="image" />
                       </div>
-                      <div className="Club-four-three-in-one-boxes-text">
-                        <h1>Linux Bootcamp</h1>
+                      <div className="club-event-text">
+                        <h1>HTML Bootcamp</h1>
                       </div>
                     </div>
 
-                    <div className="Club-four-three-in-one-boxes">
-                      <div className="Club-four-three-in-one-boxes-img">
+                    <div className="club-event">
+                      <div className="club-event-img">
                         <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
+                          src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubs%2F2.png?alt=media&token=635f1a42-1242-41a2-8f9f-c708366a0872"
                           alt="image"
                         />
                       </div>
-                      <div className="Club-four-three-in-one-boxes-text">
-                        <h1>React workshop</h1>
+                      <div className="club-event-text">
+                        <h1>Nextjs workshop</h1>
                       </div>
                     </div>
 
-                    <div className="Club-four-three-in-one-boxes">
-                      <div className="Club-four-three-in-one-boxes-img">
-                        <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
-                          alt="image"
-                        />
+                    <div className="club-event">
+                      <div className="club-event-img">
+                        <img src={HeroImg} alt="image" />
                       </div>
-                      <div className="Club-four-three-in-one-boxes-text">
+                      <div className="club-event-text">
                         <h1>Code for Cause</h1>
                       </div>
                     </div>
 
-                    <div className="Club-four-three-in-one-boxes">
-                      <div className="Club-four-three-in-one-boxes-img">
-                        <img
-                          className="clubpage-hero-in-img"
-                          src={HeroImg}
-                          alt="image"
-                        />
+                    <div className="club-event">
+                      <div className="club-event-img">
+                        <img src="" alt="image" />
                       </div>
-                      <div className="Club-four-three-in-one-boxes-text">
+                      <div className="club-event-text">
                         <h1>Code Jam</h1>
                       </div>
                     </div>
@@ -311,19 +280,12 @@ const page = () => {
                 </div>
               </div>
             </div>
-            </div>
 
-
-            <div className="navigate" id="team">
+            {/* Team */}
             <div className="Club-four-four" id={option == 4 ? "" : "hide-club"}>
               <div className="Club-four-four-in">
-              <img
-                  className="club-slider-image"
-                  src={images[currentImageIndex4]}
-                  alt="Sliding Image"
-                />
+                <img className="club-slider-image" src="" alt="Sliding Image" />
               </div>
-            </div>
             </div>
           </div>
         </div>
@@ -373,10 +335,14 @@ const page = () => {
                     <h1>We are available to assist you via chat.</h1>
                   </div>
                   <div className="HomeFaq-icon">
-                   <a href="https://t.me/zeroOneCommunity" target="_blank" rel="noopener noreferrer">
-                     <BiSolidMessageDetail className="msg-icon" />
-                   </a>
-                 </div>
+                    <a
+                      href="https://t.me/zeroOneCommunity"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <BiSolidMessageDetail className="msg-icon" />
+                    </a>
+                  </div>
                 </div>
                 <div className="HomeFaq-in-two-two">
                   <div className="HomeFaq-in-two-two-in">
@@ -423,15 +389,17 @@ const page = () => {
             </div>
             <div className="ClubPage-six-three">
               <p>
-              Join our on-campus meetups for in-person networking with fellow coders, 
-              or engage with us for collaborative discussions and technical support 
-              within our university coding community.
+                Join our on-campus meetups for in-person networking with fellow
+                coders, or engage with us for collaborative discussions and
+                technical support within our university coding community.
               </p>
             </div>
             <div className="ClubPage-six-four">
-              <Link href="/">
-                Connect with us <FaArrowRightLong className="connect-icon" />{" "}
-              </Link>
+                <FaInstagram className="connect-icon"/>
+                <FaInstagram className="connect-icon"/>
+                <FaInstagram className="connect-icon"/>
+                <FaInstagram className="connect-icon"/>
+
             </div>
           </div>
         </div>
