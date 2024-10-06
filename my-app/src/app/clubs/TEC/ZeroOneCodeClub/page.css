@@ -225,7 +225,7 @@
 }
 
 .Club-five-one p {
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
   background-clip: text;
   -webkit-background-clip: text;
@@ -235,7 +235,7 @@
 
 .Club-five-one h1 {
   text-align: center;
-  font-size: 3.4rem;
+  font-size: 2.8rem;
 }
 
 .Club-five-two {
@@ -250,7 +250,6 @@
   align-items: center;
   justify-content: space-around;
 }
-
 
 /* Club-four-two */
 
@@ -292,9 +291,46 @@
 }
 
 .cm-club-stats p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: rgb(64, 63, 63);
 }
+
+.Club-four-three-in-one {
+  /* margin-top: 1rem; */
+}
+
+.Club-four-three-in-one {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Club-four-three-in-one-card {
+  width: 24%;
+  padding-bottom: 0.5rem;
+  border: 1px solid rgb(197, 195, 195);
+}
+
+.Club-four-three-in-one-card-in {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Club-four-three-in-one-card-in-one img {
+  width: 100%;
+}
+
+.Club-four-three-in-one-card-in-two h2 {
+  font-size: 1.3rem;
+  color: black;
+  font-weight: 700;
+}
+
+.Club-four-three-in-one-card-in-two p {
+  font-size: 1rem;
+  color: grey;
+}
+
 
 .ClubPage-six {
   width: 100%;

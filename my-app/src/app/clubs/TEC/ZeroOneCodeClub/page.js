@@ -2,6 +2,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import CountUp from "react-countup";
+import VisibilitySensor from "react-visibility-sensor";
+
 
 import "./page.css";
 
@@ -18,6 +21,10 @@ import { BiSolidMessageDetail } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
 import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaThreads } from "react-icons/fa6";
 
 const page = () => {
   const FaqArray = [
@@ -236,48 +243,72 @@ const page = () => {
               id={option == 3 ? "" : "hide-club"}
             >
               <div className="Club-four-three-in">
-                <div className="Club-four-three-in-one">
-                  <div className="Club-four-two-in-one-box">
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img src="" alt="image" />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>HTML Bootcamp</h1>
-                      </div>
-                    </div>
+                
+              <div className="Club-four-three-in-one">
+          <div className="Club-four-three-in-one-card">
+            <div className="Club-four-three-in-one-card-in">
+              <div className="Club-four-three-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-three-in-one-card-in-two">
+                <h2>Linux Bootcamp</h2>
+                <p>Date:</p>
+                <p>Venue:</p>
+              </div>
+            </div>
+          </div>
 
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img
-                          src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubs%2F2.png?alt=media&token=635f1a42-1242-41a2-8f9f-c708366a0872"
-                          alt="image"
-                        />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>Nextjs workshop</h1>
-                      </div>
-                    </div>
+          <div className="Club-four-three-in-one-card">
+            <div className="Club-four-three-in-one-card-in">
+              <div className="Club-four-three-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-three-in-one-card-in-two">
+                <h2>React Workshop</h2>
 
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img src={HeroImg} alt="image" />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>Code for Cause</h1>
-                      </div>
-                    </div>
+              </div>
+            </div>
+          </div>
 
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img src="" alt="image" />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>Code Jam</h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div className="Club-four-three-in-one-card">
+            <div className="Club-four-three-in-one-card-in">
+              <div className="Club-four-three-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-three-in-one-card-in-two">
+                <h2>Code For Cause</h2>
+
+              </div>
+            </div>
+          </div>
+
+          <div className="Club-four-three-in-one-card">
+            <div className="Club-four-three-in-one-card-in">
+              <div className="Club-four-three-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-three-in-one-card-in-two">
+                <h2>Code Jam</h2>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
               </div>
             </div>
 
@@ -299,15 +330,33 @@ const page = () => {
             <div className="Club-five-two">
               <div className="Club-five-two-in">
                 <div className="Club-five-two-one cm-club-stats">
-                  <h1>300+</h1>
+                  <CountUp start={0} duration={4} end={300} redraw={true}>
+                {({ countUpRef, start }) => (
+                  <VisibilitySensor onChange={start} delayedCall>
+                    <h1 ref={countUpRef} />
+                  </VisibilitySensor>
+                )}
+              </CountUp>
                   <p>Members</p>
                 </div>
                 <div className="Club-five-two-two cm-club-stats">
-                  <h1>100+</h1>
+                  <CountUp start={1} duration={4} end={100} redraw={true}>
+                {({ countUpRef, start }) => (
+                  <VisibilitySensor onChange={start} delayedCall>
+                    <h1 ref={countUpRef} />
+                  </VisibilitySensor>
+                )}
+              </CountUp>
                   <p>Activities</p>
                 </div>
                 <div className="Club-five-two-three cm-club-stats">
-                  <h1>5+</h1>
+                  <CountUp start={1} duration={4} end={11} redraw={true}>
+                {({ countUpRef, start }) => (
+                  <VisibilitySensor onChange={start} delayedCall>
+                    <h1 ref={countUpRef} />
+                  </VisibilitySensor>
+                )}
+              </CountUp>
                   <p>Projects</p>
                 </div>
               </div>
@@ -395,10 +444,11 @@ const page = () => {
               </p>
             </div>
             <div className="ClubPage-six-four">
-                <FaInstagram className="connect-icon"/>
-                <FaInstagram className="connect-icon"/>
-                <FaInstagram className="connect-icon"/>
-                <FaInstagram className="connect-icon"/>
+                <FaInstagram className="connect-icon" onClick={() => window.open('https://www.instagram.com/zeroonedevs/', '_blank')}/>
+                <FaLinkedin className="connect-icon" onClick={() => window.open('https://www.linkedin.com/company/zeroonecodeclub/posts/?feedView=all', '_blank')} />
+                <FaTelegram className="connect-icon" onClick={() => window.open('https://t.me/zeroOneCommunity', '_blank')}/>
+                <FaTwitter className="connect-icon" onClick={() => window.open('https://x.com/zeroone_codes?t=8AZ3YeUGlFSDyGIYKwQYrw&s=35', '_blank')}/>
+                <FaThreads className="connect-icon" onClick={() => window.open('https://www.threads.net/@zeroonedevs?hl=en', '_blank')}/>
 
             </div>
           </div>
