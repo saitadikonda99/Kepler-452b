@@ -191,48 +191,72 @@ const page = () => {
             {/* Upcoming Events */}
             <div className="Club-four-two" id={option == 2 ? "" : "hide-club"}>
               <div className="Club-four-two-in">
-                <div className="Club-four-two-in-one">
-                  <div className="Club-four-two-in-one-box">
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img src="" alt="image" />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>HTML Bootcamp</h1>
-                      </div>
-                    </div>
+              <div className="Club-four-two-in-one">
+          <div className="Club-four-two-in-one-card">
+            <div className="Club-four-two-in-one-card-in">
+              <div className="Club-four-two-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-two-in-one-card-in-two">
+                <h2>Linux Bootcamp</h2>
+                <p>Date:</p>
+                <p>Venue:</p>
+              </div>
+            </div>
+          </div>
 
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img
-                          src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubs%2F2.png?alt=media&token=635f1a42-1242-41a2-8f9f-c708366a0872"
-                          alt="image"
-                        />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>Nextjs workshop</h1>
-                      </div>
-                    </div>
+          <div className="Club-four-two-in-one-card">
+            <div className="Club-four-two-in-one-card-in">
+              <div className="Club-four-two-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-two-in-one-card-in-two">
+                <h2>React Workshop</h2>
+                <p>Date:</p>
+                <p>Venue:</p>
+              </div>
+            </div>
+          </div>
 
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img src={HeroImg} alt="image" />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>Code for Cause</h1>
-                      </div>
-                    </div>
+          <div className="Club-four-two-in-one-card">
+            <div className="Club-four-two-in-one-card-in">
+              <div className="Club-four-two-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-two-in-one-card-in-two">
+                <h2>Code For Cause</h2>
+                <p>Date:</p>
+                <p>Venue:</p>
+              </div>
+            </div>
+          </div>
 
-                    <div className="club-event">
-                      <div className="club-event-img">
-                        <img src="" alt="image" />
-                      </div>
-                      <div className="club-event-text">
-                        <h1>Code Jam</h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div className="Club-four-two-in-one-card">
+            <div className="Club-four-two-in-one-card-in">
+              <div className="Club-four-two-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-two-in-one-card-in-two">
+                <h2>Code Jam</h2>
+                <p>Date:</p>
+                <p>Venue:</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
               </div>
             </div>
 
@@ -271,7 +295,8 @@ const page = () => {
               </div>
               <div className="Club-four-three-in-one-card-in-two">
                 <h2>React Workshop</h2>
-
+                <p>Date:</p>
+                <p>Venue:</p>
               </div>
             </div>
           </div>
@@ -286,7 +311,8 @@ const page = () => {
               </div>
               <div className="Club-four-three-in-one-card-in-two">
                 <h2>Code For Cause</h2>
-
+                <p>Date:</p>
+                <p>Venue:</p>
               </div>
             </div>
           </div>
@@ -301,7 +327,8 @@ const page = () => {
               </div>
               <div className="Club-four-three-in-one-card-in-two">
                 <h2>Code Jam</h2>
-
+                <p>Date:</p>
+                <p>Venue:</p>
               </div>
             </div>
           </div>
