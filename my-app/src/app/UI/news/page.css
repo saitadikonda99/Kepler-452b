@@ -53,6 +53,7 @@
   text-align: left;
 }
 
+
 .seven-in-one-one .seven-in-one-one-box:nth-child(2),
 .seven-in-one-one .seven-in-one-one-box:nth-child(3) {
   width: 24%;
@@ -93,6 +94,7 @@
   .seven-in-one-one-box-in-two
   h4 {
   color: rgb(151, 0, 3);
+  font-size: 1.6rem;
 }
 .seven-in-one-one
   .seven-in-one-one-box:nth-child(2)
@@ -138,6 +140,7 @@
   .seven-in-one-one-box-in-two
   h4 {
   color: rgb(151, 0, 3);
+  font-size: 1.6rem;
 }
 .seven-in-one-one
   .seven-in-one-one-box:nth-child(3)

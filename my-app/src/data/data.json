@@ -38,15 +38,15 @@
       {
         "id": 3,
         "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FZeroOne.png?alt=media&token=888a4e31-33c4-4fa2-9009-3d80ee4b87e6",
-        "clubName": "ZeroOne Club",
-        "newsContent": "ZeroOne Club News Content",
+        "clubName": "ZeroOne Code Club",
+        "newsContent": "An orientation session for 500 B.Tech students from the Y23 batch who have registered for the ZeroOne Code Club.",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 4,
         "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FYOGA.png?alt=media&token=e8d43678-8379-4fdf-9cb9-1684de9b1d04",
         "clubName": "Yoga Club",
-        "newsContent": "Yoga Club News Content",
+        "newsContent": "Students participating in a wellness session during International Yoga Day, focusing on mental and physical well-being.",
         "uploadAt": "2024-08-03 14:03:34"
       }
     ],
@@ -55,28 +55,28 @@
         "id": 1,
         "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FWebApps.png?alt=media&token=5b450b40-5947-4caf-82a2-e3a838ce112d",
         "clubName": "WebApps Club",
-        "newsContent": "WebApps News Content",
+        "newsContent": "A brief introductory session on Web Development, covering the concepts involved in building web applications..",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 2,
         "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FAero.png?alt=media&token=9c80f1ff-351f-4c33-bcbb-e10a6b1312e5",
         "clubName": "Aero Club",
-        "newsContent": "Aero Club News Content",
+        "newsContent": "Students of Aero Club have built a car from scratch and tested it on the roads of Vijayawada.",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 5,
         "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FSvr.png?alt=media&token=e28a632e-2b3e-490b-bcc6-6fa9195f217c",
-        "clubName": "General News",
-        "newsContent": "General News Content",
+        "clubName": "Smart Village Revolution",
+        "newsContent": "Glimpse of the Vriksharopam Mahotsav (Tree Plantation) Phase-4.",
         "uploadAt": "2024-08-03 14:03:34"
       },
       {
         "id": 6,
         "newsLink": "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/News%2FFilm.png?alt=media&token=018d17e1-7aef-43de-b4aa-c6d32d432c22",
         "clubName": "Film Technology Club",
-        "newsContent": "Film Technology Club News Content",
+        "newsContent": "Release of the poster for the upcoming short film.",
         "uploadAt": "2024-08-03 14:03:34"
       }
     ]
