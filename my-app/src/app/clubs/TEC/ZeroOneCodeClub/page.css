@@ -206,8 +206,51 @@
   width: 90%;
   margin: auto;
   padding: 2rem 0rem;
-  height: 50vh;
+  /* height: 50vh; */
 }
+
+.Club-four-one-in{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Club-four-one-in-one {
+  display: flex;        
+  width: 60%;             
+  align-items: center;           
+  background-color: #f9f9f9;    
+  border: 1px solid #ddd;            
+  border-radius: 8px;    
+  margin: 20px;                      
+  overflow: hidden;       
+}
+
+
+.Club-four-one-in-one-img {
+  width: 50%;                   
+}
+
+.Club-four-one-in-one-img img {
+  width: 100%; 
+  height: 19rem;                 
+}
+
+.Club-four-one-in-one-text {
+  width: 50%;   
+  padding: 15px;                
+  display: flex;                    
+  justify-content: center;        
+  align-items: center;          
+  text-align: center;
+}
+
+.Club-four-one-in-one-text p {                     
+  color: #333;                      
+  font-size: 16px;                  
+}
+
 
 .Club-five {
   width: 100%;
@@ -314,8 +357,12 @@
   flex-direction: column;
 }
 
+.Club-four-three-in-one-card-in-one{
+  height: 18rem;
+}
 .Club-four-three-in-one-card-in-one img {
   width: 100%;
+  height: 100%;
 }
 
 .Club-four-three-in-one-card-in-two h2 {

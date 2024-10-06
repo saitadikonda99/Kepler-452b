@@ -184,7 +184,37 @@ const page = () => {
             {/* glimpse */}
             <div className="Club-four-one" id={option == 1 ? "" : "hide-club"}>
               <div className="Club-four-one-in">
-                <img src="" alt="Sliding Image" />
+                <div className="Club-four-one-in-one">
+                  <div className="Club-four-one-in-one-img">
+                  <img
+              src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FIMG_6316.jpeg?alt=media&token=0d3a1156-f1e8-4c99-afa0-bdb723c41f20"
+              alt="image"
+            />
+                  </div>
+                  <div className="Club-four-one-in-one-text">
+                  <p>
+                  The session on interacting and teaching international students offered a unique opportunity to
+                  exchange knowledge and cultural insights with learners from around the globe. Participants gained 
+                  valuable skills in cross-cultural communication and collaborative learning, enriching the global educational experience.
+                  </p>
+                  </div>
+                </div>
+                
+                <div className="Club-four-one-in-one">
+                <div className="Club-four-one-in-one-text">
+                  <p>The walk-in interviews held at SAC for ZeroOne Code Club recruitment attracted a large number of enthusiastic 
+                    candidates eager to join the club. Applicants showcased their technical skills and passion for coding in direct
+                    interactions with club members. The event successfully identified talented individuals to contribute to the club's growth.
+                  </p>
+                  </div>
+                  <div className="Club-four-one-in-one-img">
+                  <img
+              src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2Fphoto_2024-04-15%2018.44.58.jpeg?alt=media&token=22e86fb7-cfe0-4e9d-af14-48629c6e31f7"
+              alt="image"
+            />
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -273,30 +303,14 @@ const page = () => {
             <div className="Club-four-three-in-one-card-in">
               <div className="Club-four-three-in-one-card-in-one">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
-                  alt="img"
-                />
-              </div>
-              <div className="Club-four-three-in-one-card-in-two">
-                <h2>Linux Bootcamp</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="Club-four-three-in-one-card">
-            <div className="Club-four-three-in-one-card-in">
-              <div className="Club-four-three-in-one-card-in-one">
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2Fphoto_2024-04-15%2018.44.51.jpeg?alt=media&token=297356aa-4b62-42e8-b517-8ba08da25550"
                   alt="img"
                 />
               </div>
               <div className="Club-four-three-in-one-card-in-two">
                 <h2>React Workshop</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
+                <p>Date: 12-10-2023</p>
+                <p>Venue: R101A</p>
               </div>
             </div>
           </div>
@@ -305,14 +319,30 @@ const page = () => {
             <div className="Club-four-three-in-one-card-in">
               <div className="Club-four-three-in-one-card-in-one">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2Fphoto_2024-04-15%2018.40.17.jpeg?alt=media&token=9fcd238c-d0fc-4027-9ada-aff8f193c840"
+                  alt="img"
+                />
+              </div>
+              <div className="Club-four-three-in-one-card-in-two">
+                <h2>Linux Bootcamp</h2>
+                <p>Date: 25-03-2024</p>
+                <p>Venue: R&D Theatre</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="Club-four-three-in-one-card">
+            <div className="Club-four-three-in-one-card-in">
+              <div className="Club-four-three-in-one-card-in-one">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2Fcfc2023.png?alt=media&token=43de02df-9781-49a6-b631-8eb095802699"
                   alt="img"
                 />
               </div>
               <div className="Club-four-three-in-one-card-in-two">
                 <h2>Code For Cause</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
+                <p>Date: 18-10-2023</p>
+                <p>Venue: SAC Hall</p>
               </div>
             </div>
           </div>
@@ -321,14 +351,14 @@ const page = () => {
             <div className="Club-four-three-in-one-card-in">
               <div className="Club-four-three-in-one-card-in-one">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FDSC_0385.JPG?alt=media&token=0b5db07d-e087-4807-8fa8-814d63c5dc32"
                   alt="img"
                 />
               </div>
               <div className="Club-four-three-in-one-card-in-two">
                 <h2>Code Jam</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
+                <p>Date: 16-02-2024</p>
+                <p>Venue: R005A</p>
               </div>
             </div>
           </div>
