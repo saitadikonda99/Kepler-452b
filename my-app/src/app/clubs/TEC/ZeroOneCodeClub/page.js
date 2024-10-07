@@ -63,33 +63,6 @@ const page = () => {
 
   const [option, setOption] = useState(1);
 
-  const [currentImageIndex1, setCurrentImageIndex1] = useState(0);
-  const [currentImageIndex4, setCurrentImageIndex4] = useState(0);
-
-  const images = [HeroImg, HeroImg, HeroImg, HeroImg];
-
-  useEffect(() => {
-    if (option === 1) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex1((prevIndex) => (prevIndex + 1) % images.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [option]);
-
-  useEffect(() => {
-    if (option === 4) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex4((prevIndex) => (prevIndex + 1) % images.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [option]);
-
-  const handleQue = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
-
   const handleClick = (num) => {
     setOption(num);
   };
@@ -98,7 +71,7 @@ const page = () => {
     <div className="ClubPageComponent">
       <div className="ClubPageComponent-in">
         <div className="ClubPageNavbar">
-          <ClubNavbar ClubName={ClubsArray[0].clubName} />
+          <ClubNavbar setOption={setOption} />
         </div>
 
         <div className="club-hero">
@@ -143,6 +116,7 @@ const page = () => {
                 <div
                   className="C-option-one-in c-op-cm-in"
                   onClick={() => handleClick(1)}
+                  id={option == 1 ? "color-option" : ""}
                 >
                   <MdLocalActivity className="icon-op" />
                   <p>Glimpse</p>
@@ -152,6 +126,7 @@ const page = () => {
                 <div
                   className="C-option-two-in c-op-cm-in"
                   onClick={() => handleClick(2)}
+                  id={option == 2 ? "color-option" : ""}
                 >
                   <MdLocalActivity className="icon-op" />
                   <p>Upcoming Events</p>
@@ -161,6 +136,7 @@ const page = () => {
                 <div
                   className="C-option-three-in c-op-cm-in"
                   onClick={() => handleClick(3)}
+                  id={option == 3 ? "color-option" : ""}
                 >
                   <MdLocalActivity className="icon-op" />
                   <p>Activities</p>
@@ -170,6 +146,7 @@ const page = () => {
                 <div
                   className="C-option-four-in c-op-cm-in"
                   onClick={() => handleClick(4)}
+                  id={option == 4 ? "color-option" : ""}
                 >
                   <MdLocalActivity className="icon-op" />
                   <p>Team</p>

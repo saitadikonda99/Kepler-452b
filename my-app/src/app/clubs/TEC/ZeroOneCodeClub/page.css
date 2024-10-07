@@ -651,3 +651,8 @@
 .icon-active {
   transform: rotate(45deg);
 }
+
+#color-option {
+  background-image: linear-gradient(to right, black, rgb(151, 0, 3));
+  color: white;
+}

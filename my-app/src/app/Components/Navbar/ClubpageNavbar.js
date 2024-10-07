@@ -6,16 +6,13 @@ import Link from "next/link";
 
 import "./Navbar.css";
 
-const ClubNavbar = () => {
+const ClubNavbar = ({ setOption }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleHover = () => {
     setShowDropdown(true);
   };
 
-  const handleLeave = () => {
-    setShowDropdown(false);
-  };
 
   const [showDiv, setShowDiv] = useState(false);
 
@@ -44,6 +41,10 @@ const ClubNavbar = () => {
     });
   };
 
+  const handleIndex = (index) => {
+    setOption(index)
+  }
+
   return (
     <div className="NavbarComponent">
       <div
@@ -66,13 +67,14 @@ const ClubNavbar = () => {
               <Scroll
                 className="nav-scroll-links"
                 activeClass="active"
-                to="about"
+                to="Club-three"
                 spy={true}
                 smooth={true}
                 offset={-10}
                 duration={400}
+                onClick={() => handleIndex(1)}
               >
-                About
+                Glimpse
               </Scroll>
             </li>
     
@@ -80,24 +82,26 @@ const ClubNavbar = () => {
               <Scroll
                 className="nav-scroll-links"
                 activeClass="active"
-                to="team"
+                to="Club-three"
                 spy={true}
                 smooth={true}
                 offset={-10}
                 duration={400}
+                onClick={() => handleIndex(2)}
               >
-                Team
+                Upcoming Events
               </Scroll>
             </li>
             <li>
               <Scroll
                 className="nav-scroll-links"
                 activeClass="active"
-                to="activities"
+                to="Club-three"
                 spy={true}
                 smooth={true}
                 offset={-10}
                 duration={400}
+                onClick={() => handleIndex(3)}
               >
                 Activities
               </Scroll>
@@ -106,13 +110,14 @@ const ClubNavbar = () => {
               <Scroll
                 className="nav-scroll-links"
                 activeClass="active"
-                to="upcoming"
+                to="Club-three"
                 spy={true}
                 smooth={true}
                 offset={-10}
                 duration={400}
+                onClick={() => handleIndex(4)}
               >
-                Upcoming Events
+                Team
               </Scroll>
             </li>
             <li>
