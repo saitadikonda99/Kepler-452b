@@ -25,6 +25,12 @@ const page = () => {
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
                   <Link
+                    href="/clubs/TEC/ZeroOneCodeClub"
+                    className="HomeClubs-box-in-one-in-link"
+                  >
+                    Zero One Code Club
+                  </Link>
+                  <Link
                     href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
@@ -59,12 +65,6 @@ const page = () => {
                     className="HomeClubs-box-in-one-in-link"
                   >
                     WebApps Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Zero One Code Club
                   </Link>
                 </div>
               </div>
