@@ -414,6 +414,27 @@
   padding-left: 0.6rem;
 }
 
+/* Club-four-four */
+
+.Club-four-four {
+  width: 100%;
+}
+
+.Club-four-four-in {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Club-four-four-in img {
+  width: 60%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 
 /* ClubPage-six */
 
