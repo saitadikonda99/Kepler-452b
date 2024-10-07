@@ -226,14 +226,14 @@ const page = () => {
             <div className="Club-four-two-in-one-card-in">
               <div className="Club-four-two-in-one-card-in-one">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FLadder0.2.png?alt=media&token=6ccca9e2-638a-450b-bbb9-ba74e269cf62"
                   alt="img"
                 />
               </div>
               <div className="Club-four-two-in-one-card-in-two">
-                <h2>Linux Bootcamp</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
+                <h2>Coding Ladder0.2</h2>
+                <p>Date: 08-10-2024</p>
+                <p>Venue: R301A</p>
               </div>
             </div>
           </div>
@@ -242,14 +242,14 @@ const page = () => {
             <div className="Club-four-two-in-one-card-in">
               <div className="Club-four-two-in-one-card-in-one">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FWebDev%20%20Day3.png?alt=media&token=6b54cf11-53e9-485d-afcb-4def2f89c478"
                   alt="img"
                 />
               </div>
               <div className="Club-four-two-in-one-card-in-two">
-                <h2>React Workshop</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
+                <h2>C-Lang Workshop</h2>
+                <p>Date: 23-10-2024</p>
+                <p>Venue: R301B</p>
               </div>
             </div>
           </div>
@@ -258,14 +258,14 @@ const page = () => {
             <div className="Club-four-two-in-one-card-in">
               <div className="Club-four-two-in-one-card-in-one">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FCodeforCauseV3.0Poster%20.png?alt=media&token=bae294cd-9fe4-4891-9714-a57188c6d1a4"
                   alt="img"
                 />
               </div>
               <div className="Club-four-two-in-one-card-in-two">
-                <h2>Code For Cause</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
+                <h2>Code For Cause V2.O</h2>
+                <p>Date: 28-12-2004</p>
+                <p>Venue: R&D</p>
               </div>
             </div>
           </div>
@@ -274,14 +274,14 @@ const page = () => {
             <div className="Club-four-two-in-one-card-in">
               <div className="Club-four-two-in-one-card-in-one">
                 <img
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Posters%2F1%20(1).png?alt=media&token=3b7b4789-8acd-4619-98cc-bce685377499"
+                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FWebDev%20%20Day3%20(1).png?alt=media&token=dc10daf3-e997-4ddd-9056-9b00cb3d3043"
                   alt="img"
                 />
               </div>
               <div className="Club-four-two-in-one-card-in-two">
-                <h2>Code Jam</h2>
-                <p>Date:</p>
-                <p>Venue:</p>
+                <h2>Web Dev Workshop</h2>
+                <p>Date: 08-11-2024</p>
+                <p>Venue: R301A</p>
               </div>
             </div>
           </div>
