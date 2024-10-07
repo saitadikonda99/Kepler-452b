@@ -25,43 +25,43 @@ const page = () => {
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
                   <Link
-                    href="/Clubpage/0"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Aero Electric Club
                   </Link>
                   <Link
-                    href="/Clubpage/1"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Agriculture Club
                   </Link>
                   <Link
-                    href="/Clubpage/2"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Cryptography Club
                   </Link>
                   <Link
-                    href="/Clubpage/3"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Cyber Security Club
                   </Link>
                   <Link
-                    href="/Clubpage/4"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Design Sphere Club
                   </Link>
                   <Link
-                    href="/Clubpage/9"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     WebApps Club
                   </Link>
                   <Link
-                    href="/Clubpage/10"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Zero One Code Club
@@ -81,67 +81,67 @@ const page = () => {
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
                   <Link
-                    href="/Clubpage/11"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Adventure Club
                   </Link>
                   <Link
-                    href="/Clubpage/12"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Arts Club
                   </Link>
                   <Link
-                    href="/Clubpage/13"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Dance Club (Fusion)
                   </Link>
                   <Link
-                    href="/Clubpage/15"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Dramatics Club
                   </Link>
                   <Link
-                    href="/Clubpage/17"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Film Technology Club
                   </Link>
                   <Link
-                    href="/Clubpage/18"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Handicrafts Club
                   </Link>
                   <Link
-                    href="/Clubpage/19"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     KL Talks Club
                   </Link>
                   <Link
-                    href="/Clubpage/20"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Literature Club (VACHAS)
                   </Link>
                   <Link
-                    href="/Clubpage/21"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Music Club (Swara)
                   </Link>
                   <Link
-                    href="/Clubpage/22"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Script Writing Club (Versatales)
                   </Link>
                   <Link
-                    href="/Clubpage/24"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Standup Comedy
@@ -161,43 +161,43 @@ const page = () => {
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
                   <Link
-                    href="/Clubpage/31"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Smart Village Revolution
                   </Link>
                   <Link
-                    href="/Clubpage/26"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Electoral Literacy Club
                   </Link>
                   <Link
-                    href="/Clubpage/27"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     KL SAC - Empower
                   </Link>
                   <Link
-                    href="/Clubpage/28"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     KL-Radio Club
                   </Link>
                   <Link
-                    href="/Clubpage/29"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Kutumb Society
                   </Link>
                   <Link
-                    href="/Clubpage/30"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Ohana
                   </Link>
                   <Link
-                    href="/Clubpage/32"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Yuva Tourism Club
@@ -217,7 +217,7 @@ const page = () => {
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
                   <Link legacyBehavior
-                    href="https://www.acickl.in/"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     <a target="_blank">
@@ -225,7 +225,7 @@ const page = () => {
                     </a>
                   </Link>
                   <Link
-                    href="/Clubpage/34"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     KL TBI
@@ -245,13 +245,13 @@ const page = () => {
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
                   <Link
-                    href="/Clubpage/35"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Safe Life Club
                   </Link>
                   <Link
-                    href="/Clubpage/37"
+                    href="#"
                     className="HomeClubs-box-in-one-in-link"
                   >
                     Yoga Club
