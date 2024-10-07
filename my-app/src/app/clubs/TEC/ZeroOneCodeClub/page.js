@@ -372,7 +372,7 @@ const page = () => {
             {/* Team */}
             <div className="Club-four-four" id={option == 4 ? "" : "hide-club"}>
               <div className="Club-four-four-in">
-                <img className="club-slider-image" src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubs%2Fteam.png?alt=media&token=572b5139-b2fd-48fb-be72-5e9eb3d30529" alt="Sliding Image" />
+                <img className="club-slider-image" src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2Fteam.png?alt=media&token=35deb554-4ed4-4d48-be40-841fce11eb65" alt="Sliding Image" />
               </div>
             </div>
           </div>

@@ -229,12 +229,13 @@
 
 
 .Club-four-one-in-one-img {
-  width: 50%;                   
+  width: 50%;  
+  height: 20rem;
 }
 
 .Club-four-one-in-one-img img {
   width: 100%; 
-  height: 19rem;                 
+  height: 100%;                 
 }
 
 .Club-four-one-in-one-text {
