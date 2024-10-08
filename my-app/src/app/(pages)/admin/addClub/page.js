@@ -17,11 +17,8 @@ const Page = () => {
     leadConfirmPassword: "",
     leadName: "",
     leadEmail: "",
-    clubId: "",
     clubDomain: "",
     clubName: "",
-    clubLogo: "",
-    clubDes: "",
   });
 
   const handleSubmit = async () => {
@@ -47,11 +44,8 @@ const Page = () => {
         leadConfirmPassword: "",
         leadName: "",
         leadEmail: "",
-        clubId: "",
         clubDomain: "",
         clubName: "",
-        clubLogo: "",
-        clubDes: "",
       });
 
     } catch (error) {
@@ -162,16 +156,6 @@ const Page = () => {
                     <p>Enter the club details</p>
                   </div>
 
-                  <div className="AddClub-in-one-one">
-                    <input
-                      type="text"
-                      value={clubData.clubId}
-                      placeholder="Name of the club Code"
-                      name="clubId"
-                      onChange={handleChange}
-                    />
-                  </div>
-
                   <div className="AddClub-in-one">
                     <input
                       type="text"
@@ -195,25 +179,6 @@ const Page = () => {
                       <option value="IIE">IIE</option>
                       <option value="HWB">HWB</option>
                     </select>
-                  </div>
-
-                  <div className="AddClub-in-two">
-                    <input
-                      type="text"
-                      placeholder="Club logo link"
-                      value={clubData.clubLogo}
-                      name="clubLogo"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="AddClub-in-three">
-                    <input
-                      type="text"
-                      placeholder="Club description"
-                      name="clubDes"
-                      value={clubData.clubDes}
-                      onChange={handleChange}
-                    />
                   </div>
                   <div className="AddClub-in-seven">
                     <button onClick={handleSubmit}>Submit</button>

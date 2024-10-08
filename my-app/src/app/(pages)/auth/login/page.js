@@ -60,7 +60,7 @@ const Login = () => {
           router.push("/admin/dashboard");
           break;
         case "club_lead":
-          router.push("/president/dashboard");
+          router.push("/lead/dashboard");
           break;
         default:
           router.push("/");

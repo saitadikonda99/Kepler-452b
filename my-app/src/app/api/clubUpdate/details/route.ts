@@ -1,10 +1,11 @@
-import { pool } from "../../../../../config/db";
+import { pool } from "../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
-import { verifyJWT } from "../../../../../lib/verifyJWT";
-import { verifyRoles } from "../../../../../lib/verifyRoles";
+import { verifyJWT } from "../../../../lib/verifyJWT";
+import { verifyRoles } from "../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
 
+  const connection = await pool.getConnection();
 
   const { valid, payload } = await verifyJWT();
 
@@ -39,7 +40,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     // Start a transaction
-    pool.beginTransaction;
+    connection.beginTransaction();
 
     // first update the club_id and club_name
     const clubUpdate: any = await pool.query(
@@ -53,11 +54,11 @@ export const POST = async (req: NextRequest) => {
       [clubDomain, clubLogo, clubDes, id]
     );
   
-    pool.commit;
+   connection.commit()
 
     return NextResponse.json({ status: 200, message: "Lead, club, and club data updated successfully" });
   } catch (error) {
-    pool.rollback;
+    connection.rollback();
     console.log(error);
     return NextResponse.json({ message: error.message, status: 500 });
   }
