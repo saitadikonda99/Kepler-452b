@@ -6,9 +6,7 @@ import { toast } from "react-hot-toast";
 import "./page.css";
 
 // import components here
-import Sidebar from "../../components/sidebar/sidebar";
-import Navbar from "../../components/navbar/navbar";
-import Footer from "../../components/footer/page";
+import Dashboard from "../dashboard/page";
 
 const Page = () => {
   const [eventData, setEventData] = useState([]);
@@ -98,17 +96,8 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="EventComponent">
-      <div className="EventComponent-in">
-        <div className="EventComponent-Nav">
-          <Navbar />
-        </div>
-        <div className="EventComponent-one">
-          <div className="EventComponent-one-in">
-            <div className="EC-sideBar">
-              <Sidebar />
-            </div>
-            <div className="EC-one">
+      <Dashboard>
+        <div className="EC-one">
               {show ? (
                 <div className="updateForm">
                   <h1>Update Event</h1>
@@ -160,15 +149,7 @@ const Page = () => {
                 <p>No events available.</p>
               )}
             </div>
-          </div>
-        </div>
-        <div className="EventComponent-Footer">
-          <div className="EventComponent-Footer-in">
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </div>
+      </Dashboard>
   );
 };
 

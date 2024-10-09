@@ -1,9 +1,11 @@
 import React from "react";
-import Link from "next/link";
-
+import Link from 'next/link'
 import "./page.css";
 
 const page = () => {
+
+
+
   return (
     <div className="HomeClubs clubs-list">
       <div className="HomeClubs-in">

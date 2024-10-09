@@ -7,9 +7,7 @@ import Link from "next/link";
 import "./page.css";
 
 // Import components
-import Sidebar from "../../../components/sidebar/sidebar";
-import Navbar from "../../../components/navbar/navbar";
-import Footer from "../../../components/footer/page";
+import Dashboard from "../../dashboard/page"
 
 const Page = () => {
   const [newsData, setNewsData] = useState([]);
@@ -83,17 +81,8 @@ const Page = () => {
   };
 
   return (
-    <div className="NewsLandScape">
-      <div className="NewsLandScape-in">
-        <div className="NewsLandScape-Nav">
-          <Navbar />
-        </div>
-        <div className="NewsLandScape-one">
-          <div className="NewsLandScape-one-in">
-            <div className="LC-sideBar">
-              <Sidebar />
-            </div>
-            <div className="LC-one">
+      <Dashboard>
+        <div className="LC-one">
               {showUpdateForm ? (
                 <div className="updateForm">
                   <h1>Update News</h1>
@@ -143,15 +132,7 @@ const Page = () => {
                 </div>
               )}
             </div>
-          </div>
-        </div>
-        <div className="NewsLandScape-Footer">
-          <div className="NewsLandScape-Footer-in">
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </div>
+      </Dashboard>
   );
 };
 

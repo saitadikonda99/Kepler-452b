@@ -21,6 +21,7 @@ export async function middleware(req: NextRequest) {
   const userData: any = decodedToken?.payload;
 
   const { valid, payload } = await verifyJWT();
+
   
   const role = userData?.role[0];
 

@@ -23,6 +23,7 @@ CREATE TABLE clubs (
     club_description TEXT DEFAULT NULL,  -- Changed to TEXT
     club_about TEXT DEFAULT NULL,         -- Changed to TEXT
     club_logo VARCHAR(255) DEFAULT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (lead_id) REFERENCES users(id) ON DELETE SET NULL, 
     PRIMARY KEY (id)
 );
@@ -32,6 +33,7 @@ CREATE TABLE glimpse (
     club_id INT,
     glimpse_image VARCHAR(255),
     glimpse_desc TEXT,                    -- Corrected the field name to 'glimpse_desc'
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -43,6 +45,7 @@ CREATE TABLE upcoming_events (
     event_image VARCHAR(255),
     event_date DATE NOT NULL,
     event_venue VARCHAR(255) NOT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -54,6 +57,7 @@ CREATE TABLE activities (
     activity_image VARCHAR(255),
     activity_date DATE NOT NULL,
     activity_venue VARCHAR(255) NOT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -63,6 +67,7 @@ CREATE TABLE club_images (
     club_id INT,
     hero_img VARCHAR(255),
     team_img VARCHAR(255),
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -72,9 +77,31 @@ CREATE TABLE faq (
     club_id INT,
     question TEXT NOT NULL,
     answer TEXT NOT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE stats (
+    id INT NOT NULL AUTO_INCREMENT,
+    club_id INT,
+    total_members INT DEFAULT 0,
+    total_activities INT DEFAULT 0,
+    total_projects INT DEFAULT 0,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+)
+
+CREATE TABLE socials (
+    id INT NOT NULL AUTO_INCREMENT,
+    club_id INT,
+    social_name VARCHAR(255) NOT NULL,
+    social_link VARCHAR(255) NOT NULL,
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+)
 
 DELIMITER //
 
@@ -102,6 +129,18 @@ BEGIN
     -- Insert into club_images table
     INSERT INTO club_images (club_id, hero_img, team_img)
     VALUES (clubId, 'https://example.com/hero_image.jpg', 'https://example.com/team_image.jpg');
+
+    -- Insert into stats table
+    INSERT INTO stats (club_id, total_members, total_activities, total_projects)
+    VALUES (clubId, 100, 20, 5);
+
+    -- Insert into socials table
+    INSERT INTO socials (club_id, social_name, social_link)
+    VALUES (clubId, 'Facebook', 'https://facebook.com/club'),
+           (clubId, 'Instagram', 'https://instagram.com/club'),
+           (clubId, 'Twitter', 'https://twitter.com/club'),
+           (clubId, 'LinkedIn', 'https://linkedin.com/club');
+    
     
     -- Insert into faq table
     INSERT INTO faq (club_id, question, answer)
@@ -113,8 +152,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
-
 
 
 -- Events table

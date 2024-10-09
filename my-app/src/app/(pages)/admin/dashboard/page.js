@@ -9,7 +9,7 @@ import Footer from '../../components/footer/page'
 
 import './page.css'
 
-const page = () => {
+const page = ({ children }) => {
   return (
     <div className="DashboardComponent">
       <div className="DashboardComponent-in">
@@ -22,7 +22,7 @@ const page = () => {
                 <Sidebar />
             </div>
             <div className="DC-one">
-
+              {children}
             </div>
           </div>
         </div>

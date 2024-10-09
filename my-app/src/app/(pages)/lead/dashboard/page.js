@@ -1,135 +1,35 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import axios from "axios";
-import { toast } from "react-hot-toast";
+import React from "react";
 
-const page = () => {
-  const [clubData, setClubData] = useState([]);
-  const [show, setShow] = useState(false);
-  const [updateData, setUpdateData] = useState({
-    clubId: null,
-    clubName: "",
-    clubLogo: "",
-    clubDes: "",
-  });
+// imports start here
+import Sidebar from '../components/sidebar/sidebar'
+import Navbar from '../../components/navbar/navbar'
+import Footer from '../../components/footer/page'
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUpdateData({
-      ...updateData,
-      [name]: value,
-    });
-  };
+import './page.css'
 
-  const handleClick = (clubId) => {
-    setShow(!show);
-    setUpdateData((prevData) => ({
-      ...prevData,
-      clubId: clubId,
-    }));
-  };
-
-  const handleSubmit = async () => {
-    try {
-      const response = await axios.post("/api/clubUpdate", updateData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
-
-      if (response.status === 200) {
-        toast.success("Update successful");
-      } else {
-        toast.success("Internal server error");
-      }
-    } catch (error) {
-      toast.error("Internal server error");
-    }
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/clubs", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
-        setClubData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const page = ({ children }) => {
   return (
-    <div className="LeadComponent">
-      <div className="LeadComponent-in">
-        {Array.isArray(clubData) && clubData.length > 0 ? (
-          clubData.map((club) => (
-            <div key={club.id}>
-              <h2>{club.club_name}</h2>
-              <img src={club.club_logo} alt={club.club_name} />
-              <p>{club.club_description}</p>
-              <p>Uploaded at: {new Date(club.uploadAt).toLocaleString()}</p>
-              <button onClick={() => handleClick(club?.club_id)}>Update</button>
+    <div className="DashboardComponent">
+      <div className="DashboardComponent-in">
+        <div className="DashboardComponent-Nav">
+          <Navbar />
+        </div>
+        <div className="DashboardComponent-one">
+          <div className="DashboardComponent-one-in">
+            <div className="DC-sideBar">
+                <Sidebar />
             </div>
-          ))
-        ) : (
-          <p>No clubs available.</p>
-        )}
-
-        {show ? (
-          <div className="UpdateComponent">
-            <div className="UpdateComponent-in">
-              <div className="update-one">
-                <h1>Update</h1>
-                <p>Please carefully enter the details</p>
-              </div>
-
-              <div className="AddClub-two">
-                <div className="AddClub-two-in">
-                  <div className="AddClub-in-one">
-                    <input
-                      type="text"
-                      value={updateData.clubName}
-                      placeholder="name of the club"
-                      name="clubName"
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="AddClub-in-two">
-                    <input
-                      type="text"
-                      placeholder="club logo link"
-                      value={updateData.clubLogo}
-                      name="clubLogo"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="AddClub-in-three">
-                    <input
-                      type="text"
-                      placeholder="club des"
-                      name="clubDes"
-                      value={updateData.clubDes}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="AddClub-in-four">
-                    <button onClick={handleSubmit}>Submit</button>
-                  </div>
-                </div>
-              </div>
+            <div className="DC-one">
+                {children}
             </div>
           </div>
-        ) : null}
+        </div>
+
+        <div className="DashboardComponent-Footer">
+          <div className="DashboardComponent-Footer-in">
+            <Footer />
+          </div>
+        </div>
       </div>
     </div>
   );

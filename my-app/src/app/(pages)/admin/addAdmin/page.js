@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast";
 import Sidebar from "../../components/sidebar/sidebar";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/page";
+import Dashboard from '../dashboard/page'
 
 import "./page.css";
 
@@ -66,17 +67,8 @@ const page = () => {
     }
 
   return (
-    <div className="AddAdminComponent">
-      <div className="AddAdminComponent-in">
-        <div className="AddAdminComponent-Nav">
-          <Navbar />
-        </div>
-        <div className="AddAdminComponent-one">
-          <div className="AddAdminComponent-one-in">
-            <div className="AC-sideBar">
-              <Sidebar />
-            </div>
-            <div className="AC-one">
+      <Dashboard>
+          <div className="AC-one">
               <input
                 type="text"
                 placeholder="Admin username"
@@ -122,16 +114,7 @@ const page = () => {
 
 
             </div>
-          </div>
-        </div>
-
-        <div className="AddAdminComponent-Footer">
-          <div className="AddAdminComponent-Footer-in">
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </div>
+      </Dashboard>
   );
 };
 

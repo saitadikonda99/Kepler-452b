@@ -1,6 +1,7 @@
 import { pool } from "../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../lib/verifyJWT";
+import { verifyRoles } from "../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -8,14 +9,19 @@ export const POST = async (req: NextRequest) => {
     const { password, confirmPassword } = await req.json();
 
 
-    console.log(password + " " + confirmPassword);
+    const { valid, payload } = await verifyJWT();
 
-    const {valid, payload} = await verifyJWT();
+  if (!valid) {
+    return NextResponse.json({ message: "Unauthorized", status: 401 });
+  }
 
+  const userData: any = payload;
 
-    if (!valid) {
-      return NextResponse.json({ message: "Invalid token", status: 401 });
-    }
+  const { authorized, reason: roleReason } = verifyRoles({ ...userData, role: userData.role || 'User' }, 'Admin', 'club_lead');
+
+  if (!authorized) {
+    return NextResponse.json({ message: roleReason, status: 403 });
+  }
 
     if (!password || !confirmPassword) {
       return NextResponse.json({
@@ -24,23 +30,18 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    pool.beginTransaction;
 
     const [userResult] = await pool.query(
       `
         UPDATE users
         SET password = ?
-        WHERE username = ?
+        WHERE id = ?
       `,
-      [password, payload.username]  
+      [password, userData.id]  
     );
     
-    pool.commit;
-
     return NextResponse.json({ status: 200, message: "Lead, club, and club data updated successfully" });
   } catch (error) {
-    await pool.rollback;
-    console.log(error);
     return NextResponse.json({ message: error.message, status: 500 });
   }
 };

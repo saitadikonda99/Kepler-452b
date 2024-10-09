@@ -6,9 +6,7 @@ import axios from "axios";
 import "./page.css";
 
 // import components here
-import Sidebar from "../../components/sidebar/sidebar";
-import Navbar from "../../components/navbar/navbar";
-import Footer from "../../components/footer/page";
+import Dashboard from '../dashboard/page'
 
 const Page = () => {
   const [clubData, setClubData] = useState({
@@ -82,17 +80,8 @@ const Page = () => {
   };
 
   return (
-    <div className="AddClub">
-      <div className="AddClub-in">
-        <div className="AddClub-Nav">
-          <Navbar />
-        </div>
-        <div className="AddClub-one">
-          <div className="AddClub-one-in">
-            <div className="DC-sideBar">
-              <Sidebar />
-            </div>
-            <div className="DC-one">
+      <Dashboard>
+          <div className="AddClubComponent">
               <div className="AddClub-one">
                 <h1>AddClub</h1>
                 <p>Please carefully enter the details</p>
@@ -186,16 +175,7 @@ const Page = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="AddClub-Footer">
-          <div className="AddClub-Footer-in">
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </div>
+      </Dashboard>
   );
 };
 

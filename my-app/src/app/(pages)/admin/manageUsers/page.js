@@ -5,9 +5,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 // imports start here
-import Sidebar from '../../components/sidebar/sidebar'
-import Navbar from '../../components/navbar/navbar'
-import Footer from '../../components/footer/page'
+import Dashboard from "../dashboard/page"
 
 import './page.css'
 
@@ -67,17 +65,8 @@ const page = () => {
       }, []);
 
   return (
-    <div className="ManageUsersComponent">
-      <div className="ManageUsersComponent-in">
-        <div className="ManageUsersComponent-Nav">
-          <Navbar />
-        </div>
-        <div className="ManageUsersComponent-one">
-          <div className="ManageUsersComponent-one-in">
-            <div className="DC-sideBar">
-                <Sidebar />
-            </div>
-            <div className="DC-one">
+      <Dashboard>
+        <div className="DC-one">
                 {
                     Array.isArray(usersData) && usersData.map((user) => (
                         
@@ -105,16 +94,7 @@ const page = () => {
                     ))
                 }
             </div>
-          </div>
-        </div>
-
-        <div className="ManageUsersComponent-Footer">
-          <div className="ManageUsersComponent-Footer-in">
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </div>
+      </Dashboard>
   );
 };
 
