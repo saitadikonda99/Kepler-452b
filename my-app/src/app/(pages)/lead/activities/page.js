@@ -57,8 +57,8 @@ const page = () => {
 
             console.log(response)
 
-            if (response.data.status === 200) {
-                toast.success("Upcoming Events updated successfully!");
+            if (response.status === 200) {
+                toast.success("Upcoming Events activities successfully!");
                 setShow(false);
             } else {
                 toast.error("Failed to update Activities");

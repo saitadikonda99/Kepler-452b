@@ -31,9 +31,12 @@ const page = () => {
 
             if (response.status === 200) {
                 toast.success("User deleted successfully");
-                window.location.reload();
+
+                const updatedUsersData = usersData.filter((user) => user.id !== userId);
+
+                setUsersData(updatedUsersData);
+
             }
-            
         } catch (error) {
             toast.error("Internal server error");
         }
@@ -64,6 +67,39 @@ const page = () => {
         fetchData();
       }, []);
 
+      const handleActive = async (userId, active) => {
+
+        try {
+          const response = await axios.post(`/api/admin/manageUsers/active`, {userId, active}, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          });
+
+          console.log(response)
+  
+          if (response.data.status === 200) {
+            toast.success(response.data.message);
+            const updatedUsersData = usersData.map((user) => {
+              if (user.id === userId) {
+                return {
+                  ...user,
+                  active: active,
+                };
+              }
+              return user;
+            });
+            setUsersData(updatedUsersData);
+          }
+          else {
+            toast.error("Failed to hold the user")
+          }
+        } catch (error) {
+          toast.error(error.message)
+        }
+      };
+
   return (
       <Dashboard>
         <div className="DC-one">
@@ -84,7 +120,18 @@ const page = () => {
                                             <p>{user.email}</p>
                                         </div>
                                         <div className="DC-one-card-details-lead">
-                                            <p>{user.role}</p>
+                                            <p>{user.role} : </p>
+                                            {user.role === 'club_lead' ? <p>{user.club_name}</p> : null}
+                                        </div>
+                                        <div className="Active">
+                                        {user.active === 1 ?
+                                            <button onClick={() => handleActive(user.id, 0)}>
+                                                Hold
+                                            </button> :
+                                            <button onClick={() => handleActive(user.id, 1)}>
+                                                Activate
+                                            </button>   
+                                        }
                                         </div>
                                     </div>
                                 </div>

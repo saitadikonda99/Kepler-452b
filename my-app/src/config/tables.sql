@@ -10,6 +10,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     role ENUM('Admin', 'club_lead') NOT NULL, 
+    active BOOLEAN DEFAULT 1,  -- Added active status
     RefreshToken VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (id)
 );
@@ -23,6 +24,7 @@ CREATE TABLE clubs (
     club_description TEXT DEFAULT NULL,  -- Changed to TEXT
     club_about TEXT DEFAULT NULL,         -- Changed to TEXT
     club_logo VARCHAR(255) DEFAULT NULL,
+    active BOOLEAN DEFAULT 1,  -- Added active status
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (lead_id) REFERENCES users(id) ON DELETE SET NULL, 
     PRIMARY KEY (id)

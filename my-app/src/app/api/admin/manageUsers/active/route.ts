@@ -4,7 +4,7 @@ import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../../middleware/middleware"
 
-const handleDelete = async (req: NextRequest) => {
+const handlePost = async (req: NextRequest) => {
 
     const { valid, payload } = await verifyJWT();
     
@@ -24,18 +24,24 @@ const handleDelete = async (req: NextRequest) => {
     
     try {
 
-      const userId = req.nextUrl.pathname.split('/').pop();
+        const { userId, active } = await req.json();
+        console.log(userId, active);
 
-      console.log(userId);
+        if (userId == null || active == null) {
+            return NextResponse.json({ status: 401 });
+        }
+          
+        await pool.query(
+            `UPDATE clubs SET lead_id = NULL WHERE lead_id = ?`
+            ,[userId]   
+        );
 
         const [result]: any = await pool.query(
-            `DELETE FROM users WHERE id = ?`,
-            [userId]
-        )
-
-        console.log(result);
-
-        return NextResponse.json({ message: "User deleted", status: 200 });
+            `UPDATE users SET active = ? WHERE id = ?`
+            ,[active, userId]   
+        );
+     
+        return NextResponse.json({ message: "User on hold", status: 200 });
 
     } catch (error) {
         console.log(error);
@@ -44,4 +50,4 @@ const handleDelete = async (req: NextRequest) => {
 };
 
 
-export const DELETE = withMiddleware(handleDelete);
+export const POST = withMiddleware(handlePost);

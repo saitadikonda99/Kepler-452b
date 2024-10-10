@@ -31,8 +31,6 @@ const Login = () => {
         withCredentials: true,
       });
 
-      console.log(response);
-
       if (response.status === 200) {
         toast.success("Login successful");
       }
@@ -42,6 +40,10 @@ const Login = () => {
       }
       if (response.data.status === 500) {
         toast.error("Internal server error");
+      }
+
+      if (response.data.status === 401) {
+        toast.error(response.data.message);
       }
 
       const role = response.data.role;

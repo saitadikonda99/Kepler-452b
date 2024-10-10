@@ -67,8 +67,7 @@ const sidebar = () => {
       icon: <GrUpdate className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Update Lead", link: "/admin/update/clubUpdate/lead" },
-        { name: "Update Details", link: "/admin/update/clubUpdate/details" },
+        { name: "Update Lead", link: "/admin/clubUpdate/lead" }
       ],
     },
     {

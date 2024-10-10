@@ -1,6 +1,4 @@
 import React from "react";
-import Link from "next/link";
-
 
 // imports start here
 import Sidebar from '../../components/sidebar/sidebar'
@@ -9,7 +7,7 @@ import Footer from '../../components/footer/page'
 
 import './page.css'
 
-const page = ({ children }) => {
+const Page = ({ children }) => {
   return (
     <div className="DashboardComponent">
       <div className="DashboardComponent-in">
@@ -26,7 +24,6 @@ const page = ({ children }) => {
             </div>
           </div>
         </div>
-
         <div className="DashboardComponent-Footer">
           <div className="DashboardComponent-Footer-in">
             <Footer />
@@ -37,4 +34,4 @@ const page = ({ children }) => {
   );
 };
 
-export default page;
+export default Page;

@@ -16,7 +16,7 @@ const handler = async (req: NextRequest) => {
     return NextResponse.json({ message: "Unauthorized", status: 401 });
   }
 
-  const { authorized, reason: roleReason } = verifyRoles({ ...payload, role: payload.role || 'User' }, 'Admin', 'club_lead');
+  const { authorized, reason: roleReason } = verifyRoles({ ...payload, role: payload.role || 'User' }, 'Admin');
 
   if (!authorized) {
     return NextResponse.json({ message: roleReason, status: 403 });
@@ -25,7 +25,13 @@ const handler = async (req: NextRequest) => {
   try {
     
     const [users] = await pool.query(`
-        SELECT * FROM users;
+        SELECT u.id, u.username, u.name, u.email, u.role, u.active,
+          CASE 
+              WHEN u.role = 'club_lead' THEN c.club_name
+              ELSE 'N/A'
+          END AS club_name
+          FROM users u
+          LEFT JOIN clubs c ON u.id = c.lead_id
     `);
     
     const usersData = users as any[];

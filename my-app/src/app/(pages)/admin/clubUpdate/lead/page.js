@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 // imports start here
-import Sidebar from "../../../../components/sidebar/sidebar";
-import Navbar from "../../../../components/navbar/navbar";
-import Footer from "../../../../components/footer/page";
+import Sidebar from "../../../components/sidebar/sidebar";
+import Navbar from "../../../components/navbar/navbar";
+import Footer from "../../../components/footer/page";
 
 import "./page.css";
 
@@ -26,6 +26,7 @@ const page = () => {
   });
 
   const handleSelectChange = (e) => {
+
     setSelectedClubName(e.target.value);
 
     const selectedClub = clubData.find(
@@ -33,12 +34,13 @@ const page = () => {
     );
 
     setUpdatedData({
-      leadUsername: selectedClub.lead_username,
-      leadName: selectedClub.lead_name,
-      leadEmail: selectedClub.lead_email,
+      leadUsername: selectedClub.username,
+      leadName: selectedClub.user_name,
+      leadEmail: selectedClub.email,
       clubName: selectedClub.club_name,
     });
   };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +52,7 @@ const page = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("/api/allClubs", {
+      const response = await axios.get("/api/admin/getClubDetails", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -66,6 +68,7 @@ const page = () => {
 
     fetchData();
   }, []);
+
 
   const handleSubmit = async () => {
     try {
@@ -130,9 +133,11 @@ const page = () => {
                 </option>
                 {Array.isArray(clubData) &&
                   clubData.map((club) => (
-                    <option key={club.club_id} value={club.club_name}>
-                      {club.club_name}
-                    </option>
+                    club.active === 1 && (
+                      <option key={club.club_id} value={club.club_name}>
+                        {club.club_name}
+                      </option>
+                    )
                   ))}
               </select>
               <p>Lead username should be university id</p>

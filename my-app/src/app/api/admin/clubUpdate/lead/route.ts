@@ -1,27 +1,26 @@
-import { pool } from "../../../../config/db";
+import { pool } from "../../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
-import { verifyJWT } from "../../../../lib/verifyJWT";
-import { verifyRoles } from "../../../../lib/verifyRoles";
+import { verifyJWT } from "../../../../../lib/verifyJWT";
+import { verifyRoles } from "../../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
 
-  const { valid, payload } = await verifyJWT();
+    const connection = await pool.getConnection();
 
-  if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
-  }
+    const { valid, payload } = await verifyJWT();
 
-  if (!payload) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
-  }
-
-  const { authorized, reason: roleReason } = verifyRoles({ ...payload, role: payload.role || 'User' }, 'Admin');
-
-  if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
-  }
-
-
+    if (!valid) {
+      return NextResponse.json({ message: "Unauthorized", status: 401 });
+    }
+  
+    const userData: any = payload;
+  
+    const { authorized, reason: roleReason } = verifyRoles({ ...userData, role: userData.role || 'User' }, 'Admin');
+  
+    if (!authorized) {
+      return NextResponse.json({ message: roleReason, status: 403 });
+    }
+  
   try {
 
     const { leadUsername, clubName, leadName, leadEmail, leadPassword, leadConfirmPassword} = await req.json();
@@ -49,6 +48,7 @@ export const POST = async (req: NextRequest) => {
       [leadUsername, leadEmail]
     );
 
+
     if (userCheck[0].length > 0) {
       return NextResponse.json(
         { message: "User or Email already exists" },
@@ -56,7 +56,19 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    pool.beginTransaction;
+    connection.beginTransaction();
+
+    const [getClubLead]: any = await pool.query(
+      `SELECT lead_id FROM clubs WHERE club_name = ?`,
+      [clubName]
+    );
+
+    const clubLeadId = getClubLead[0].lead_id;
+
+    await pool.query(
+        `UPDATE users SET active = 0 WHERE id = ?`,
+        [clubLeadId]
+    );
 
     const [result]: any = await pool.query(
       `
@@ -80,12 +92,12 @@ export const POST = async (req: NextRequest) => {
       [leadId, clubName]
     );
 
-    pool.commit;
+    connection.commit();
     
-    return NextResponse.json({ status: 200, message: "Lead, club, and club data updated successfully" });
+    return NextResponse.json({ status: 200, message: "Lead data updated successfully" });
   } catch (error) {
-    await pool.rollback;
-    console.log(error);
-    return NextResponse.json({ message: error.message, status: 500 });
+
+    connection.rollback();
+    return NextResponse.json({ message: error.message}, {status: 500});
   }
 };

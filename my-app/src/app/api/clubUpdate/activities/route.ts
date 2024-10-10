@@ -45,8 +45,6 @@ const postHandler = async (req: NextRequest) => {
 };
 
 
-
-
 const getHandler = async (req: NextRequest) => {
 
   const { valid, payload } = await verifyJWT();

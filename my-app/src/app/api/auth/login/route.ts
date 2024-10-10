@@ -48,8 +48,14 @@ export const POST = async (req: NextRequest) => {
 
     const role = roles[0] as any[];
 
+    if (Authenticated[0].active === 0) {
+      return NextResponse.json(
+        { message: "Your account is suspended contact SAC Department" },
+        { status: 404 }
+      );
+    }
+  
     // create a JWT token
-
     const accessToken = jwt.sign(
       {
         username: Authenticated[0].username,
