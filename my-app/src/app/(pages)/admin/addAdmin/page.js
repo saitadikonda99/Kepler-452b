@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import Sidebar from "../../components/sidebar/sidebar";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/page";
-import Dashboard from '../dashboard/page'
+import Dashboard from '../dashboard/dashboard'
 
 import "./page.css";
 

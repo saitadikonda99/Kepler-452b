@@ -1,4 +1,5 @@
 import { pool } from "../../../../config/db";
+import { redisClient } from "../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
@@ -35,6 +36,9 @@ const postHandler = async (req: NextRequest) => {
             `Insert INTO activities (club_id, activity_name, activity_image, activity_date, activity_venue) VALUES (?, ?, ?, ?, ?)`,
             [clubId, activityImage, activityName, activityDate, activityVenue,]
         );
+
+        const MY_KEY = `activities_${clubId}`;
+        redisClient.del(MY_KEY);
 
         return NextResponse.json({ status: 200 });
 
@@ -84,6 +88,10 @@ const getHandler = async (req: NextRequest) => {
             `SELECT * FROM activities WHERE club_id = ? ORDER BY upload_at DESC LIMIT 4`,
             [clubId]
         );
+
+        const MY_KEY = `activities_${clubId}`;
+
+        redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
         return NextResponse.json(result, { status: 200 });
 

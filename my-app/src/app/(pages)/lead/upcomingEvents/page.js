@@ -3,7 +3,7 @@ import React, { use, useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from "react-hot-toast";
 
-import Dashboard from '../dashboard/page'
+import Dashboard from '../dashboard/dashboard'
 
 const page = () => {
 

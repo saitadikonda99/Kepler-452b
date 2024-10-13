@@ -1,4 +1,5 @@
 import { pool } from "../../../../../config/db";
+import { redisClient } from "../../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
@@ -37,6 +38,9 @@ export const POST = async (req: NextRequest) => {
         );
 
     connection.commit();
+
+    const MY_KEY = "getClubs";
+    redisClient.del(MY_KEY);
 
     if (active === 1) return NextResponse.json({ status: 200, message: "Club activated successfully" });
 

@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import "./page.css";
 
 // import components here
-import Dashboard from "../dashboard/page";
+import Dashboard from "../dashboard/dashboard";
 
 const Page = () => {
   const [eventData, setEventData] = useState([]);

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware"
+import { redisClient } from "../../../../config/redis";
 
 
 
@@ -36,6 +37,9 @@ const postHandler = async (req: NextRequest) => {
             `Insert INTO glimpse (club_id, glimpse_image, glimpse_desc) VALUES (?, ?, ?)`,
             [clubId, glimpseImage, glimpseDesc]
         );
+
+        const MY_KEY = `glimpse_${clubId}`;
+        redisClient.del(MY_KEY);
 
         return NextResponse.json({ status: 200 });
 
@@ -87,6 +91,10 @@ const getHandler = async (req: NextRequest) => {
             `SELECT * FROM glimpse WHERE club_id = ? ORDER BY upload_at DESC LIMIT 2`,
             [clubId]
         );
+
+        const MY_KEY = `glimpse_${clubId}`;
+
+        redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
         return NextResponse.json(result, { status: 200 });
 

@@ -1,11 +1,12 @@
 import { pool } from "../../../../config/db";
+import { redisClient } from "../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 
+const MY_KEY = "HomeEvents";
+
 export const POST = async (req: any) => {
-
-
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -16,17 +17,18 @@ export const POST = async (req: any) => {
     return NextResponse.json({ message: "Unauthorized", status: 401 });
   }
 
-  const { authorized, reason: roleReason } = verifyRoles({ ...payload, role: payload.role || 'User' }, 'Admin');
+  const { authorized, reason: roleReason } = verifyRoles(
+    { ...payload, role: payload.role || "User" },
+    "Admin"
+  );
 
   if (!authorized) {
     return NextResponse.json({ message: roleReason, status: 403 });
   }
 
-
   try {
-    const { eventId, eventLink, eventName, eventDate, eventVenue } = await req.json();
-
-    console.log(eventDate);
+    const { eventId, eventLink, eventName, eventDate, eventVenue } =
+      await req.json();
 
     if (!eventLink || !eventName || !eventDate || !eventVenue || !eventId) {
       return NextResponse.json({
@@ -37,18 +39,13 @@ export const POST = async (req: any) => {
 
     const response = await pool.query(
       `
-          UPDATE events
-          SET event_link = ?, event_name = ?, event_date = ?, event_venue = ?
-          WHERE id = ?
+          INSERT INTO events (event_link, event_name, event_date, event_venue)
+          VALUES (?, ?, ?, ?)
             `,
       [eventLink, eventName, eventDate, eventVenue, eventId]
     );
 
-    const event = response[0];
-
-    if (!event) {
-      return NextResponse.json({ message: "Event not created", status: 500 });
-    }
+    redisClient.del(MY_KEY);
 
     return NextResponse.json({ message: "Event created", status: 200 });
   } catch (error) {
@@ -59,19 +56,21 @@ export const POST = async (req: any) => {
 
 export const GET = async (req: NextRequest) => {
   try {
+    const data = await redisClient.get(MY_KEY);
+
+    if (data) {
+      return NextResponse.json(JSON.parse(data), { status: 200 });
+    }
+
     const response = await pool.query(
       `
-            SELECT * FROM events ORDER BY upload_at DESC LIMIT 4;
-            `
+        SELECT * FROM events ORDER BY upload_at DESC LIMIT 4;
+      `
     );
 
     const events = response[0];
 
-    console.log(events);
-
-    if (!events) {
-      return NextResponse.json({ message: "No events found", status: 404 });
-    }
+    redisClient.setEx(MY_KEY, 3600, JSON.stringify(events));
 
     return NextResponse.json(events, { status: 200 });
   } catch (error) {

@@ -1,31 +1,91 @@
-
-
-.ViewClubs {
+.ManageClubsComponent {
     width: 100%;
 }
 
-.ViewClubs-in {
+.ManageClubsComponent-in {
+    width: 100%;
+    padding: 1rem;
+    height: 83.5vh;
+}
+
+.ManageClubs-one {
     width: 100%;
 }
 
-.ViewClubs-Nav {
+.ManageClubs-one-in {
     width: 100%;
 }
 
-.ViewClubs-one {
+.ManageClubs-one-in-one {
+    width: 100%;
+    padding: 1rem 0rem;
+}
+
+.ManageClubs-one-in-one h1 {
+    font-size: 1rem;
+}
+
+
+.ManageClubs-two {
     width: 100%;
 }
 
-.ViewClubs-one-in {
+.ManageClubs-two-in {
     width: 100%;
-    display: flex;
+    height: 72vh;
+    overflow: scroll;
 }
 
-.DC-sideBar {
-    width: 16%;
+.ManageClubs-two-in table {
+    width: 100%;
+    border: 1px solid rgb(100 116 139 / 1);
+    border-collapse: collapse;
 }
 
-.DC-one {
-    width: 84%;
-    border: 2px solid black;   
+.ManageClubs-two-in table th, .ManageClubs-two-in table td {
+    border: 1px solid rgb(100 116 139 / 1);
+    text-align: center;
+}
+
+.ManageClubs-two-in table th {
+    color: black;
+    font-weight: 600;
+    padding: .8rem;
+}
+
+.ManageClubs-two-in table td {
+    padding: .8rem;
+}
+
+.ManageClubs-two-in table tbody tr:nth-child(odd) {
+    background-color: rgb(243, 244, 246)
+}
+
+.ManageClubs-two-in table tr td:nth-child(1) {
+    width: 6%;
+}
+
+.ManageClubs-two-in table td button {
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.HoldButton {
+    padding: .5rem 1rem;
+    background-color: #f0ad4e;
+}
+
+.ActivateButton {
+    padding: .5rem .5rem;
+    background-color: #5cb85c;
+}
+
+.DeleteButton {
+    color: #fff;
+    padding: .4rem .8em;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #d9534f;
 }

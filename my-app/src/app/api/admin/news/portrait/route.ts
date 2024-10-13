@@ -1,7 +1,10 @@
 import { pool } from "../../../../../config/db";
+import { redisClient } from "../../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
+
+const MY_KEY = "NewsPortrait";
 
 export const POST = async (req: any) => {
 
@@ -37,19 +40,15 @@ export const POST = async (req: any) => {
 
     const response = await pool.query(
       `
-          UPDATE news_portrait 
-          SET news_link = ?, club_name = ?, news_content = ? 
-          WHERE id = ?
+        INSERT INTO news_portrait (news_link, club_name, news_content)
+        VALUES (?, ?, ?)
       `,
-      [newsLink, clubName, newsContent, newsId]
+      [newsLink, clubName, newsContent]
   );
   
 
-    const News_portrait = response[0];
+  redisClient.del(MY_KEY);
 
-    if (!News_portrait) {
-      return NextResponse.json({ message: "News not created", status: 500 });
-    }
 
     return NextResponse.json({ message: "News created", status: 201 });
   } catch (error) {
@@ -60,6 +59,13 @@ export const POST = async (req: any) => {
 
 export const GET = async (req: NextRequest) => {
   try {
+
+    const data = await redisClient.get(MY_KEY);
+
+    if (data) {
+      return NextResponse.json(JSON.parse(data), { status: 200 });
+    }
+
     const response = await pool.query(
       `
             SELECT * FROM news_portrait ORDER BY upload_at DESC LIMIT 4;
@@ -68,9 +74,7 @@ export const GET = async (req: NextRequest) => {
 
     const News_portrait = response[0];
 
-    if (!News_portrait) {
-      return NextResponse.json({ message: "No News found", status: 404 });
-    }
+    redisClient.setEx(MY_KEY, 3600, JSON.stringify(News_portrait))
 
     return NextResponse.json(News_portrait, { status: 200 });
   } catch (error) {

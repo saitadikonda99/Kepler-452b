@@ -5,7 +5,7 @@
 }
 
 .AdminNavComponent {
-    width: 100%;
+    width: 100%;    
 }
 
 .AdminNavComponent-in {
@@ -15,6 +15,7 @@
 
 .AdminNavComponent-one {
     width: 100%;
+    height: 50%;
 }
 
 .AdminNavComponent-one-in {
@@ -76,10 +77,12 @@
 
 .AdminNavComponent-two {
     width: 100%;
+    height: 50%;
 }
 
 .AdminNavComponent-two-in {
     width: 100%;
+    height: 100%;
     padding: .6rem;
     background-color: rgb(151, 0, 3);
     display: flex;

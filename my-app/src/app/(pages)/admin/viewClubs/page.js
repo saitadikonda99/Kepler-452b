@@ -5,9 +5,7 @@ import axios from "axios";
 import "./page.css";
 
 // import components here
-import Navbar from "../../components/navbar/navbar";
-import Sidebar from "../../components/sidebar/sidebar";
-import Footer from "../../components/footer/page";
+import Dashboard from "../dashboard/dashboard";
 import toast from "react-hot-toast";
 
 const page = () => {
@@ -31,102 +29,113 @@ const page = () => {
   }, []);
 
   const handleDelete = async (clubId, active) => {
-      try {
-        const response = await axios.post("/api/admin/clubUpdate/deleteClub", {clubId, active}, {
+    try {
+      const response = await axios.post(
+        "/api/admin/clubUpdate/deleteClub",
+        { clubId, active },
+        {
           headers: {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        });
+        }
+      );
 
-        if (response.data.status === 200) {
-          toast.success(response.data.message);
-          const updatedClubData = clubData.map((club) => {
-            if (club.club_id === clubId) {
-              return {
-                ...club,
-                active: active,
-              };
-            }
-            return club;
-          });
-          setClubData(updatedClubData);
-        }
-        else {
-          toast.error("Failed to delete the club")
-        }
-      } catch (error) {
-        toast.error(error.message)
+      if (response.data.status === 200) {
+        toast.success(response.data.message);
+        const updatedClubData = clubData.map((club) => {
+          if (club.club_id === clubId) {
+            return {
+              ...club,
+              active: active,
+            };
+          }
+          return club;
+        });
+        setClubData(updatedClubData);
+      } else {
+        toast.error("Failed to delete the club");
       }
-    };
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
-    <div className="ViewClubs">
-      <div className="ViewClubs-in">
-        <div className="ViewClubs-Nav">
-          <Navbar />
-        </div>
-        <div className="ViewClubs-one">
-          <div className="ViewClubs-one-in">
-            <div className="DC-sideBar">
-              <Sidebar />
-            </div>
-            <div className="DC-one">
-              
-              {Array.isArray(clubData) &&
-                clubData.map((club) => (
-                  <div key={club.club_id} className="DC-one-card">
-                    <div className="DC-one-card-in">
-                      <div className="DC-one-card-logo">
-                        <img src={club.club_logo} alt="club logo" />
-                      </div>
-                      <div className="DC-one-card-details">
-                        <div className="DC-one-card-details-in">
-                          <div className="DC-one-card-details-name">
-                            <h3>{club.club_name}</h3>
-                          </div>
-                          <div className="DC-one-card-details-lead">
-                            <p>
-                              <strong>Lead: </strong>
-                              {club.user_name}
-                            </p>
-                            <p>
-                              <strong>Lead email: </strong>
-                              {club.email}
-                            </p>
-                          </div>
-                          <div className="DC-one-card-details-domain">
-                            <p>
-                              <strong>Domain: </strong>
-                              {club.club_domain}
-                            </p>
-                          </div>
-                          <div className="DC-one-card-details-domain">
-                              {club.active === 1? 
-                                <button onClick={() => handleDelete(club.club_id, 0)}>
-                                  Hold
-                                </button> : 
-                                <button onClick={() => handleDelete(club.club_id, 1)}>
-                                  Activate
-                                </button>
-                              }
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+    <Dashboard>
+      <div className="ManageClubsComponent">
+        <div className="ManageClubsComponent-in">
+          <div className="ManageClubs-one">
+            <div className="ManageClubs-one-in">
+              <div className="ManageClubs-one-in-one">
+                <h1>Manage Clubs</h1>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="ViewClubs-Footer">
-          <div className="ViewClubs-Footer-in">
-            <Footer />
+
+          <div className="ManageClubs-two">
+            <div className="ManageClubs-two-in">
+              <table>
+                <thead>
+                  <tr>
+                    <th>S. No.</th>
+                    <th>Club Logo</th>
+                    <th>Club Name</th>
+                    <th>Lead</th>
+                    <th>Lead Email</th>
+                    <th>Domain</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Array.isArray(clubData) && clubData.length > 0 ? (
+                    clubData.map((club, index) => (
+                      <tr key={club.club_id}>
+                        <td>{++index}</td>
+                        <td>
+                          <img
+                            src={club.club_logo}
+                            alt="club logo"
+                            style={{ width: "50px", height: "50px" }}
+                          />
+                        </td>
+                        <td>{club.club_name}</td>
+                        <td>{club.user_name}</td>
+                        <td>{club.email}</td>
+                        <td>{club.club_domain}</td>
+                        <td>{club.active === 1 ? "Active" : "Inactive"}</td>
+                        <td>
+                          {club.active === 1 ? (
+                            <button
+                              className="HoldButton"
+                              onClick={() => handleDelete(club.club_id, 0)}
+                            >
+                              Hold
+                            </button>
+                          ) : (
+                            <button
+                              className="ActivateButton"
+                              onClick={() => handleDelete(club.club_id, 1)}
+                            >
+                              Activate
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="8">No clubs found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Dashboard>
   );
 };
 

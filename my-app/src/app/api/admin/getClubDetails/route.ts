@@ -1,4 +1,5 @@
 import { pool } from "../../../../config/db";
+import { redisClient } from "../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
@@ -6,6 +7,7 @@ import { withMiddleware } from "../../../../middleware/middleware"
 
 
 const getHandler = async (req: NextRequest) => {
+
 
   const { valid, payload } = await verifyJWT();
 
@@ -22,6 +24,14 @@ const getHandler = async (req: NextRequest) => {
   }
 
   try {
+
+    const MY_KEY = "getClubDetails"
+
+    const data = await redisClient.get(MY_KEY);
+
+    if (data) {
+      return NextResponse.json(JSON.parse(data), { status: 200 });
+    }
 
     const [result]: any = await pool.query( 
         `SELECT 
@@ -43,6 +53,8 @@ const getHandler = async (req: NextRequest) => {
         LEFT JOIN 
             users u ON u.id = c.lead_id`
     );
+
+    redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
     return NextResponse.json(result, { status: 200 });
         

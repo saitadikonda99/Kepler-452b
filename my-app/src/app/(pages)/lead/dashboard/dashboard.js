@@ -1,18 +1,18 @@
 import React from "react";
 
 // imports start here
-import Sidebar from '../../components/sidebar/sidebar'
+import Sidebar from '../components/sidebar/sidebar'
 import Navbar from '../../components/navbar/navbar'
 import Footer from '../../components/footer/page'
 
 import './page.css'
 
-const Page = ({ children }) => {
+const page = ({ children }) => {
   return (
     <div className="DashboardComponent">
       <div className="DashboardComponent-in">
         <div className="DashboardComponent-Nav">
-          <Navbar />
+          <Navbar role={"Club Lead"} />
         </div>
         <div className="DashboardComponent-one">
           <div className="DashboardComponent-one-in">
@@ -20,10 +20,11 @@ const Page = ({ children }) => {
                 <Sidebar />
             </div>
             <div className="DC-one">
-              {children}
+                {children}
             </div>
           </div>
         </div>
+
         <div className="DashboardComponent-Footer">
           <div className="DashboardComponent-Footer-in">
             <Footer />
@@ -34,4 +35,4 @@ const Page = ({ children }) => {
   );
 };
 
-export default Page;
+export default page;

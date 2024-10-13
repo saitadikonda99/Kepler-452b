@@ -1,0 +1,88 @@
+.AdminHomeComponent {
+    width: 100%;
+}
+
+.AdminHomeComponent-in {
+    width: 100%;
+}
+
+.LHome-one {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem 0rem .5rem 1rem;
+}
+
+.LHome-one h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+}
+
+.LHome-one p {
+    font-size: .8rem;
+    color: #333;
+}
+
+.LHome-two {
+    width: 100%;
+}
+
+.LHome-two-in {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.LHome-two-in-one, .LHome-two-in-two, .LHome-two-in-three {
+    width: 32%;
+    background-color: rgb(233, 233, 233);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.LHome-two-in-one-one {
+    width: 50%;
+    padding: 1rem;
+}
+
+.LHome-two-in-one-one p {
+    font-size: 1.2rem;
+}
+
+.LHome-two-in-one-one h1 {
+    font-size: 1.2rem;
+}
+
+.LHome-two-in-one-two {
+    width: 50%;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.LHome-icon {
+    font-size: 2rem;
+    color: #333;
+}
+
+.LHome-three {
+    width: 100%;
+}
+
+.LHome-three-in {
+    width: 100%;
+}
+
+.LHome-three-in-one {
+    width: 60%;
+    padding: 1rem;
+}
+

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware"
+import { redisClient } from "../../../../config/redis";
 
 
 
@@ -36,6 +37,9 @@ const postHandler = async (req: NextRequest) => {
             `Insert INTO club_images (club_id, hero_img, team_img) VALUES (?, ?, ?)`,
             [clubId, heroImg, teamImg]
         );
+
+        const MY_KEY = `club_images_${clubId}`;
+        redisClient.del(MY_KEY);
 
         return NextResponse.json({ status: 200 });
 
@@ -85,6 +89,10 @@ const getHandler = async (req: NextRequest) => {
             [clubId]
         );
 
+        const MY_KEY = `club_images_${clubId}`;
+
+        redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
+
         return NextResponse.json(result, { status: 200 });
 
   } catch (error) {
@@ -92,7 +100,6 @@ const getHandler = async (req: NextRequest) => {
     return NextResponse.json({ message: error}, { status: 500 });
   }
 };
-
 
 
 

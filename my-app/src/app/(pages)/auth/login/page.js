@@ -3,12 +3,14 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { usePathname } from 'next/navigation'
 import { toast } from "react-hot-toast";
 
 import "./page.css";
 
 const Login = () => {
   const router = useRouter();
+  const pathname = usePathname()
 
   const [userData, setUserData] = useState({
     username: "",
@@ -52,22 +54,22 @@ const Login = () => {
         id: response.data.id,
         name: response.data.name,
         username: response.data.username,
-        role: response.data.role
+        role: response.data.role,
       };
-      
-      localStorage.setItem('user', JSON.stringify(user));
 
       switch (role) {
         case "Admin":
-          router.push("/admin/dashboard");
+          router.push("/admin/home");
           break;
         case "club_lead":
-          router.push("/lead/dashboard");
+          router.push("/lead/home");
           break;
         default:
           router.push("/");
           break;
       }
+      
+      localStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       toast.error(error.response.data.message);
     }

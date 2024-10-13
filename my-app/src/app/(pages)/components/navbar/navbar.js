@@ -8,7 +8,7 @@ import Logout from '../../../../lib/logout'
 
 import "./page.css";
 
-const navbar = () => {
+const navbar = ({ role }) => {
 
     const pathname = usePathname()
 
@@ -43,7 +43,7 @@ const navbar = () => {
             </div>
             <div className="AN-two">
               <div className="AN-two-in">
-                <h1>Student Activity Center - Admin Panel</h1>
+                <h1>Student Activity Center - {role} Panel</h1>
               </div>
             </div>
             <div className="AN-three">

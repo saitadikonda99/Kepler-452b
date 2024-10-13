@@ -1,11 +1,12 @@
 import { pool } from "../../../../../config/db";
+import { redisClient } from "../../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
 
+const MY_KEY = "NewsLandscape";
+
 export const POST = async (req: any) => {
-
-
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -16,16 +17,17 @@ export const POST = async (req: any) => {
     return NextResponse.json({ message: "Unauthorized", status: 401 });
   }
 
-  const { authorized, reason: roleReason } = verifyRoles({ ...payload, role: payload.role || 'User' }, 'Admin');
+  const { authorized, reason: roleReason } = verifyRoles(
+    { ...payload, role: payload.role || "User" },
+    "Admin"
+  );
 
   if (!authorized) {
     return NextResponse.json({ message: roleReason, status: 403 });
   }
 
-
   try {
     const { newsId, newsLink, clubName, newsContent } = await req.json();
-
 
     console.log(newsLink, clubName, newsContent, newsId);
 
@@ -36,22 +38,15 @@ export const POST = async (req: any) => {
       });
     }
 
-
     const response = await pool.query(
       `
-          UPDATE news_landscape 
-          SET news_link = ?, club_name = ?, news_content = ? 
-          WHERE id = ?
+        INSERT INTO news_landscape (news_link, club_name, news_content)
+        VALUES (?, ?, ?)
       `,
       [newsLink, clubName, newsContent, newsId]
-  );
+    );
   
-
-    const News_landscape = response[0];
-
-    if (!News_landscape) {
-      return NextResponse.json({ message: "News not created", status: 500 });
-    }
+    redisClient.del(MY_KEY);
 
     return NextResponse.json({ message: "News created", status: 200 });
   } catch (error) {
@@ -62,19 +57,19 @@ export const POST = async (req: any) => {
 
 export const GET = async (req: NextRequest) => {
   try {
+    const data = await redisClient.get(MY_KEY);
+
+    if (data) {
+      return NextResponse.json(JSON.parse(data), { status: 200 });
+    }
+
     const response = await pool.query(
-      `
-            SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;
-            `
+      `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
     );
 
     const News_landscape = response[0];
 
-    console.log(News_landscape);
-
-    if (!News_landscape) {
-      return NextResponse.json({ message: "No news found", status: 404 });
-    }
+    redisClient.setEx(MY_KEY, 3600, JSON.stringify(News_landscape));
 
     return NextResponse.json(News_landscape, { status: 200 });
   } catch (error) {

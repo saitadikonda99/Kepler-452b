@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 
 // import components here
-import Dashboard from "../dashboard/page"
+import Dashboard from "../dashboard/dashboard"
 
 
 import "./page.css";

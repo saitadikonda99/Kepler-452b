@@ -41,7 +41,7 @@ const sidebar = () => {
     {
       name: "Home",
       icon: <IoMdHome className="sideBar-icon" />,
-      link: "/admin/dashboard",
+      link: "/admin/home",
     },
     {
       name: "Events",

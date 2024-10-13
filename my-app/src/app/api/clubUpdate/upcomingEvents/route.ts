@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware"
+import { redisClient } from "../../../../config/redis";
 
 
 
@@ -39,6 +40,9 @@ const postHandler = async (req: NextRequest) => {
             [clubId, eventName, eventImage, eventDate, eventVenue,]
         );
 
+        const MY_KEY = `upcoming_events_${clubId}`;
+        redisClient.del(MY_KEY);
+
         return NextResponse.json({ status: 200 });
 
   } catch (error) {
@@ -46,9 +50,6 @@ const postHandler = async (req: NextRequest) => {
     return NextResponse.json({ message: error, status: 500 });
   }
 };
-
-
-
 
 const getHandler = async (req: NextRequest) => {
 
@@ -89,6 +90,9 @@ const getHandler = async (req: NextRequest) => {
             `SELECT * FROM upcoming_events WHERE club_id = ? ORDER BY upload_at DESC LIMIT 4`,
             [clubId]
         );
+
+        const MY_KEY = `upcoming_events_${clubId}`;
+        redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
         return NextResponse.json(result, { status: 200 });
 

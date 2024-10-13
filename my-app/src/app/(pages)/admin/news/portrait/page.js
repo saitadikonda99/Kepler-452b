@@ -7,7 +7,7 @@ import Link from "next/link";
 import "./page.css";
 
 // Import components
-import Dashboard from "../../dashboard/page"
+import Dashboard from "../../dashboard/dashboard"
 
 
 const Page = () => {

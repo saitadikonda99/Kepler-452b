@@ -25,10 +25,10 @@ export async function middleware(req: NextRequest) {
   
   const role = userData?.role[0];
 
-  if (!valid && path !== isPublic) {
+  if (!valid && path !== isPublic && path !== "/auth/login") {
     const url = req.nextUrl.clone();
     url.pathname = "/auth/login";
-    return NextResponse.rewrite(url);
+    return NextResponse.redirect(url);  
   }
 
   if (path == "/auth/login" && valid) {

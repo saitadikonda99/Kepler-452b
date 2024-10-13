@@ -1,11 +1,11 @@
 import { pool } from "../../../../config/db";
+import { redisClient } from "../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
-
-    const connection = await pool.getConnection();
+  const connection = await pool.getConnection();
 
   try {
     const { valid, payload } = await verifyJWT();
@@ -116,22 +116,23 @@ export const POST = async (req: NextRequest) => {
     // Get the last inserted club ID
     const clubId = (club as any).insertId;
 
-
     // Call the stored procedure to insert additional data
-    await pool.query('CALL AddClubData(?);', [clubId]);
-
+    await pool.query("CALL AddClubData(?);", [clubId]);
 
     await connection.commit();
+
+    const MY_KEY = "getClubs";
+
+    redisClient.del(MY_KEY);
 
     return NextResponse.json({
       message: "Club added successfully",
       status: 200,
     });
-
   } catch (error) {
     await connection.rollback();
 
-    console.log(error)
+    console.log(error);
 
     return NextResponse.json({
       message: error.message || "Server error",
