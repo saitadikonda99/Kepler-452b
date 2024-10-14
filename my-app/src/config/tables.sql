@@ -11,6 +11,7 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL UNIQUE,
     role ENUM('Admin', 'club_lead') NOT NULL, 
     active BOOLEAN DEFAULT 1,  -- Added active status
+    upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     RefreshToken VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (id)
 );

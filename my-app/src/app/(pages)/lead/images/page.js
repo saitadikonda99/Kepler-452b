@@ -29,6 +29,8 @@ const page = () => {
         }
     }
 
+    console.log(imageData)
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;

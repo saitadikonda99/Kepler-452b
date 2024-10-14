@@ -8,23 +8,25 @@ import Dashboard from '../dashboard/dashboard'
 const page = () => {
 
     const [show, setShow] = useState(false);
-    const [imageData, setImageData] = useState([]);
+    const [StatsData, setStatsData] = useState([]);
 
     const [updatedData, setUpdatedData] = useState({
         clubId: null,
-        heroImg: "",
-        teamImg: "",
+        Members: null,
+        Activities: null,
+        Projects: null
     })
 
     const handleClick = (clubId) => {
         return () => {
             setShow(true);
-            const data = imageData.find(data => data.club_id === clubId);
+            const data = StatsData.find(data => data.club_id === clubId);
 
             setUpdatedData({
                 clubId: clubId,
-                heroImg: data.hero_img,
-                teamImg: data.team_img,
+                Members: data.total_members,
+                Activities: data.total_activities,
+                Projects: data.total_projects
             });   
         }
     }
@@ -44,7 +46,7 @@ const page = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("/api/clubUpdate/images", updatedData, {
+            const response = await axios.post("/api/clubUpdate/stats", updatedData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -52,10 +54,10 @@ const page = () => {
             });
 
             if (response.data.status === 200) {
-                toast.success("Images updated successfully!");
+                toast.success("Stats updated successfully!");
                 setShow(false);
             } else {
-                toast.error("Failed to update images");
+                toast.error("Failed to update Stats");
             }
         } catch (error) {
             toast.error("Internal server error");
@@ -65,14 +67,14 @@ const page = () => {
     useEffect( () => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/api/clubUpdate/images');
+                const response = await axios.get('/api/clubUpdate/stats');
 
                 console.log(response.data)
 
                 if (response.status === 200) {
-                    setImageData(response.data);
+                    setStatsData(response.data);
                 } else {
-                    toast.error("Failed to fetch images");
+                    toast.error("Failed to fetch Stats");
                 }
             } catch (error) {
                 toast.error("Internal server error");
@@ -83,39 +85,50 @@ const page = () => {
     
   return (
     <Dashboard>
-        <div className="ImageComponent">
-            <div className="ImageComponent-in">
+        <div className="StatsComponent">
+            <div className="StatsComponent-in">
                 { show ? 
-                    <div className="Image-one">
-                        <div className="Image-one-in">
+                    <div className="Stats-one">
+                        <div className="Stats-one-in">
 
-                            <div className="ImageUpdate-two">
-                                <p>you can update the images here</p>
+                            <div className="StatsUpdate-two">
+                                <p>you can update the Stats here</p>
                             </div>
 
-                            <div className="ImageUpdate-two">
-                                <label For="heroImg" >Hero Image</label>
+                            <div className="StatsUpdate-two">
+                                <label For="Members" >Total Members</label>
                                 <input
                                     type="text"
-                                    value={updatedData.heroImg}
-                                    placeholder="Link of the hero image"
-                                    id="heroImg"
-                                    name="heroImg"
+                                    value={updatedData.Members}
+                                    placeholder="Total number of Members"
+                                    id="Members"
+                                    name="Members"
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="ImageUpdate-three">
-                                <label For="teamImg" >Team Image</label>
+                            <div className="StatsUpdate-three">
+                                <label For="Activities" >Total Activities</label>
                                 <input
                                     type="text"
-                                    value={updatedData.teamImg}
-                                    placeholder="Link of the team image"
-                                    id="teamImg"
-                                    name="teamImg"
+                                    value={updatedData.Activities}
+                                    placeholder="Total number of Activities"
+                                    id="Activities"
+                                    name="Activities"
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="ImageUpdate-four">
+                            <div className="StatsUpdate-four">
+                                <label For="Projects" >Total Projects</label>
+                                <input
+                                    type="text"
+                                    value={updatedData.Projects}
+                                    placeholder="Total number of Projects"
+                                    id="Projects"
+                                    name="Projects"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="StatsUpdate-five">
                                 <button onClick={handleCancel}>
                                     Cancel
                                 </button>
@@ -126,12 +139,22 @@ const page = () => {
                         </div>
                     </div>
                     :
-                    <div className="Image-two">
-                        {Array.isArray(imageData) && imageData.map((data, index) => {
+                    <div className="Stats-two">
+                        {Array.isArray(StatsData) && StatsData.map((data, index) => {
                             return (
-                                <div key={index} className="Image-two-in">
-                                    <img src={data.hero_img} alt="heroImg" />
-                                    <img src={data.team_img} alt="teamImg" />
+                                <div key={index} className="Stats-two-in">
+                                    <div className="Stats-two-in-one">
+                                        <p>Club ID: {data.club_id}</p>
+                                    </div>
+                                    <div className="Stats-two-in-two">
+                                        <p>Members: {data.total_members}</p>
+                                    </div>
+                                    <div className="Stats-two-in-three">
+                                        <p>Activities: {data.total_activities}</p>
+                                    </div>
+                                    <div className="Stats-two-in-four">
+                                        <p>Projects: {data.total_projects}</p>
+                                    </div>
                                     <button onClick={handleClick(data.club_id)} >
                                         Update
                                     </button>
