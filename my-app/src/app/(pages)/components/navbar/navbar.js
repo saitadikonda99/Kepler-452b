@@ -5,6 +5,9 @@ import Image from "next/image";
 import { MdOutlineLogout } from "react-icons/md";
 import { usePathname } from 'next/navigation'
 import Logout from '../../../../lib/logout'
+import { toast } from "react-hot-toast";
+import axios from "axios";
+
 
 import "./page.css";
 
@@ -21,12 +24,35 @@ const navbar = ({ role }) => {
     });
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        setUserDetails({
-            username: user.username,
-            name: user.name,
-            role: user.role,
-        });
+
+      const fetch = async () => {
+
+        try {
+            const response = await axios.get("/api/user", {
+                headers: {
+                    "Content-Type": "application/json", 
+                },
+                withCredentials: true,
+            });
+
+            if (response.status == 200) {
+                setUserDetails({
+                    username: response.data[0].username,
+                    name: response.data[0].name,
+                    role: response.data[0].role,
+                });
+            }
+            else {
+                toast.error("Failed to fetch user details");
+            }
+
+        } catch (error) {
+          toast.error("Failed to fetch user details");
+        }
+      }
+
+        fetch();
+
     }, []);
 
   return (
