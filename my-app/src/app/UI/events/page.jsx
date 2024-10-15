@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import "./page.css";
-
-import data from "../../../data/data.json";
 
 import Event from "./cards/Event";
 
@@ -11,18 +10,18 @@ const page = () => {
   const [eventData, setEventData] = useState([]);
 
   useEffect(() => {
-    setEventData(data.eventData);
-  }, []);
+      const handleEvent = async () => {
+        try {
+          const response = await axios.get('/api/admin/events');
+          setEventData(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+          };
+          handleEvent();
+      }, []);
 
-  // useEffect(() => {
-  //     const handleEvent = async () => {
-  //       try {
-  //         const response = await axios.get('/api/events');
-  //         setEventData(response.data);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
+      console.log(eventData)
 
   return (
     <div className="eight">
@@ -38,10 +37,10 @@ const page = () => {
             {eventData?.map((event, index) => (
               <div className="eight-event-one Event-cm" key={index}>
                 <Event
-                  eventLink={event.eventLink}
-                  eventName={event.eventName}
-                  eventDate={event.eventDate}
-                  eventVenue={event.eventVenue}
+                  eventLink={event.event_link}
+                  eventName={event.event_name}
+                  eventDate={event.event_date}
+                  eventVenue={event.event_venue}
                 />
               </div>
             ))}
