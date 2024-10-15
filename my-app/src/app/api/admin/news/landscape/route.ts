@@ -7,6 +7,9 @@ import { verifyRoles } from "../../../../../lib/verifyRoles";
 const MY_KEY = "NewsLandscape";
 
 export const POST = async (req: any) => {
+
+  const connection = await pool.getConnection();
+
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -38,7 +41,7 @@ export const POST = async (req: any) => {
       });
     }
 
-    const response = await pool.query(
+    const response = await connection.query(
       `
         INSERT INTO news_landscape (news_link, club_name, news_content)
         VALUES (?, ?, ?)
@@ -48,6 +51,8 @@ export const POST = async (req: any) => {
   
     redisClient.del(MY_KEY);
 
+    connection.release();
+
     return NextResponse.json({ message: "News created", status: 200 });
   } catch (error) {
     console.log(error);
@@ -56,6 +61,8 @@ export const POST = async (req: any) => {
 };
 
 export const GET = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
+
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -63,13 +70,15 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const response = await pool.query(
+    const response = await connection.query(
       `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
     );
 
     const News_landscape = response[0];
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(News_landscape));
+
+    connection.release();
 
     return NextResponse.json(News_landscape, { status: 200 });
   } catch (error) {

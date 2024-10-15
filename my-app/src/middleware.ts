@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
@@ -31,10 +31,18 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);  
   }
 
-  if (path == "/auth/login" && valid) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/admin";
-    return NextResponse.redirect(url);
+  if (path === "/auth/login" && valid) {
+
+    if (role === "Admin") {
+      const url = req.nextUrl.clone();
+      url.pathname = "/admin/home";
+      return NextResponse.redirect(url)
+    }
+    else {
+      const url = req.nextUrl.clone();
+      url.pathname = "/lead/home";
+      return NextResponse.redirect(url)
+    }
   }
 
   // admin pages

@@ -66,7 +66,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const userCheck: any = await pool.query(
+    const userCheck: any = await connection.query(
       `SELECT * FROM users WHERE username = ? OR email = ?`,
       [leadUsername, leadEmail]
     );
@@ -80,14 +80,14 @@ export const POST = async (req: NextRequest) => {
 
     connection.beginTransaction();
 
-    const [getClubLead]: any = await pool.query(
+    const [getClubLead]: any = await connection.query(
       `SELECT lead_id FROM clubs WHERE club_name = ?`,
       [clubName]
     );
 
     const clubLeadId = getClubLead[0].lead_id;
 
-    await pool.query(`UPDATE users SET active = 0 WHERE id = ?`, [clubLeadId]);
+    await connection.query(`UPDATE users SET active = 0 WHERE id = ?`, [clubLeadId]);
 
     const [result]: any = await pool.query(
       `
@@ -97,14 +97,14 @@ export const POST = async (req: NextRequest) => {
       [leadUsername, leadName, leadPassword, leadEmail, "club_lead", null]
     );
 
-    const [getLeadUser]: any = await pool.query(
+    const [getLeadUser]: any = await connection.query(
       `SELECT id FROM users WHERE email = ?`,
       [leadEmail]
     );
 
     const leadId = getLeadUser[0].id;
 
-    const [club]: any = await pool.query(
+    const [club]: any = await connection.query(
       `
         UPDATE clubs SET lead_id = ? WHERE club_name = ?
       `,
@@ -116,7 +116,8 @@ export const POST = async (req: NextRequest) => {
     redisClient.del(MY_KEY);
 
     connection.commit();
-
+    connection.release();
+    
     return NextResponse.json({
       status: 200,
       message: "Lead data updated successfully",

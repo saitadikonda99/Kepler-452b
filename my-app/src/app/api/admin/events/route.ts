@@ -55,6 +55,9 @@ export const POST = async (req: any) => {
 };
 
 export const GET = async (req: NextRequest) => {
+
+  const connection = await pool.getConnection();
+  
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -62,13 +65,15 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const response = await pool.query(
+    const response = await connection.query(
       `
         SELECT * FROM events ORDER BY upload_at DESC LIMIT 4;
       `
     );
 
     const events = response[0];
+
+    connection.release();
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(events));
 

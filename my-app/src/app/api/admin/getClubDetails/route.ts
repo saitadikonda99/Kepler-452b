@@ -8,6 +8,7 @@ import { withMiddleware } from "../../../../middleware/middleware"
 
 const getHandler = async (req: NextRequest) => {
 
+  const connection = await pool.getConnection();
 
   const { valid, payload } = await verifyJWT();
 
@@ -33,7 +34,7 @@ const getHandler = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const [result]: any = await pool.query( 
+    const [result]: any = await connection.query( 
         `SELECT 
             u.id AS user_id,
             u.username,
@@ -55,6 +56,8 @@ const getHandler = async (req: NextRequest) => {
     );
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
+
+    connection.release();
 
     return NextResponse.json(result, { status: 200 });
         

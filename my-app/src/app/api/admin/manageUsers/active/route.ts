@@ -6,6 +6,8 @@ import { verifyRoles } from "../../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../../middleware/middleware";
 
 const handlePost = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
+
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -33,11 +35,12 @@ const handlePost = async (req: NextRequest) => {
       return NextResponse.json({ status: 401 });
     }
 
-    await pool.query(`UPDATE clubs SET lead_id = NULL WHERE lead_id = ?`, [
-      userId,
-    ]);
+    await connection.query(
+      `UPDATE clubs SET lead_id = NULL WHERE lead_id = ?`,
+      [userId]
+    );
 
-    const [result]: any = await pool.query(
+    const [result]: any = await connection.query(
       `UPDATE users SET active = ? WHERE id = ?`,
       [active, userId]
     );
@@ -45,6 +48,8 @@ const handlePost = async (req: NextRequest) => {
     const MY_KEY = "manageUsers";
 
     redisClient.del(MY_KEY);
+
+    connection.release();
 
     return NextResponse.json({ message: "User on hold", status: 200 });
   } catch (error) {

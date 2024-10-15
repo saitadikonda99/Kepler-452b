@@ -5,6 +5,8 @@ import { verifyRoles } from "../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
 
+  const connection = await pool.getConnection();
+
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -43,7 +45,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const userCheck :any = await pool.query(
+    const userCheck :any = await connection.query(
         `SELECT * FROM users WHERE username = ? OR email = ?`,
         [adminUsername, adminEmail]
         );
@@ -56,9 +58,9 @@ export const POST = async (req: NextRequest) => {
             );
     }
 
-    pool.beginTransaction;
+    connection.beginTransaction;
 
-    const [result]: any = await pool.query(
+    const [result]: any = await connection.query(
         `
         INSERT INTO users (username, name, password, email, role, RefreshToken)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -66,12 +68,13 @@ export const POST = async (req: NextRequest) => {
         [adminUsername, adminName, adminPassword, adminEmail, "admin", null]
         );
 
-    pool.commit;
+    connection.commit;
+    connection.release();
     
     return NextResponse.json({ message: "Club added successfully", status: 200 });
 
   } catch (error) {
-    pool.rollback;
+    connection.rollback;
 
     return NextResponse.json({ message: error.message || "Server error", status: 500 });
   }

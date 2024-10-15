@@ -1,10 +1,44 @@
 import React from "react";
-import Link from 'next/link'
+import { useEffect } from "react";
+import Link from "next/link";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 import "./page.css";
 
 const page = () => {
+  const [clubData, setClubData] = React.useState([]);
 
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await axios.get("/api/getClubs", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
 
+        console.log(response);
+
+        if (response.status === 200) {
+          setClubData(response.data);
+        } else {
+          toast.error("Failed to fetch stats");
+        }
+      } catch (error) {
+        toast.error("Internal server error");
+      }
+    };
+
+    fetch();
+  }, []);
+
+  const techClubs = clubData.filter((club) => club.club_domain === "TEC");
+  const lchClubs = clubData.filter((club) => club.club_domain === "LCH");
+  const esoClubs = clubData.filter((club) => club.club_domain === "ESO");
+  const hieClubs = clubData.filter((club) => club.club_domain === "HIE");
+  const hwbClubs = clubData.filter((club) => club.club_domain === "HWB");
 
   return (
     <div className="HomeClubs clubs-list">
@@ -26,48 +60,15 @@ const page = () => {
               </div>
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
-                  <Link
-                    href="/clubs/TEC/ZeroOneCodeClub"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Zero One Code Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Aero Electric Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Agriculture Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Cryptography Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Cyber Security Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Design Sphere Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    WebApps Club
-                  </Link>
+                  {techClubs.map((club) => (
+                    <Link
+                      href={`/Clubpage/${club.id}`}
+                      className="HomeClubs-box-in-one-in-link"
+                      key={club.club_id}
+                    >
+                      {club.club_name}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
@@ -82,72 +83,15 @@ const page = () => {
 
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Adventure Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Arts Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Dance Club (Fusion)
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Dramatics Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Film Technology Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Handicrafts Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    KL Talks Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Literature Club (VACHAS)
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Music Club (Swara)
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Script Writing Club (Versatales)
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Standup Comedy
-                  </Link>
+                  {lchClubs.map((club) => (
+                    <Link
+                      href={`/Clubpage/${club.id}`}
+                      className="HomeClubs-box-in-one-in-link"
+                      key={club.club_id}
+                    >
+                      {club.club_name}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
@@ -162,48 +106,15 @@ const page = () => {
 
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Smart Village Revolution
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Electoral Literacy Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    KL SAC - Empower
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    KL-Radio Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Kutumb Society
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Ohana
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Yuva Tourism Club
-                  </Link>
+                  {esoClubs.map((club) => (
+                    <Link
+                      href={`/Clubpage/${club.id}`}
+                      className="HomeClubs-box-in-one-in-link"
+                      key={club.club_id}
+                    >
+                      {club.club_name}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
@@ -218,20 +129,15 @@ const page = () => {
 
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
-                  <Link legacyBehavior
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    <a target="_blank">
-                        KL ACIC
-                    </a>
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    KL TBI
-                  </Link>
+                  {hieClubs.map((club) => (
+                    <Link
+                      href={`/Clubpage/${club.id}`}
+                      className="HomeClubs-box-in-one-in-link"
+                      key={club.club_id}
+                    >
+                      {club.club_name}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
@@ -246,18 +152,15 @@ const page = () => {
 
               <div className="HomeClubs-box-in-one">
                 <div className="HomeClubs-box-in-one-in">
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Safe Life Club
-                  </Link>
-                  <Link
-                    href="#"
-                    className="HomeClubs-box-in-one-in-link"
-                  >
-                    Yoga Club
-                  </Link>
+                  {hwbClubs.map((club) => (
+                    <Link
+                      href={`/Clubpage/${club.id}`}
+                      className="HomeClubs-box-in-one-in-link"
+                      key={club.club_id}
+                    >
+                      {club.club_name}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

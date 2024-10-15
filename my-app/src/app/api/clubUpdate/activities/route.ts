@@ -8,6 +8,9 @@ import { withMiddleware } from "../../../../middleware/middleware"
 
 const postHandler = async (req: NextRequest) => {
 
+const connection = await pool.getConnection();
+
+
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -32,13 +35,15 @@ const postHandler = async (req: NextRequest) => {
             );
         }
 
-        const [result]: any = await pool.query(
+        const [result]: any = await connection.query(
             `Insert INTO activities (club_id, activity_name, activity_image, activity_date, activity_venue) VALUES (?, ?, ?, ?, ?)`,
             [clubId, activityImage, activityName, activityDate, activityVenue,]
         );
 
         const MY_KEY = `activities_${clubId}`;
         redisClient.del(MY_KEY);
+
+        connection.release();
 
         return NextResponse.json({ status: 200 });
 
@@ -50,6 +55,9 @@ const postHandler = async (req: NextRequest) => {
 
 
 const getHandler = async (req: NextRequest) => {
+
+const connection = await pool.getConnection();
+
 
   const { valid, payload } = await verifyJWT();
 
@@ -71,27 +79,37 @@ const getHandler = async (req: NextRequest) => {
         let clubData: any;
         let clubId: number;
 
+        
         if (!userData.role.includes('Admin')) {
-            leadId = userData.id;
-            clubData = await pool.query(
-                `SELECT id FROM clubs WHERE lead_id = ?`,
-                [leadId]
-            );
-            clubId = clubData[0][0].id
+          leadId = userData.id;
+          clubData = await connection.query(
+            `SELECT id FROM clubs WHERE lead_id = ?`,
+            [leadId]
+          );
+          clubId = clubData[0][0].id
         }
         else {
-            const body = await req.json();
-            clubId = body.clubId;
+          const body = await req.json();
+          clubId = body.clubId;
+        }
+
+        const MY_KEY = `activities_${clubId}`;
+
+        const data = await redisClient.get(MY_KEY);
+
+        if (data) {
+          return NextResponse.json(JSON.parse(data), { status: 200 });
         }
     
-        const [result]: any = await pool.query(
+        const [result]: any = await connection.query(
             `SELECT * FROM activities WHERE club_id = ? ORDER BY upload_at DESC LIMIT 4`,
             [clubId]
         );
 
-        const MY_KEY = `activities_${clubId}`;
 
         redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
+        
+        connection.release();
 
         return NextResponse.json(result, { status: 200 });
 
@@ -100,7 +118,6 @@ const getHandler = async (req: NextRequest) => {
     return NextResponse.json({ message: error}, { status: 500 });
   }
 };
-
 
 
 export const GET = withMiddleware(getHandler);

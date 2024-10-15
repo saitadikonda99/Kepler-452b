@@ -6,6 +6,8 @@ import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware";
 
 const handler = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
+
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -34,7 +36,7 @@ const handler = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const [users] = await pool.query(`
+    const [users] = await connection.query(`
         SELECT u.id, u.username, u.name, u.email, u.role, u.active,
           CASE 
               WHEN u.role = 'club_lead' THEN c.club_name
@@ -47,6 +49,8 @@ const handler = async (req: NextRequest) => {
     const usersData = users as any[];
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(users));
+
+    connection.release();
 
     return NextResponse.json(usersData, { status: 200 });
   } catch (error) {

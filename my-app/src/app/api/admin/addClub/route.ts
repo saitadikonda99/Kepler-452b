@@ -61,7 +61,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const userCheck: any = await pool.query(
+    const userCheck: any = await connection.query(
       `SELECT * FROM users WHERE username = ? OR email = ?`,
       [leadUsername, leadEmail]
     );
@@ -73,7 +73,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const clubCheck: any = await pool.query(
+    const clubCheck: any = await connection.query(
       `SELECT * FROM clubs WHERE club_name = ?`,
       [clubName]
     );
@@ -87,7 +87,7 @@ export const POST = async (req: NextRequest) => {
 
     await connection.beginTransaction();
 
-    const [result]: any = await pool.query(
+    const [result]: any = await connection.query(
       `
       INSERT INTO users (username, name, password, email, role, RefreshToken)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -98,7 +98,7 @@ export const POST = async (req: NextRequest) => {
     // Get the last inserted lead ID
     const leadId = (result as any).insertId;
 
-    const [club]: any = await pool.query(
+    const [club]: any = await connection.query(
       `
       INSERT INTO clubs (club_name, lead_id, club_domain, club_description, club_about, club_logo)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -117,9 +117,10 @@ export const POST = async (req: NextRequest) => {
     const clubId = (club as any).insertId;
 
     // Call the stored procedure to insert additional data
-    await pool.query("CALL AddClubData(?);", [clubId]);
+    await connection.query("CALL AddClubData(?);", [clubId]);
 
     await connection.commit();
+    connection.release();
 
     const MY_KEY = "getClubs";
 

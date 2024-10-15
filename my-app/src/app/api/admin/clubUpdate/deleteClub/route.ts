@@ -32,12 +32,13 @@ export const POST = async (req: NextRequest) => {
 
     connection.beginTransaction();
 
-        await pool.query(
+        await connection.query(
             `UPDATE clubs SET active = ? WHERE id = ?`
             ,[active, clubId]   
         );
 
     connection.commit();
+    connection.release();
 
     const MY_KEY = "getClubs";
     redisClient.del(MY_KEY);

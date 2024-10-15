@@ -26,7 +26,7 @@ const page = () => {
                 clubId: clubId,
                 Members: data.total_members,
                 Activities: data.total_activities,
-                Projects: data.total_projects
+                Projects: data.projects
             });   
         }
     }

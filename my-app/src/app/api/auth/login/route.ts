@@ -5,9 +5,14 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
+
+
 const isAuth = async (username: string, password: string) => {
+
+  const connection = await pool.getConnection();
+  
   try {
-    const user = await pool.query(
+    const user = await connection.query(
       `
             SELECT * FROM users
             WHERE username = ? 
@@ -16,6 +21,8 @@ const isAuth = async (username: string, password: string) => {
       [username, password]
     );
 
+    connection.release();
+
     return user[0];
   } catch (error) {
     return error;
@@ -23,6 +30,10 @@ const isAuth = async (username: string, password: string) => {
 };
 
 export const POST = async (req: NextRequest) => {
+
+const connection = await pool.getConnection();
+
+
   try {
     const { username, password } = await req.json();
     console.log(username, password);
@@ -39,7 +50,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const roles = await pool.query(
+    const roles = await connection.query(
       `SELECT role
              FROM users
              WHERE username = ?`,
@@ -80,7 +91,7 @@ export const POST = async (req: NextRequest) => {
 
     // save the refresh token into the database of the users table
 
-    await pool.query(
+    await connection.query(
       `UPDATE users
             SET RefreshToken = ?
             WHERE username = ?`,
@@ -98,6 +109,8 @@ export const POST = async (req: NextRequest) => {
       httpOnly: false,
       expires: expirationTime,
     });
+
+    connection.release();
 
     return NextResponse.json({
       message: "Authenticated",

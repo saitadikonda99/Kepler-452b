@@ -2,8 +2,12 @@ import { pool } from "../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../lib/verifyJWT";
 import { verifyRoles } from "../../../lib/verifyRoles";
+import { connect } from "http2";
 
 export const POST = async (req: NextRequest) => {
+
+const connection = await pool.getConnection();
+
   try {
 
     const { password, confirmPassword } = await req.json();
@@ -31,7 +35,7 @@ export const POST = async (req: NextRequest) => {
     }
 
 
-    const [userResult] = await pool.query(
+    const [userResult] = await connection.query(
       `
         UPDATE users
         SET password = ?
@@ -39,6 +43,8 @@ export const POST = async (req: NextRequest) => {
       `,
       [password, userData.id]  
     );
+
+    connection.release();
     
     return NextResponse.json({ status: 200, message: "Lead, club, and club data updated successfully" });
   } catch (error) {

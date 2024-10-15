@@ -8,6 +8,9 @@ import { withMiddleware } from "../../../../../middleware/middleware";
 const handleDelete = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
 
+  const connection = await pool.getConnection();
+
+
   if (!valid) {
     return NextResponse.json({ message: "Unauthorized", status: 401 });
   }
@@ -30,13 +33,15 @@ const handleDelete = async (req: NextRequest) => {
 
     console.log(userId);
 
-    const [result]: any = await pool.query(`DELETE FROM users WHERE id = ?`, [
+    const [result]: any = await connection.query(`DELETE FROM users WHERE id = ?`, [
       userId,
     ]);
 
     const MY_KEY = "manageUsers";
 
     redisClient.del(MY_KEY);
+
+    connection.release();
 
     return NextResponse.json({ message: "User deleted", status: 200 });
   } catch (error) {

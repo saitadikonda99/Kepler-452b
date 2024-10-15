@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 // imports start here
 import Sidebar from '../components/sidebar/sidebar'
@@ -8,11 +9,27 @@ import Footer from '../../components/footer/page'
 import './page.css'
 
 const page = ({ children }) => {
+
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    name: "",
+    role: "",
+});
+
+useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setUserDetails({
+        username: user.username,
+        name: user.name,
+        role: user.role,
+    });
+}, []);
+
   return (
     <div className="DashboardComponent">
       <div className="DashboardComponent-in">
         <div className="DashboardComponent-Nav">
-          <Navbar role={"Club Lead"} />
+          <Navbar userDetails={userDetails} />
         </div>
         <div className="DashboardComponent-one">
           <div className="DashboardComponent-one-in">

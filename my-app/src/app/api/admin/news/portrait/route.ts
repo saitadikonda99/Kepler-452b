@@ -8,6 +8,9 @@ const MY_KEY = "NewsPortrait";
 
 export const POST = async (req: any) => {
 
+  const connection = await pool.getConnection();
+
+
 
   const { valid, payload } = await verifyJWT();
 
@@ -38,7 +41,7 @@ export const POST = async (req: any) => {
 
     console.log(newsLink, clubName, newsContent, newsId);
 
-    const response = await pool.query(
+    const response = await connection.query(
       `
         INSERT INTO news_portrait (news_link, club_name, news_content)
         VALUES (?, ?, ?)
@@ -49,6 +52,7 @@ export const POST = async (req: any) => {
 
   redisClient.del(MY_KEY);
 
+  connection.release();
 
     return NextResponse.json({ message: "News created", status: 201 });
   } catch (error) {
@@ -58,6 +62,9 @@ export const POST = async (req: any) => {
 };
 
 export const GET = async (req: NextRequest) => {
+
+  const connection = await pool.getConnection();
+
   try {
 
     const data = await redisClient.get(MY_KEY);
@@ -66,13 +73,15 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const response = await pool.query(
+    const response = await connection.query(
       `
             SELECT * FROM news_portrait ORDER BY upload_at DESC LIMIT 4;
             `
     );
 
     const News_portrait = response[0];
+
+    connection.release();
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(News_portrait))
 
