@@ -6,7 +6,9 @@ import VisibilitySensor from "react-visibility-sensor";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-import { useParams } from 'next/navigation'
+import { useParams } from "next/navigation";
+
+import { FaqArray } from "../Faq";
 
 import "../page.css";
 
@@ -26,10 +28,8 @@ import { FaTwitter } from "react-icons/fa";
 import { FaThreads } from "react-icons/fa6";
 
 const page = () => {
-
   const clubId = useParams().ClubId;
 
-  const [clubData, setClubData] = React.useState({});
   const [activities, setActivities] = React.useState([]);
   const [glimpse, setGlimpse] = React.useState([]);
   const [clubImages, setClubImages] = React.useState([]);
@@ -37,6 +37,8 @@ const page = () => {
   const [stats, setStats] = React.useState([]);
   const [upcomingEvents, setUpcomingEvents] = React.useState([]);
   const [clubInfo, setClubInfo] = React.useState({});
+
+  console.log(clubImages)
 
   useEffect(() => {
     const fetch = async () => {
@@ -76,35 +78,20 @@ const page = () => {
     fetch();
   }, []);
 
-  console.log(activities)
-
-  const FaqArray = [
-    {
-      question: "What is ZeroOne Code Club?",
-      answer:
-        "The ZeroOne Code CLub is a student organization at the KL University at Vaddeswaram that aims to foster a community of coders and provide resources for students to learn and grow in the field of computer science.",
-    },
-    {
-      question: "How can I join ZeroOne Code Club?",
-      answer:
-        "You can join ZeroOne Code Club by attending our general meetings, collaborating with us in doing projects, workshops, etc which will take place every month. You can also join our telegram community to stay updated on events and opportunities.",
-    },
-    {
-      question: "What programming languages does ZeroOne Code Club teach?",
-      answer:
-        "ZeroOne COde CLub teaches a variety of programming languages, including Python, Java, C++, and more. We also offer workshops on web development, linux system administration, data science, and other topics.",
-    },
-    {
-      question: "What events does ZeroOne Code Club host?",
-      answer:
-        "ZeroOne Code Club hosts a variety of events, including workshops, hackathons, and socials. We also collaborate with other student organizations and companies to provide networking opportunities for our members.",
-    },
-    {
-      question: "How can I get involved with ZeroOne Code CLub?",
-      answer:
-        "You can get involved with ZeroOne Code Club by attending our events, joining a project team, or becoming an official member. We also welcome suggestions for new events and workshops that you would like to see.",
-    },
-  ];
+  const renderIcon = (name) => {
+    switch (name) {
+      case "Instagram":
+        return <FaInstagram className="connect-icon" />;
+      case "Twitter":
+        return <FaTwitter className="connect-icon" />;
+      case "LinkedIn":
+        return <FaLinkedin className="connect-icon" />;
+      case "Telegram":
+        return <FaTelegram className="connect-icon" />;
+      default:
+        return <FaTelegram className="connect-icon" />;
+    }
+  };
 
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -127,7 +114,10 @@ const page = () => {
 
         <div className="club-hero">
           <div className="club-hero-in">
-            <img src="" alt="image" />
+            <img 
+              src={clubImages[0]?.hero_img}
+              alt="image" 
+            />
 
             <div className="club-hero-in-description">
               <h1>{clubInfo.club_name}</h1>
@@ -277,7 +267,7 @@ const page = () => {
               <div className="Club-four-four-in">
                 <img
                   className="club-slider-image"
-                  src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2Fteam.png?alt=media&token=35deb554-4ed4-4d48-be40-841fce11eb65"
+                  src={clubImages[0]?.team_img}
                   alt="Sliding Image"
                 />
               </div>
@@ -294,7 +284,12 @@ const page = () => {
             <div className="Club-five-two">
               <div className="Club-five-two-in">
                 <div className="Club-five-two-one cm-club-stats">
-                  <CountUp start={0} duration={4} end={300} redraw={true}>
+                  <CountUp
+                    start={0}
+                    duration={4}
+                    end={stats[0]?.total_members}
+                    redraw={true}
+                  >
                     {({ countUpRef, start }) => (
                       <VisibilitySensor onChange={start} delayedCall>
                         <h1 ref={countUpRef} />
@@ -304,7 +299,12 @@ const page = () => {
                   <p>Members</p>
                 </div>
                 <div className="Club-five-two-two cm-club-stats">
-                  <CountUp start={1} duration={4} end={100} redraw={true}>
+                  <CountUp
+                    start={1}
+                    duration={4}
+                    end={stats[0]?.total_activities}
+                    redraw={true}
+                  >
                     {({ countUpRef, start }) => (
                       <VisibilitySensor onChange={start} delayedCall>
                         <h1 ref={countUpRef} />
@@ -314,7 +314,12 @@ const page = () => {
                   <p>Activities</p>
                 </div>
                 <div className="Club-five-two-three cm-club-stats">
-                  <CountUp start={1} duration={4} end={11} redraw={true}>
+                  <CountUp
+                    start={1}
+                    duration={4}
+                    end={stats[0]?.total_projects}
+                    redraw={true}
+                  >
                     {({ countUpRef, start }) => (
                       <VisibilitySensor onChange={start} delayedCall>
                         <h1 ref={countUpRef} />
@@ -408,48 +413,14 @@ const page = () => {
               </p>
             </div>
             <div className="ClubPage-six-four">
-              <FaInstagram
-                className="connect-icon"
-                onClick={() =>
-                  window.open(
-                    "https://www.instagram.com/zeroonedevs/",
-                    "_blank"
-                  )
-                }
-              />
-              <FaLinkedin
-                className="connect-icon"
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/company/zeroonecodeclub/posts/?feedView=all",
-                    "_blank"
-                  )
-                }
-              />
-              <FaTelegram
-                className="connect-icon"
-                onClick={() =>
-                  window.open("https://t.me/zeroOneCommunity", "_blank")
-                }
-              />
-              <FaTwitter
-                className="connect-icon"
-                onClick={() =>
-                  window.open(
-                    "https://x.com/zeroone_codes?t=8AZ3YeUGlFSDyGIYKwQYrw&s=35",
-                    "_blank"
-                  )
-                }
-              />
-              <FaThreads
-                className="connect-icon"
-                onClick={() =>
-                  window.open(
-                    "https://www.threads.net/@zeroonedevs?hl=en",
-                    "_blank"
-                  )
-                }
-              />
+              {socials.map(({ id, social_name, social_link }) => (
+                <div
+                  key={id}
+                  onClick={() => window.open(social_link, "_blank")}
+                >
+                  {renderIcon(social_name)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
