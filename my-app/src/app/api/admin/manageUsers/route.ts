@@ -28,13 +28,6 @@ const handler = async (req: NextRequest) => {
   }
 
   try {
-    const MY_KEY = "manageUsers";
-
-    const data = await redisClient.get(MY_KEY);
-
-    if (data) {
-      return NextResponse.json(JSON.parse(data), { status: 200 });
-    }
 
     const [users] = await connection.query(`
         SELECT u.id, u.username, u.name, u.email, u.role, u.active,
@@ -47,8 +40,6 @@ const handler = async (req: NextRequest) => {
     `);
 
     const usersData = users as any[];
-
-    redisClient.setEx(MY_KEY, 3600, JSON.stringify(users));
 
     connection.release();
 
