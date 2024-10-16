@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -5,6 +6,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import "./page.css";
+import { encryptClubId } from './encrypt'
+
 
 const page = () => {
   const [clubData, setClubData] = React.useState([]);
@@ -62,9 +65,9 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {techClubs.map((club) => (
                     <Link
-                      href={`/Clubpage/${club.id}`}
+                      href={`/clubPage/${encryptClubId(club.id)}`}
                       className="HomeClubs-box-in-one-in-link"
-                      key={club.club_id}
+                      key={club.id}
                     >
                       {club.club_name}
                     </Link>
@@ -85,7 +88,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {lchClubs.map((club) => (
                     <Link
-                      href={`/Clubpage/${club.id}`}
+                      href={`//${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >
@@ -108,7 +111,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {esoClubs.map((club) => (
                     <Link
-                      href={`/Clubpage/${club.id}`}
+                      href={`//${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >
@@ -131,7 +134,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {hieClubs.map((club) => (
                     <Link
-                      href={`/Clubpage/${club.id}`}
+                      href={`//${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >
@@ -154,7 +157,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {hwbClubs.map((club) => (
                     <Link
-                      href={`/Clubpage/${club.id}`}
+                      href={`//${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >

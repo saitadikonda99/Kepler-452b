@@ -11,6 +11,7 @@ import Navbar from "../../../components/navbar/navbar";
 import Footer from "../../../components/footer/page";
 
 import "./page.css";
+import Dashboard from "../../dashboard/dashboard";
 
 const page = () => {
   const [clubData, setClubData] = useState([]);
@@ -116,16 +117,7 @@ const page = () => {
   };
 
   return (
-    <div className="LeadUpdateComponent">
-      <div className="LeadUpdateComponent-in">
-        <div className="LeadUpdateComponent-Nav">
-          <Navbar />
-        </div>
-        <div className="LeadUpdateComponent-one">
-          <div className="LeadUpdateComponent-one-in">
-            <div className="LU-sideBar">
-              <Sidebar />
-            </div>
+        <Dashboard>
             <div className="LU-one">
               <select value={selectedClubName} onChange={handleSelectChange}>
                 <option value="" disabled>
@@ -183,16 +175,7 @@ const page = () => {
 
               <button onClick={handleSubmit}>Update</button>
             </div>
-          </div>
-        </div>
-
-        <div className="LeadUpdateComponent-Footer">
-          <div className="LeadUpdateComponent-Footer-in">
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </div>
+    </Dashboard>
   );
 };
 

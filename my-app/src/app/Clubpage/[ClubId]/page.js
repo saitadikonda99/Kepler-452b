@@ -15,6 +15,8 @@ import "../page.css";
 import ClubNavbar from "../../Components/Navbar/ClubpageNavbar";
 import Footer from "../../Components/Footer/page";
 
+import { decryptClubId } from "../../UI/clubs/encrypt"
+
 // import start here
 import { MdLocalActivity } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -28,7 +30,11 @@ import { FaTwitter } from "react-icons/fa";
 import { FaThreads } from "react-icons/fa6";
 
 const page = () => {
-  const clubId = useParams().ClubId;
+  const id = useParams().clubId;
+
+  const clubId = decryptClubId(id);
+
+  console.log(clubId)
 
   const [activities, setActivities] = React.useState([]);
   const [glimpse, setGlimpse] = React.useState([]);
@@ -38,7 +44,6 @@ const page = () => {
   const [upcomingEvents, setUpcomingEvents] = React.useState([]);
   const [clubInfo, setClubInfo] = React.useState({});
 
-  console.log(clubImages)
 
   useEffect(() => {
     const fetch = async () => {
@@ -71,6 +76,7 @@ const page = () => {
           toast.error("Failed to fetch stats");
         }
       } catch (error) {
+        console.log(error)
         toast.error("Internal server error");
       }
     };
