@@ -52,7 +52,7 @@ const page = () => {
         {/* Home Component */}
         <Home />
         {/* Home Stats */}
-        <Stats />
+        {/* <Stats /> */}
         {/* Home Domains */}
         <Domains />
 

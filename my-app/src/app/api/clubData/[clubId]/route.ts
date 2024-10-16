@@ -18,9 +18,7 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-
     connection.beginTransaction()
-
 
     // Fetching data from various tables, including the clubs table
 
@@ -83,16 +81,15 @@ const combinedResults = {
     clubInfo: clubInfo.length > 0 ? clubInfo[0] : null, // Get the first club info or null if not found
 };
 
-// If you prefer an array of results instead
-    const combinedResultsArray = [
-        { type: 'activities', data: activities },
-        { type: 'glimpse', data: glimpse },
-        { type: 'clubImages', data: clubImages },
-        { type: 'socials', data: socials },
-        { type: 'stats', data: stats },
-        { type: 'upcomingEvents', data: upcomingEvents },
-        { type: 'clubInfo', data: clubInfo.length > 0 ? clubInfo[0] : null }, // Add club info
-    ];
+const combinedResultsArray = [
+    { type: 'activities', data: activities },
+    { type: 'glimpse', data: glimpse },
+    { type: 'clubImages', data: clubImages },
+    { type: 'socials', data: socials },
+    { type: 'stats', data: stats },
+    { type: 'upcomingEvents', data: upcomingEvents },
+    { type: 'clubInfo', data: clubInfo.length > 0 ? clubInfo[0] : null }, // Add club info
+];
 
 
 
