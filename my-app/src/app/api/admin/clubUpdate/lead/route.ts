@@ -79,16 +79,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     connection.beginTransaction();
-
-    const [getClubLead]: any = await connection.query(
-      `SELECT lead_id FROM clubs WHERE club_name = ?`,
-      [clubName]
-    );
-
-    const clubLeadId = getClubLead[0].lead_id;
-
-    await connection.query(`UPDATE users SET active = 0 WHERE id = ?`, [clubLeadId]);
-
+  
     const [result]: any = await pool.query(
       `
         INSERT INTO users (username, name, password, email, role, RefreshToken)
@@ -124,6 +115,7 @@ export const POST = async (req: NextRequest) => {
     });
   } catch (error) {
     connection.rollback();
+    console.log(error)
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 };
