@@ -88,7 +88,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {lchClubs.map((club) => (
                     <Link
-                    href={`/clubPage/${club.id}`}
+                    href={`/Clubpage/${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >
@@ -111,7 +111,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {esoClubs.map((club) => (
                     <Link
-                      href={`/clubPage/${club.id}`}
+                      href={`/Clubpage/${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >
@@ -134,7 +134,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {hieClubs.map((club) => (
                     <Link
-                      href={`/clubPage/${club.id}`}
+                      href={`/Clubpage/${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >
@@ -157,7 +157,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {hwbClubs.map((club) => (
                     <Link
-                      href={`/clubPage/${club.id}`}
+                      href={`/Clubpage/${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.club_id}
                     >
