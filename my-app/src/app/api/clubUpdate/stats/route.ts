@@ -56,6 +56,8 @@ const getHandler = async (req: NextRequest) => {
 
   const userData: any = payload;
 
+  console.log('leadId', userData);
+
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
     "Admin",
