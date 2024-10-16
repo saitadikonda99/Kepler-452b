@@ -65,7 +65,7 @@ const page = () => {
                 <div className="HomeClubs-box-in-one-in">
                   {techClubs.map((club) => (
                     <Link
-                      href={`/clubPage/${club.id}`}
+                      href={`/Clubpage/${club.id}`}
                       className="HomeClubs-box-in-one-in-link"
                       key={club.id}
                     >

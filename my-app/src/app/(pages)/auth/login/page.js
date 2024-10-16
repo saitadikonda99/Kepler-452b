@@ -70,7 +70,10 @@ const Login = () => {
       }
       
       localStorage.setItem("user", JSON.stringify(user));
+
+      console.log(response)
     } catch (error) {
+      console.log(error)
       toast.error(error.response.data.message);
     }
   };
