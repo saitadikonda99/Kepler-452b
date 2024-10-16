@@ -30,9 +30,8 @@ import { FaTwitter } from "react-icons/fa";
 import { FaThreads } from "react-icons/fa6";
 
 const page = () => {
-  const id = useParams().clubId;
 
-  const clubId = decryptClubId(id);
+  const clubId = useParams().clubId;
 
   console.log(clubId)
 
