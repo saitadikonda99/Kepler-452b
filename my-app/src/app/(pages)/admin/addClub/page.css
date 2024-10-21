@@ -41,10 +41,11 @@
 }
 
 .AddClubComponent-two-in-two-a {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 0rem;
+  padding: 1rem 0rem 0rem 0rem;
 }
 
 .AddClubComponent-two-in-two-a-one , .AddClubComponent-two-in-two-a-two, .AddClubComponent-two-in-two-a-three {
@@ -53,13 +54,18 @@
 
 .AddClubComponent-two-in-two-a-one input , .AddClubComponent-two-in-two-a-two input, .AddClubComponent-two-in-two-a-three input {
   width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .AddClubComponent-two-in-two-b {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.2rem 0rem;
+  padding: 1rem 0rem 1rem 0rem;
   gap: 1.6rem;
 }
 
@@ -69,42 +75,64 @@
 
 .AddClubComponent-two-in-two-b-one input , .AddClubComponent-two-in-two-b-two input {
   width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
-.AddClubComponent-two-in-two-e {
-  padding-top: 0.7rem;
+.AddClubComponent-two-in-two-c {
+  width: 100%;
+  padding: 1rem 0rem 0rem 0rem;
+}
+
+.AddClubComponent-two-in-two-c-one {
+  width: 100%;
+}
+
+
+.AddClubComponent-two-in-two-d {
+  width: 100%;
   display: flex;
-  gap: 7rem;
-}
-
-.AddClubComponent-two-in-two-e-three {
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 1rem 0rem 1rem 0rem;
+  gap: 1.6rem;
+}
+
+.AddClubComponent-two-in-two-d-one, .AddClubComponent-two-in-two-d-two, .AddClubComponent-two-in-two-d-three {
+  width: 32%;
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-button {
-  width: 5rem;
-  font-size: 0.9rem;
-  border-radius: 0.3rem;
-  padding: 0.3rem;
-  color: white;
-  background-color: green;
-  cursor: pointer;
-  border: none;
-}
-
-select {
-  padding: 0.6rem;
-  border-radius: 0.5rem;
-  width: 9rem;
-  border: 0.1rem solid rgb(168, 168, 168);
-}
-
-input {
+.AddClubComponent-two-in-two-d-one input {
   width: 100%;
   padding: 0.8rem;
   border: 0.1px solid gray;
   border-radius: 5px;
   font-size: 1rem;
 }
+
+.AddClubComponent-two-in-two-d-two select {
+  width: 100%; 
+  padding: 0.8rem; 
+  border: 0.1px solid gray; 
+  border-radius: 5px;
+  font-size: 1rem; 
+  background-color: white; 
+  appearance: none;
+}
+
+.AddClubComponent-two-in-two-d-three button {
+  width: 50%;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0.8rem; 
+  color: white;
+  background-color: green;
+  cursor: pointer;
+  border: none;
+}
+

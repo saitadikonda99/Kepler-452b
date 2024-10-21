@@ -146,14 +146,15 @@ const Page = () => {
                     />
                   </div>
                 </div>
-                <div className="AddClubComponent-two-in-two-d">
-                  <div className="AddClubComponent-two-in-two-d-one">
+
+                <div className="AddClubComponent-two-in-two-c">
+                  <div className="AddClubComponent-two-in-two-c-one">
                     <h3>Club details</h3>
                   </div>
                 </div>
 
-                <div className="AddClubComponent-two-in-two-e">
-                  <div className="AddClubComponent-two-in-two-e-one">
+                <div className="AddClubComponent-two-in-two-d">
+                  <div className="AddClubComponent-two-in-two-d-one">
                     {/* <p>Enter name of the club:</p>  */}
                     <input
                       type="text"
@@ -164,7 +165,7 @@ const Page = () => {
                     />
                   </div>
 
-                  <div className="AddClubComponent-two-in-two-e-two">
+                  <div className="AddClubComponent-two-in-two-d-two">
                     {/* <p>Select the domain</p>  */}
                     <select
                       name="clubDomain"
@@ -180,10 +181,12 @@ const Page = () => {
                     </select>
                   </div>
 
-                  <div className="AddClubComponent-two-in-two-e-three">
+                  <div className="AddClubComponent-two-in-two-d-three">
                     <button onClick={handleSubmit}>Add Club</button>
                   </div>
                 </div>
+
+
               </div>
             </div>
           </div>
