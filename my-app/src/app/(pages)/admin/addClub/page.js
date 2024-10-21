@@ -82,7 +82,7 @@ const Page = () => {
       <div className="AddClub">
         <div className="AddClubComponent">
           <div className="AddClubComponent-one">
-            <h1>AddClub</h1>
+            <h1>Create a new club</h1>
           </div>
           <div className="AddClubComponent-two">
             <div className="AddClubComponent-two-in">
