@@ -6,7 +6,7 @@ import axios from "axios";
 import "./page.css";
 
 // import components here
-import Dashboard from '../dashboard/dashboard'
+import Dashboard from "../dashboard/dashboard";
 
 const Page = () => {
   const [clubData, setClubData] = useState({
@@ -27,9 +27,9 @@ const Page = () => {
         },
         withCredentials: true,
       });
-  
+
       console.log(response);
-  
+
       if (response.status === 200) {
         toast.success("Club added successfully");
       } else {
@@ -45,7 +45,6 @@ const Page = () => {
         clubDomain: "",
         clubName: "",
       });
-
     } catch (error) {
       if (error?.response) {
         switch (error.response.status) {
@@ -55,10 +54,10 @@ const Page = () => {
           case 401:
             toast.error("All fields are required");
             break;
-          case 409: 
+          case 409:
             toast.error(error.response.data.message || "User already exists");
             break;
-          case 500: 
+          case 500:
             toast.error("Server error, please try again later");
             break;
           default:
@@ -69,7 +68,6 @@ const Page = () => {
       }
     }
   };
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,24 +78,22 @@ const Page = () => {
   };
 
   return (
-      <Dashboard>
-          <div className="AddClub">
-            <div className="AddClubComponent">
-              <div className="AddClubComponent-one">
-                <h1>AddClub</h1>
-                <p>Please carefully enter the details</p>
+    <Dashboard>
+      <div className="AddClub">
+        <div className="AddClubComponent">
+          <div className="AddClubComponent-one">
+            <h1>AddClub</h1>
+          </div>
+          <div className="AddClubComponent-two">
+            <div className="AddClubComponent-two-in">
+              <div className="AddClubComponent-two-in-one">
+                <h3>Club Lead Details</h3>
               </div>
-              <div className="AddClubComponent-two">
-                <div className="AddClubComponent-two-in">
-                  <div className="AddClubComponent-two-in-one" >
-                  <h3>Club Lead Details</h3>
-                    <p>Enter the Club lead details</p>
-                  </div>
-                  
-                 <div className="AddClubComponent-two-in-two">
+
+              <div className="AddClubComponent-two-in-two">
                 <div className="AddClubComponent-two-in-two-a">
-                  <div className="AddClubComponent-two-in-two-a-one" id="inputbox">
-                    <p>Enter Lead Username:</p>
+                  <div className="AddClubComponent-two-in-two-a-one">
+                    {/* <p>Enter Lead Username:</p>  */}
                     <input
                       type="text"
                       placeholder="Username should be University id"
@@ -106,9 +102,9 @@ const Page = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  
-                  <div className="AddClubComponent-two-in-two-a-two" id="inputbox">
-                  <p>Enter Lead name:</p>
+
+                  <div className="AddClubComponent-two-in-two-a-two">
+                    {/* <p>Enter Lead name:</p>  */}
                     <input
                       type="text"
                       placeholder="Lead name"
@@ -117,8 +113,8 @@ const Page = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="AddClubComponent-two-in-two-b-one" id="inputbox">
-                  <p>Enter Lead email:</p>
+                  <div className="AddClubComponent-two-in-two-a-three">
+                    {/* <p>Enter Lead email:</p>  */}
                     <input
                       type="email"
                       placeholder="Lead email"
@@ -127,10 +123,10 @@ const Page = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  </div>
-                  <div className="AddClubComponent-two-in-two-c">
-                  <div className="AddClubComponent-two-in-two-c-one" id="inputbox">
-                  <p>Enter Lead password:</p>
+                </div>
+                <div className="AddClubComponent-two-in-two-b">
+                  <div className="AddClubComponent-two-in-two-b-one">
+                    {/* <p>Enter Lead password:</p>  */}
                     <input
                       type="password"
                       placeholder="Lead password"
@@ -139,8 +135,8 @@ const Page = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="AddClubComponent-two-in-two-c-two" id="inputbox">
-                  <p>Confirm password:</p>
+                  <div className="AddClubComponent-two-in-two-b-two">
+                    {/* <p>Confirm password:</p>  */}
                     <input
                       type="email"
                       placeholder="Lead confirm password"
@@ -149,17 +145,16 @@ const Page = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  </div>
-                  <div className="AddClubComponent-two-in-two-d">
+                </div>
+                <div className="AddClubComponent-two-in-two-d">
                   <div className="AddClubComponent-two-in-two-d-one">
                     <h3>Club details</h3>
-                    <p>Enter the club details</p>
                   </div>
-                  </div>
-                  
-                  <div className="AddClubComponent-two-in-two-e">
-                  <div className="AddClubComponent-two-in-two-e-one" id="inputbox">
-                  <p>Enter name of the club:</p>
+                </div>
+
+                <div className="AddClubComponent-two-in-two-e">
+                  <div className="AddClubComponent-two-in-two-e-one">
+                    {/* <p>Enter name of the club:</p>  */}
                     <input
                       type="text"
                       value={clubData.clubName}
@@ -169,8 +164,8 @@ const Page = () => {
                     />
                   </div>
 
-                  <div className="AddClubComponent-two-in-two-e-two" id="inputbox">
-                    <p>Select the domain</p>
+                  <div className="AddClubComponent-two-in-two-e-two">
+                    {/* <p>Select the domain</p>  */}
                     <select
                       name="clubDomain"
                       value={clubData.clubDomain}
@@ -188,16 +183,13 @@ const Page = () => {
                   <div className="AddClubComponent-two-in-two-e-three">
                     <button onClick={handleSubmit}>Add Club</button>
                   </div>
-
-                  </div>
-                  </div>
-                  
                 </div>
-                
               </div>
             </div>
-            </div>
-      </Dashboard>
+          </div>
+        </div>
+      </div>
+    </Dashboard>
   );
 };
 

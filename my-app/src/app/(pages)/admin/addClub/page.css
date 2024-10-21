@@ -1,18 +1,7 @@
-*{
+* {
   padding: 0%;
   margin: 0%;
   box-sizing: border-box;
-}
-
-input{
-  padding: 0.6rem;
-  border-radius: 0.3rem;
-  width: 16rem;
-  border: 0.1rem solid rgb(168, 168, 168);
-}
-
-#inputbox{
-  padding-bottom: 1rem;
 }
 
 .AddClub {
@@ -20,61 +9,81 @@ input{
   justify-content: center;
   align-items: center;
 }
-.AddClubComponent{
-  /* gap:2rem; */
+
+.AddClubComponent {
+  width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
 }
 
-.AddClubComponent-one{
+.AddClubComponent-one {
   padding: 0rem 2.5rem;
   background-color: black;
   width: 100%;
-  justify-content:center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   color: white;
 }
 
-.AddClubComponent-two{
+.AddClubComponent-two {
   width: 100%;
-  padding: 1rem 2.5rem;
+  padding: 1rem;
 }
 
-.AddClubComponent-two-in-one{
+.AddClubComponent-two-in-one {
+  width: 100%;
+}
+
+.AddClubComponent-two-in-two {
+  width: 100%;
+}
+
+.AddClubComponent-two-in-two-a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 0rem;
+}
+
+.AddClubComponent-two-in-two-a-one , .AddClubComponent-two-in-two-a-two, .AddClubComponent-two-in-two-a-three {
+  width: 32%;
+}
+
+.AddClubComponent-two-in-two-a-one input , .AddClubComponent-two-in-two-a-two input, .AddClubComponent-two-in-two-a-three input {
+  width: 100%;
+}
+
+.AddClubComponent-two-in-two-b {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.2rem 0rem;
+  gap: 1.6rem;
+}
+
+.AddClubComponent-two-in-two-b-one , .AddClubComponent-two-in-two-b-two {
+  width: 32%;
+}
+
+.AddClubComponent-two-in-two-b-one input , .AddClubComponent-two-in-two-b-two input {
+  width: 100%;
+}
+
+.AddClubComponent-two-in-two-e {
   padding-top: 0.7rem;
-}
-
-.AddClubComponent-two-in-two{
-  padding-top: 1rem;
-}
-
-.AddClubComponent-two-in-two-a{
   display: flex;
   gap: 7rem;
 }
 
-.AddClubComponent-two-in-two-c{
+.AddClubComponent-two-in-two-e-three {
+  align-items: center;
+  justify-content: center;
   display: flex;
-  gap: 7rem;
 }
 
-
-.AddClubComponent-two-in-two-e{
-  padding-top: 0.7rem;
-  display: flex;
-  gap: 7rem;
-}
-
-.AddClubComponent-two-in-two-e-three{
-align-items: center;
-justify-content: center;
-display: flex;
-}
-
-button{
+button {
   width: 5rem;
   font-size: 0.9rem;
   border-radius: 0.3rem;
@@ -85,9 +94,17 @@ button{
   border: none;
 }
 
-select{
-    padding: 0.6rem;
-    border-radius: 0.5rem;
-    width: 9rem;
-    border: 0.1rem solid  rgb(168, 168, 168);
+select {
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  width: 9rem;
+  border: 0.1rem solid rgb(168, 168, 168);
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
 }
