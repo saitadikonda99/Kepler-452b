@@ -7,27 +7,22 @@ import { cookies } from "next/headers";
 
 
 
-const isAuth = async (username: string, password: string) => {
-
-  const connection = await pool.getConnection();
+const isAuth = async (connection, username, password) => {
+  const user = await connection.query(
+    `SELECT username, name, role, active, id 
+     FROM users 
+     WHERE username = ? AND password = ?
+     LIMIT 1`,
+    [username, password]
+  );
   
-  try {
-    const user = await connection.query(
-      `
-            SELECT * FROM users
-            WHERE username = ? 
-            AND password = ?
-            `,
-      [username, password]
-    );
-
-    connection.release();
-
-    return user[0];
-  } catch (error) {
-    return error;
+  if (user.length === 0) {
+    return null;
   }
+
+  return user[0];
 };
+
 
 export const POST = async (req: NextRequest) => {
 
@@ -38,40 +33,25 @@ const connection = await pool.getConnection();
     const { username, password } = await req.json();
     console.log(username, password);
 
-    const user = await isAuth(username, password);
+    const user = await isAuth(connection, username, password);
 
+    
+    if (!user || user.length === 0) {
+      return NextResponse.json({ message: "Invalid Credentials" }, { status: 401 });
+    }
+    
     const Authenticated = user as any[];
 
-    if (Authenticated.length === 0) {
-      // send status 401 if user is not found
-      return NextResponse.json(
-        { message: "Invalid Credentials" },
-        { status: 401 }
-      );
-    }
-
-    const roles = await connection.query(
-      `SELECT role
-             FROM users
-             WHERE username = ?`,
-      [Authenticated[0].username]
-    );
-
-    const role = roles[0] as any[];
-
     if (Authenticated[0].active === 0) {
-      return NextResponse.json(
-        { message: "Your account is suspended contact SAC Department" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "Account suspended" }, { status: 404 });
     }
-  
+
     // create a JWT token
     const accessToken = jwt.sign(
       {
         username: Authenticated[0].username,
         name: Authenticated[0].name,
-        role: [role[0].role],
+        role: Authenticated[0].role,
         id: Authenticated[0].id,
       },
       process.env.ACCESS_TOKEN_SECRET as string,
@@ -82,7 +62,7 @@ const connection = await pool.getConnection();
       {
         username: Authenticated[0].username,
         name: Authenticated[0].name,
-        role: [role[0].role],
+        role: Authenticated[0].role,
         id: Authenticated[0].id,
       },
       process.env.REFRESH_TOKEN_SECRET as string,
@@ -117,7 +97,7 @@ const connection = await pool.getConnection();
       id: Authenticated[0].id,
       username: Authenticated[0].username,
       name: Authenticated[0].name,
-      role: role[0].role,
+      role: Authenticated[0].role,
       accessToken: accessToken,
       refreshToken: refreshToken,
     });

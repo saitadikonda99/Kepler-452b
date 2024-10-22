@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -16,6 +16,13 @@ const Login = () => {
     username: "",
     password: "",
   });
+
+  // Prefetch possible destination routes
+  useEffect(() => {
+    router.prefetch("/admin/home");
+    router.prefetch("/lead/home");
+    router.prefetch("/");
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,7 +41,30 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        const role = response.data.role;
+
+        const user = {
+          id: response.data.id,
+          name: response.data.name,
+          username: response.data.username,
+          role: response.data.role,
+        };
+  
+        localStorage.setItem("user", JSON.stringify(user));
         toast.success("Login successful");
+
+        // Use router.push without await for faster perceived navigation
+        switch (role) {
+          case "Admin":
+            router.push("/admin/home");
+            break;
+          case "club_lead":
+            router.push("/lead/home");
+            break;
+          default:
+            router.push("/");
+            break;
+        }
       }
 
       if (response.data.status === 401) {
@@ -47,29 +77,6 @@ const Login = () => {
       if (response.data.status === 401) {
         toast.error(response.data.message);
       }
-
-      const role = response.data.role;
-
-      const user = {
-        id: response.data.id,
-        name: response.data.name,
-        username: response.data.username,
-        role: response.data.role,
-      };
-
-      switch (role) {
-        case "Admin":
-          router.push("/admin/home");
-          break;
-        case "club_lead":
-          router.push("/lead/home");
-          break;
-        default:
-          router.push("/");
-          break;
-      }
-      
-      localStorage.setItem("user", JSON.stringify(user));
 
       console.log(response)
     } catch (error) {

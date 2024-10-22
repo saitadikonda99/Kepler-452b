@@ -22,8 +22,8 @@ export async function middleware(req: NextRequest) {
 
   const { valid, payload } = await verifyJWT();
 
-  
-  const role = userData?.role[0];
+  console.log(userData)
+  const role = userData?.role;
 
   if (!valid && path !== isPublic && path !== "/auth/login") {
     const url = req.nextUrl.clone();
