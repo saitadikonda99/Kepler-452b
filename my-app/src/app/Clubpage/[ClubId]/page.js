@@ -31,9 +31,7 @@ import { FaThreads } from "react-icons/fa6";
 
 const page = () => {
 
-  const clubId = useParams().clubId;
-
-  console.log(clubId)
+  const clubId = useParams().ClubId;
 
   const [activities, setActivities] = React.useState([]);
   const [glimpse, setGlimpse] = React.useState([]);
@@ -47,12 +45,7 @@ const page = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await axios.get(`/api/clubData/${clubId}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
+        const response = await axios.get(`/api/clubData/${clubId}`);
 
         if (response.status === 200) {
           const data = response.data;

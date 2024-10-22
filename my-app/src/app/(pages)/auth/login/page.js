@@ -17,12 +17,6 @@ const Login = () => {
     password: "",
   });
 
-  // Prefetch possible destination routes
-  useEffect(() => {
-    router.prefetch("/admin/home");
-    router.prefetch("/lead/home");
-    router.prefetch("/");
-  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
