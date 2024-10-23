@@ -9,7 +9,7 @@ import Dashboard from "../dashboard/dashboard";
 
 import "./page.css";
 
-const page = () => {
+const Page = () => {
 
   const [usersData, setUsersData] = useState([]);
 
@@ -30,13 +30,13 @@ const page = () => {
 
       if (response.status === 200) {
         toast.success("User deleted successfully");
-
-        const updatedUsersData = usersData.filter((user) => user.id !== userId);
-
-        setUsersData(updatedUsersData);
+        setUsersData((prevData) => prevData.filter((user) => user.id !== userId));
+      } else {
+        toast.error(response.data.message || "Failed to delete user");
       }
     } catch (error) {
-      toast.error("Internal server error");
+      console.error("Error deleting user:", error);
+      toast.error(error.response?.data?.message || "Failed to delete user");
     }
   };
 
@@ -53,11 +53,11 @@ const page = () => {
         if (response.status === 200) {
           setUsersData(response.data);
         } else {
-          toast.error("Failed to fetch events");
+          toast.error(response.data.message || "Failed to fetch users");
         }
       } catch (error) {
-        console.log(error);
-        toast.error("Internal server error");
+        console.error("Error fetching users:", error);
+        toast.error(error.response?.data?.message || "Failed to fetch users");
       }
     };
 
@@ -77,23 +77,19 @@ const page = () => {
         }
       );
 
-      if (response.data.status === 200) {
+      if (response.status === 200) {
         toast.success(response.data.message);
-        const updatedUsersData = usersData.map((user) => {
-          if (user.id === userId) {
-            return {
-              ...user,
-              active: active,
-            };
-          }
-          return user;
-        });
-        setUsersData(updatedUsersData);
+        setUsersData((prevData) =>
+          prevData.map((user) =>
+            user.id === userId ? { ...user, active } : user
+          )
+        );
       } else {
-        toast.error("Failed to hold the user");
+        toast.error(response.data.message || "Failed to update user status");
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error updating user status:", error);
+      toast.error(error.response?.data?.message || "Failed to update user status");
     }
   };
 
@@ -171,4 +167,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

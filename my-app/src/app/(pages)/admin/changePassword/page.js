@@ -23,25 +23,38 @@ const Page = () => {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post("/api/changePassword", details, {
+      const response = await axios.post("/api/admin/changePassword", details, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       });
 
-      console.log(response);
-
-      if (response.data.status === 200) {
+      if (response.status === 200) {
         toast.success("Password changed successfully");
-      } else {
-        toast.error("Invalid details");
+        // Reset form or redirect as needed
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+      if (error.response) {
+        switch (error.response.status) {
+          case 400:
+            toast.error(error.response.data.message || "Bad request");
+            break;
+          case 401:
+            toast.error("Unauthorized");
+            break;
+          case 403:
+            toast.error("Forbidden");
+            break;
+          default:
+            toast.error("An error occurred while changing the password");
+        }
+      } else {
+        toast.error("An error occurred while changing the password");
+      }
     }
   };
 

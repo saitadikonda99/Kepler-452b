@@ -32,7 +32,6 @@ const page = () => {
   };
 
     const handleSubmit = async () => {  
-
         try {
             const response = await axios.post("/api/admin/addAdmin", adminData, {
                 headers: {
@@ -54,9 +53,9 @@ const page = () => {
             if (error?.response) {
                 switch (error.response.status) {
                     case 400:
-                        toast.error("passwords do not match");
+                        toast.error(error.response.data.message || "Bad request");
                         break;
-                    case 401:
+                    case 409:
                         toast.error("Admin already exists");
                         break;
                     default:
