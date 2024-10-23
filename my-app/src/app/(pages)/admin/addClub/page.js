@@ -19,7 +19,8 @@ const Page = () => {
     clubName: "",
   });
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post("/api/admin/addClub", clubData, {
         headers: {
@@ -28,43 +29,30 @@ const Page = () => {
         withCredentials: true,
       });
 
-      console.log(response);
-
       if (response.status === 200) {
         toast.success("Club added successfully");
-      } else {
-        toast.error("Something went wrong");
+        // Reset form or redirect as needed
       }
-
-      setClubData({
-        leadUsername: "",
-        leadPassword: "",
-        leadConfirmPassword: "",
-        leadName: "",
-        leadEmail: "",
-        clubDomain: "",
-        clubName: "",
-      });
     } catch (error) {
-      if (error?.response) {
+      if (error.response) {
         switch (error.response.status) {
           case 400:
-            toast.error("passwords do not match");
+            toast.error(error.response.data.message || "Bad request");
             break;
           case 401:
-            toast.error("All fields are required");
+            toast.error("Unauthorized");
+            break;
+          case 403:
+            toast.error("Forbidden");
             break;
           case 409:
-            toast.error(error.response.data.message || "User already exists");
-            break;
-          case 500:
-            toast.error("Server error, please try again later");
+            toast.error("Club already exists");
             break;
           default:
-            toast.error(error.response.data.message || "Something went wrong");
+            toast.error("An error occurred while adding the club");
         }
       } else {
-        toast.error("Network error, please check your connection");
+        toast.error("An error occurred while adding the club");
       }
     }
   };

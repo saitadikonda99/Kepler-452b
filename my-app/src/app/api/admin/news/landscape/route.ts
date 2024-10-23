@@ -6,33 +6,24 @@ import { verifyRoles } from "../../../../../lib/verifyRoles";
 
 const MY_KEY = "NewsLandscape";
 
-export const POST = async (req: any) => {
-
-  const connection = await pool.getConnection();
-
-  const { valid, payload } = await verifyJWT();
-
-  if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
-  }
-
-  if (!payload) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
-  }
-
-  const { authorized, reason: roleReason } = verifyRoles(
-    { ...payload, role: payload.role || "User" },
-    "Admin"
-  );
-
-  if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
-  }
-
+export const POST = async (req: NextRequest) => {
   try {
-    const { newsId, newsLink, clubName, newsContent } = await req.json();
+    const { valid, payload } = await verifyJWT();
 
-    console.log(newsLink, clubName, newsContent, newsId);
+    if (!valid || !payload) {
+      return NextResponse.json({ message: "Unauthorized", status: 401 });
+    }
+
+    const { authorized, reason: roleReason } = verifyRoles(
+      { ...payload, role: payload.role || "User" },
+      "Admin"
+    );
+
+    if (!authorized) {
+      return NextResponse.json({ message: roleReason, status: 403 });
+    }
+
+    const { newsId, newsLink, clubName, newsContent } = await req.json();
 
     if (!newsLink || !clubName || !newsContent || !newsId) {
       return NextResponse.json({
@@ -41,28 +32,31 @@ export const POST = async (req: any) => {
       });
     }
 
-    const response = await connection.query(
-      `
-        INSERT INTO news_landscape (news_link, club_name, news_content)
-        VALUES (?, ?, ?)
-      `,
-      [newsLink, clubName, newsContent, newsId]
-    );
-  
-    redisClient.del(MY_KEY);
+    const connection = await pool.getConnection();
 
-    connection.release();
+    try {
+      await connection.query(
+        `
+        UPDATE news_landscape 
+        SET news_link = ?, club_name = ?, news_content = ?
+        WHERE id = ?
+        `,
+        [newsLink, clubName, newsContent, newsId]
+      );
 
-    return NextResponse.json({ message: "News created", status: 200 });
+      await redisClient.del(MY_KEY);
+
+      return NextResponse.json({ message: "News updated successfully", status: 200 });
+    } finally {
+      connection.release();
+    }
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ message: error, status: 500 });
+    console.error("Error in POST /api/admin/news/landscape:", error);
+    return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 };
 
 export const GET = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
-
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -70,19 +64,21 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const response = await connection.query(
-      `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
-    );
+    const connection = await pool.getConnection();
 
-    const News_landscape = response[0];
+    try {
+      const [news] = await connection.query(
+        `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
+      );
 
-    redisClient.setEx(MY_KEY, 3600, JSON.stringify(News_landscape));
+      await redisClient.setEx(MY_KEY, 3600, JSON.stringify(news));
 
-    connection.release();
-
-    return NextResponse.json(News_landscape, { status: 200 });
+      return NextResponse.json(news, { status: 200 });
+    } finally {
+      connection.release();
+    }
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ message: error, status: 500 });
+    console.error("Error in GET /api/admin/news/landscape:", error);
+    return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 };

@@ -1,27 +1,33 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import toast from "react-hot-toast";
+import Dashboard from "../dashboard/dashboard";
 import "./page.css";
 
 // import components here
-import Dashboard from "../dashboard/dashboard";
-import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const [clubData, setClubData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("/api/admin/getClubDetails", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      try {
+        const response = await axios.get("/api/admin/getClubDetails", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
 
-      if (response.status === 200) {
-        setClubData(response.data);
+        if (response.status === 200) {
+          setClubData(response.data);
+        } else {
+          toast.error("Failed to fetch club details");
+        }
+      } catch (error) {
+        console.error("Error fetching club details:", error);
+        toast.error(error.response?.data?.message || "An error occurred while fetching club details");
       }
     };
 
@@ -41,23 +47,19 @@ const page = () => {
         }
       );
 
-      if (response.data.status === 200) {
+      if (response.status === 200) {
         toast.success(response.data.message);
-        const updatedClubData = clubData.map((club) => {
-          if (club.club_id === clubId) {
-            return {
-              ...club,
-              active: active,
-            };
-          }
-          return club;
-        });
-        setClubData(updatedClubData);
+        setClubData(prevData =>
+          prevData.map(club =>
+            club.club_id === clubId ? { ...club, active } : club
+          )
+        );
       } else {
-        toast.error("Failed to delete the club");
+        toast.error(response.data.message || "Failed to update club status");
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error updating club status:", error);
+      toast.error(error.response?.data?.message || "An error occurred while updating club status");
     }
   };
 
@@ -139,4 +141,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

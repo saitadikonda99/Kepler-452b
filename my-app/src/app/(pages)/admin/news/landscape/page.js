@@ -23,13 +23,10 @@ const Page = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api/admin/news/landscape');
-        if (response.status === 200) {
-          setNewsData(response.data);
-        } else {
-          toast.error("Failed to fetch news");
-        }
+        setNewsData(response.data);
       } catch (error) {
-        toast.error("Internal server error");
+        console.error("Error fetching landscape news:", error);
+        toast.error(error.response?.data?.message || "Failed to fetch news");
       }
     };
     fetchData();
@@ -72,11 +69,11 @@ const Page = () => {
           )
         );
       } else {
-        toast.error("Failed to update news");
+        toast.error(response.data.message || "Failed to update news");
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Error updating the news");
+      console.error("Error updating the news:", error);
+      toast.error(error.response?.data?.message || "Error updating the news");
     }
   };
 

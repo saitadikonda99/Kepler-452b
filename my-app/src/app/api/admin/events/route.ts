@@ -6,29 +6,24 @@ import { verifyRoles } from "../../../../lib/verifyRoles";
 
 const MY_KEY = "HomeEvents";
 
-export const POST = async (req: any) => {
-  const { valid, payload } = await verifyJWT();
-
-  if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
-  }
-
-  if (!payload) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
-  }
-
-  const { authorized, reason: roleReason } = verifyRoles(
-    { ...payload, role: payload.role || "User" },
-    "Admin"
-  );
-
-  if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
-  }
-
+export const POST = async (req: NextRequest) => {
   try {
-    const { eventId, eventLink, eventName, eventDate, eventVenue } =
-      await req.json();
+    const { valid, payload } = await verifyJWT();
+
+    if (!valid || !payload) {
+      return NextResponse.json({ message: "Unauthorized", status: 401 });
+    }
+
+    const { authorized, reason: roleReason } = verifyRoles(
+      { ...payload, role: payload.role || "User" },
+      "Admin"
+    );
+
+    if (!authorized) {
+      return NextResponse.json({ message: roleReason, status: 403 });
+    }
+
+    const { eventId, eventLink, eventName, eventDate, eventVenue } = await req.json();
 
     if (!eventLink || !eventName || !eventDate || !eventVenue || !eventId) {
       return NextResponse.json({
@@ -37,27 +32,31 @@ export const POST = async (req: any) => {
       });
     }
 
-    const response = await pool.query(
-      `
-          INSERT INTO events (event_link, event_name, event_date, event_venue)
-          VALUES (?, ?, ?, ?)
-            `,
-      [eventLink, eventName, eventDate, eventVenue, eventId]
-    );
+    const connection = await pool.getConnection();
 
-    redisClient.del(MY_KEY);
+    try {
+      await connection.query(
+        `
+        UPDATE events 
+        SET event_link = ?, event_name = ?, event_date = ?, event_venue = ?
+        WHERE id = ?
+        `,
+        [eventLink, eventName, eventDate, eventVenue, eventId]
+      );
 
-    return NextResponse.json({ message: "Event created", status: 200 });
+      await redisClient.del(MY_KEY);
+
+      return NextResponse.json({ message: "Event updated successfully", status: 200 });
+    } finally {
+      connection.release();
+    }
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ message: error, status: 500 });
+    console.error("Error in POST /api/admin/events:", error);
+    return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 };
 
 export const GET = async (req: NextRequest) => {
-
-  const connection = await pool.getConnection();
-  
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -65,21 +64,23 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const response = await connection.query(
-      `
+    const connection = await pool.getConnection();
+
+    try {
+      const [events] = await connection.query(
+        `
         SELECT * FROM events ORDER BY upload_at DESC LIMIT 4;
-      `
-    );
+        `
+      );
 
-    const events = response[0];
+      await redisClient.setEx(MY_KEY, 3600, JSON.stringify(events));
 
-    connection.release();
-
-    redisClient.setEx(MY_KEY, 3600, JSON.stringify(events));
-
-    return NextResponse.json(events, { status: 200 });
+      return NextResponse.json(events, { status: 200 });
+    } finally {
+      connection.release();
+    }
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ message: error, status: 500 });
+    console.error("Error in GET /api/admin/events:", error);
+    return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 };

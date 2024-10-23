@@ -55,20 +55,20 @@ const Page = () => {
         withCredentials: true,
       });
 
-      if (response.data.status === 200) {
+      if (response.status === 200) {
         toast.success("Event updated successfully!");
         setShow(false);
         setEventData((prevData) =>
           prevData.map((event) =>
-            event.event_id === updateData.eventId ? { ...event, ...updateData } : event
+            event.id === updateData.eventId ? { ...event, ...updateData } : event
           )
         );
       } else {
-        toast.error("Failed to update event");
+        toast.error(response.data.message || "Failed to update event");
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Error updating the event");
+      console.error("Error updating the event:", error);
+      toast.error(error.response?.data?.message || "Error updating the event");
     }
   };
 
@@ -82,13 +82,10 @@ const Page = () => {
           withCredentials: true,
         });
 
-        if (response.status === 200) {
-          setEventData(response.data);
-        } else {
-          toast.error("Failed to fetch events");
-        }
+        setEventData(response.data);
       } catch (error) {
-        toast.error("Internal server error");
+        console.error("Error fetching events:", error);
+        toast.error(error.response?.data?.message || "Failed to fetch events");
       }
     };
 

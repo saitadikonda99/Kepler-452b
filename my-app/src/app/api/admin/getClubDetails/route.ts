@@ -5,26 +5,19 @@ import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware"
 
-
 const getHandler = async (req: NextRequest) => {
-
-  const connection = await pool.getConnection();
-
-  const { valid, payload } = await verifyJWT();
-
-  if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
-  }
-
-  const userData: any = payload;
-
-  const { authorized, reason: roleReason } = verifyRoles({ ...userData, role: userData.role || 'User' }, 'Admin');
-
-  if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
-  }
-
   try {
+    const { valid, payload } = await verifyJWT();
+
+    if (!valid || !payload) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    const { authorized, reason: roleReason } = verifyRoles({ ...payload, role: payload.role || 'User' }, 'Admin');
+
+    if (!authorized) {
+      return NextResponse.json({ message: roleReason }, { status: 403 });
+    }
 
     const MY_KEY = "getClubDetails"
 
@@ -34,7 +27,10 @@ const getHandler = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const [result]: any = await connection.query( 
+    const connection = await pool.getConnection();
+
+    try {
+      const [result]: any = await connection.query( 
         `SELECT 
             u.id AS user_id,
             u.username,
@@ -53,19 +49,18 @@ const getHandler = async (req: NextRequest) => {
             clubs c
         LEFT JOIN 
             users u ON u.id = c.lead_id`
-    );
+      );
 
-    redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
+      await redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
-    connection.release();
-
-    return NextResponse.json(result, { status: 200 });
-        
+      return NextResponse.json(result, { status: 200 });
+    } finally {
+      connection.release();
+    }
   } catch (error) {
-    console.log(error)
-    return NextResponse.json({ message: error, status: 500 });
+    console.error("Error in getClubDetails:", error);
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 };
-
 
 export const GET = withMiddleware(getHandler);

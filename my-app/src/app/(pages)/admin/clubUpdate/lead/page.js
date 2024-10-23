@@ -84,34 +84,30 @@ const page = () => {
         }
       );
 
-      if (response.status === 200) {
-        toast.success("Lead updated successfully");
-      }
-      
-
+      toast.success(response.data.message || "Lead updated successfully");
     } catch (error) {
-
-      if (error?.response) {
-        switch (error.response.status) {
+      if (error.response) {
+        const { status, data } = error.response;
+        switch (status) {
           case 400:
-            toast.error("passwords do not match");
+            toast.error(data.message || "Bad request. Please check your input.");
             break;
           case 401:
-            toast.error("All fields are required");
+            toast.error("Unauthorized. Please log in again.");
+            break;
+          case 403:
+            toast.error("Forbidden. You don't have permission for this action.");
             break;
           case 409:
-            toast.error(
-              error.response.data.message || "User or club already exists"
-            );
-            break;
-          case 500:
-            toast.error("Server error, please try again later");
+            toast.error(data.message || "User or club already exists");
             break;
           default:
-            toast.error(error.response.data.message || "Something went wrong");
+            toast.error(data.message || "An error occurred. Please try again.");
         }
+      } else if (error.request) {
+        toast.error("Network error. Please check your connection.");
       } else {
-        toast.error("Network error, please check your connection");
+        toast.error("An unexpected error occurred. Please try again.");
       }
     }
   };
