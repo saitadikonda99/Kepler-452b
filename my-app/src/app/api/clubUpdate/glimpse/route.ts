@@ -104,6 +104,9 @@ const getHandler = async (req: NextRequest) => {
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
+    const MY_KEY_CLUB = `clubData${clubId}`;
+    redisClient.del(MY_KEY_CLUB);
+
     connection.release();
 
     return NextResponse.json(result, { status: 200 });

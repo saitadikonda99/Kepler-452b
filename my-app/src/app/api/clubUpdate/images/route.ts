@@ -41,6 +41,9 @@ const postHandler = async (req: NextRequest) => {
     const MY_KEY = `club_images_${clubId}`;
     redisClient.del(MY_KEY);
 
+    const MY_KEY_CLUB = `clubData${clubId}`;
+    redisClient.del(MY_KEY_CLUB);
+
     connection.release();
 
     return NextResponse.json({ status: 200 });

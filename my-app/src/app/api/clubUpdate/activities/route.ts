@@ -42,6 +42,8 @@ const connection = await pool.getConnection();
 
         const MY_KEY = `activities_${clubId}`;
         redisClient.del(MY_KEY);
+        const MY_KEY_CLUB = `clubData${clubId}`;
+        redisClient.del(MY_KEY_CLUB);
 
         connection.release();
 
