@@ -5,6 +5,7 @@ import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware";
 
 const handler = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
   try {
     const { valid, payload } = await verifyJWT();
 
@@ -21,9 +22,6 @@ const handler = async (req: NextRequest) => {
       return NextResponse.json({ message: roleReason, status: 403 });
     }
 
-    const connection = await pool.getConnection();
-
-    try {
       const [users] = await connection.query(`
         SELECT u.id, u.username, u.name, u.email, u.role, u.active,
           CASE 
@@ -35,13 +33,13 @@ const handler = async (req: NextRequest) => {
       `);
 
       return NextResponse.json(users, { status: 200 });
-    } finally {
-      connection.release();
-    }
-  } catch (error) {
+    } 
+    catch (error) {
     console.error("Error in GET /api/admin/manageUsers:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
+  } finally {
+    connection.release();
   }
-};
+}
 
 export const GET = withMiddleware(handler);

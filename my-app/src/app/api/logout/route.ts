@@ -33,5 +33,7 @@ export const GET = async (req: NextRequest) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "Error logging out", status: 500 });
+  } finally {
+    connection.release();
   }
 };

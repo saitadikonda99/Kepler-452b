@@ -7,6 +7,8 @@ import { verifyRoles } from "../../../../../lib/verifyRoles";
 const MY_KEY = "NewsLandscape";
 
 export const POST = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
+
   try {
     const { valid, payload } = await verifyJWT();
 
@@ -32,9 +34,6 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    const connection = await pool.getConnection();
-
-    try {
       await connection.query(
         `
         UPDATE news_landscape 
@@ -47,16 +46,16 @@ export const POST = async (req: NextRequest) => {
       await redisClient.del(MY_KEY);
 
       return NextResponse.json({ message: "News updated successfully", status: 200 });
-    } finally {
-      connection.release();
-    }
   } catch (error) {
     console.error("Error in POST /api/admin/news/landscape:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
+  } finally {
+    connection.release();
   }
 };
 
 export const GET = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -64,9 +63,7 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const connection = await pool.getConnection();
 
-    try {
       const [news] = await connection.query(
         `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
       );
@@ -74,11 +71,10 @@ export const GET = async (req: NextRequest) => {
       await redisClient.setEx(MY_KEY, 3600, JSON.stringify(news));
 
       return NextResponse.json(news, { status: 200 });
-    } finally {
-      connection.release();
-    }
   } catch (error) {
     console.error("Error in GET /api/admin/news/landscape:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
+  } finally {
+    connection.release();
   }
 };

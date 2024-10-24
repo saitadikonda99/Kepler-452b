@@ -57,6 +57,8 @@ export const POST = async (req: NextRequest) => {
 };
 
 export const GET = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
+  
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -64,7 +66,6 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const connection = await pool.getConnection();
 
     try {
       const [events] = await connection.query(
@@ -82,5 +83,7 @@ export const GET = async (req: NextRequest) => {
   } catch (error) {
     console.error("Error in GET /api/admin/events:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
+  } finally {
+    connection.release();
   }
 };

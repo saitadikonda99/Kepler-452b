@@ -49,5 +49,7 @@ const connection = await pool.getConnection();
     return NextResponse.json({ status: 200, message: "Lead, club, and club data updated successfully" });
   } catch (error) {
     return NextResponse.json({ message: error.message, status: 500 });
+  } finally {
+    connection.release();
   }
 };

@@ -51,6 +51,8 @@ const postHandler = async (req: NextRequest) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error, status: 500 });
+  } finally {
+    connection.release();
   }
 };
 
@@ -115,6 +117,8 @@ const getHandler = async (req: NextRequest) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
+  } finally {
+    connection.release();
   }
 };
 

@@ -58,6 +58,8 @@ export const POST = async (req: any) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error, status: 500 });
+  } finally {
+    connection.release();
   }
 };
 
@@ -89,5 +91,7 @@ export const GET = async (req: NextRequest) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error, status: 500 });
+  } finally {
+    connection.release();
   }
 };

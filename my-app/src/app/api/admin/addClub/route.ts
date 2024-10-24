@@ -120,7 +120,6 @@ export const POST = async (req: NextRequest) => {
     await connection.query("CALL AddClubData(?);", [clubId]);
 
     await connection.commit();
-    connection.release();
 
     const MY_KEY = "getClubs";
 
@@ -139,5 +138,7 @@ export const POST = async (req: NextRequest) => {
       message: error.message || "Server error",
       status: 500,
     });
+  } finally {
+    connection.release();
   }
 };

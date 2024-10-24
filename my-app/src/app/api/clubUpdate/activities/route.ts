@@ -52,7 +52,9 @@ const connection = await pool.getConnection();
   } catch (error) {
     console.log(error)
     return NextResponse.json({ message: error, status: 500 });
-  }
+  } finally {
+    connection.release();
+  } 
 };
 
 
@@ -118,6 +120,8 @@ const connection = await pool.getConnection();
   } catch (error) {
     console.log(error)
     return NextResponse.json({ message: error}, { status: 500 });
+  } finally {
+    connection.release();
   }
 };
 

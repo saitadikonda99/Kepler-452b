@@ -104,5 +104,7 @@ const combinedResultsArray = [
     connection.release();
     console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
+  } finally {
+    connection.release();
   }
 };

@@ -6,6 +6,8 @@ import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware"
 
 const getHandler = async (req: NextRequest) => {
+  const connection = await pool.getConnection();
+
   try {
     const { valid, payload } = await verifyJWT();
 
@@ -27,7 +29,6 @@ const getHandler = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const connection = await pool.getConnection();
 
     try {
       const [result]: any = await connection.query( 
@@ -60,6 +61,8 @@ const getHandler = async (req: NextRequest) => {
   } catch (error) {
     console.error("Error in getClubDetails:", error);
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+  } finally {
+    connection.release();
   }
 };
 
