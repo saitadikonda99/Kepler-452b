@@ -1,0 +1,119 @@
+.ImageComponent {
+    padding: 2rem;
+}
+
+.ImageComponent-in {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Grid layout for multiple club images */
+.Image-two {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.Image-two-in {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Image container styling */
+.image-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.image-container img {
+    width: 50%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Update button styling */
+.Image-two-in button {
+    width: 10%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.Image-two-in button:hover {
+    background-color: #0056b3;
+}
+
+/* Update form styling */
+.Image-one {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ImageUpdate-two,
+.ImageUpdate-three {
+    margin-bottom: 1.5rem;
+}
+
+.ImageUpdate-two p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+}
+
+.ImageUpdate-two label,
+.ImageUpdate-three label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.ImageUpdate-two input,
+.ImageUpdate-three input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.ImageUpdate-four {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.ImageUpdate-four button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ImageUpdate-four button:first-child {
+    background-color: #6c757d;
+    color: white;
+}
+
+.ImageUpdate-four button:last-child {
+    background-color: #28a745;
+    color: white;
+}
+
+.ImageUpdate-four button:hover {
+    opacity: 0.9;
+}
+

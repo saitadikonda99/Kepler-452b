@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 
 import Dashboard from '../dashboard/dashboard'
 
+import './page.css'
+
 const page = () => {
 
     const [show, setShow] = useState(false);
@@ -26,7 +28,7 @@ const page = () => {
                 clubId: clubId,
                 Members: data.total_members,
                 Activities: data.total_activities,
-                Projects: data.projects
+                Projects: data.total_projects
             });   
         }
     }
@@ -96,7 +98,7 @@ const page = () => {
                             </div>
 
                             <div className="StatsUpdate-two">
-                                <label For="Members" >Total Members</label>
+                                <label htmlFor="Members" className="label">Total Members</label>
                                 <input
                                     type="text"
                                     value={updatedData.Members}
@@ -107,7 +109,7 @@ const page = () => {
                                 />
                             </div>
                             <div className="StatsUpdate-three">
-                                <label For="Activities" >Total Activities</label>
+                                <label htmlFor="Activities" className="label">Total Activities</label>
                                 <input
                                     type="text"
                                     value={updatedData.Activities}
@@ -118,7 +120,7 @@ const page = () => {
                                 />
                             </div>
                             <div className="StatsUpdate-four">
-                                <label For="Projects" >Total Projects</label>
+                                <label htmlFor="Projects" className="label">Total Projects</label>
                                 <input
                                     type="text"
                                     value={updatedData.Projects}
@@ -129,10 +131,10 @@ const page = () => {
                                 />
                             </div>
                             <div className="StatsUpdate-five">
-                                <button onClick={handleCancel}>
+                                <button className="cancel-button" onClick={handleCancel}>
                                     Cancel
                                 </button>
-                                <button onClick={handleSubmit}>
+                                <button className="update-button" onClick={handleSubmit}>
                                     Update
                                 </button>
                             </div>
@@ -155,7 +157,7 @@ const page = () => {
                                     <div className="Stats-two-in-four">
                                         <p>Projects: {data.total_projects}</p>
                                     </div>
-                                    <button onClick={handleClick(data.club_id)} >
+                                    <button className="update-button" onClick={handleClick(data.club_id)} >
                                         Update
                                     </button>
                                 </div>

@@ -1,0 +1,137 @@
+/* Styles for Stats Page */
+
+.StatsComponent {
+    padding: 20px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+.StatsComponent-in {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Stats-one, .Stats-two {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.StatsUpdate-two, .StatsUpdate-three, .StatsUpdate-four, .StatsUpdate-five {
+    margin-bottom: 20px;
+}
+
+.StatsUpdate-two p {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #4A90E2;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:first-of-type {
+    background-color: #cccccc;
+    color: #333333;
+}
+
+button:last-of-type {
+    background-color: #4A90E2;
+    color: #ffffff;
+}
+
+.Stats-two-in {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.Stats-two-in p {
+    margin: 5px 0;
+    color: #333333;
+    font-size: 16px;
+}
+
+.Stats-two-in-one, .Stats-two-in-two, .Stats-two-in-three, .Stats-two-in-four {
+    flex: 1;
+}
+
+.Stats-two-in-one {
+    text-align: left;
+}
+
+.Stats-two-in-two, .Stats-two-in-three, .Stats-two-in-four {
+    text-align: center;
+}
+
+.Stats-two-in-four p {
+    font-weight: 600;
+}
+
+button.update-button {
+    background-color: #FFA500;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+button.update-button:hover {
+    background-color: #e69500;
+}
+
+@media (max-width: 768px) {
+    .Stats-two-in {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .Stats-two-in-one, .Stats-two-in-two, .Stats-two-in-three, .Stats-two-in-four {
+        text-align: left;
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        margin: 10px 0 0 0;
+    }
+}
+

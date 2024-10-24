@@ -4,6 +4,7 @@ import axios from 'axios'
 import toast from "react-hot-toast";
 
 import Dashboard from '../dashboard/dashboard'
+import './page.css'
 
 const page = () => {
 
@@ -132,15 +133,16 @@ const page = () => {
                         {Array.isArray(imageData) && imageData.map((data, index) => {
                             return (
                                 <div key={index} className="Image-two-in">
-                                    <img src={data.hero_img} alt="heroImg" />
-                                    <img src={data.team_img} alt="teamImg" />
-                                    <button onClick={handleClick(data.club_id)} >
+                                    <div className="image-container">
+                                        <img src={data.hero_img} alt="heroImg" />
+                                        <img src={data.team_img} alt="teamImg" />
+                                    </div>
+                                    <button onClick={handleClick(data.club_id)}>
                                         Update
                                     </button>
                                 </div>
                             )
-                        })
-                        }
+                        })}
                     </div>
                 }
             </div>
