@@ -5,11 +5,16 @@ import { useState } from "react";
 import "./page.css";
 
 // import icons here
-import { IoMdHome } from "react-icons/io";
-import { MdEventAvailable } from "react-icons/md";
-import { ImNewspaper } from "react-icons/im";
-import { HiUserGroup } from "react-icons/hi";
-import { GrUpdate } from "react-icons/gr";
+import { MdEventAvailable } from "react-icons/md"; 
+import { ImNewspaper } from "react-icons/im";  
+import { HiUserGroup } from "react-icons/hi";   
+import { FaUsersViewfinder } from "react-icons/fa6";
+import { BsPersonFillAdd } from "react-icons/bs";  
+// import { CiViewList } from "react-icons/ci";   
+import { IoMdHome } from "react-icons/io";  
+import { MdOutlineManageAccounts } from "react-icons/md";
+import { MdOutlinePublishedWithChanges } from "react-icons/md"; 
+import { MdOutlineChangeCircle } from "react-icons/md";  
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -64,30 +69,30 @@ const sidebar = () => {
     },
     {
       name: "Update Club",
-      icon: <GrUpdate className="sideBar-icon" />,
+      icon: <MdOutlinePublishedWithChanges className="sideBar-icon" />,
       link: "",
       subOptions: [
         { name: "Update Lead", link: "/admin/clubUpdate/lead" }
       ],
     },
     {
-      name: "view Clubs",
-      icon: <IoMdHome className="sideBar-icon" />,
+      name: "View Clubs",
+      icon: <FaUsersViewfinder className="sideBar-icon" />,
       link: "/admin/viewClubs",
     },
     {
-      name: "add admin",
-      icon: <IoMdHome className="sideBar-icon" />,
+      name: "Add Admin",
+      icon:<BsPersonFillAdd className="sideBar-icon"/>,
       link: "/admin/addAdmin",
     },
     {
       name: "Change Password",
-      icon: <IoMdHome className="sideBar-icon" />,
+      icon: <MdOutlineChangeCircle className="sideBar-icon" />,
       link: "/admin/changePassword",
     },
     {
       name: "Manage Users",
-      icon: <IoMdHome className="sideBar-icon" />,
+      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
       link: "/admin/manageUsers",
     },
   ];
