@@ -7,8 +7,6 @@ import { verifyRoles } from "../../../../../lib/verifyRoles";
 const MY_KEY = "NewsLandscape";
 
 export const POST = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
-
   try {
     const { valid, payload } = await verifyJWT();
 
@@ -34,28 +32,27 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-      await connection.query(
-        `
-        UPDATE news_landscape 
-        SET news_link = ?, club_name = ?, news_content = ?
-        WHERE id = ?
-        `,
-        [newsLink, clubName, newsContent, newsId]
-      );
+    await pool.query('START TRANSACTION');
 
-      await redisClient.del(MY_KEY);
+    await pool.query(
+      `UPDATE news_landscape 
+       SET news_link = ?, club_name = ?, news_content = ?
+       WHERE id = ?`,
+      [newsLink, clubName, newsContent, newsId]
+    );
 
-      return NextResponse.json({ message: "News updated successfully", status: 200 });
+    await pool.query('COMMIT');
+    await redisClient.del(MY_KEY);
+
+    return NextResponse.json({ message: "News updated successfully", status: 200 });
   } catch (error) {
+    await pool.query('ROLLBACK');
     console.error("Error in POST /api/admin/news/landscape:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
-  } finally {
-    connection.release();
   }
 };
 
 export const GET = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -63,18 +60,15 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
+    const [news] = await pool.query(
+      `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
+    );
 
-      const [news] = await connection.query(
-        `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
-      );
+    await redisClient.setEx(MY_KEY, 3600, JSON.stringify(news));
 
-      await redisClient.setEx(MY_KEY, 3600, JSON.stringify(news));
-
-      return NextResponse.json(news, { status: 200 });
+    return NextResponse.json(news, { status: 200 });
   } catch (error) {
     console.error("Error in GET /api/admin/news/landscape:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
-  } finally {
-    connection.release();
   }
 };

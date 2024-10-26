@@ -6,7 +6,6 @@ import { withMiddleware } from "../../../../middleware/middleware";
 import { redisClient } from "../../../../config/redis";
 
 const postHandler = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
 
   const { valid, payload } = await verifyJWT();
 
@@ -33,7 +32,7 @@ const postHandler = async (req: NextRequest) => {
       return NextResponse.json({ status: 401 });
     }
 
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `Insert INTO glimpse (club_id, glimpse_image, glimpse_desc) VALUES (?, ?, ?)`,
       [clubId, glimpseImage, glimpseDesc]
     );
@@ -41,19 +40,15 @@ const postHandler = async (req: NextRequest) => {
     const MY_KEY = `glimpse_${clubId}`;
     redisClient.del(MY_KEY);
 
-    connection.release();
 
     return NextResponse.json({ status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error, status: 500 });
-  } finally {
-    connection.release();
-  }   
+  } 
 };
 
 const getHandler = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
 
   const { valid, payload } = await verifyJWT();
 
@@ -81,7 +76,7 @@ const getHandler = async (req: NextRequest) => {
     
     if (!userData.role.includes("Admin")) {
       leadId = userData.id;
-      clubData = await connection.query(
+      clubData = await pool.query(
         `SELECT id FROM clubs WHERE lead_id = ?`,
         [leadId]
       );
@@ -99,7 +94,7 @@ const getHandler = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
     
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `SELECT * FROM glimpse WHERE club_id = ? ORDER BY upload_at DESC LIMIT 2`,
       [clubId]
     );
@@ -109,14 +104,11 @@ const getHandler = async (req: NextRequest) => {
     const MY_KEY_CLUB = `clubData${clubId}`;
     redisClient.del(MY_KEY_CLUB);
 
-    connection.release();
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
-  } finally {
-    connection.release();
   } 
 };
 

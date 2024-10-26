@@ -5,8 +5,6 @@ import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
-
   try {
     const { valid, payload } = await verifyJWT();
 
@@ -40,7 +38,7 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "All fields are required" }, { status: 400 });
     }
 
-    const userCheck: any = await connection.query(
+    const userCheck: any = await pool.query(
       `SELECT * FROM users WHERE username = ? OR email = ?`,
       [leadUsername, leadEmail]
     );
@@ -49,42 +47,35 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "User or Email already exists" }, { status: 409 });
     }
 
-    await connection.beginTransaction();
+    await pool.query('START TRANSACTION');
   
     const [result]: any = await pool.query(
-      `
-        INSERT INTO users (username, name, password, email, role, RefreshToken)
-        VALUES (?, ?, ?, ?, ?, ?)
-      `,
+      `INSERT INTO users (username, name, password, email, role, RefreshToken)
+       VALUES (?, ?, ?, ?, ?, ?)`,
       [leadUsername, leadName, leadPassword, leadEmail, "club_lead", null]
     );
 
-    const [getLeadUser]: any = await connection.query(
+    const [getLeadUser]: any = await pool.query(
       `SELECT id FROM users WHERE email = ?`,
       [leadEmail]
     );
 
     const leadId = getLeadUser[0].id;
 
-    const [club]: any = await connection.query(
-      `
-        UPDATE clubs SET lead_id = ? WHERE club_name = ?
-      `,
+    await pool.query(
+      `UPDATE clubs SET lead_id = ? WHERE club_name = ?`,
       [leadId, clubName]
     );
 
     const MY_KEY = "getClubDetails";
-
     redisClient.del(MY_KEY);
 
-    await connection.commit();
+    await pool.query('COMMIT');
     
     return NextResponse.json({ message: "Lead data updated successfully" }, { status: 200 });
   } catch (error) {
-    await connection.rollback();
+    await pool.query('ROLLBACK');
     console.error("Error in clubUpdate/lead:", error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
-  } finally {
-    connection.release();
   }
 };

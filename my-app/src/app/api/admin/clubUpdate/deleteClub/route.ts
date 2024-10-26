@@ -5,8 +5,6 @@ import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
-
   try {
     const { valid, payload } = await verifyJWT();
 
@@ -26,14 +24,14 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "Club ID and active status are required" }, { status: 400 });
     }
 
-    await connection.beginTransaction();
+    await pool.query('START TRANSACTION');
 
-    await connection.query(
+    await pool.query(
       `UPDATE clubs SET active = ? WHERE id = ?`,
       [active, clubId]   
     );
 
-    await connection.commit();
+    await pool.query('COMMIT');
 
     const MY_KEY = "getClubs";
     await redisClient.del(MY_KEY);
@@ -42,10 +40,8 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ message }, { status: 200 });
 
   } catch (error) {
-    await connection.rollback();
+    await pool.query('ROLLBACK');
     console.error("Error in deleteClub:", error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
-  } finally {
-    connection.release();
   }
 };

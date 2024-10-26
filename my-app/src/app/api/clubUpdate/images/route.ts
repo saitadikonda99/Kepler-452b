@@ -6,7 +6,6 @@ import { withMiddleware } from "../../../../middleware/middleware";
 import { redisClient } from "../../../../config/redis";
 
 const postHandler = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
 
   const { valid, payload } = await verifyJWT();
 
@@ -33,7 +32,7 @@ const postHandler = async (req: NextRequest) => {
       return NextResponse.json({ status: 401 });
     }
 
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `Insert INTO club_images (club_id, hero_img, team_img) VALUES (?, ?, ?)`,
       [clubId, heroImg, teamImg]
     );
@@ -44,20 +43,14 @@ const postHandler = async (req: NextRequest) => {
     const MY_KEY_CLUB = `clubData${clubId}`;
     redisClient.del(MY_KEY_CLUB);
 
-    connection.release();
-
     return NextResponse.json({ status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error, status: 500 });
-  } finally {
-    connection.release();
-  }
+  } 
 };
 
 const getHandler = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
-
-  const connection = await pool.getConnection();
 
   if (!valid) {
     return NextResponse.json({ message: "Unauthorized", status: 401 });
@@ -83,7 +76,7 @@ const getHandler = async (req: NextRequest) => {
     
     if (!userData.role.includes("Admin")) {
       leadId = userData.id;
-      clubData = await connection.query(
+      clubData = await pool.query(
         `SELECT id FROM clubs WHERE lead_id = ?`,
         [leadId]
       );
@@ -101,7 +94,7 @@ const getHandler = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `SELECT * FROM club_images WHERE club_id = ? ORDER BY upload_at DESC LIMIT 1`,
       [clubId]
     );
@@ -112,8 +105,6 @@ const getHandler = async (req: NextRequest) => {
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
-  } finally {
-    connection.release();
   } 
 };
 
