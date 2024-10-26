@@ -49,16 +49,22 @@ const Page = () => {
       <Dashboard>
         <div className="ChangePasswordComponent">
               <div className="ChangePasswordComponent-in-one">
+                <div className="ChangePasswordComponent-in-one-a">
                 <h1>Change Password</h1>
-                <input
-                  type="text"
-                  value={details.password}
-                  placeholder="enter new password"
-                  name="password"
-                  onChange={handleChange}
-                />
+                </div>
               </div>
+              
               <div className="ChangePasswordComponent-in-two">
+                <div className="ChangePasswordComponent-in-two-a">
+                  <input
+                    type="text"
+                    value={details.password}
+                    placeholder="enter new password"
+                    name="password"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="ChangePasswordComponent-in-two-b">
                 <input
                   type="text"
                   placeholder="confirm password"
@@ -66,9 +72,11 @@ const Page = () => {
                   name="confirmPassword"
                   onChange={handleChange}
                 />
-              </div>
-              <div className="ChangePasswordComponent-in-seven">
+                </div>
+              
+              <div className="ChangePasswordComponent-in-two-c">
                 <button onClick={handleSubmit}>Submit</button>
+              </div>
               </div>
             </div>
       </Dashboard>
