@@ -4,7 +4,6 @@ import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
 
   try {
     const { valid, payload } = await verifyJWT();
@@ -29,7 +28,7 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "All fields are required" }, { status: 400 });
     }
 
-    const userCheck: any = await connection.query(
+    const userCheck: any = await pool.query(
       `SELECT * FROM users WHERE username = ? OR email = ?`,
       [adminUsername, adminEmail]
     );
@@ -38,22 +37,20 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "User already exists" }, { status: 409 });
     }
 
-    await connection.beginTransaction();
+    await pool.query('START TRANSACTION');
 
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `INSERT INTO users (username, name, password, email, role, RefreshToken) VALUES (?, ?, ?, ?, ?, ?)`,
       [adminUsername, adminName, adminPassword, adminEmail, "admin", null]
     );
 
-    await connection.commit();
+    await pool.query('COMMIT');
     
     return NextResponse.json({ message: "Admin added successfully" }, { status: 200 });
 
   } catch (error) {
-    await connection.rollback();
+    await pool.query('ROLLBACK');
     console.error("Error in addAdmin:", error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
-  } finally {
-    connection.release();
   }
 };

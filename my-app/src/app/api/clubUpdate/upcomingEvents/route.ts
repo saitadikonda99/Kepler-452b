@@ -6,8 +6,6 @@ import { withMiddleware } from "../../../../middleware/middleware";
 import { redisClient } from "../../../../config/redis";
 
 const postHandler = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
-
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
@@ -34,7 +32,7 @@ const postHandler = async (req: NextRequest) => {
       return NextResponse.json({ status: 401 });
     }
 
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `Insert INTO upcoming_events (club_id, event_name, event_image, event_date, event_venue) VALUES (?, ?, ?, ?, ?)`,
       [clubId, eventName, eventImage, eventDate, eventVenue]
     );
@@ -45,19 +43,15 @@ const postHandler = async (req: NextRequest) => {
     const MY_KEY_CLUB = `clubData${clubId}`;
     redisClient.del(MY_KEY_CLUB);
 
-    connection.release(); 
 
     return NextResponse.json({ status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error, status: 500 });
-  } finally {
-    connection.release();
-  }
+  } 
 };
 
 const getHandler = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
 
   const { valid, payload } = await verifyJWT();
 
@@ -85,7 +79,7 @@ const getHandler = async (req: NextRequest) => {
     
     if (!userData.role.includes("Admin")) {
       leadId = userData.id;
-      clubData = await connection.query(
+      clubData = await pool.query(
         `SELECT id FROM clubs WHERE lead_id = ?`,
         [leadId]
       );
@@ -104,22 +98,18 @@ const getHandler = async (req: NextRequest) => {
     }
 
   
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `SELECT * FROM upcoming_events WHERE club_id = ? ORDER BY upload_at DESC LIMIT 4`,
       [clubId]
     );
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
-    connection.release()
-
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
-  } finally {
-    connection.release();
-  }
+  } 
 };
 
 export const GET = withMiddleware(getHandler);

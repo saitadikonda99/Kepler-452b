@@ -32,33 +32,27 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    const connection = await pool.getConnection();
+    await pool.query('START TRANSACTION');
 
-    try {
-      await connection.query(
-        `
-        UPDATE events 
-        SET event_link = ?, event_name = ?, event_date = ?, event_venue = ?
-        WHERE id = ?
-        `,
-        [eventLink, eventName, eventDate, eventVenue, eventId]
-      );
+    await pool.query(
+      `UPDATE events 
+       SET event_link = ?, event_name = ?, event_date = ?, event_venue = ?
+       WHERE id = ?`,
+      [eventLink, eventName, eventDate, eventVenue, eventId]
+    );
 
-      await redisClient.del(MY_KEY);
+    await pool.query('COMMIT');
+    await redisClient.del(MY_KEY);
 
-      return NextResponse.json({ message: "Event updated successfully", status: 200 });
-    } finally {
-      connection.release();
-    }
+    return NextResponse.json({ message: "Event updated successfully", status: 200 });
   } catch (error) {
+    await pool.query('ROLLBACK');
     console.error("Error in POST /api/admin/events:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 };
 
 export const GET = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
-  
   try {
     const data = await redisClient.get(MY_KEY);
 
@@ -66,24 +60,15 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
+    const [events] = await pool.query(
+      `SELECT * FROM events ORDER BY upload_at DESC LIMIT 4;`
+    );
 
-    try {
-      const [events] = await connection.query(
-        `
-        SELECT * FROM events ORDER BY upload_at DESC LIMIT 4;
-        `
-      );
+    await redisClient.setEx(MY_KEY, 3600, JSON.stringify(events));
 
-      await redisClient.setEx(MY_KEY, 3600, JSON.stringify(events));
-
-      return NextResponse.json(events, { status: 200 });
-    } finally {
-      connection.release();
-    }
+    return NextResponse.json(events, { status: 200 });
   } catch (error) {
     console.error("Error in GET /api/admin/events:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
-  } finally {
-    connection.release();
   }
 };

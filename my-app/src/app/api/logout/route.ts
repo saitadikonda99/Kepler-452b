@@ -37,3 +37,32 @@ export const GET = async (req: NextRequest) => {
     connection.release();
   }
 };
+
+export const POST = async (req: NextRequest) => {
+  try {
+    const cookieStore = cookies();
+    const JWT = cookieStore.get("jwt")?.value;
+
+    console.log(JWT);
+    if (!JWT) {
+      return NextResponse.json(
+        { valid: false, reason: "JWT missing" },
+        { status: 400 }
+      );
+    }
+
+    const userId = JWT;
+
+    await pool.query(
+      `UPDATE users SET RefreshToken = NULL WHERE id = ?`,
+      [userId]
+    );
+
+    cookieStore.set("jwt", "", { maxAge: 0 });
+
+    return NextResponse.json({ message: "Logged out successfully" }, { status: 200 });
+  } catch (error) {
+    console.error("Error in logout:", error);
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
+  }
+};

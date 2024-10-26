@@ -5,8 +5,6 @@ import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
-
   try {
     const { valid, payload } = await verifyJWT();
 
@@ -61,7 +59,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const userCheck: any = await connection.query(
+    const userCheck: any = await pool.query(
       `SELECT * FROM users WHERE username = ? OR email = ?`,
       [leadUsername, leadEmail]
     );
@@ -73,7 +71,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const clubCheck: any = await connection.query(
+    const clubCheck: any = await pool.query(
       `SELECT * FROM clubs WHERE club_name = ?`,
       [clubName]
     );
@@ -85,9 +83,9 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    await connection.beginTransaction();
+    await pool.query('START TRANSACTION');
 
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `
       INSERT INTO users (username, name, password, email, role, RefreshToken)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -98,7 +96,7 @@ export const POST = async (req: NextRequest) => {
     // Get the last inserted lead ID
     const leadId = (result as any).insertId;
 
-    const [club]: any = await connection.query(
+    const [club]: any = await pool.query(
       `
       INSERT INTO clubs (club_name, lead_id, club_domain, club_description, club_about, club_logo)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -117,28 +115,15 @@ export const POST = async (req: NextRequest) => {
     const clubId = (club as any).insertId;
 
     // Call the stored procedure to insert additional data
-    await connection.query("CALL AddClubData(?);", [clubId]);
+    await pool.query("CALL AddClubData(?);", [clubId]);
 
-    await connection.commit();
+    await pool.query('COMMIT');
+    
+    return NextResponse.json({ message: "Club added successfully" }, { status: 200 });
 
-    const MY_KEY = "getClubs";
-
-    redisClient.del(MY_KEY);
-
-    return NextResponse.json({
-      message: "Club added successfully",
-      status: 200,
-    });
   } catch (error) {
-    await connection.rollback();
-
-    console.log(error);
-
-    return NextResponse.json({
-      message: error.message || "Server error",
-      status: 500,
-    });
-  } finally {
-    connection.release();
+    await pool.query('ROLLBACK');
+    console.error("Error in addClub:", error);
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 };

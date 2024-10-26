@@ -45,7 +45,6 @@ const postHandler = async (req: NextRequest) => {
 };
 
 const getHandler = async (req: NextRequest) => {
-  const connection = await pool.getConnection();
 
   const { valid, payload } = await verifyJWT();
 
@@ -72,7 +71,7 @@ const getHandler = async (req: NextRequest) => {
 
     if (!userData.role.includes("Admin")) {
       leadId = userData.id;
-      clubData = await connection.query(
+      clubData = await pool.query(
         `SELECT id FROM clubs WHERE lead_id = ?`,
         [leadId]
       );
@@ -90,7 +89,7 @@ const getHandler = async (req: NextRequest) => {
       return NextResponse.json(JSON.parse(data), { status: 200 });
     }
 
-    const [result]: any = await connection.query(
+    const [result]: any = await pool.query(
       `
             SELECT s1.*
                 FROM socials s1
@@ -109,15 +108,11 @@ const getHandler = async (req: NextRequest) => {
 
     redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
-    connection.release();
-
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
-  } finally {
-    connection.release();
-  }
+  } 
 };
 
 export const GET = withMiddleware(getHandler);

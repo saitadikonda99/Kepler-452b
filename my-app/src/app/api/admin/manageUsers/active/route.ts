@@ -27,19 +27,18 @@ const handlePost = async (req: NextRequest) => {
       return NextResponse.json({ message: "Invalid input", status: 400 });
     }
 
-    const connection = await pool.getConnection();
+    await pool.query('START TRANSACTION');
 
-    try {
-      await connection.query(
-        `UPDATE users SET active = ? WHERE id = ?`,
-        [active, userId]
-      );
+    await pool.query(
+      `UPDATE users SET active = ? WHERE id = ?`,
+      [active, userId]
+    );
 
-      return NextResponse.json({ message: "User status updated", status: 200 });
-    } finally {
-      connection.release();
-    }
+    await pool.query('COMMIT');
+
+    return NextResponse.json({ message: "User status updated", status: 200 });
   } catch (error) {
+    await pool.query('ROLLBACK');
     console.error("Error in POST /api/admin/manageUsers/active:", error);
     return NextResponse.json({ message: "Internal server error", status: 500 });
   }
