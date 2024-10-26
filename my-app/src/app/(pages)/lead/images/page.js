@@ -134,8 +134,8 @@ const page = () => {
                             return (
                                 <div key={index} className="Image-two-in">
                                     <div className="image-container">
-                                        <img src={data.hero_img} alt="heroImg" />
-                                        <img src={data.team_img} alt="teamImg" />
+                                        <img src={data.heroImg} alt="heroImg" />
+                                        <img src={data.heroImg} alt="teamImg" />
                                     </div>
                                     <button onClick={handleClick(data.club_id)}>
                                         Update
