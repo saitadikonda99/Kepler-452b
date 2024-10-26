@@ -121,15 +121,26 @@ const page = () => {
                         {Array.isArray(SocialsData) && SocialsData.map((data, index) => {
                             return (
                                 <div key={index} className="Socials-two-in">
-                                    <div className="Socials-two-in-one">
+                                    <div classname="Socials-two-in-one" id="final">
+                                    <div className="Socials-two-in-one-box">
                                         <p>Social Media Name: {data.social_name}</p>
+                                        {/* <button onClick={handleClick(data.club_id, data.social_name)} >
+                                        Update
+                                    </button> */}
                                     </div>
-                                    <div className="Socials-two-in-two">
+                                    <div className="Socials-two-in-one-box">
                                         <p>Social Media Link: {data.social_link}</p>
+                                        <button onClick={handleClick(data.club_id, data.social_name)} >
+                                        Update
+                                    </button>
                                     </div>
+                                    
+                                </div>
+                                {/* <div className="Socials-three-button">
                                     <button onClick={handleClick(data.club_id, data.social_name)} >
                                         Update
                                     </button>
+                                    </div> */}
                                 </div>
                             )
                         })
