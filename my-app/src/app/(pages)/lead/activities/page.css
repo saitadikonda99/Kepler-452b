@@ -45,7 +45,7 @@
 }
 
 .Activities-two-in:hover {
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
 }
 
 .Activities-two-in-img {
@@ -82,7 +82,7 @@
     width: 100%;
     padding: 10px;
     margin-top: 15px;
-    background: #4a90e2;
+    background: green;
     color: white;
     border: none;
     border-radius: 6px;
@@ -92,7 +92,7 @@
 }
 
 .Activities-two-in button:hover {
-    background: #357abd;
+    background: rgb(1, 163, 1);
 }
 
 /* Update form styling */
@@ -149,7 +149,7 @@
 .ActivitiesUpdate-four input:focus,
 .ActivitiesUpdate-five input:focus {
     outline: none;
-    border-color: #4a90e2;
+    border-color: rgb(1, 163, 1);
 }
 
 .ActivitiesUpdate-six {
@@ -174,7 +174,7 @@
 }
 
 .ActivitiesUpdate-six button:last-child {
-    background: #4a90e2;
+    background: green;
     color: white;
 }
 
@@ -183,6 +183,6 @@
 }
 
 .ActivitiesUpdate-six button:last-child:hover {
-    background: #357abd;
+    background: rgb(1, 163, 1);
 }
 

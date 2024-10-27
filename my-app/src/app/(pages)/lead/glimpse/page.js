@@ -138,17 +138,17 @@ const page = () => {
                         {Array.isArray(GlimpseData) && GlimpseData.map((data, index) => {
                             return (
                                 <div key={index} className="Glimpse-two-in">
-                                    
                                     <div className="Glimpse-two-in-img">
                                         <img src={data.glimpse_image} alt="heroImg" />
                                     </div>
                                     <div className="Glimpse-two-in-des">
                                         <p>{data.glimpse_desc}</p>
                                     </div>
-                                        
+                                    <div classname="Glimpse-two-in-button" id="button">
                                     <button onClick={handleClick(data.id)} >
                                         Update
                                     </button>
+                                    </div>
                                 </div>
                             )
                         })

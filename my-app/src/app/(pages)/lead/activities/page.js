@@ -106,7 +106,7 @@ const page = () => {
                         <div className="Activities-one-in">
 
                             <div className="ActivitiesUpdate-two">
-                                <p>you can update the Upcoming Activities here</p>
+                                <p>You can update the Upcoming Activities here</p>
                             </div>
 
                             <div className="ActivitiesUpdate-two">
@@ -121,7 +121,7 @@ const page = () => {
                                 />
                             </div>
                             <div className="ActivitiesUpdate-three">
-                                <label For="activityName" >Upcoming activity Description</label>
+                                <label For="activityName" >Upcoming activity Name</label>
                                 <input
                                     type="text"
                                     value={updatedData.activityName}

@@ -1,98 +1,43 @@
-/* page.css */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 .SocialsComponent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     padding: 20px;
 }
 
 .SocialsComponent-in {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.Socials-two {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
     padding: 20px;
 }
 
-.Socials-one,
-.Socials-two {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 15px 0;
-}
-
-.SocialsUpdate-two,
-.SocialsUpdate-three {
-    margin: 10px 0;
-    width: 100%;
-}
-
-.SocialsUpdate-two label {
-    font-weight: bold;
-}
-
-.SocialsUpdate-two input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #444;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.SocialsUpdate-five {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    margin-top: 15px;
-}
-
-.SocialsUpdate-five button {
-    padding: 10px 15px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: #007bff;
-}
-
-.SocialsUpdate-five button:hover {
-    background-color: #0056b3;
-}
-
 .Socials-two-in {
-    width: 100%;
-    border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    background-color: rgb(246, 244, 244);
+    background: white;
+    border-radius: 12px;
+    padding: 10rem 1rem; /* Increased padding for more height */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
-.Socials-two-in-one-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+.Socials-two-in:hover {
+    transform: translateY(-5px);
+}
+
+.Socials-two-in-one {
+    padding: 1rem;
 }
 
 .Socials-two-in-one-box p {
-    font-size: 16px;
-}
-
-.Socials-two-in-one-box button {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.Socials-two-in-one-box button:hover {
-    background-color: #218838;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
 }

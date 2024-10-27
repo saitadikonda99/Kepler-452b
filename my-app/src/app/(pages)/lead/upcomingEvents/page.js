@@ -106,7 +106,7 @@ const page = () => {
                         <div className="UpcomingEvents-one-in">
 
                             <div className="UpcomingEventsUpdate-two">
-                                <p>you can update the Upcoming Events here</p>
+                                <p>You can update the Upcoming Events here</p>
                             </div>
 
                             <div className="UpcomingEventsUpdate-two">
@@ -121,7 +121,7 @@ const page = () => {
                                 />
                             </div>
                             <div className="UpcomingEventsUpdate-three">
-                                <label For="eventName" >Upcoming Event Description</label>
+                                <label For="eventName" >Upcoming Event Name</label>
                                 <input
                                     type="text"
                                     value={updatedData.eventName}

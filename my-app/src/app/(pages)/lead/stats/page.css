@@ -45,7 +45,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-color: #4A90E2;
+    border-color: rgb(1, 163, 1);
     outline: none;
 }
 
@@ -73,7 +73,7 @@ button:first-of-type {
 }
 
 button:last-of-type {
-    background-color: #4A90E2;
+    background-color: rgb(1, 163, 1);
     color: #ffffff;
 }
 
@@ -108,14 +108,14 @@ button:last-of-type {
 }
 
 button.update-button {
-    background-color: #FFA500;
+    background-color: green;
     color: #ffffff;
     padding: 8px 16px;
     border-radius: 4px;
 }
 
 button.update-button:hover {
-    background-color: #e69500;
+    background-color: rgb(1, 163, 1);
 }
 
 @media (max-width: 768px) {
