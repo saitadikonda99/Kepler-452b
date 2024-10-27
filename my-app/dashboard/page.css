@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.AnalyticsComponent { 
+    width: 100%;
+}
+
+.AnalyticsComponent-in {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.AnalyticsComponent-one {
+    width: 18%;
+}
+
+.AnalyticsComponent-two {
+    width: 82%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.AnalyticsComponent-two-in {
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+    padding: 2rem;
+}   
+
+.DashboardA {
+    width: 100%;
+}
+
+.DashboardA-in {
+    width: 100%;
+}
+
+.DashboardA-in-one {
+    width: 100%;
+}
+
+.DashboardA-in-one-one {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0rem;
+}
+
+.DashboardA-stats {
+    width: 16%;
+}
+
+.DashboardA-stats-in {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgb(218, 214, 214);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+}
+
+.DashboardA-stats-in:hover {
+    background-color: black;
+    color: white;
+}
+
+.DashboardA-in-two {
+    width: 100%;
+}
+
+.DashboardA-in-two-one {
+    width: 100%;
+    display: flex;
+    padding: .5rem 1rem;
+}
+
+.DashboardA-in-two-one p {
+    font-size: 1rem;
+    display: block;
+    padding: 1rem;
+    border: 1px solid rgb(218, 214, 214);
+    border-radius: 10px;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+}
+
+.dashboard-icon {
+    font-size: 1.5rem;
+}
