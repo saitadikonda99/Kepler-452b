@@ -18,6 +18,8 @@ export async function middleware(req: NextRequest) {
     complete: true,
   });
 
+  
+
   const userData: any = decodedToken?.payload;
 
   const { valid, payload } = await verifyJWT();
