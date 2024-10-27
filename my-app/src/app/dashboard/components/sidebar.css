@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.AnalyticsComponent-sidebar {
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+
+.AnalyticsComponent-sidebar-in {
+    width: 100%;
+}
+
+.AnalyticsComponent-sidebar-in-one {
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Analytics-one {
+    width: 100%;
+}
+
+.Analytics-one-in {
+    width: 100%;
+    padding: 0rem 0rem 0rem 2rem;
+}
+
+.Analytics-one-in img {
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+}
+
+.AnalyticsComponent-sidebar-in-two {
+    width: 100%;
+    height: 88vh;
+}
+
+.Analytics-nav {
+    width: 100%;
+    padding: .4rem;
+}
+
+.Analytics-nav-in {
+    width: 80%;
+    margin: auto;
+    padding: .8rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .8rem;
+}
+
+.Analytics-nav-in a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.Analytics-nav-in:hover {
+    background-color: black;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 20px;
+}
+.Analytics-nav-in:hover a {
+    color: white;
+}
+
+.Analytics-nav-in:hover .analytics-icon {
+    color: white;
+}
+
+.nav-active {
+    background-color: black;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 20px;
+}
+
+.nav-active a {
+    color: white;
+}
+.nav-active .analytics-icon {
+    color: white;
+}
