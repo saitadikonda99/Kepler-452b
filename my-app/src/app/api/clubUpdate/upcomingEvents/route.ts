@@ -89,6 +89,7 @@ const getHandler = async (req: NextRequest) => {
       clubId = body.clubId;
     }
     
+    
     const MY_KEY = `upcoming_events_${clubId}`;
 
     const data = await redisClient.get(MY_KEY);

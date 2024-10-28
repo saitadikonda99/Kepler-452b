@@ -173,7 +173,7 @@ CREATE TABLE events (
 -- News table for landscapes
 CREATE TABLE news_landscape (
     id INT NOT NULL AUTO_INCREMENT,
-    news_link VARCHAR(255) NOT NULL, -- Changed to lowercase for consistency
+    news_link VARCHAR(255) NOT NULL,  
     club_name VARCHAR(255) NOT NULL,
     news_content VARCHAR(255) NOT NULL,
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -183,9 +183,48 @@ CREATE TABLE news_landscape (
 -- News table for portraits
 CREATE TABLE news_portrait (
     id INT NOT NULL AUTO_INCREMENT,
-    news_link VARCHAR(255) NOT NULL, -- Changed to lowercase for consistency
+    news_link VARCHAR(255) NOT NULL,  
     club_name VARCHAR(255) NOT NULL,
     news_content VARCHAR(255) NOT NULL,
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE student_registration (
+    id INT NOT NULL AUTO_INCREMENT,
+    student_id VARCHAR(256) NOT NULL,         
+    student_name VARCHAR(256) NOT NULL,      
+    batch VARCHAR(256) NOT NULL,              
+    department VARCHAR(50) NOT NULL,        
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,  
+    residence VARCHAR(256) NOT NULL,        
+    club_id INT NOT NULL,         
+    active BOOLEAN DEFAULT 1,  -- Added active status
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_registration (student_id, club_id),  
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE 
+);
+
+
+CREATE TABLE activities (
+    id INT NOT NULL AUTO_INCREMENT,
+    club_id INT NOT NULL,   
+    activity_name VARCHAR(100) NOT NULL,
+    activity_type ENUM('work', 'activity') NOT NULL,
+    club_name VARCHAR(100) NOT NULL,   
+    activity_date DATE NOT NULL,
+    venue VARCHAR(255) DEFAULT NULL,
+    report_link VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
+);
+
+CREATE TABLE projects (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT DEFAULT NULL,
+    club_name VARCHAR(100) NOT NULL,   
     PRIMARY KEY (id)
 );
