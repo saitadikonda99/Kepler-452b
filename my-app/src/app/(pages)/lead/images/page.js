@@ -132,14 +132,28 @@ const page = () => {
                     <div className="Image-two">
                         {Array.isArray(imageData) && imageData.map((data, index) => {
                             return (
-                                <div key={index} className="Image-two-in">
-                                    <div className="image-container">
-                                        <img src={data.heroImg} alt="heroImg" />
-                                        <img src={data.heroImg} alt="teamImg" />
+                                <div key={index} className="image-two-in">
+                                    <div className="image-two-in-one">
+                                        <h3>Instructions to update images:</h3>
+                                        <p>1.)The image size should be 1024px x 1024px.<br></br> 
+                                           For optimal results, you may refer to the Canva link. <br></br>
+                                           2.)To get the link of the image you can firebase storage (<a href="http://firebase.google.com/">http://firebase.google.com/</a>)
+                                            or else (<a href="https://www.imghippo.com/">https://www.imghippo.com/</a>) to <br></br>generate a link for an image. <br></br> 
+                                            3.)Upload the link.</p>
                                     </div>
+                                    <div className="image-two-in-two">
+                                        <div className="image-two-in-two-img">
+                                        <img src=/*{data.heroImg}*/ "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FIMG_6316.jpeg?alt=media&token=0d3a1156-f1e8-4c99-afa0-bdb723c41f20" alt="heroImg" />
+                                        </div>
+                                        <div className="image-two-in-two-img">
+                                        <img src=/*{data.heroImg}*/ "https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Clubpages%2FZeroOne%2FIMG_6316.jpeg?alt=media&token=0d3a1156-f1e8-4c99-afa0-bdb723c41f20" alt="teamImg" />
+                                        </div>
+                                    </div>
+                                    <div className="image-two-in-three">
                                     <button onClick={handleClick(data.club_id)}>
                                         Update
                                     </button>
+                                    </div>
                                 </div>
                             )
                         })}
