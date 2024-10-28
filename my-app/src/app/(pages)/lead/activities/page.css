@@ -62,7 +62,7 @@
 }
 
 .Activities-two-in-name {
-    margin: 12px 0;
+    margin-top: 12px;
 }
 
 .Activities-two-in-name p {
@@ -73,7 +73,7 @@
 
 .Activities-two-in-date,
 .Activities-two-in-venue {
-    margin: 8px 0;
+    /* margin: 8px 0; */
     color: #666;
 }
 
@@ -82,7 +82,7 @@
     width: 100%;
     padding: 10px;
     margin-top: 15px;
-    background: green;
+    background: black;
     color: white;
     border: none;
     border-radius: 6px;
@@ -92,7 +92,7 @@
 }
 
 .Activities-two-in button:hover {
-    background: rgb(1, 163, 1);
+    background: rgb(23, 23, 23);
 }
 
 /* Update form styling */

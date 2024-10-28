@@ -80,7 +80,7 @@
     width: 100%;
     padding: 10px;
     margin-top: 15px;
-    background: green;
+    background: black;
     color: white;
     border: none;
     border-radius: 6px;
@@ -90,7 +90,7 @@
 }
 
 .UpcomingEvents-two-in button:hover {
-    background: #357abd;
+    background: rgb(23, 23, 23);
 }
 
 /* Update form styling */
@@ -147,7 +147,7 @@
 .UpcomingEventsUpdate-four input:focus,
 .UpcomingEventsUpdate-five input:focus {
     outline: none;
-    border-color: rgb(1, 163, 1);
+    border-color: rgb(23, 23, 23);
 }
 
 .UpcomingEventsUpdate-six {
@@ -171,15 +171,18 @@
     color: #666;
 }
 
-.UpcomingEventsUpdate-six button:last-child {
-    background: green;
+.UpcomingEventsUpdate-six button {
+    background: black;
     color: white;
 }
 
-.UpcomingEventsUpdate-six button:first-child:hover {
+.UpcomingEventsUpdate-six button:first-child:hover{
+    color: white;
+}
+.UpcomingEventsUpdate-six button:hover {
     background: #e0e0e0;
 }
 
-.UpcomingEventsUpdate-six button:last-child:hover {
-    background: #357abd;
+.UpcomingEventsUpdate-six button:hover {
+    background: rgb(23, 23, 23);
 }
