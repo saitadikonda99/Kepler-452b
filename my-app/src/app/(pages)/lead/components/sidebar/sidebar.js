@@ -10,6 +10,7 @@ import { MdEventAvailable } from "react-icons/md";
 import { ImNewspaper } from "react-icons/im";
 import { HiUserGroup } from "react-icons/hi";
 import { GrUpdate } from "react-icons/gr";
+import { MdOutlineChangeCircle } from "react-icons/md";
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -45,7 +46,7 @@ const sidebar = () => {
     },
     {
       name: "Update Club Details",
-      icon: <ImNewspaper className="sideBar-icon" />,
+      icon: <MdOutlineChangeCircle className="sideBar-icon" />,
       link: "",
       subOptions: [
         { name: "Image", link: "/lead/images" },
