@@ -4,14 +4,55 @@
     box-sizing: border-box;
 }
 
+.ImageComponent {
+    width: 100%;
+}
+
+.ImageComponent-in {
+    padding: 1rem;
+}
+
 .image-two-in{
-    width: 80%;
+    width: 100%;
 }
 
 .image-two-in-one{
-    padding-left: 2rem;
-    padding-top: 1rem;
-    width: 80%;
+    width: 100%;  
+}
+
+.image-two-in-one-one {
+    width: 100%;
+    display: flex;
+}
+
+.images-icon {
+    font-size: 1.5rem;
+}
+
+.image-two-in-one-one p {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.image-two-in-one-two {
+    padding: .8rem .5rem;
+}
+
+.image-two-in-one-two-one {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.image-two-in-one-two-one p {
+    font-size: 1rem;
 }
 
 .image-two-in-one a{
@@ -20,37 +61,45 @@
 }
 .image-two-in-two{
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content:flex-start;
-    gap: 1rem;
-    padding: 1rem 0rem 1rem 2rem;
 }
 
-.image-two-in-two-img{
-    width: 40%;
+.image-two-in-two-in {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.image-two-in-two-img {
+    width: 50%;
     height: 100%;
-    /* background-color: yellowgreen; */
 }
 
 .image-two-in-two-img img{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid rgb(202, 196, 196);
 }
 
 .image-two-in-three{
     width: 100%;
-    padding-left: 47.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0rem 1rem;
 }
 
 .image-two-in-three button{
-  width: 32%;
-  font-size: 1rem;
+  font-size: .8rem;
   border-radius: 5px;
-  padding: 0.8rem; 
-  color: white;
-  background-color: green;
-  cursor: pointer;
   border: none;
+  padding: 0.5rem 1rem; 
+  color: white;
+  background-color: black;
+  cursor: pointer;
 }
 
 .image-two-in-three button:hover{
