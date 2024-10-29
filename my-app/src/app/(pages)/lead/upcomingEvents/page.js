@@ -2,9 +2,14 @@
 import React, { use, useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from "react-hot-toast";
+import Link from 'next/link'
 
 import Dashboard from '../dashboard/dashboard'
 import './page.css'
+
+// import icons here
+import { VscDebugBreakpointLog } from "react-icons/vsc";
+import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
 const page = () => {
 
@@ -101,15 +106,47 @@ const page = () => {
     <Dashboard>
         <div className="UpcomingEventsComponent">
             <div className="UpcomingEventsComponent-in">
+
+            <div className="UpcomingEvents-one">
+            <div className="UpcomingEvents-one-one">
+              <p>
+                Instructions to update images{" "}
+                <MdOutlineIntegrationInstructions className="Activities-icon" />
+              </p>
+            </div>
+            <div className="UpcomingEvents-one-two">
+              <div className="UpcomingEvents-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                  Resize Image: Use the provided Canva link to resize the image
+                  to the optimal dimensions for website display.
+                </p>
+              </div>
+
+              <div className="UpcomingEvents-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                  Upload and Generate Link: After resizing, download the image
+                  and upload it to a storage service like
+                  <Link href="http://firebase.google.com/" target="_blank">
+                    {" "}
+                    Firebase Storage
+                  </Link>{" "}
+                  or{" "}
+                  <Link href="https://www.imghippo.com/" target="_blank">
+                    Imghippo
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
                 { show ? 
-                    <div className="UpcomingEvents-one">
-                        <div className="UpcomingEvents-one-in">
+                    <div className="UpcomingEvents-two">
+                        <div className="UpcomingEvents-two-in">
 
-                            <div className="UpcomingEventsUpdate-two">
-                                <p>You can update the Upcoming Events here</p>
-                            </div>
-
-                            <div className="UpcomingEventsUpdate-two">
+                            <div className="UpcomingEventsUpdate-one">
                                 <label For="eventImage" >Upcoming Event Image</label>
                                 <input
                                     type="text"
@@ -120,7 +157,7 @@ const page = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="UpcomingEventsUpdate-three">
+                            <div className="UpcomingEventsUpdate-two">
                                 <label For="eventName" >Upcoming Event Name</label>
                                 <input
                                     type="text"
@@ -131,7 +168,7 @@ const page = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="UpcomingEventsUpdate-four">
+                            <div className="UpcomingEventsUpdate-three">
                                 <label For="eventDate" >Upcoming Event Date</label>
                                 <input
                                     type="text"
@@ -142,7 +179,7 @@ const page = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="UpcomingEventsUpdate-five">
+                            <div className="UpcomingEventsUpdate-four">
                                 <label For="eventVenue" >Upcoming Event Venue</label>
                                 <input
                                     type="text"
@@ -153,7 +190,7 @@ const page = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="UpcomingEventsUpdate-six">
+                            <div className="UpcomingEventsUpdate-five">
                                 <button onClick={handleCancel}>
                                     Cancel
                                 </button>
@@ -164,21 +201,21 @@ const page = () => {
                         </div>
                     </div>
                     :
-                    <div className="UpcomingEvents-two">
+                    <div className="UpcomingEvents-three">
                         {Array.isArray(UpcomingEventsData) && UpcomingEventsData.map((data, index) => {
                             return (
-                                <div key={index} className="UpcomingEvents-two-in">
+                                <div key={index} className="UpcomingEvents-three-in">
                                     
-                                    <div className="UpcomingEvents-two-in-img">
+                                    <div className="UpcomingEvents-three-in-img">
                                         <img src={data.event_image} alt="heroImg" />
                                     </div>
-                                    <div className="UpcomingEvents-two-in-name">
+                                    <div className="UpcomingEvents-three-in-name">
                                         <p>{data.event_name}</p>
                                     </div>
-                                    <div className="UpcomingEvents-two-in-date">
+                                    <div className="UpcomingEvents-three-in-date">
                                         <p>{data.event_date.split('T')[0]}</p>
                                     </div>
-                                    <div className="UpcomingEvents-two-in-venue">
+                                    <div className="UpcomingEvents-three-in-venue">
                                         <p>{data.event_venue}</p>
                                     </div>
                                         

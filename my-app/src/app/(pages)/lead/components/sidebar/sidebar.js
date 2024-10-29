@@ -53,7 +53,6 @@ const sidebar = () => {
         { name: "Glimpse", link: "/lead/glimpse" },
         { name: "Upcoming Events", link: "/lead/upcomingEvents" },
         { name: "Activities", link: "/lead/activities" },
-        { name: "Stats", link: "/lead/stats" },
         { name: "Socials", link: "/lead/socials" },
       ],
     },

@@ -1,188 +1,58 @@
+
 .ActivitiesComponent {
     width: 100%;
-    min-height: 100vh;
-    padding: 20px;
 }
 
 .ActivitiesComponent-in {
-    width: 100%;
-    height: 100%;
+    padding: 1rem;
 }
 
-/* Grid layout for activities */
-.Activities-two {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns */
-    gap: 20px;
-    padding: 20px;
-}
-
-/* Add media queries for responsiveness */
-@media (max-width: 1400px) {
-    .Activities-two {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 1100px) {
-    .Activities-two {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .Activities-two {
-        grid-template-columns: 1fr;
-    }
-}
-
-.Activities-two-in {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.Activities-two-in:hover {
-    /* transform: translateY(-5px); */
-}
-
-.Activities-two-in-img {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.Activities-two-in-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.Activities-two-in-name {
-    margin-top: 12px;
-}
-
-.Activities-two-in-name p {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.Activities-two-in-date,
-.Activities-two-in-venue {
-    /* margin: 8px 0; */
-    color: #666;
-}
-
-/* Update button styling */
-.Activities-two-in button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.2s;
-}
-
-.Activities-two-in button:hover {
-    background: rgb(23, 23, 23);
-}
-
-/* Update form styling */
 .Activities-one {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 100%;  
 }
 
 .Activities-one-in {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-}
-
-.ActivitiesUpdate-two p {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.ActivitiesUpdate-two,
-.ActivitiesUpdate-three,
-.ActivitiesUpdate-four,
-.ActivitiesUpdate-five {
-    margin-bottom: 20px;
-}
-
-.ActivitiesUpdate-two label,
-.ActivitiesUpdate-three label,
-.ActivitiesUpdate-four label,
-.ActivitiesUpdate-five label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
-}
-
-.ActivitiesUpdate-two input,
-.ActivitiesUpdate-three input,
-.ActivitiesUpdate-four input,
-.ActivitiesUpdate-five input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    display: flex;
+}
+
+.Activities-icon {
+    font-size: 1.5rem;
+}
+
+.Activities-one-one {
+    width: 100%;
+    display: flex;
+}
+
+.Activities-one-one p {
+    font-size: 1.2rem;
+    border: 1px solid black;    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.Activities-one-two {
+    padding: .8rem .5rem;
+}
+
+.Activities-one-two-one {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Activities-one-two-one p {
     font-size: 1rem;
 }
 
-.ActivitiesUpdate-two input:focus,
-.ActivitiesUpdate-three input:focus,
-.ActivitiesUpdate-four input:focus,
-.ActivitiesUpdate-five input:focus {
-    outline: none;
-    border-color: rgb(1, 163, 1);
+.Activities-one a{
+    text-decoration: none;
+    color: rgb(217, 3, 3);
 }
-
-.ActivitiesUpdate-six {
-    display: flex;
-    gap: 15px;
-    justify-content: flex-end;
-    margin-top: 25px;
-}
-
-.ActivitiesUpdate-six button {
-    padding: 10px 25px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.ActivitiesUpdate-six button:first-child {
-    background: #f0f0f0;
-    color: #666;
-}
-
-.ActivitiesUpdate-six button:last-child {
-    background: green;
-    color: white;
-}
-
-.ActivitiesUpdate-six button:first-child:hover {
-    background: #e0e0e0;
-}
-
-.ActivitiesUpdate-six button:last-child:hover {
-    background: rgb(1, 163, 1);
-}
-

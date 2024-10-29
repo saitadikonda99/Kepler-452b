@@ -1,7 +1,67 @@
-*{
-    padding: 0%;
-    margin: 0%;
-    box-sizing: border-box;
+.SocialsComponent {
+    width: 100%;
 }
 
-.
+.SocialsComponent-in {
+    width: 100%;
+    padding: 1rem;
+}
+
+
+.SocialsComponent {
+    width: 100%;
+}
+
+.SocialsComponent-in {
+    padding: 1rem;
+}
+
+.Socials-one {
+    width: 100%;  
+}
+
+.Socials-one-in {
+    width: 100%;
+    display: flex;
+}
+
+.Socials-icon {
+    font-size: 1.5rem;
+}
+
+.Socials-one-one {
+    width: 100%;
+    display: flex;
+}
+
+.Socials-one-one p {
+    font-size: 1.2rem;
+    border: 1px solid black;    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.Socials-one-two {
+    padding: .8rem .5rem;
+}
+
+.Socials-one-two-one {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Socials-one-two-one p {
+    font-size: 1rem;
+}
+
+.Socials-one a{
+    text-decoration: none;
+    color: rgb(217, 3, 3);
+}

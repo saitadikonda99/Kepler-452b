@@ -2,9 +2,14 @@
 import React, { use, useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from "react-hot-toast";
+import Link from 'next/link'
 
 import Dashboard from '../dashboard/dashboard'
 import "./page.css"
+
+// import icons here
+import { VscDebugBreakpointLog } from "react-icons/vsc";
+import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
 const page = () => {
 
@@ -93,15 +98,49 @@ const page = () => {
     <Dashboard>
         <div className="GlimpseComponent">
             <div className="GlimpseComponent-in">
+
+
+            <div className="Glimpse-one">
+            <div className="Glimpse-one-one">
+              <p>
+                Instructions to update images{" "}
+                <MdOutlineIntegrationInstructions className="Activities-icon" />
+              </p>
+            </div>
+            <div className="Glimpse-one-two">
+              <div className="Glimpse-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                  Resize Image: Use the provided Canva link to resize the image
+                  to the optimal dimensions for website display.
+                </p>
+              </div>
+
+              <div className="Glimpse-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                  Upload and Generate Link: After resizing, download the image
+                  and upload it to a storage service like
+                  <Link href="http://firebase.google.com/" target="_blank">
+                    {" "}
+                    Firebase Storage
+                  </Link>{" "}
+                  or{" "}
+                  <Link href="https://www.imghippo.com/" target="_blank">
+                    Imghippo
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
                 { show ? 
-                    <div className="Glimpse-one">
-                        <div className="Glimpse-one-in">
+                    <div className="Glimpse-two">
+                        <div className="Glimpse-two-in">
 
-                            <div className="GlimpseUpdate-two">
-                                <p>you can update the Glimpses here</p>
-                            </div>
 
-                            <div className="GlimpseUpdate-two">
+                            <div className="GlimpseUpdate-one">
                                 <label For="glimpseImage" >Glimpse Image</label>
                                 <input
                                     type="text"
@@ -112,7 +151,7 @@ const page = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="GlimpseUpdate-three">
+                            <div className="GlimpseUpdate-two">
                                 <label For="glimpseDesc" >Glimpse Description</label>
                                 <input
                                     type="text"
@@ -123,7 +162,7 @@ const page = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="GlimpseUpdate-four">
+                            <div className="GlimpseUpdate-three">
                                 <button onClick={handleCancel}>
                                     Cancel
                                 </button>
@@ -134,17 +173,17 @@ const page = () => {
                         </div>
                     </div>
                     :
-                    <div className="Glimpse-two">
+                    <div className="Glimpse-three">
                         {Array.isArray(GlimpseData) && GlimpseData.map((data, index) => {
                             return (
-                                <div key={index} className="Glimpse-two-in">
-                                    <div className="Glimpse-two-in-img">
+                                <div key={index} className="Glimpse-three-in">
+                                    <div className="Glimpse-three-in-img">
                                         <img src={data.glimpse_image} alt="heroImg" />
                                     </div>
-                                    <div className="Glimpse-two-in-des">
+                                    <div className="Glimpse-three-in-des">
                                         <p>{data.glimpse_desc}</p>
                                     </div>
-                                    <div classname="Glimpse-two-in-button" id="button">
+                                    <div classname="Glimpse-three-in-button" id="button">
                                     <button onClick={handleClick(data.id)} >
                                         Update
                                     </button>
