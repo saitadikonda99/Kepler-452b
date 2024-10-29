@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 import Dashboard from '../dashboard/dashboard'
 import './page.css'
+import { VscDebugBreakpointLog } from "react-icons/vsc";
 
 const page = () => {
 
@@ -135,11 +136,11 @@ const page = () => {
                                 <div key={index} className="image-two-in">
                                     <div className="image-two-in-one">
                                         <h3>Instructions to update images:</h3>
-                                        <p>1.)The image size should be 1024px x 1024px.<br></br> 
-                                           For optimal results, you may refer to the Canva link. <br></br>
-                                           2.)To get the link of the image you can firebase storage (<a href="http://firebase.google.com/">http://firebase.google.com/</a>)
-                                            or else (<a href="https://www.imghippo.com/">https://www.imghippo.com/</a>) to <br></br>generate a link for an image. <br></br> 
-                                            3.)Upload the link.</p>
+                                        <p><VscDebugBreakpointLog/>Resize Image: Use the provided Canva link to resize the image to the optimal dimensions
+                                           for website display.<br/>
+                                           <VscDebugBreakpointLog/>Upload and Generate Link: After resizing, download the image and upload it to a storage
+                                           service like<a href="http://firebase.google.com/" target="_blank"> Firebase Storage</a> or <a href="https://www.imghippo.com/" target="_blank">Imghippo</a>.<br/>
+                                           <VscDebugBreakpointLog/>Share Link: Once uploaded, extract the image link and paste it here for website integration.</p>
                                     </div>
                                     <div className="image-two-in-two">
                                         <div className="image-two-in-two-img">
