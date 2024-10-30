@@ -35,9 +35,10 @@ export const POST = async (req: any) => {
     await pool.query('START TRANSACTION');
 
     await pool.query(
-      `INSERT INTO news_portrait (news_link, club_name, news_content)
-       VALUES (?, ?, ?)`,
-      [newsLink, clubName, newsContent]
+      `UPDATE news_portrait
+       SET news_link = ?, club_name = ?, news_content = ?
+       WHERE id = ?`,
+      [newsLink, clubName, newsContent, newsId]
     );
 
     await pool.query('COMMIT');

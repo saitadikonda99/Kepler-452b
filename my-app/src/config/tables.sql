@@ -223,8 +223,10 @@ CREATE TABLE club_activities (
 
 CREATE TABLE club_projects (
     id INT NOT NULL AUTO_INCREMENT,
+    club_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
     description TEXT DEFAULT NULL,
     club_name VARCHAR(100) NOT NULL,   
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
 );

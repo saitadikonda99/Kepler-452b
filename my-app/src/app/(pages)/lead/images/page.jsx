@@ -17,6 +17,7 @@ const page = () => {
 
   const [updatedData, setUpdatedData] = useState({
     clubId: null,
+    imagesId: null,
     heroImg: "",
     teamImg: "",
   });
@@ -28,6 +29,7 @@ const page = () => {
 
       setUpdatedData({
         clubId: clubId,
+        imagesId: data.id,
         heroImg: data.hero_img,
         teamImg: data.team_img,
       });

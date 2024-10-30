@@ -24,7 +24,7 @@ const postHandler = async (req: NextRequest) => {
 
   try {
 
-        const {clubId, activityName, activityImage, activityDate, activityVenue} = await req.json();
+        const {clubId, activityId, activityName, activityImage, activityDate, activityVenue} = await req.json();
     
         if (!clubId || !activityImage || !activityDate || !activityVenue || !activityName) {
             return NextResponse.json(
@@ -33,14 +33,11 @@ const postHandler = async (req: NextRequest) => {
         }
 
         const [result]: any = await pool.query(
-            `Insert INTO activities (club_id, activity_name, activity_image, activity_date, activity_venue) VALUES (?, ?, ?, ?, ?)`,
-            [clubId, activityName, activityImage, activityDate, activityVenue,]
-        );
-
-        const MY_KEY = `activities_${clubId}`;
-        redisClient.del(MY_KEY);
-        const MY_KEY_CLUB = `clubData${clubId}`;
-        redisClient.del(MY_KEY_CLUB);
+          `UPDATE activities 
+           SET club_id = ?, activity_name = ?, activity_image = ?, activity_date = ?, activity_venue = ? 
+           WHERE id = ?`, 
+          [clubId, activityName, activityImage, activityDate, activityVenue, activityId]
+      );
 
         return NextResponse.json({ status: 200 });
 
@@ -100,7 +97,6 @@ const getHandler = async (req: NextRequest) => {
             [clubId]
         );
 
-        redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
         
         return NextResponse.json(result, { status: 200 });
 

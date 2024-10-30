@@ -18,6 +18,7 @@ const page = () => {
 
     const [updatedData, setUpdatedData] = useState({
         clubId: null,
+        glimpseId: null,
         glimpseImage: "",
         glimpseDesc: "",
     })
@@ -29,6 +30,7 @@ const page = () => {
 
             setUpdatedData({
                 clubId: data.club_id,
+                glimpseId: data.id,
                 glimpseImage: data.glimpse_image,
                 glimpseDesc: data.glimpse_desc,
             });   

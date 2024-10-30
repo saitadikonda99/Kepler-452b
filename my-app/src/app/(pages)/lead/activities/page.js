@@ -17,6 +17,7 @@ const page = () => {
 
   const [updatedData, setUpdatedData] = useState({
     clubId: null,
+    activityId: null,
     activityName: "",
     activityImage: "",
     activityDate: " ",
@@ -30,6 +31,7 @@ const page = () => {
 
       setUpdatedData({
         clubId: data.club_id,
+        activityId: data.id,
         activityName: data.activity_name,
         activityImage: data.activity_image,
         activityDate: data.activity_date.split("T")[0],
@@ -102,6 +104,8 @@ const page = () => {
     };
     fetchData();
   }, []);
+
+  console.log(ActivitiesData);
 
   return (
     <Dashboard>

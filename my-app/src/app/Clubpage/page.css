@@ -341,6 +341,15 @@
 
 
 /* Activities boxes */
+
+.Club-four-three {
+  width: 100%;
+}
+
+.Club-four-three-in {
+    width: 100%;
+}
+
 .Club-four-three-in-one {
   display: flex;
   justify-content: space-between;

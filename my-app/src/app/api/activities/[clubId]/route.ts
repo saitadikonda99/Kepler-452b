@@ -1,0 +1,27 @@
+import { copyFileSync } from "fs";
+import { pool } from "../../../../config/db";
+import { redisClient } from "../../../../config/redis";
+import { NextRequest, NextResponse } from "next/server";
+
+export const GET = async (req: NextRequest) => {
+
+
+ const clubId = req.nextUrl.pathname.split("/").pop();
+
+  try {
+    const [result]: any = await pool.query(
+      `SELECT id, club_id, activity_name, activity_type, club_name, activity_date, venue, report_link
+        FROM (
+            SELECT *, 
+                ROW_NUMBER() OVER (PARTITION BY activity_name ORDER BY activity_date) AS row_num
+            FROM club_activities
+            WHERE club_id = ?
+        ) AS unique_activities
+        WHERE row_num = 1;
+      `, [clubId]);
+
+    return NextResponse.json(result, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
+  }
+};

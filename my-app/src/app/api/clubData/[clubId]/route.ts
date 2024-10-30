@@ -7,12 +7,7 @@ export const GET = async (req: NextRequest) => {
   const MY_KEY = `clubData${clubId}`;
 
   try {
-    const data = await redisClient.get(MY_KEY);
-
-    if (data) {
-      return NextResponse.json(JSON.parse(data), { status: 200 });
-    }
-
+   
     await pool.query('START TRANSACTION');
 
     const [activities]: any = await pool.query(
@@ -46,9 +41,11 @@ export const GET = async (req: NextRequest) => {
     );
 
     const [stats]: any = await pool.query(
-      `SELECT * FROM stats WHERE club_id = ? ORDER BY upload_at DESC LIMIT 1`,
-      [clubId]
-    );
+      `SELECT
+          (SELECT COUNT(DISTINCT student_id) FROM student_registration WHERE club_id = ?) AS total_members,
+          (SELECT COUNT(DISTINCT activity_name) FROM club_activities WHERE club_id = ?) AS total_activities,
+          (SELECT COUNT(DISTINCT name) FROM club_projects WHERE club_id = ?) AS total_projects
+      `, [clubId, clubId, clubId]);
 
     const [upcomingEvents]: any = await pool.query(
       `SELECT * FROM upcoming_events WHERE club_id = ? ORDER BY upload_at DESC LIMIT 4`,
@@ -70,7 +67,7 @@ export const GET = async (req: NextRequest) => {
       { type: 'clubInfo', data: clubInfo.length > 0 ? clubInfo[0] : null },
     ];
 
-    await redisClient.setEx(MY_KEY, 3600, JSON.stringify(combinedResultsArray));
+  
     await pool.query('COMMIT');
 
     return NextResponse.json(combinedResultsArray, { status: 200 });

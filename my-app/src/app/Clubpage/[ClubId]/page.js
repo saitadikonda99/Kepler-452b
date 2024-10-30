@@ -5,6 +5,7 @@ import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 import { useParams } from "next/navigation";
 
@@ -15,7 +16,7 @@ import "../page.css";
 import ClubNavbar from "../../Components/Navbar/ClubpageNavbar";
 import Footer from "../../Components/Footer/page";
 
-import { decryptClubId } from "../../UI/clubs/encrypt"
+
 
 // import start here
 import { MdLocalActivity } from "react-icons/md";
@@ -257,6 +258,11 @@ const page = () => {
                     </div>
                   ))}
                 </div>
+
+                <div className="Club-four-three-in-two">
+                  <Link href={`/Clubpage/activities/${clubId}`} >View More</Link>
+                </div>
+
               </div>
             </div>
 

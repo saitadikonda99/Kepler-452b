@@ -7,7 +7,7 @@ import { withMiddleware } from "../../../../middleware/middleware";
 const postHandler = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
   if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
   const userData: any = payload;
@@ -18,7 +18,7 @@ const postHandler = async (req: NextRequest) => {
   );
 
   if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
+    return NextResponse.json({ message: roleReason }, { status: 403 });
   }
 
   try {
@@ -36,7 +36,7 @@ const postHandler = async (req: NextRequest) => {
     const headers = rows[0].split(",");
     const dataRows = rows.slice(1);
 
-    const activitiesData = dataRows.map((row) => {
+    const projectsData = dataRows.map((row) => {
       const values = row.split(",");
       return headers.reduce((obj, header, index) => {
         obj[header.trim()] = values[index]?.trim() || null;
@@ -47,21 +47,16 @@ const postHandler = async (req: NextRequest) => {
     await pool.query("START TRANSACTION");
 
     // Prepare bulk insert values
-    const insertValues = activitiesData.map((activity) => [
-      clubId,
-      activity.activity_name,
-      activity.activity_type.toLowerCase(),
-      clubName,
-      activity.activity_date,
-      activity.venue || null,
-      activity.report_link || null,
+    const insertValues = projectsData.map((project) => [
+        clubId,
+        project.name,
+        project.description,
+        clubName,
     ]);
 
     const insertQuery = `
-      INSERT INTO club_activities (
-        club_id, activity_name, activity_type, club_name, activity_date, venue, report_link
-      ) VALUES ? 
-      ON DUPLICATE KEY UPDATE activity_date = VALUES(activity_date)
+        INSERT INTO club_projects (club_id, name, description, club_name)
+        VALUES ?;
     `;
 
     await pool.query(insertQuery, [insertValues]);
@@ -75,5 +70,6 @@ const postHandler = async (req: NextRequest) => {
     return NextResponse.json({ message: error.message || "Server error"}, {status: 500});
   }
 };
+
 
 export const POST = withMiddleware(postHandler);

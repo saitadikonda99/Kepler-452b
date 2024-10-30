@@ -18,6 +18,7 @@ const page = () => {
 
     const [updatedData, setUpdatedData] = useState({
         clubId: null,
+        eventId: null,
         eventName: "",
         eventImage: "",
         eventDate:" ",
@@ -31,6 +32,7 @@ const page = () => {
 
             setUpdatedData({
                 clubId: data.club_id,
+                eventId: data.id,
                 eventName: data.event_name,
                 eventImage: data.event_image,
                 eventDate: data.event_date.split('T')[0],

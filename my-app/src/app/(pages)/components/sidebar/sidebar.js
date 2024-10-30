@@ -14,7 +14,8 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";  
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { MdOutlinePublishedWithChanges } from "react-icons/md"; 
-import { MdOutlineChangeCircle } from "react-icons/md";  
+import { RiLockPasswordFill } from "react-icons/ri";
+
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -81,13 +82,18 @@ const sidebar = () => {
       link: "/admin/viewClubs",
     },
     {
+      name: "Add Students",
+      icon: <BsPersonFillAdd className="sideBar-icon" />,
+      link: "/admin/members/addMembers",
+    },
+    {
       name: "Add Admin",
       icon:<BsPersonFillAdd className="sideBar-icon"/>,
       link: "/admin/addAdmin",
     },
     {
       name: "Change Password",
-      icon: <MdOutlineChangeCircle className="sideBar-icon" />,
+      icon: <RiLockPasswordFill className="sideBar-icon" />,
       link: "/admin/changePassword",
     },
     {

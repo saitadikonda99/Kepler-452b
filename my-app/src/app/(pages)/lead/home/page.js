@@ -33,7 +33,7 @@ const page = () => {
         
         const fetch = async () => {
             try {
-                const response = await axios.get("/api/clubUpdate/stats", {
+                const response = await axios.get("/api/stats", {
                     headers: {
                         "Content-Type": "application/json",
                     },

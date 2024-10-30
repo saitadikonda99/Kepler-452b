@@ -26,16 +26,18 @@ const postHandler = async (req: NextRequest) => {
   }
 
   try {
-    const { clubId, glimpseImage, glimpseDesc } = await req.json();
+    const { clubId, glimpseId, glimpseImage, glimpseDesc } = await req.json();
 
     if (!clubId || !glimpseImage || !glimpseDesc) {
       return NextResponse.json({ status: 401 });
     }
 
     const [result]: any = await pool.query(
-      `Insert INTO glimpse (club_id, glimpse_image, glimpse_desc) VALUES (?, ?, ?)`,
-      [clubId, glimpseImage, glimpseDesc]
-    );
+      `UPDATE glimpse 
+       SET club_id = ?, glimpse_image = ?, glimpse_desc = ? 
+       WHERE id = ?`,   
+      [clubId, glimpseImage, glimpseDesc, glimpseId]
+  );
 
     const MY_KEY = `glimpse_${clubId}`;
     redisClient.del(MY_KEY);

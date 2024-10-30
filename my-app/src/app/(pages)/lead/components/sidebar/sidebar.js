@@ -6,11 +6,12 @@ import "./page.css";
 
 // import icons here
 import { IoMdHome } from "react-icons/io";
-import { MdEventAvailable } from "react-icons/md";
-import { ImNewspaper } from "react-icons/im";
-import { HiUserGroup } from "react-icons/hi";
-import { GrUpdate } from "react-icons/gr";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { LuNetwork } from "react-icons/lu";
+import { BsCalendar2MinusFill } from "react-icons/bs";
+import { IoMdImages } from "react-icons/io";
 import { MdOutlineChangeCircle } from "react-icons/md";
+import { MdViewQuilt } from "react-icons/md";
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -49,16 +50,26 @@ const sidebar = () => {
       icon: <MdOutlineChangeCircle className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Image", link: "/lead/images" },
-        { name: "Glimpse", link: "/lead/glimpse" },
-        { name: "Upcoming Events", link: "/lead/upcomingEvents" },
-        { name: "Activities", link: "/lead/activities" },
-        { name: "Socials", link: "/lead/socials" },
+        { name: "Image", icon: <IoMdImages className="sideBar-icon" /> , link: "/lead/images" },
+        { name: "Glimpse", icon: <MdViewQuilt className="sideBar-icon" /> , link: "/lead/glimpse" },
+        { name: "Upcoming Events", icon: <BsCalendar2MinusFill className="sideBar-icon" /> , link: "/lead/upcomingEvents" },
+        { name: "Activities", icon: <IoMdImages className="sideBar-icon" /> , link: "/lead/activities" },
+        { name: "Socials", icon: <IoMdImages className="sideBar-icon" /> , link: "/lead/socials" },
       ],
     },
     {
+      name: "Add Activities",
+      icon: <BsCalendar2MinusFill className="sideBar-icon" />,
+      link: "/lead/addActivities",
+    },
+    {
+      name: "Add Projects",
+      icon: <LuNetwork className="sideBar-icon" />,
+      link: "/lead/addProjects",
+    },
+    {
       name: "Change Password",
-      icon: <ImNewspaper className="sideBar-icon" />,
+      icon: <RiLockPasswordFill className="sideBar-icon" />,
       link: "/lead/changePassword",
     }
   ];
@@ -76,7 +87,8 @@ const sidebar = () => {
               {option.subOptions && openSubMenu === option.name && (
                 <div className="Sidebar-box">
                   {option.subOptions.map((subOption, subIndex) => (
-                    <div className="Sidebar-box-in" key={subIndex} onClick={handleNav(subOption.link)}>
+                    <div className="Sidebar-box-in subOption" key={subIndex} onClick={handleNav(subOption.link)}>
+                      {subOption.icon}
                       <p>{subOption.name}</p>
                     </div>
                   ))}
