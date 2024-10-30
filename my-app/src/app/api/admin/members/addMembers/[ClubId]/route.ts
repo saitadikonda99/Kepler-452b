@@ -57,12 +57,12 @@ const handler = async (req: NextRequest) => {
     await pool.query('COMMIT');
 
 
-    return NextResponse.json({ message: "User status updated", status: 200 });
+    return NextResponse.json({ message: "User status updated"}, {status: 200});
     
   } catch (error) {
     console.log(error)
     await pool.query('ROLLBACK');
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    return NextResponse.json({ message: "Internal server error"}, {status: 500});
   }
 }
 

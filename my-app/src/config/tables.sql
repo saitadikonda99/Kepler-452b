@@ -208,11 +208,11 @@ CREATE TABLE student_registration (
 );
 
 
-CREATE TABLE activities (
+CREATE TABLE club_activities (
     id INT NOT NULL AUTO_INCREMENT,
     club_id INT NOT NULL,   
     activity_name VARCHAR(100) NOT NULL,
-    activity_type ENUM('work', 'activity') NOT NULL,
+    activity_type ENUM('workshop', 'activity') NOT NULL,
     club_name VARCHAR(100) NOT NULL,   
     activity_date DATE NOT NULL,
     venue VARCHAR(255) DEFAULT NULL,
@@ -221,7 +221,7 @@ CREATE TABLE activities (
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
 );
 
-CREATE TABLE projects (
+CREATE TABLE club_projects (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     description TEXT DEFAULT NULL,

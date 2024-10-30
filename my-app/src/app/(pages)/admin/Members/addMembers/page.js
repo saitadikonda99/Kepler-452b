@@ -41,11 +41,11 @@ const page = () => {
             if (response.status === 200) {
                 toast.success("Members added successfully");
             } else {
-                toast.error("Internal server error");
+                toast.error("Check the file data");
             }
 
         } catch (error) {
-            toast.error("Internal server error");
+            toast.error("Check the file data");
         }
     }
 
@@ -59,6 +59,8 @@ const page = () => {
             },
             withCredentials: true,
           });
+
+          console.log(response)
     
           if (response.status === 200) {
             setClubData(response.data);

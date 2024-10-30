@@ -9,11 +9,11 @@ export const POST = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
 
     if (!valid) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
 
     if (!payload) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
 
     const { authorized, reason: roleReason } = verifyRoles(
@@ -22,7 +22,7 @@ export const POST = async (req: NextRequest) => {
     );
 
     if (!authorized) {
-      return NextResponse.json({ message: roleReason, status: 403 });
+      return NextResponse.json({ message: roleReason}, {status: 403});
     }
 
     const {
