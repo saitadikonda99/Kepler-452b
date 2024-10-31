@@ -11,7 +11,7 @@ export const POST = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
 
     const { authorized, reason: roleReason } = verifyRoles(
@@ -20,7 +20,7 @@ export const POST = async (req: NextRequest) => {
     );
 
     if (!authorized) {
-      return NextResponse.json({ message: roleReason, status: 403 });
+      return NextResponse.json({ message: roleReason}, {status: 403});
     }
 
     const { eventId, eventLink, eventName, eventDate, eventVenue } = await req.json();
@@ -44,11 +44,11 @@ export const POST = async (req: NextRequest) => {
     await pool.query('COMMIT');
     await redisClient.del(MY_KEY);
 
-    return NextResponse.json({ message: "Event updated successfully", status: 200 });
+    return NextResponse.json({ message: "Event updated successfully"}, {status: 200});
   } catch (error) {
     await pool.query('ROLLBACK');
     console.error("Error in POST /api/admin/events:", error);
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    return NextResponse.json({ message: "Internal server error"}, {status: 500});
   }
 };
 
@@ -64,11 +64,10 @@ export const GET = async (req: NextRequest) => {
       `SELECT * FROM events ORDER BY upload_at DESC LIMIT 4;`
     );
 
-    await redisClient.setEx(MY_KEY, 3600, JSON.stringify(events));
 
     return NextResponse.json(events, { status: 200 });
   } catch (error) {
     console.error("Error in GET /api/admin/events:", error);
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    return NextResponse.json({ message: "Internal server error"}, {status: 500});
   }
 };

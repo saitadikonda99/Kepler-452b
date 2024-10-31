@@ -11,7 +11,7 @@ export const POST = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, { status: 401 });
     }
 
     const { authorized, reason: roleReason } = verifyRoles(
@@ -20,7 +20,7 @@ export const POST = async (req: NextRequest) => {
     );
 
     if (!authorized) {
-      return NextResponse.json({ message: roleReason, status: 403 });
+      return NextResponse.json({ message: roleReason}, { status: 403 });
     }
 
     const { newsId, newsLink, clubName, newsContent } = await req.json();
@@ -44,11 +44,11 @@ export const POST = async (req: NextRequest) => {
     await pool.query('COMMIT');
     await redisClient.del(MY_KEY);
 
-    return NextResponse.json({ message: "News updated successfully", status: 200 });
+    return NextResponse.json({ message: "News updated successfully"}, { status: 200 });
   } catch (error) {
     await pool.query('ROLLBACK');
     console.error("Error in POST /api/admin/news/landscape:", error);
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    return NextResponse.json({ message: "Internal server error"}, { status: 500 });
   }
 };
 
@@ -69,6 +69,6 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json(news, { status: 200 });
   } catch (error) {
     console.error("Error in GET /api/admin/news/landscape:", error);
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    return NextResponse.json({ message: "Internal server error"}, { status: 500 });
   }
 };

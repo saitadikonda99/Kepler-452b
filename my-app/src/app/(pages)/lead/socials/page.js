@@ -60,9 +60,16 @@ const page = () => {
         }
       );
 
-      if (response.data.status === 200) {
+      if (response.status === 200) {
         toast.success("Socials updated successfully!");
         setShow(false);
+        setSocialsData((prevData) =>
+          prevData.map((social) =>
+            social.social_name === updatedData.socialName
+              ? { ...social, social_link: updatedData.socialLink }
+              : social
+          )
+        );
       } else {
         toast.error("Failed to update Socials");
       }

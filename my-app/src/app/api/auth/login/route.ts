@@ -7,18 +7,14 @@ import { cookies } from "next/headers";
 
 
 
-const isAuth = async (connection, username, password) => {
-  const user = await connection.query(
+const isAuth = async (username, password) => {
+  const user = await pool.query(
     `SELECT username, name, role, active, id 
      FROM users 
      WHERE username = ? AND password = ?
      LIMIT 1`,
     [username, password]
   );
-  
-  if (user.length === 0) {
-    return null;
-  }
 
   return user[0];
 };
@@ -26,21 +22,16 @@ const isAuth = async (connection, username, password) => {
 
 export const POST = async (req: NextRequest) => {
 
-const connection = await pool.getConnection();
-
-
   try {
     const { username, password } = await req.json();
-    console.log(username, password);
 
-    const user = await isAuth(connection, username, password);
+    const user = await isAuth(username, password);
 
-    
-    if (!user || user.length === 0) {
-      return NextResponse.json({ message: "Invalid Credentials" }, { status: 401 });
-    }
-    
     const Authenticated = user as any[];
+
+    if (Authenticated.length === 0) {
+      return NextResponse.json({ message: "Invalid credentials" }, { status: 404 });
+    }
 
     if (Authenticated[0].active === 0) {
       return NextResponse.json({ message: "Account suspended" }, { status: 404 });
@@ -71,7 +62,7 @@ const connection = await pool.getConnection();
 
     // save the refresh token into the database of the users table
 
-    await connection.query(
+    await pool.query(
       `UPDATE users
             SET RefreshToken = ?
             WHERE username = ?`,
@@ -90,7 +81,6 @@ const connection = await pool.getConnection();
       expires: expirationTime,
     });
 
-    connection.release();
 
     return NextResponse.json({
       message: "Authenticated",
@@ -105,7 +95,5 @@ const connection = await pool.getConnection();
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: error.message }, { status: 500 });
-  } finally {
-    connection.release();
-  }
+  } 
 };

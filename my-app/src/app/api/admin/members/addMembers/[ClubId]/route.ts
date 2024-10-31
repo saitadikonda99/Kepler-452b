@@ -12,7 +12,7 @@ const handler = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
 
     const { authorized, reason: roleReason } = verifyRoles(
@@ -21,7 +21,7 @@ const handler = async (req: NextRequest) => {
     );
 
     if (!authorized) {
-      return NextResponse.json({ message: roleReason, status: 403 });
+      return NextResponse.json({ message: roleReason}, {status: 403});
     }
     
     const clubId = req.nextUrl.pathname.split("/").pop();

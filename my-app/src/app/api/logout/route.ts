@@ -29,10 +29,10 @@ export const GET = async (req: NextRequest) => {
 
     connection.release();
 
-    return NextResponse.json({ message: "Logged out", status: 200 });
+    return NextResponse.json({ message: "Logged out"}, { status: 200 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: "Error logging out", status: 500 });
+    return NextResponse.json({ message: "Error logging out"}, { status: 500 });
   } finally {
     connection.release();
   }

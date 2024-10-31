@@ -17,8 +17,6 @@ import "../page.css";
 import ClubNavbar from "../../Components/Navbar/ClubpageNavbar";
 import Footer from "../../Components/Footer/page";
 
-
-
 // import start here
 import { MdLocalActivity } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -32,7 +30,6 @@ import { FaTwitter } from "react-icons/fa";
 import { FaThreads } from "react-icons/fa6";
 
 const page = () => {
-
   const clubId = useParams().ClubId;
 
   const router = useRouter();
@@ -44,7 +41,6 @@ const page = () => {
   const [stats, setStats] = React.useState([]);
   const [upcomingEvents, setUpcomingEvents] = React.useState([]);
   const [clubInfo, setClubInfo] = React.useState({});
-
 
   useEffect(() => {
     const fetch = async () => {
@@ -72,7 +68,7 @@ const page = () => {
           toast.error("Failed to fetch stats");
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
         toast.error("Internal server error");
       }
     };
@@ -116,10 +112,7 @@ const page = () => {
 
         <div className="club-hero">
           <div className="club-hero-in">
-            <img 
-              src={clubImages[0]?.hero_img}
-              alt="image" 
-            />
+            <img src={clubImages[0]?.hero_img} alt="image" />
 
             <div className="club-hero-in-description">
               <h1>{clubInfo.club_name}</h1>
@@ -226,7 +219,16 @@ const page = () => {
                         </div>
                         <div className="Club-four-two-in-one-card-in-two">
                           <h2>{event.event_name}</h2>
-                          <p>Date: {event.event_date}</p>
+                          <p>
+                            {new Date(event.event_date).toLocaleDateString(
+                              "en-GB",
+                              {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric",
+                              }
+                            )}
+                          </p>
                           <p>Venue: {event.event_venue}</p>
                         </div>
                       </div>
@@ -254,7 +256,16 @@ const page = () => {
                         </div>
                         <div className="Club-four-three-in-one-card-in-two">
                           <h2>{event.activity_name}</h2>
-                          <p>Date: {event.activity_date}</p>
+                          <p>
+                            {new Date(event.activity_date).toLocaleDateString(
+                              "en-GB",
+                              {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric",
+                              }
+                            )}
+                          </p>
                           <p>Venue: {event.activity_venue}</p>
                         </div>
                       </div>
@@ -263,9 +274,8 @@ const page = () => {
                 </div>
 
                 <div className="Club-four-three-in-two">
-                  <Link href={`/Clubpage/activities/${clubId}`} >View More</Link>
+                  <Link href={`/Clubpage/activities/${clubId}`}>View More</Link>
                 </div>
-
               </div>
             </div>
 

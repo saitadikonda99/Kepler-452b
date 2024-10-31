@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   const clubId = req.nextUrl.pathname.split("/").pop();
-  const MY_KEY = `clubData${clubId}`;
 
   try {
    
@@ -74,6 +73,6 @@ export const GET = async (req: NextRequest) => {
   } catch (error) {
     await pool.query('ROLLBACK');
     console.error("Error in clubData:", error);
-    return NextResponse.json({ message: "Server error", status: 500 });
+    return NextResponse.json({ message: "Server error"}, { status: 500 });
   }
 };

@@ -7,7 +7,7 @@ import { withMiddleware } from "../../../../middleware/middleware";
 const postHandler = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
   if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
+    return NextResponse.json({ message: "Unauthorized"}, {status: 401});
   }
 
   const userData: any = payload;
@@ -18,7 +18,7 @@ const postHandler = async (req: NextRequest) => {
   );
 
   if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
+    return NextResponse.json({ message: roleReason}, {status: 403});
   }
 
   try {
@@ -67,7 +67,7 @@ const postHandler = async (req: NextRequest) => {
     await pool.query(insertQuery, [insertValues]);
     await pool.query("COMMIT");
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({message: "Activities uploaded successfully"}, { status: 200 });
     
   } catch (error) {
     await pool.query("ROLLBACK");

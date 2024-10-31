@@ -9,7 +9,7 @@ export const POST = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
 
     const userData: any = payload;
@@ -20,14 +20,13 @@ export const POST = async (req: NextRequest) => {
     );
 
     if (!authorized) {
-      return NextResponse.json({ message: roleReason, status: 403 });
+      return NextResponse.json({ message: roleReason }, { status: 403 });
     }
 
     if (!password || !confirmPassword) {
       return NextResponse.json({
-        message: "All fields (password, confirmPassword) are required",
-        status: 400,
-      });
+        message: "All fields (password, confirmPassword) are required"
+      }, { status: 400 });
     }
 
     await pool.query('START TRANSACTION');
@@ -39,10 +38,9 @@ export const POST = async (req: NextRequest) => {
 
     await pool.query('COMMIT');
     
-    return NextResponse.json({ message: "Password updated successfully", status: 200 });
+    return NextResponse.json({ message: "Password updated successfully"}, { status: 200 });
   } catch (error) {
     await pool.query('ROLLBACK');
-    console.error("Error in changePassword:", error);
-    return NextResponse.json({ message: "Server error", status: 500 });
+    return NextResponse.json({ message: "Server error"}, { status: 500 });
   }
 };

@@ -9,7 +9,7 @@ const handler = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
 
     const { authorized, reason: roleReason } = verifyRoles(
@@ -18,7 +18,7 @@ const handler = async (req: NextRequest) => {
     );
 
     if (!authorized) {
-      return NextResponse.json({ message: roleReason, status: 403 });
+      return NextResponse.json({ message: roleReason}, {status: 403});
     }
 
     const [users] = await pool.query(`
@@ -34,7 +34,7 @@ const handler = async (req: NextRequest) => {
     return NextResponse.json(users, { status: 200 });
   } catch (error) {
     console.error("Error in GET /api/admin/manageUsers:", error);
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    return NextResponse.json({ message: "Internal server error"}, { status: 500 });
   }
 }
 

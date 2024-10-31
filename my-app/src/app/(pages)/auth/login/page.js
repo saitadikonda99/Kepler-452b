@@ -60,21 +60,12 @@ const Login = () => {
             break;
         }
       }
-
-      if (response.data.status === 401) {
-        toast.error("Invalid credentials");
-      }
-      if (response.data.status === 500) {
-        toast.error("Internal server error");
-      }
-
-      if (response.data.status === 401) {
+      else {
         toast.error(response.data.message);
       }
 
-      console.log(response)
     } catch (error) {
-      console.log(error)
+      console.log(error); 
       toast.error(error.response.data.message);
     }
   };

@@ -12,7 +12,16 @@ const Event = ({ eventLink, eventName, eventDate, eventVenue }) => {
         </div>
         <div className="Event-two">
           <h2>{eventName}</h2>
-          <p>{eventDate}</p>
+          <p>
+            {new Date(eventDate).toLocaleDateString(
+              "en-GB",
+              {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              }
+            )}
+          </p>
           <p>{eventVenue}</p>
         </div>
       </div>

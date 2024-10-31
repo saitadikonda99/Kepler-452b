@@ -59,9 +59,20 @@ const page = () => {
         withCredentials: true,
       });
 
-      if (response.data.status === 200) {
+      if (response.status === 200) {
         toast.success("Images updated successfully!");
         setShow(false);
+        setImageData((prevData) =>
+          prevData.map((data) =>
+            data.id === updatedData.imagesId
+              ? {
+                  ...data,
+                  hero_img: updatedData.heroImg,
+                  team_img: updatedData.teamImg,
+                }
+              : data
+          )
+        );
       } else {
         toast.error("Failed to update images");
       }

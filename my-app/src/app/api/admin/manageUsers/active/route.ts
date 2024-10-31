@@ -9,7 +9,7 @@ const handlePost = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
-      return NextResponse.json({ message: "Unauthorized", status: 401 });
+      return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
 
     const { authorized, reason: roleReason } = verifyRoles(
@@ -18,13 +18,13 @@ const handlePost = async (req: NextRequest) => {
     );
 
     if (!authorized) {
-      return NextResponse.json({ message: roleReason, status: 403 });
+      return NextResponse.json({ message: roleReason}, {status: 403});
     }
 
     const { userId, active } = await req.json();
 
     if (userId == null || active == null) {
-      return NextResponse.json({ message: "Invalid input", status: 400 });
+      return NextResponse.json({ message: "Invalid input"}, {status: 400});
     }
 
     await pool.query('START TRANSACTION');
@@ -36,11 +36,11 @@ const handlePost = async (req: NextRequest) => {
 
     await pool.query('COMMIT');
 
-    return NextResponse.json({ message: "User status updated", status: 200 });
+    return NextResponse.json({ message: "User status updated"}, {status: 200});
   } catch (error) {
     await pool.query('ROLLBACK');
     console.error("Error in POST /api/admin/manageUsers/active:", error);
-    return NextResponse.json({ message: "Internal server error", status: 500 });
+    return NextResponse.json({ message: "Internal server error"}, {status: 500});
   }
 };
 

@@ -70,6 +70,22 @@ const page = () => {
       if (response.status === 200) {
         toast.success("Upcoming Events activities successfully!");
         setShow(false);
+        setActivitiesData((prevData) =>
+          prevData.map((data) => {
+            if (data.id === updatedData.activityId) {
+              return {
+                ...data,
+                activity_name: updatedData.activityName,
+                activity_image: updatedData.activityImage,
+                activity_date: updatedData.activityDate,
+                activity_venue: updatedData.activityVenue,
+              };
+            }
+            return data;
+          })
+        );
+                    
+      
       } else {
         toast.error("Failed to update Activities");
       }
@@ -175,7 +191,7 @@ const page = () => {
                 <div className="ActivitiesUpdate-three">
                   <label For="activityDate">Upcoming activity Date</label>
                   <input
-                    type="text"
+                    type="Date"
                     value={updatedData.activityDate}
                     placeholder="activity Date"
                     id="activityDate"
@@ -213,7 +229,16 @@ const page = () => {
                         <p>{data.activity_name}</p>
                       </div>
                       <div className="Activities-three-in-date">
-                        <p>{data.activity_date.split("T")[0]}</p>
+                      <p>
+                          {new Date(data.activity_date).toLocaleDateString(
+                            "en-GB",
+                            {
+                              day: "2-digit",
+                              month: "long",
+                              year: "numeric",
+                            }
+                          )}
+                        </p>
                       </div>
                       <div className="Activities-three-in-venue">
                         <p>{data.activity_venue}</p>

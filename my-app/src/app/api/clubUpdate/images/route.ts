@@ -10,7 +10,7 @@ const postHandler = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
+    return NextResponse.json({ message: "Unauthorized"}, {status: 401});
   }
 
   const userData: any = payload;
@@ -22,7 +22,7 @@ const postHandler = async (req: NextRequest) => {
   );
 
   if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
+    return NextResponse.json({ message: roleReason}, {status: 403});
   }
 
   try {
@@ -38,15 +38,10 @@ const postHandler = async (req: NextRequest) => {
       [clubId, heroImg, teamImg, imagesId]
   );
 
-    const MY_KEY = `club_images_${clubId}`;
-    redisClient.del(MY_KEY);
-
-    const MY_KEY_CLUB = `clubData${clubId}`;
-    redisClient.del(MY_KEY_CLUB);
 
     return NextResponse.json({ status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: error, status: 500 });
+    return NextResponse.json({ message: "Server error"}, { status: 500 });
   } 
 };
 
@@ -54,7 +49,7 @@ const getHandler = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
 
   if (!valid) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
+    return NextResponse.json({ message: "Unauthorized"}, {status: 401});
   }
 
   const userData: any = payload;
@@ -66,7 +61,7 @@ const getHandler = async (req: NextRequest) => {
   );
 
   if (!authorized) {
-    return NextResponse.json({ message: roleReason, status: 403 });
+    return NextResponse.json({ message: roleReason}, {status: 403});
   }
 
   try {
@@ -87,24 +82,14 @@ const getHandler = async (req: NextRequest) => {
       clubId = body.clubId;
     }
     
-    const MY_KEY = `club_images_${clubId}`;
-
-    const data = await redisClient.get(MY_KEY);
-
-    if (data) {
-      return NextResponse.json(JSON.parse(data), { status: 200 });
-    }
-
     const [result]: any = await pool.query(
       `SELECT * FROM club_images WHERE club_id = ? ORDER BY upload_at DESC LIMIT 1`,
       [clubId]
     );
 
-    redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
-    console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
   } 
 };

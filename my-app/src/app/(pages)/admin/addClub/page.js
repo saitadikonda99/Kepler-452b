@@ -31,7 +31,6 @@ const Page = () => {
 
       if (response.status === 200) {
         toast.success("Club added successfully");
-        // Reset form or redirect as needed
       }
     } catch (error) {
       if (error.response) {

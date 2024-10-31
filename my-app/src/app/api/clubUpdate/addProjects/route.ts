@@ -62,7 +62,7 @@ const postHandler = async (req: NextRequest) => {
     await pool.query(insertQuery, [insertValues]);
     await pool.query("COMMIT");
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({ message: "Projects uploaded successfully"}, { status: 200 });
     
   } catch (error) {
     await pool.query("ROLLBACK");

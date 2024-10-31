@@ -67,7 +67,6 @@ const Page = () => {
         toast.error(response.data.message || "Failed to update event");
       }
     } catch (error) {
-      console.error("Error updating the event:", error);
       toast.error(error.response?.data?.message || "Error updating the event");
     }
   };

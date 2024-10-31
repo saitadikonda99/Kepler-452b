@@ -34,7 +34,7 @@ const Page = () => {
 
       console.log(response);
 
-      if (response.data.status === 200) {
+      if (response.status === 200) {
         toast.success("password changed successful");
       } else {
         toast.error("Invalid details");

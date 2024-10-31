@@ -59,9 +59,20 @@ const page = () => {
                 withCredentials: true,
             });
 
-            if (response.data.status === 200) {
+            if (response.status === 200) {
                 toast.success("Glimpses updated successfully!");
                 setShow(false);
+                setGlimpseData((prevData) =>
+                    prevData.map((data) =>
+                        data.id === updatedData.glimpseId
+                            ? {
+                                ...data,
+                                glimpse_image: updatedData.glimpseImage,
+                                glimpse_desc: updatedData.glimpseDesc,
+                            }
+                            : data
+                    )
+                );
             } else {
                 toast.error("Failed to update Glimpses");
             }
