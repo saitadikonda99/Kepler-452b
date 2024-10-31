@@ -3,16 +3,19 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link as Scroll } from "react-scroll";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import "./Navbar.css";
 
 const ClubNavbar = ({ setOption }) => {
+
+  const router = useRouter();
+
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleHover = () => {
     setShowDropdown(true);
   };
-
 
   const [showDiv, setShowDiv] = useState(false);
 
@@ -51,7 +54,7 @@ const ClubNavbar = ({ setOption }) => {
         className="NavbarComponent-in"
         id={showDiv ? "show-color" : "show-shadow"}
       >
-        <div className="Navbar-one">
+        <div className="Navbar-one" onClick={() => router.push(`/`)}>
           {showDiv ? (
             <h1 onClick={handleScroll}>ZeroOne Code Club</h1>
           ) : (
@@ -138,11 +141,6 @@ const ClubNavbar = ({ setOption }) => {
               <Link href="/sil">SIL</Link>
             </li>
 
-            <li>
-              <Link href="https://zeroonelearning.vercel.app/" target="_blank">
-                ZeroOneLearning
-              </Link>
-            </li>
           </ul>
         </div>
       </div>

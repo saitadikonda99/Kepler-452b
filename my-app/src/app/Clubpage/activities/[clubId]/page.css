@@ -1,0 +1,96 @@
+.clubActivitiesComponent {
+    width: 100%;
+}
+
+.clubActivitiesComponent-in {
+  width: 100%;
+  margin: auto;
+}
+
+.controls {
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+}
+
+.search-input {
+  padding: .5rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.activitiesComponent-one {
+  width: 90%;
+  margin: auto;
+  padding: 2rem 0rem;
+}
+
+.activitiesComponent-one table {
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.activitiesComponent-one table th {
+  border: 1px solid black;
+  padding: 0.5rem;
+  background-color: rgb(151, 3, 0);
+  color: white;
+}
+
+.activitiesComponent-one table td {
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+
+.activitiesComponent-one table tr:nth-child(even) {
+  background-color: rgb(240, 240, 240);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.pagination button:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.pagination .page-num {
+  min-width: 40px;
+}
+
+.pagination .page-active {
+  background-color: rgb(151, 3, 0);
+  color: white;
+  border-color: rgb(151, 3, 0);
+}
+
+.pagination button:not(:disabled):hover {
+  background-color: #f0f0f0;
+}
+
+.pagination .page-active:hover {
+  background-color: rgb(151, 3, 0);
+} 

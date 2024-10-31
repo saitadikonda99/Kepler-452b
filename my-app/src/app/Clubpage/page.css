@@ -388,6 +388,22 @@
   padding-left: 0.6rem;
 }
 
+.Club-four-three-in-two {
+  width: 100%;
+  display: flex;
+  padding: 2rem 0rem;
+  justify-content: flex-end;
+}
+
+.Club-four-three-in-two a {
+  color: black;
+  text-decoration: none;
+}
+
+.Club-four-three-in-two a:hover {
+  color: rgb(151, 0, 3);
+}
+
 /* Upcoming Boxes*/
 
 .Club-four-two-in-one {

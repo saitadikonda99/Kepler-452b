@@ -6,6 +6,7 @@ import VisibilitySensor from "react-visibility-sensor";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useParams } from "next/navigation";
 
@@ -33,6 +34,8 @@ import { FaThreads } from "react-icons/fa6";
 const page = () => {
 
   const clubId = useParams().ClubId;
+
+  const router = useRouter();
 
   const [activities, setActivities] = React.useState([]);
   const [glimpse, setGlimpse] = React.useState([]);

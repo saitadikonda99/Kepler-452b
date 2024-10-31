@@ -3,10 +3,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link as Scroll } from "react-scroll";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import "./Navbar.css";
 
 const Navbar = () => {
+
+  const router = useRouter();
+
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleHover = () => {

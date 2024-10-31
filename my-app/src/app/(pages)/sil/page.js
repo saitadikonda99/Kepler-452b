@@ -1,151 +1,169 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Link from "next/link";
+
 import "./page.css";
 
-import silArray from "../../../data/silArray"; // Adjust the path as needed
 import Navbar from "./Navbar";
-import Footer from "../../Components/Footer/page";
 
-const Page = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [activitiesPerPage] = useState(10);
+const page = () => {
+  const [activities, setActivities] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedYear, setSelectedYear] = useState(""); // New state for year filter
+  const [currentPage, setCurrentPage] = useState(1);
+  const [activitiesPerPage] = useState(12);
 
-  // Parse and sort activities by date (latest to oldest)
-  const sortedActivities = silArray.sort((a, b) => {
-    const dateA = new Date(a["Date of the Event"]);
-    const dateB = new Date(b["Date of the Event"]);
-    return dateB - dateA;
-  });
+  const [clubData, setClubData] = React.useState([]);
+  const [selectedClub, setSelectedClub] = useState("all");
 
-  // Get unique years from the activities that have dates
-  const uniqueYears = [
-    ...new Set(
-      sortedActivities
-        .filter((activity) => activity["Date of the Event"]) // Filter only those with dates
-        .map((activity) =>
-          new Date(activity["Date of the Event"]).getFullYear()
-        )
-    ),
-  ];
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await axios.get("/api/getClubs", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+
+        console.log(response);
+
+        if (response.status === 200) {
+          setClubData(response.data);
+        } else {
+          toast.error("Failed to fetch stats");
+        }
+      } catch (error) {
+        toast.error("Internal server error");
+      }
+    };
+
+    fetch();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/activities");
+
+        console.log(response.data);
+
+        if (response.status === 200) {
+          setActivities(response.data);
+        } else {
+          toast.error("Failed to fetch UpcomingEvents");
+        }
+      } catch (error) {
+        toast.error("Internal server error");
+      }
+    };
+    fetchData();
+  }, []);
+
+  const getFilteredAndSortedActivities = () => {
+    let filtered = activities.filter((activity) => {
+      const matchesSearch =
+        activity.club_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        activity.activity_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        activity.activity_type.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesClub = 
+        selectedClub === "all" || activity.club_name === selectedClub;
+
+      return matchesSearch && matchesClub;
+    });
+
+    return filtered.sort((a, b) => {
+      const dateA = new Date(a.activity_date);
+      const dateB = new Date(b.activity_date);
+      return dateA - dateB;
+    });
+  };
+
+  const filteredActivities = getFilteredAndSortedActivities();
+  const totalPages = Math.ceil(filteredActivities.length / activitiesPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const indexOfLastActivity = currentPage * activitiesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
-
-  // Filter activities based on the search term and selected year
-  const filteredActivities = sortedActivities.filter((activity) => {
-    const matchesSearchTerm =
-      (activity["Name of the Club "]?.toLowerCase() || "").includes(
-        searchTerm.toLowerCase()
-      ) ||
-      (activity["Event Title"]?.toLowerCase() || "").includes(
-        searchTerm.toLowerCase()
-      ) ||
-      (activity["Date of the Event"]?.toLowerCase() || "").includes(
-        searchTerm.toLowerCase()
-      ) ||
-      (activity.Venue?.toLowerCase() || "").includes(searchTerm.toLowerCase());
-
-    const matchesYear =
-      selectedYear === "" ||
-      (activity["Date of the Event"] &&
-        new Date(activity["Date of the Event"]).getFullYear() ===
-          parseInt(selectedYear));
-
-    return matchesSearchTerm && matchesYear;
-  });
-
   const currentActivities = filteredActivities.slice(
     indexOfFirstActivity,
     indexOfLastActivity
   );
 
-  const totalPages = Math.ceil(filteredActivities.length / activitiesPerPage);
-
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePrevious = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+  const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  // Adjusted logic to generate the page numbers range
-  const pageNumbers = [];
-  const pageRange = 5; // Number of pages to show
-
-  const startPage = Math.max(1, currentPage - Math.floor(pageRange / 2));
-  const endPage = Math.min(totalPages, startPage + pageRange - 1);
-
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
-  }
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   return (
-    <div className="SilComponent">
-      <div className="SilComponent-in">
-        <div className="SilNavbar">
+    <div className="activitiesComponent">
+      <div className="activitiesComponent-in">
+        
+        <div className="activitiesComponent-Nav">
           <Navbar />
         </div>
 
-        <div className="Sil-two">
-          <div className="sil-two-in">
-            {/* <p>List of Activities & Events</p> */}
-            <div className="Sil-two-search">
-              <label htmlFor="search">Search</label>
-              <input
-                type="text"
-                id="search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <div className="sil-two-fliter">
-              <label htmlFor="sort">Filter by Year </label>
-              <select
-                id="sort"
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-              >
-                <option value="">All Activities</option>
-                {uniqueYears.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-                {/* <option value="no-date">No Date</option> Option for activities with no dates */}
-              </select>
-            </div>
-          </div>
+        <div className="controls">
+          <input
+            type="text"
+            placeholder="Search activities..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+          
+          <select 
+            value={selectedClub}
+            onChange={(e) => setSelectedClub(e.target.value)}
+            className="club-filter"
+          >
+            <option value="all">All Clubs</option>
+            {clubData.map((club) => (
+              <option key={club.id} value={club.name}>
+                {club.club_name}
+              </option>
+            ))}
+          </select>
         </div>
 
-        <div className="Sil-three">
+        <div className="activitiesComponent-one">
           <table>
             <thead>
               <tr>
                 <th>Name of the Club</th>
-                <th>Event Title</th>
-                <th>Event Date</th>
+                <th>Activity Title</th>
+                <th>WorkShop / Activity</th>
+                <th>Activity Date</th>
                 <th>Venue</th>
+                <th>Report</th>
               </tr>
             </thead>
             <tbody>
               {currentActivities.map((activity) => (
-                <tr key={activity.Sno}>
-                  <td>{activity["Name of the Club "]}</td>
-                  <td>{activity["Event Title"]}</td>
+                <tr key={activity.id}>
+                  <td>{activity.club_name}</td>
+                  <td>{activity.activity_name}</td>
+                  <td>{activity.activity_type}</td>
                   <td>
-                    {activity["Date of the Event"] || "No Date Available"}
-                  </td>{" "}
-                  {/* Handle no date */}
-                  <td>{activity.Venue}</td>
+                    {new Date(activity.activity_date).toLocaleDateString(
+                      "en-GB",
+                      {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      }
+                    )}
+                  </td>
+                  <td>{activity.venue}</td>
+                  <td>
+                    <Link href={activity.report_link}>View Report</Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -182,10 +200,9 @@ const Page = () => {
             </button>
           </div>
         </div>
-        <Footer />
       </div>
     </div>
   );
 };
 
-export default Page;
+export default page;
