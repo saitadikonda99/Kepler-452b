@@ -87,8 +87,13 @@
   margin-right: 1rem;
 }
 
-.footer-in-one-two .footer-in-one-one-link {
-  margin-left: 1rem;
+.footer-in-one-two a{
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
 }
 
 .footer-in-one-one-link {

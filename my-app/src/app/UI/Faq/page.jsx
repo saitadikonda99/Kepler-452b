@@ -4,15 +4,10 @@ import "./page.css";
 
 import { useState, useEffect } from "react";
 
-import data from "../../../data/data.json";
 import { faqData } from "../../../data/FaqArray";
 
 const page = () => {
   const [expandedQuestions, setExpandedQuestions] = useState([]);
-
-  useEffect(() => {
-    setExpandedQuestions(data.expandedQuestions);
-  }, []);
 
   const toggleAnswer = (index) => {
     if (expandedQuestions.includes(index)) {

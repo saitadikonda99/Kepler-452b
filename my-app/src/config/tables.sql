@@ -5,12 +5,12 @@ USE sac;
 -- Users table
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL UNIQUE, -- Changed from BIGINT to VARCHAR for consistency
+    username VARCHAR(255) NOT NULL UNIQUE, 
     name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     role ENUM('Admin', 'club_lead') NOT NULL, 
-    active BOOLEAN DEFAULT 1,  -- Added active status
+    active BOOLEAN DEFAULT 1, 
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     RefreshToken VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (id)
@@ -22,10 +22,10 @@ CREATE TABLE clubs (
     club_name VARCHAR(100) NOT NULL UNIQUE,
     lead_id INT UNIQUE, 
     club_domain ENUM('TEC', 'LCH', 'ESO', 'TIE', 'HWB') NOT NULL,
-    club_description TEXT DEFAULT NULL,  -- Changed to TEXT
-    club_about TEXT DEFAULT NULL,         -- Changed to TEXT
+    club_description TEXT DEFAULT NULL,   
+    club_about TEXT DEFAULT NULL,        
     club_logo VARCHAR(255) DEFAULT NULL,
-    active BOOLEAN DEFAULT 1,  -- Added active status
+    active BOOLEAN DEFAULT 1,  
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (lead_id) REFERENCES users(id) ON DELETE SET NULL, 
     PRIMARY KEY (id)
@@ -35,7 +35,7 @@ CREATE TABLE glimpse (
     id INT NOT NULL AUTO_INCREMENT,
     club_id INT,
     glimpse_image VARCHAR(255),
-    glimpse_desc TEXT,                    -- Corrected the field name to 'glimpse_desc'
+    glimpse_desc TEXT,                     
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
@@ -104,7 +104,7 @@ CREATE TABLE socials (
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
-)
+);
 
 DELIMITER //
 
@@ -112,37 +112,33 @@ CREATE PROCEDURE AddClubData(IN clubId INT)
 BEGIN
     -- Insert into glimpse table
     INSERT INTO glimpse (club_id, glimpse_image, glimpse_desc)
-    VALUES (clubId, 'https://example.com/dummy_glimpse_image1.jpg', 'Dummy description for glimpse 1'),
-           (clubId, 'https://example.com/dummy_glimpse_image2.jpg', 'Dummy description for glimpse 2');
+    VALUES (clubId, 'https://i.imghippo.com/files/pgd9685f.png', 'Dummy description for glimpse 1'),
+           (clubId, 'https://i.imghippo.com/files/pgd9685f.png', 'Dummy description for glimpse 2');
     
     -- Insert into upcoming_events table
     INSERT INTO upcoming_events (club_id, event_name, event_image, event_date, event_venue)
-    VALUES (clubId, 'Dummy Event 1', 'https://example.com/dummy_event_image1.jpg', '2024-10-15', 'Dummy Venue 1'),
-           (clubId, 'Dummy Event 2', 'https://example.com/dummy_event_image2.jpg', '2024-10-20', 'Dummy Venue 2'),
-           (clubId, 'Dummy Event 2', 'https://example.com/dummy_event_image2.jpg', '2024-10-20', 'Dummy Venue 3'),
-           (clubId, 'Dummy Event 2', 'https://example.com/dummy_event_image2.jpg', '2024-10-20', 'Dummy Venue 4');
+    VALUES (clubId, 'Dummy Event 1', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-10-15', 'Dummy Venue 1'),
+           (clubId, 'Dummy Event 2', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-10-20', 'Dummy Venue 2'),
+           (clubId, 'Dummy Event 2', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-10-20', 'Dummy Venue 3'),
+           (clubId, 'Dummy Event 2', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-10-20', 'Dummy Venue 4');
     
     -- Insert into activities table
     INSERT INTO activities (club_id, activity_name, activity_image, activity_date, activity_venue)
-    VALUES (clubId, 'Dummy Activity 1', 'https://example.com/dummy_activity_image1.jpg', '2024-11-01', 'Dummy Venue A'),
-           (clubId, 'Dummy Activity 2', 'https://example.com/dummy_activity_image2.jpg', '2024-11-05', 'Dummy Venue B'),
-           (clubId, 'Dummy Activity 2', 'https://example.com/dummy_activity_image2.jpg', '2024-11-05', 'Dummy Venue C'),
-           (clubId, 'Dummy Activity 2', 'https://example.com/dummy_activity_image2.jpg', '2024-11-05', 'Dummy Venue D');
+    VALUES (clubId, 'Dummy Activity 1', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-11-01', 'Dummy Venue A'),
+           (clubId, 'Dummy Activity 2', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-11-05', 'Dummy Venue B'),
+           (clubId, 'Dummy Activity 2', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-11-05', 'Dummy Venue C'),
+           (clubId, 'Dummy Activity 2', 'https://i.imghippo.com/files/iVT1864Oic.png', '2024-11-05', 'Dummy Venue D');
     
     -- Insert into club_images table
     INSERT INTO club_images (club_id, hero_img, team_img)
-    VALUES (clubId, 'https://example.com/hero_image.jpg', 'https://example.com/team_image.jpg');
-
-    -- Insert into stats table
-    INSERT INTO stats (club_id, total_members, total_activities, total_projects)
-    VALUES (clubId, 100, 20, 5);
+    VALUES (clubId, 'https://i.imghippo.com/files/bEgS8115zCg.png', 'https://i.imghippo.com/files/bEgS8115zCg.png');
 
     -- Insert into socials table
     INSERT INTO socials (club_id, social_name, social_link)
-    VALUES (clubId, 'Facebook', 'https://facebook.com/club'),
-           (clubId, 'Instagram', 'https://instagram.com/club'),
-           (clubId, 'Twitter', 'https://twitter.com/club'),
-           (clubId, 'LinkedIn', 'https://linkedin.com/club');
+    VALUES (clubId, 'Facebook', 'https://facebook.com'),
+           (clubId, 'Instagram', 'https://instagram.com'),
+           (clubId, 'Twitter', 'https://twitter.com'),
+           (clubId, 'LinkedIn', 'https://linkedin.com');
     
     
     -- Insert into faq table
@@ -155,7 +151,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
 
 -- Events table
 CREATE TABLE events (

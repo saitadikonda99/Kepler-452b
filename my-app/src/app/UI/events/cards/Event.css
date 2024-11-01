@@ -12,22 +12,24 @@
 
 .Event-one {
   width: 100%;
+  flex-grow: 1;
 }
 
 .Event-one img {
   width: 100%;
   height: 100%;
-  padding: 0.4rem;
+  object-fit: cover;
+  padding: 0.2rem;
 }
 
 .Event-two {
-  padding: 1rem;
+  padding: .5rem 1rem;
 }
 
 .Event-two h2 {
   color: rgb(151, 0, 3);
-  font-size: 1.5rem;
-  padding: 1rem 0rem;
+  font-size: 1rem;
+  padding: .4rem 0rem;
 }
 
 .Event-two p {

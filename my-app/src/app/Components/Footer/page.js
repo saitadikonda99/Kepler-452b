@@ -4,6 +4,8 @@ import "./page.css";
 import Link from "next/link";
 import { useState } from "react";
 
+import { FaUserLock } from "react-icons/fa";
+
 const page = () => {
   const [translated, setTranslated] = useState(false);
 
@@ -28,15 +30,7 @@ const page = () => {
             </Link>
           </div>
           <div className="footer-in-one-two">
-            <Link href="/" className="footer-in-one-one-link">
-              Help
-            </Link>
-            <Link href="/" className="footer-in-one-one-link">
-              Provide Feedback
-            </Link>
-            <Link href="/" className="footer-in-one-one-link">
-              Report Errors
-            </Link>
+            <Link href="/auth/login">Login <FaUserLock /> </Link>
           </div>
         </div>
         <div className="footer-in-two">

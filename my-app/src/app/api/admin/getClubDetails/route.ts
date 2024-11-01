@@ -19,13 +19,6 @@ const getHandler = async (req: NextRequest) => {
       return NextResponse.json({ message: roleReason }, { status: 403 });
     }
 
-    const MY_KEY = "getClubDetails"
-    const data = await redisClient.get(MY_KEY);
-
-    if (data) {
-      return NextResponse.json(JSON.parse(data), { status: 200 });
-    }
-
     const [result]: any = await pool.query( 
       `SELECT 
           u.id AS user_id,
@@ -46,8 +39,6 @@ const getHandler = async (req: NextRequest) => {
       LEFT JOIN 
           users u ON u.id = c.lead_id`
     );
-
-    await redisClient.setEx(MY_KEY, 3600, JSON.stringify(result));
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
