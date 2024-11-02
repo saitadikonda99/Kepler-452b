@@ -15,7 +15,9 @@ import { IoMdHome } from "react-icons/io";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { MdOutlinePublishedWithChanges } from "react-icons/md"; 
 import { RiLockPasswordFill } from "react-icons/ri";
-
+import { IoMdPhonePortrait } from "react-icons/io";
+import { IoMdPhoneLandscape } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -59,8 +61,8 @@ const sidebar = () => {
       icon: <ImNewspaper className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Portrait", link: "/admin/news/portrait" },
-        { name: "Landscape", link: "/admin/news/landscape" },
+        { name: "Portrait", icon: <IoMdPhonePortrait className="sideBar-icon" />, link: "/admin/news/portrait" },
+        { name: "Landscape", icon: <IoMdPhoneLandscape className="sideBar-icon" />, link: "/admin/news/landscape" },
       ],
     },
     {
@@ -73,7 +75,7 @@ const sidebar = () => {
       icon: <MdOutlinePublishedWithChanges className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Update Lead", link: "/admin/clubUpdate/lead" }
+        { name: "Update Lead", icon: <IoPerson className="sideBar-icon" />, link: "/admin/clubUpdate/lead" }
       ],
     },
     {
@@ -116,7 +118,8 @@ const sidebar = () => {
               {option.subOptions && openSubMenu === option.name && (
                 <div className="Sidebar-box">
                   {option.subOptions.map((subOption, subIndex) => (
-                    <div className="Sidebar-box-in" key={subIndex} onClick={handleNav(subOption.link)}>
+                    <div className="Sidebar-box-in subOption" key={subIndex} onClick={handleNav(subOption.link)}>
+                      {subOption.icon}
                       <p>{subOption.name}</p>
                     </div>
                   ))}

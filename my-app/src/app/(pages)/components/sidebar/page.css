@@ -55,3 +55,7 @@
 .Sidebar-item-with-sub {
     color: white;
 }
+
+.subOption {
+    padding-left: 2.5rem;
+}
