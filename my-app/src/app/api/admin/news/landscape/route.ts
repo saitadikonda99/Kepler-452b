@@ -54,12 +54,7 @@ export const POST = async (req: NextRequest) => {
 
 export const GET = async (req: NextRequest) => {
   try {
-    const data = await redisClient.get(MY_KEY);
-
-    if (data) {
-      return NextResponse.json(JSON.parse(data), { status: 200 });
-    }
-
+  
     const [news] = await pool.query(
       `SELECT * FROM news_landscape ORDER BY upload_at DESC LIMIT 2;`
     );

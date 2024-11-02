@@ -1,0 +1,63 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+.ChangePasswordComponent{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ChangePasswordComponent-in-one, .ChangePasswordComponent-in-two, .ChangePasswordComponent-in-three{
+    width: 100%;
+}
+
+.ChangePasswordComponent-in-one-a, .ChangePasswordComponent-in-two, .ChangePasswordComponent-in-three{
+    padding: .2rem;
+}
+
+.ChangePasswordComponent-in-one-a{
+    background-color: black;
+    color: white;
+}
+
+.ChangePasswordComponent-in-one-a h1{
+    font-size: 25px;
+}
+
+.ChangePasswordComponent-in-two{
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.ChangePasswordComponent-in-two-a, .ChangePasswordComponent-in-two-b{
+    width: 32%;
+}
+
+.ChangePasswordComponent-in-two-a input, .ChangePasswordComponent-in-two-b input{
+    width: 100%;
+    padding: 0.8rem;
+    border: 0.1px solid gray;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.ChangePasswordComponent-in-two-c{
+    width: 20%;
+}
+.ChangePasswordComponent-in-two-c button{
+  width: 50%;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0.8rem; 
+  color: white;
+  background-color: black;
+  cursor: pointer;
+  border: none;
+}

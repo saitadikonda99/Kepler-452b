@@ -3,22 +3,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
+import { MdOutlineIntegrationInstructions } from "react-icons/md";
+import { VscDebugBreakpointLog } from "react-icons/vsc";
 
 import "./page.css";
 
 // Import components
-import Dashboard from "../../dashboard/dashboard"
-
+import Dashboard from "../../dashboard/dashboard";
+import Loader from "../../../../animation/loader";
 
 const Page = () => {
-  const [newsData, setNewsData] = useState({
-    newsId: null,
-    newsLink: "",
-    clubName: "",
-    newsContent: "",
-  });
-
-  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [newsData, setNewsData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [updateData, setUpdateData] = useState({
     newsId: null,
@@ -27,28 +24,7 @@ const Page = () => {
     newsContent: "",
   });
 
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/admin/news/portrait');
-
-        console.log(response)
-
-        if (response.status === 200) {
-          setNewsData(response.data);
-        } else {
-          toast.error("Failed to fetch news");
-        }
-      } catch (error) {
-        toast.error("Internal server error");
-      }
-    }
-    fetchData();
-  }, []);
-
-  const handleUpdateClick = (newsId) => {
+  const handleClick = (newsId) => {
     const selectedNews = newsData.find((news) => news.id === newsId);
     setUpdateData({
       newsId: selectedNews.id,
@@ -56,7 +32,11 @@ const Page = () => {
       clubName: selectedNews.club_name,
       newsContent: selectedNews.news_content,
     });
-    setShowUpdateForm(true);
+    setShow(true);
+  };
+
+  const handleCancel = () => {
+    setShow(false);
   };
 
   const handleChange = (e) => {
@@ -68,6 +48,7 @@ const Page = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post("/api/admin/news/portrait", updateData, {
         headers: {
@@ -77,75 +58,151 @@ const Page = () => {
       });
 
       if (response.status === 200) {
+        setIsLoading(false);
         toast.success("News updated successfully!");
-        setShowUpdateForm(false);
+        setShow(false);
         setNewsData((prevData) =>
           prevData.map((news) =>
-            news.id === updateData.newsId ? { ...news, ...updateData } : news
+            news.id === updateData.newsId
+              ? {
+                  ...news,
+                  news_link: updateData.newsLink,
+                  club_name: updateData.clubName,
+                  news_content: updateData.newsContent,
+                }
+              : news
           )
         );
       } else {
+        setIsLoading(false);
         toast.error("Failed to update news");
       }
     } catch (error) {
-      console.log(error);
+      setIsLoading(false);
       toast.error("Error updating the news");
     }
   };
 
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/admin/news/portrait');
+        setNewsData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        toast.error("Failed to fetch news");
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
-      <Dashboard>
-          <div className="NC-one">
-              {showUpdateForm ? (
-                <div className="updateForm">
-                  <h1>Update News</h1>
-                  <p>Please carefully update the news details</p>
-                  <input
-                    type="text"
-                    placeholder="News Link"
-                    name="newsLink"
-                    value={updateData.newsLink}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Club Name"
-                    name="clubName"
-                    value={updateData.clubName}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    placeholder="News Content"
-                    name="newsContent"
-                    value={updateData.newsContent}
-                    onChange={handleChange}
-                  />
-                  <button onClick={handleSubmit}>Update</button>
-                  <button onClick={() => setShowUpdateForm(false)}>Cancel</button>
-                </div>
-              ) : (
-                <div className="NewsPortraitScape-content">
-                  <h1>News List</h1>
-                  {Array.isArray(newsData) && newsData.length > 0 ? (
-                    newsData.map((news) => (
-                      <div key={news.id}>
-                        <h2>{news.club_name}</h2>
-                        <p>{news.news_content}</p>
-                        <Link href={news.news_link} target="_blank" rel="noopener noreferrer">Read More</Link>
-                        <button onClick={() => handleUpdateClick(news.id)}>Update</button>
-                      </div>
-                    ))
-                  ) : (
-                    <p>No news available.</p>
-                  )}
-                  <div className="goBackLink">
-                    <Link href="/admin/dashboard">Go Back</Link>
+    <Dashboard>
+      <div className="NewsComponent">
+        <div className="NewsComponent-in">
+          <div className="News-one">
+            <div className="News-one-one">
+              <p>
+                Instructions to update images{" "}
+                <MdOutlineIntegrationInstructions className="News-icon" />
+              </p>
+            </div>
+            <div className="News-one-two">
+              <div className="News-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                  Resize Image: Use the provided Canva link to resize the image
+                  to the optimal dimensions for website display.
+                </p>
+                <Link href="https://www.canva.com/design/DAGVOZTJzh8/Jlj-pRBJ7Qt87h9OdTMTlA/view?utm_content=DAGVOZTJzh8&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank">Canva Link</Link>
+              </div>
+
+              <div className="News-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                  Upload and Generate Link: After resizing, download the image
+                  and upload it to{" "}
+                  <Link href="https://www.imghippo.com/" target="_blank">
+                    Imghippo
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {show ? (
+            isLoading ? <Loader /> : (
+              <div className="News-two">
+                <div className="News-two-in">
+                  <div className="NewsUpdate-one">
+                    <label htmlFor="newsLink">News Image Link</label>
+                    <input
+                      type="text"
+                      placeholder="News Image Link"
+                      name="newsLink"
+                      id="newsLink"
+                      value={updateData.newsLink}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="NewsUpdate-two">
+                    <label htmlFor="clubName">Club Name</label>
+                    <input
+                      type="text"
+                      placeholder="Club Name"
+                      name="clubName"
+                      id="clubName"
+                      value={updateData.clubName}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="NewsUpdate-three">
+                    <label htmlFor="newsContent">News Content</label>
+                    <input
+                      type="text"
+                      placeholder="News Content"
+                      name="newsContent"
+                      id="newsContent"
+                      value={updateData.newsContent}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="NewsUpdate-five">
+                    <button onClick={handleCancel}>Cancel</button>
+                    <button onClick={handleSubmit}>Update</button>
                   </div>
                 </div>
-              )}
-            </div>
-      </Dashboard>
+              </div>
+            )
+          ) : (
+            isLoading ? <Loader /> : (
+              <div className="News-three">
+                <div className="News-three-in">
+                  {Array.isArray(newsData) && newsData.length > 0 && (
+                    newsData.map((news) => (
+                      <div className="News-three-one" key={news.id}>
+                        <div className="News-three-one-img">
+                          <img src={news.news_link} alt="News Image" />
+                        </div>
+                        <div className="News-three-one-name">
+                          <p>{news.club_name}</p>
+                        </div>
+                        <div className="News-three-one-content">
+                          <p>{news.news_content}</p>
+                        </div>
+                        <button onClick={() => handleClick(news.id)}>Update</button>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    </Dashboard>
   );
 };
 

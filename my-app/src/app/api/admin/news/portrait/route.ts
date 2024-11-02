@@ -54,17 +54,12 @@ export const POST = async (req: any) => {
 
 export const GET = async (req: NextRequest) => {
   try {
-    const data = await redisClient.get(MY_KEY);
 
-    if (data) {
-      return NextResponse.json(JSON.parse(data), { status: 200 });
-    }
 
     const [news] = await pool.query(
       `SELECT * FROM news_portrait ORDER BY upload_at DESC LIMIT 4;`
     );
 
-    await redisClient.setEx(MY_KEY, 3600, JSON.stringify(news));
 
     return NextResponse.json(news, { status: 200 });
   } catch (error) {

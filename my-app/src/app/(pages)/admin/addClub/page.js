@@ -33,26 +33,8 @@ const Page = () => {
         toast.success("Club added successfully");
       }
     } catch (error) {
-      if (error.response) {
-        switch (error.response.status) {
-          case 400:
-            toast.error(error.response.data.message || "Bad request");
-            break;
-          case 401:
-            toast.error("Unauthorized");
-            break;
-          case 403:
-            toast.error("Forbidden");
-            break;
-          case 409:
-            toast.error("Club already exists");
-            break;
-          default:
-            toast.error("An error occurred while adding the club");
-        }
-      } else {
-        toast.error("An error occurred while adding the club");
-      }
+      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
