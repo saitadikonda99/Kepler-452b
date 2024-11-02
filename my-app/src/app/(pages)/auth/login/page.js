@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { usePathname } from 'next/navigation'
 import { toast } from "react-hot-toast";
 
+import Loader from '../../../animation/loader';
+
 import "./page.css";
 
 const Login = () => {
@@ -17,14 +19,18 @@ const Login = () => {
     password: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!userData.username || !userData.password) {
-      alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
+
+    setIsLoading(true);
 
     try {
       const response = await axios.post("/api/auth/login", userData, {
@@ -36,6 +42,8 @@ const Login = () => {
 
       if (response.status === 200) {
         const role = response.data.role;
+
+        setIsLoading(false);
 
         const user = {
           id: response.data.id,
@@ -61,11 +69,12 @@ const Login = () => {
         }
       }
       else {
+        setIsLoading(false);
         toast.error(response.data.message);
       }
 
     } catch (error) {
-      console.log(error); 
+      setIsLoading(false);
       toast.error(error.response.data.message);
     }
   };
@@ -79,6 +88,7 @@ const Login = () => {
   };
 
   return (
+    isLoading ? <Loader /> : 
     <div className="LoginComponent">
       <div className="LoginComponent-in">
         <div className="Login-one">

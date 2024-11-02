@@ -29,8 +29,10 @@ const postHandler = async (req: NextRequest) => {
     const { clubId, imagesId, heroImg, teamImg } = await req.json();
 
     if (!clubId || !heroImg || !teamImg) {
-      return NextResponse.json({ status: 401 });
+      console.log(clubId, heroImg, teamImg);
+      return NextResponse.json({ message: "All fields are required"}, { status: 401 });
     }
+
     const [result]: any = await pool.query(
       `UPDATE club_images 
        SET club_id = ?, hero_img = ?, team_img = ? 

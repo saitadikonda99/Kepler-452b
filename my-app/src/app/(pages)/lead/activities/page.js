@@ -11,6 +11,9 @@ import "./page.css";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
+// Add to imports at the top
+import Loader from "../../../animation/loader";
+
 const page = () => {
   const [show, setShow] = useState(false);
   const [ActivitiesData, setActivitiesData] = useState([]);
@@ -23,6 +26,8 @@ const page = () => {
     activityDate: " ",
     activityVenue: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (id) => {
     return () => {
@@ -53,6 +58,7 @@ const page = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "/api/clubUpdate/activities",
@@ -68,6 +74,7 @@ const page = () => {
       console.log(response);
 
       if (response.status === 200) {
+        setIsLoading(false);
         toast.success("Upcoming Events activities successfully!");
         setShow(false);
         setActivitiesData((prevData) =>
@@ -87,6 +94,7 @@ const page = () => {
                     
       
       } else {
+        setIsLoading(false);
         toast.error("Failed to update Activities");
       }
 
@@ -98,11 +106,13 @@ const page = () => {
         activityVenue: "",
       });
     } catch (error) {
-      toast.error("Internal server error");
+      setIsLoading(false);
+      toast.error(error.response.data.message);
     }
   };
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/clubUpdate/activities");
@@ -111,11 +121,14 @@ const page = () => {
 
         if (response.status === 200) {
           setActivitiesData(response.data);
+          setIsLoading(false);
         } else {
+          setIsLoading(false);
           toast.error("Failed to fetch Activities");
         }
       } catch (error) {
-        toast.error("Internal server error");
+        setIsLoading(false);
+        toast.error(error.response.data.message);
       }
     };
     fetchData();
@@ -164,6 +177,7 @@ const page = () => {
           </div>
 
           {show ? (
+            isLoading ? <Loader /> :
             <div className="Activities-two">
               <div className="Activities-two-in">
                 <div className="ActivitiesUpdate-one">
@@ -217,6 +231,7 @@ const page = () => {
               </div>
             </div>
           ) : (
+            isLoading ? <Loader /> :
             <div className="Activities-three">
               {Array.isArray(ActivitiesData) &&
                 ActivitiesData.map((data, index) => {

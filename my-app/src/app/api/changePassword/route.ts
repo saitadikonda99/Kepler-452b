@@ -6,6 +6,13 @@ import { verifyRoles } from "../../../lib/verifyRoles";
 export const POST = async (req: NextRequest) => {
   try {
     const { password, confirmPassword } = await req.json();
+
+    if (!password || !confirmPassword) {
+      return NextResponse.json({
+        message: "All fields (password, confirmPassword) are required"
+      }, { status: 400 });
+    }
+
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
@@ -25,7 +32,7 @@ export const POST = async (req: NextRequest) => {
 
     if (!password || !confirmPassword) {
       return NextResponse.json({
-        message: "All fields (password, confirmPassword) are required"
+        message: "All fields are required"
       }, { status: 400 });
     }
 

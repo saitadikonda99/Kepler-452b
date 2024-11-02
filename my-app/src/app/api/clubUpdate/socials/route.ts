@@ -27,6 +27,10 @@ const postHandler = async (req: NextRequest) => {
   try {
     const { clubId, socialName, socialLink } = await req.json();
 
+    if (!clubId || !socialName || !socialLink) {
+      return NextResponse.json( { message: "All fields are required"}, { status: 401 });
+    }
+
     const [result]: any = await pool.query(
       `INSERT INTO socials (club_id, social_name, social_link) VALUES (?, ?, ?)`,
       [clubId, socialName, socialLink]

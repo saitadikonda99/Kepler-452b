@@ -11,6 +11,9 @@ import "./page.css";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
+// Add to imports at the top
+import Loader from "../../../animation/loader";
+
 const page = () => {
   const [show, setShow] = useState(false);
   const [UpcomingEventsData, setUpcomingEventsData] = useState([]);
@@ -23,6 +26,9 @@ const page = () => {
     eventDate: " ",
     eventVenue: "",
   });
+
+  // Add loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (id) => {
     return () => {
@@ -53,6 +59,7 @@ const page = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "/api/clubUpdate/upcomingEvents",
@@ -68,6 +75,7 @@ const page = () => {
       console.log(response);
 
       if (response.status === 200) {
+        setIsLoading(false);
         toast.success("Upcoming Events updated successfully!");
         setShow(false);
 
@@ -85,6 +93,7 @@ const page = () => {
           )
         );
       } else {
+        setIsLoading(false);
         toast.error("Failed to update UpcomingEvents");
       }
 
@@ -96,11 +105,13 @@ const page = () => {
         eventVenue: "",
       });
     } catch (error) {
-      toast.error("Internal server error");
+      setIsLoading(false);
+      toast.error(error.response.data.message);
     }
   };
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/clubUpdate/upcomingEvents");
@@ -109,11 +120,14 @@ const page = () => {
 
         if (response.status === 200) {
           setUpcomingEventsData(response.data);
+          setIsLoading(false);
         } else {
+          setIsLoading(false);
           toast.error("Failed to fetch UpcomingEvents");
         }
       } catch (error) {
-        toast.error("Internal server error");
+        setIsLoading(false);
+        toast.error(error.response.data.message);
       }
     };
     fetchData();
@@ -158,6 +172,7 @@ const page = () => {
           </div>
 
           {show ? (
+            isLoading ? <Loader /> :
             <div className="UpcomingEvents-two">
               <div className="UpcomingEvents-two-in">
                 <div className="UpcomingEventsUpdate-one">
@@ -211,6 +226,7 @@ const page = () => {
               </div>
             </div>
           ) : (
+            isLoading ? <Loader /> :
             <div className="UpcomingEvents-three">
               {Array.isArray(UpcomingEventsData) &&
                 UpcomingEventsData.map((data, index) => {

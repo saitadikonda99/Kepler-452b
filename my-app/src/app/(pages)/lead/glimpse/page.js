@@ -10,6 +10,7 @@ import "./page.css"
 // import icons here
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
+import Loader from "../../../animation/loader";
 
 const page = () => {
 
@@ -22,6 +23,8 @@ const page = () => {
         glimpseImage: "",
         glimpseDesc: "",
     })
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClick = (id) => {
         return () => {
@@ -51,6 +54,7 @@ const page = () => {
     }
 
     const handleSubmit = async () => {
+        setIsLoading(true);
         try {
             const response = await axios.post("/api/clubUpdate/glimpse", updatedData, {
                 headers: {
@@ -60,6 +64,7 @@ const page = () => {
             });
 
             if (response.status === 200) {
+                setIsLoading(false);
                 toast.success("Glimpses updated successfully!");
                 setShow(false);
                 setGlimpseData((prevData) =>
@@ -74,6 +79,7 @@ const page = () => {
                     )
                 );
             } else {
+                setIsLoading(false);
                 toast.error("Failed to update Glimpses");
             }
 
@@ -84,11 +90,13 @@ const page = () => {
             })
 
         } catch (error) {
-            toast.error("Internal server error");
+            setIsLoading(false);
+            toast.error(error.response.data.message);
         }
     }
 
     useEffect( () => {
+        setIsLoading(true);
         const fetchData = async () => {
             try {
                 const response = await axios.get('/api/clubUpdate/glimpse');
@@ -97,11 +105,14 @@ const page = () => {
 
                 if (response.status === 200) {
                     setGlimpseData(response.data);
+                    setIsLoading(false);
                 } else {
+                    setIsLoading(false);
                     toast.error("Failed to fetch Glimpses");
                 }
             } catch (error) {
-                toast.error("Internal server error");
+                setIsLoading(false);
+                toast.error(error.response.data.message);
             }
         }
         fetchData();
@@ -149,6 +160,7 @@ const page = () => {
 
 
                 { show ? 
+                    isLoading ? <Loader /> :
                     <div className="Glimpse-two">
                         <div className="Glimpse-two-in">
 
@@ -186,6 +198,7 @@ const page = () => {
                         </div>
                     </div>
                     :
+                    isLoading ? <Loader /> :
                     <div className="Glimpse-three">
                         {Array.isArray(GlimpseData) && GlimpseData.map((data, index) => {
                             return (

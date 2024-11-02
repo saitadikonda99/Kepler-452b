@@ -7,6 +7,8 @@ import Link from "next/link";
 import Dashboard from "../dashboard/dashboard";
 import "./page.css";
 
+import Loader from "../../../animation/loader";
+
 // import icons here
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
@@ -14,6 +16,7 @@ import { MdOutlineIntegrationInstructions } from "react-icons/md";
 const page = () => {
   const [show, setShow] = useState(false);
   const [imageData, setImageData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [updatedData, setUpdatedData] = useState({
     clubId: null,
@@ -21,6 +24,8 @@ const page = () => {
     heroImg: "",
     teamImg: "",
   });
+
+  console.log(updatedData);
 
   const handleClick = (clubId) => {
     return () => {
@@ -51,6 +56,7 @@ const page = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post("/api/clubUpdate/images", updatedData, {
         headers: {
@@ -59,7 +65,9 @@ const page = () => {
         withCredentials: true,
       });
 
+
       if (response.status === 200) {
+        setIsLoading(false);
         toast.success("Images updated successfully!");
         setShow(false);
         setImageData((prevData) =>
@@ -74,14 +82,17 @@ const page = () => {
           )
         );
       } else {
+        setIsLoading(false);
         toast.error("Failed to update images");
       }
     } catch (error) {
-      toast.error("Internal server error");
+      setIsLoading(false);
+      toast.error(error.response.data.message);
     }
   };
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/clubUpdate/images");
@@ -90,10 +101,13 @@ const page = () => {
 
         if (response.status === 200) {
           setImageData(response.data);
+          setIsLoading(false);
         } else {
+          setIsLoading(false);
           toast.error("Failed to fetch images");
         }
       } catch (error) {
+        setIsLoading(false);
         toast.error("Internal server error");
       }
     };
@@ -116,8 +130,9 @@ const page = () => {
                 <VscDebugBreakpointLog />
                 <p>
                   Resize Image: Use the provided Canva link to resize the image
-                  to the optimal dimensions for website display.
+                  to the optimal dimensions for website display. 
                 </p>
+                <Link href="https://www.canva.com/design/DAGVOb7x6hg/H4_YD4-t9s5ZT-iXhWKKjg/view?utm_content=DAGVOb7x6hg&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank">Canva Link</Link>
               </div>
 
               <div className="image-one-two-one">
@@ -125,10 +140,6 @@ const page = () => {
                 <p>
                   Upload and Generate Link: After resizing, download the image
                   and upload it to a storage service like
-                  <Link href="http://firebase.google.com/" target="_blank">
-                    {" "}
-                    Firebase Storage
-                  </Link>{" "}
                   or{" "}
                   <Link href="https://www.imghippo.com/" target="_blank">
                     Imghippo
@@ -138,11 +149,12 @@ const page = () => {
             </div>
           </div>
           {show ? (
+            isLoading ? <Loader /> :
             <div className="image-two">
               <div className="image-two-in">
                 <div className="image-two-in-one">
                   <div className="imageUpdate-one">
-                    <label For="heroImg">Hero Image</label>
+                    <label htmlFor="heroImg">Hero Image</label>
                     <input
                       type="text"
                       value={updatedData.heroImg}
@@ -150,11 +162,12 @@ const page = () => {
                       id="heroImg"
                       name="heroImg"
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
                   <div className="imageUpdate-two">
-                    <label For="teamImg">Team Image</label>
+                    <label htmlFor="teamImg">Team Image</label>
                     <input
                       type="text"
                       value={updatedData.teamImg}
@@ -162,6 +175,7 @@ const page = () => {
                       id="teamImg"
                       name="teamImg"
                       onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -172,6 +186,7 @@ const page = () => {
               </div>
             </div>
           ) : (
+            isLoading ? <Loader /> :
             <div className="Image-three">
               {Array.isArray(imageData) &&
                 imageData.map((data, index) => {

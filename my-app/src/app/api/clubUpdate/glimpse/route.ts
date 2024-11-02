@@ -28,7 +28,7 @@ const postHandler = async (req: NextRequest) => {
     const { clubId, glimpseId, glimpseImage, glimpseDesc } = await req.json();
 
     if (!clubId || !glimpseImage || !glimpseDesc) {
-      return NextResponse.json({ status: 401 });
+      return NextResponse.json( { message: "All fields are required"}, { status: 401 });
     }
 
     const [result]: any = await pool.query(
