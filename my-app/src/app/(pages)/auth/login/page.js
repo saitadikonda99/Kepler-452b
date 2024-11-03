@@ -102,7 +102,7 @@ const Login = () => {
                 value={userData.username}
                 onChange={handleInput}
                 name="username"
-                placeholder="username"
+                placeholder="Username"
               />
             </div>
             <div className="Login-in-two">

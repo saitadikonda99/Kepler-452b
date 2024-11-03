@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import { toast } from "react-hot-toast";
 import Dashboard from "../dashboard/dashboard";
+import "./page.css";
 
 
 const page = () => {

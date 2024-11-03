@@ -20,14 +20,14 @@
     width: 100%;  
 }
 
-.Glimpse-one-in {
+/* .Glimpse-one-in {
     width: 100%;
     display: flex;
-}
+} */
 
-.Glimpse-icon {
+/* .Glimpse-icon {
     font-size: 1.5rem;
-}
+} */
 
 .Glimpse-one-one {
     width: 100%;
@@ -64,4 +64,99 @@
 .Glimpse-one a{
     text-decoration: none;
     color: rgb(217, 3, 3);
+}
+
+
+
+.Glimpse-three-in{
+    display: flex;        
+    width: 90%;             
+    align-items: center;  
+    justify-content:flex-start;
+    gap: 1rem;         
+    background-color: #f9f9f9;    
+    border: 1px solid #ddd;            
+    border-radius: 8px;    
+    margin: 20px;                      
+    overflow: hidden;
+}
+  
+  
+.Glimpse-three-in-img{
+    width: 40%;  
+    height: 20rem;
+}
+  
+.Glimpse-three-in-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.Glimpse-three-in-des{
+    width: 48%;
+}
+
+#button{
+    width: 12%;
+    /* padding-right: .5rem; */
+}
+
+#button button{
+    width: 73%;
+    padding: .5rem;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    border-radius: .5rem;
+    cursor: pointer;
+    border: none;
+}
+
+#button button:hover{
+    background-color: green;
+}
+
+.Glimpse-two{
+    width: 100%;
+}
+
+.Glimpse-two-in{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0rem;
+}
+
+.GlimpseUpdate-one, .GlimpseUpdate-two{
+    width: 40%;
+}
+
+.GlimpseUpdate-one input, .GlimpseUpdate-two input{
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid rgb(202, 196, 196);
+    border-radius: 5px;
+}
+
+.GlimpseUpdate-three {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1.5rem;
+}
+
+.GlimpseUpdate-three button{
+    font-size: .8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem; 
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.GlimpseUpdate-three button:hover{
+    background-color: green;
 }

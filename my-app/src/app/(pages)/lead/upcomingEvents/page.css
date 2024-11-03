@@ -56,3 +56,59 @@
     text-decoration: none;
     color: rgb(217, 3, 3);
 }
+
+.UpcomingEvents-three{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.UpcomingEvents-three-in{
+    width: 25%;
+    height: 26rem;
+    background-color: #f6f2f2;    
+    /* border-radius: 10px; */
+    box-shadow: 0 0 10px rgba(11, 6, 6, 0.1);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.UpcomingEvents-three-in-img{
+    height: 18.5rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.UpcomingEvents-three-in-img img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.UpcomingEvents-three-in-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+.UpcomingEvents-three-in-button button{
+    font-size: .8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem; 
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.UpcomingEvents-three-in-button button:hover{
+    background-color: green;
+}
+
+#ptag{
+    padding-left: .5rem;
+}

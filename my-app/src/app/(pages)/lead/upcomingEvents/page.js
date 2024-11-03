@@ -235,10 +235,10 @@ const page = () => {
                       <div className="UpcomingEvents-three-in-img">
                         <img src={data.event_image} alt="heroImg" />
                       </div>
-                      <div className="UpcomingEvents-three-in-name">
+                      <div className="UpcomingEvents-three-in-name" id="ptag">
                         <p>{data.event_name}</p>
                       </div>
-                      <div className="UpcomingEvents-three-in-date">
+                      <div className="UpcomingEvents-three-in-date" id="ptag">
                         <p>
                           {new Date(data.event_date).toLocaleDateString(
                             "en-GB",
@@ -250,11 +250,12 @@ const page = () => {
                           )}
                         </p>
                       </div>
-                      <div className="UpcomingEvents-three-in-venue">
+                      <div className="UpcomingEvents-three-in-venue" id="ptag">
                         <p>{data.event_venue}</p>
                       </div>
-
+                      <div className="UpcomingEvents-three-in-button">
                       <button onClick={handleClick(data.id)}>Update</button>
+                     </div>
                     </div>
                   );
                 })}
