@@ -57,6 +57,62 @@
     color: rgb(217, 3, 3);
 }
 
+.UpcomingEvents-two{
+    width: 100%;
+}
+
+.UpcomingEvents-two-in{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.UpcomingEvents-two-in-a, .UpcomingEvents-two-in-b, .UpcomingEvents-two-in-c{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-top: .8rem;
+    padding-bottom: .2rem;
+}
+
+.UpcomingEventsUpdate-one, .UpcomingEventsUpdate-two, .UpcomingEventsUpdate-three, .UpcomingEventsUpdate-four{
+    width: 50%;
+}
+
+.UpcomingEvents-two-in input{
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid rgb(202, 196, 196);
+    border-radius: 5px;
+}
+
+.UpcomingEventsUpdate-five{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.UpcomingEventsUpdate-five button{
+    font-size: .8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem; 
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.UpcomingEventsUpdate-five button:hover{
+    background-color: rgb(0, 147, 0);
+}
+
 .UpcomingEvents-three{
     display: flex;
     align-items: center;

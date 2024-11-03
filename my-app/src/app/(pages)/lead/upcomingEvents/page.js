@@ -175,6 +175,7 @@ const page = () => {
             isLoading ? <Loader /> :
             <div className="UpcomingEvents-two">
               <div className="UpcomingEvents-two-in">
+                <div className="UpcomingEvents-two-in-a">
                 <div className="UpcomingEventsUpdate-one">
                   <label For="eventImage">Upcoming Event Image</label>
                   <input
@@ -197,6 +198,8 @@ const page = () => {
                     onChange={handleChange}
                   />
                 </div>
+                </div>
+                <div className="UpcomingEvents-two-in-b">
                 <div className="UpcomingEventsUpdate-three">
                   <label For="eventDate">Upcoming Event Date</label>
                   <input
@@ -219,9 +222,12 @@ const page = () => {
                     onChange={handleChange}
                   />
                 </div>
+                </div>
+                <div className="UpcomingEvents-two-in-c">
                 <div className="UpcomingEventsUpdate-five">
                   <button onClick={handleCancel}>Cancel</button>
                   <button onClick={handleSubmit}>Update</button>
+                </div>
                 </div>
               </div>
             </div>
