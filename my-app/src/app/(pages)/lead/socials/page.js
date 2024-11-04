@@ -188,6 +188,7 @@ const page = () => {
                         <div classname="Socials-three-in-one" id="final">
                           <div className="Socials-three-in-one-box">
                             {socialIcons[data.social_name]}
+                            
                             <p>{data.social_name}</p>
                             <p>{data.social_link}</p>
                             <button
