@@ -13,18 +13,22 @@ import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
 
-const socialIcons = {
-  Facebook: <FaFacebook />,
-  Instagram: <FaInstagram />,
-  Twitter: <FaTwitter />,
-  LinkedIn: <FaLinkedin />,
-  YouTube: <FaYoutube />,
-};
 
 const page = () => {
+
+  const socialIcons = {
+    Facebook: <FaFacebook />,
+    Instagram: <FaInstagram />,
+    Twitter: <FaTwitter />,
+    LinkedIn: <FaLinkedin />,
+    YouTube: <FaYoutube />,
+  };
+
   const [show, setShow] = useState(false);
   const [SocialsData, setSocialsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  console.log(SocialsData)
 
   const [updatedData, setUpdatedData] = useState({
     clubId: null,
@@ -151,7 +155,7 @@ const page = () => {
               <div className="Socials-two">
                 <div className="Socials-two-in">
                   <div className="SocialsUpdate-one">
-                  {socialIcons[data.social_name]}
+                    {socialIcons[updatedData.socialName]}
                   </div>
                   <div className="SocialsUpdate-two">
                     <p>{updatedData.socialName}</p>
@@ -183,6 +187,7 @@ const page = () => {
                       <div key={index} className="Socials-three-in">
                         <div classname="Socials-three-in-one" id="final">
                           <div className="Socials-three-in-one-box">
+                            {socialIcons[data.social_name]}
                             <p>{data.social_name}</p>
                             <p>{data.social_link}</p>
                             <button
