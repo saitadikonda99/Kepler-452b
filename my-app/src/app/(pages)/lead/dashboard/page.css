@@ -28,3 +28,9 @@
 .DC-one {
     width: 84%;
 }
+
+.DC-one {
+    width: 84%;
+    height: 83.5vh;
+    overflow: scroll;
+}

@@ -151,6 +151,7 @@ const page = () => {
                   Resize Poster: Use the provided Canva link to resize the poster
                   to the optimal dimensions for website display.
                 </p>
+                <Link href="https://www.canva.com/design/DAGVOZTJzh8/Jlj-pRBJ7Qt87h9OdTMTlA/view?utm_content=DAGVOZTJzh8&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank">Canva Link</Link>
               </div>
 
               <div className="UpcomingEvents-one-two-one">
@@ -168,6 +169,16 @@ const page = () => {
                   </Link>
                 </p>
               </div>
+              <div className="UpcomingEvents-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                To view a tutorial on uploading links, please visit <Link href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5" target="_blank">
+                    {" "}
+                    Video Tutorial
+                  </Link>{" "}.
+                </p>
+              </div>
+
             </div>
           </div>
 
@@ -234,17 +245,18 @@ const page = () => {
           ) : (
             isLoading ? <Loader /> :
             <div className="UpcomingEvents-three">
+              <div className="UpcomingEvents-three-in">
               {Array.isArray(UpcomingEventsData) &&
                 UpcomingEventsData.map((data, index) => {
                   return (
-                    <div key={index} className="UpcomingEvents-three-in">
-                      <div className="UpcomingEvents-three-in-img">
+                    <div key={index} className="UpcomingEvents-three-one">
+                      <div className="UpcomingEvents-three-one-img">
                         <img src={data.event_image} alt="heroImg" />
                       </div>
-                      <div className="UpcomingEvents-three-in-name" id="ptag">
+                      <div className="UpcomingEvents-three-one-name" id="ptag">
                         <p>{data.event_name}</p>
                       </div>
-                      <div className="UpcomingEvents-three-in-date" id="ptag">
+                      <div className="UpcomingEvents-three-one-date" id="ptag">
                         <p>
                           {new Date(data.event_date).toLocaleDateString(
                             "en-GB",
@@ -256,15 +268,14 @@ const page = () => {
                           )}
                         </p>
                       </div>
-                      <div className="UpcomingEvents-three-in-venue" id="ptag">
+                      <div className="UpcomingEvents-three-one-venue" id="ptag">
                         <p>{data.event_venue}</p>
                       </div>
-                      <div className="UpcomingEvents-three-in-button">
                       <button onClick={handleClick(data.id)}>Update</button>
-                     </div>
                     </div>
                   );
                 })}
+            </div>
             </div>
           )}
         </div>

@@ -1,14 +1,24 @@
+
+*{
+    padding:0% ;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
 .UpcomingEventsComponent {
     width: 100%;
 }
 
 .UpcomingEventsComponent-in {
-    width: 100%;
     padding: 1rem;
 }
 
 .UpcomingEvents-one {
     width: 100%;  
+    padding: 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .UpcomingEvents-one-in {
@@ -26,15 +36,12 @@
 }
 
 .UpcomingEvents-one-one p {
-    font-size: 1.2rem;
-    border: 1px solid black;    
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: .5rem;
-    padding: .5rem 1rem;
-    border: 1px solid black;
-    border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;    
 }
 
 .UpcomingEvents-one-two {
@@ -46,10 +53,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    gap: .5rem;
 }
 
 .UpcomingEvents-one-two-one p {
     font-size: 1rem;
+    padding: .2rem 0rem;
 }
 
 .UpcomingEvents-one a{
@@ -57,114 +66,119 @@
     color: rgb(217, 3, 3);
 }
 
-.UpcomingEvents-two{
+.UpcomingEvents-two {
     width: 100%;
 }
 
-.UpcomingEvents-two-in{
+.UpcomingEvents-two-in {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1rem;
 }
 
-.UpcomingEvents-two-in-a, .UpcomingEvents-two-in-b, .UpcomingEvents-two-in-c{
+.UpcomingEventsUpdate-one,
+.UpcomingEventsUpdate-two,
+.UpcomingEventsUpdate-three,
+.UpcomingEventsUpdate-four {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding-top: .8rem;
-    padding-bottom: .2rem;
+    padding: 0.5rem 0;
 }
 
-.UpcomingEventsUpdate-one, .UpcomingEventsUpdate-two, .UpcomingEventsUpdate-three, .UpcomingEventsUpdate-four{
-    width: 50%;
-}
-
-.UpcomingEvents-two-in input{
+.UpcomingEventsUpdate-one input,
+.UpcomingEventsUpdate-two input,
+.UpcomingEventsUpdate-three input,
+.UpcomingEventsUpdate-four input {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid rgb(202, 196, 196);
     border-radius: 5px;
 }
 
-.UpcomingEventsUpdate-five{
+.UpcomingEventsUpdate-five {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 1rem;
+    padding: 1rem 0;
 }
 
-.UpcomingEventsUpdate-five button{
+.UpcomingEventsUpdate-five button {
     font-size: .8rem;
     border-radius: 5px;
     border: none;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     color: white;
     background-color: black;
     cursor: pointer;
 }
 
-.UpcomingEventsUpdate-five button:hover{
+.UpcomingEventsUpdate-five button:hover {
     background-color: rgb(0, 147, 0);
 }
 
-.UpcomingEvents-three{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-}
-
-.UpcomingEvents-three-in{
-    width: 25%;
-    height: 26rem;
-    background-color: #f6f2f2;    
-    /* border-radius: 10px; */
-    box-shadow: 0 0 10px rgba(11, 6, 6, 0.1);
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-
-.UpcomingEvents-three-in-img{
-    height: 18.5rem;
-    overflow: hidden;
+.UpcomingEvents-three {
     width: 100%;
 }
 
-.UpcomingEvents-three-in-img img{
+.UpcomingEvents-three-in {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1.5rem 0rem;
+}
+
+.UpcomingEvents-three-one {
+    width: 22.6%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    overflow: hidden;
+    background-color: white;
+    padding: .5rem;
+    border-radius: 10px;
+}
+
+.UpcomingEvents-three-one-img {
+    width: 100%;
+}
+
+.UpcomingEvents-three-one-img img {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    object-fit: cover;
 }
 
-.UpcomingEvents-three-in-button {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 1rem;
+.UpcomingEvents-three-one-name {
+    margin-bottom: 0.5rem;
 }
 
-.UpcomingEvents-three-in-button button{
+.UpcomingEvents-three-one-name p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.UpcomingEvents-three-one-date,
+.UpcomingEvents-three-one-venue {
+    margin-bottom: 0.5rem;
+}
+
+.UpcomingEvents-three-one-date p,
+.UpcomingEvents-three-one-venue p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.UpcomingEvents-three-one button {
+    width: 100%;
     font-size: .8rem;
     border-radius: 5px;
     border: none;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     color: white;
     background-color: black;
     cursor: pointer;
+    margin-top: 0.5rem;
 }
 
-.UpcomingEvents-three-in-button button:hover{
-    background-color: green;
-}
-
-#ptag{
-    padding-left: .5rem;
+.UpcomingEvents-three-one button:hover {
+    background-color: rgb(0, 147, 0);
 }

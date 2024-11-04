@@ -155,6 +155,17 @@ const page = () => {
                   </Link>
                 </p>
               </div>
+
+              <div className="Glimpse-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                To view a tutorial on uploading links, please visit <Link href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5" target="_blank">
+                    {" "}
+                    Video Tutorial
+                  </Link>{" "}.
+                </p>
+              </div>
+
             </div>
           </div>
 
@@ -200,25 +211,27 @@ const page = () => {
                     :
                     isLoading ? <Loader /> :
                     <div className="Glimpse-three">
-                        {Array.isArray(GlimpseData) && GlimpseData.map((data, index) => {
-                            return (
-                                <div key={index} className="Glimpse-three-in">
-                                    <div className="Glimpse-three-in-img">
-                                        <img src={data.glimpse_image} alt="heroImg" />
-                                    </div>
-                                    <div className="Glimpse-three-in-des">
-                                        <p>{data.glimpse_desc}</p>
-                                    </div>
-                                    <div classname="Glimpse-three-in-button" id="button">
-                                    <button onClick={handleClick(data.id)} >
-                                        Update
-                                    </button>
-                                    </div>
-                                </div>
-                            )
-                        })
-                        }
+    {Array.isArray(GlimpseData) && GlimpseData.map((data, index) => {
+        return (
+            <div key={index} className="Glimpse-three-in">
+                <div className="Glimpse-three-in-img">
+                    <img src={data.glimpse_image} alt="heroImg" />
+                </div>
+                <div className="Glimpse-three-in-des">
+                    <div className="Glimpse-three-in-desc">
+                        <p>{data.glimpse_desc}</p>
                     </div>
+                    <div className="Glimpse-three-in-action">
+                        <button onClick={() => handleClick(data.id)}>
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    })}
+</div>
+   
                 }
             </div>
         </div>

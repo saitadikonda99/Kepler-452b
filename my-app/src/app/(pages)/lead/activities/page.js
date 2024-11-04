@@ -174,6 +174,16 @@ const page = () => {
                   </Link>
                 </p>
               </div>
+              <div className="Activities-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                To view a tutorial on uploading links, please visit <Link href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5" target="_blank">
+                    {" "}
+                    Video Tutorial
+                  </Link>{" "}.
+                </p>
+              </div>
+
             </div>
           </div>
 
@@ -181,7 +191,6 @@ const page = () => {
             isLoading ? <Loader /> :
             <div className="Activities-two">
               <div className="Activities-two-in">
-               <div className="Activities-two-in-a">
                 <div className="ActivitiesUpdate-one">
                   <label For="activityImage">Upcoming activity Image</label>
                   <input
@@ -204,8 +213,7 @@ const page = () => {
                     onChange={handleChange}
                   />
                 </div>
-                </div>
-                <div className="Activities-two-in-b">
+        
                 <div className="ActivitiesUpdate-three">
                   <label For="activityDate">Upcoming activity Date</label>
                   <input
@@ -228,29 +236,31 @@ const page = () => {
                     onChange={handleChange}
                   />
                 </div>
-                </div>
-                <div className="Activities-two-in-c">
                 <div className="ActivitiesUpdate-five">
                   <button onClick={handleCancel}>Cancel</button>
                   <button onClick={handleSubmit}>Update</button>
-                </div>
                 </div>
               </div>
             </div>
           ) : (
             isLoading ? <Loader /> :
             <div className="Activities-three">
+             <div className="Activities-three-in">
               {Array.isArray(ActivitiesData) &&
                 ActivitiesData.map((data, index) => {
                   return (
-                    <div key={index} className="Activities-three-in">
-                      <div className="Activities-three-in-img">
-                        <img src={data.activity_image} alt="heroImg" />
+                    <div key={index} className="Activities-three-one">
+                      <div className="Activities-three-one-img">
+                        <img src={data.activity_image} 
+                          alt="heroImg"
+                          width={300}
+                          height={300}
+                           />
                       </div>
-                      <div className="Activities-three-in-name" id="ptag">
+                      <div className="Activities-three-one-name" id="ptag">
                         <p>{data.activity_name}</p>
                       </div>
-                      <div className="Activities-three-in-date" id="ptag">
+                      <div className="Activities-three-one-date" id="ptag">
                       <p>
                           {new Date(data.activity_date).toLocaleDateString(
                             "en-GB",
@@ -262,15 +272,14 @@ const page = () => {
                           )}
                         </p>
                       </div>
-                      <div className="Activities-three-in-venue" id="ptag">
+                      <div className="Activities-three-one-venue" id="ptag">
                         <p>{data.activity_venue}</p>
                       </div>
-                      <div className="Activities-three-in-button">
                       <button onClick={handleClick(data.id)}>Update</button>
-                      </div>
                     </div>
                   );
                 })}
+            </div>
             </div>
           )}
         </div>

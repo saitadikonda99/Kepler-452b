@@ -1,8 +1,9 @@
-*{
+* {
     padding: 0%;
     margin: 0%;
     box-sizing: border-box;
 }
+
 .ActivitiesComponent {
     width: 100%;
 }
@@ -12,16 +13,11 @@
 }
 
 .Activities-one {
-    width: 100%;  
-}
-
-.Activities-one-in {
     width: 100%;
-    display: flex;
-}
-
-.Activities-icon {
-    font-size: 1.5rem;
+    padding: 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .Activities-one-one {
@@ -31,14 +27,15 @@
 
 .Activities-one-one p {
     font-size: 1.2rem;
-    border: 1px solid black;    
+    font-weight: 600;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: .5rem;
-    padding: .5rem 1rem;
-    border: 1px solid black;
-    border-radius: 10px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.Activities-icon {
+    font-size: 1.5rem;
 }
 
 .Activities-one-two {
@@ -50,125 +47,132 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    gap: .5rem;
 }
 
 .Activities-one-two-one p {
     font-size: 1rem;
+    padding: .2rem 0rem;
 }
 
-.Activities-one a{
+.Activities-one a {
     text-decoration: none;
     color: rgb(217, 3, 3);
 }
 
-.Activities-two{
+.Activities-two {
     width: 100%;
 }
 
-.Activities-two-in{
+.Activities-two-in {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1rem;
 }
 
-.Activities-two-in-a, .Activities-two-in-b, .Activities-two-in-c{
+.ActivitiesUpdate-one,
+.ActivitiesUpdate-two,
+.ActivitiesUpdate-three,
+.ActivitiesUpdate-four {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding-top: .8rem;
-    padding-bottom: .2rem;
+    padding: 0.5rem 0;
 }
 
-.ActivitiesUpdate-one, .ActivitiesUpdate-two, .ActivitiesUpdate-three, .ActivitiesUpdate-four{
-    width: 50%;
-}
-
-.Activities-two-in input{
+.ActivitiesUpdate-one input,
+.ActivitiesUpdate-two input,
+.ActivitiesUpdate-three input,
+.ActivitiesUpdate-four input {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid rgb(202, 196, 196);
     border-radius: 5px;
 }
 
-.ActivitiesUpdate-five{
+.ActivitiesUpdate-five {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 1rem;
+    padding: 1rem 0;
 }
 
-.ActivitiesUpdate-five button{
+.ActivitiesUpdate-five button {
     font-size: .8rem;
     border-radius: 5px;
     border: none;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     color: white;
     background-color: black;
     cursor: pointer;
 }
 
-.ActivitiesUpdate-five button:hover{
+.ActivitiesUpdate-five button:hover {
     background-color: rgb(0, 147, 0);
 }
 
-.Activities-three{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-}
-
-.Activities-three-in{
-    width: 25%;
-    height: 25rem;
-    background-color: #f6f2f2;    
-    /* border-radius: 10px; */
-    box-shadow: 0 0 10px rgba(11, 6, 6, 0.1);
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-
-.Activities-three-in-img{
-    height: 18rem;
-    overflow: hidden;
+.Activities-three {
     width: 100%;
 }
 
-.Activities-three-in-img img{
+.Activities-three-in {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1.5rem 0rem;
+}
+
+.Activities-three-one {
+    width: 22.6%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    overflow: hidden;
+    background-color: white;
+    padding: .5rem;
+    border-radius: 10px;
+}
+
+.Activities-three-one-img {
+    width: 100%;
+}
+
+.Activities-three-one-img img {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    object-fit: cover;
 }
 
-.Activities-three-in-button {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 1rem;
+.Activities-three-one-name {
+    margin-bottom: 0.5rem;
 }
 
-.Activities-three-in-button button{
+.Activities-three-one-name p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.Activities-three-one-date,
+.Activities-three-one-venue {
+    margin-bottom: 0.5rem;
+}
+
+.Activities-three-one-date p,
+.Activities-three-one-venue p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.Activities-three-one button {
+    width: 100%;
     font-size: .8rem;
     border-radius: 5px;
     border: none;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     color: white;
     background-color: black;
     cursor: pointer;
+    margin-top: 0.5rem;
 }
 
-.Activities-three-in-button button:hover{
-    background-color: green;
-}
-
-#ptag{
-    padding-left: .5rem;
+.Activities-three-one button:hover {
+    background-color: rgb(0, 147, 0);
 }
