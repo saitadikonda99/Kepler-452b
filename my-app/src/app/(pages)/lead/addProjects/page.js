@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import { toast } from "react-hot-toast";
 import Dashboard from "../dashboard/dashboard";
-
+import './page.css'
 
 const page = () => {
 
@@ -47,8 +47,11 @@ const page = () => {
     <Dashboard>
         <div className="addProjectsComponent">
             <div className="addProjectsComponent-in">
-
+                <div className="addProjects-one"> 
+                   <h3>Add a new project</h3>
+                </div>
                 <div className="addProjects-two">
+                <div className="addProjects-two-a" id="input">
                     <input 
                         type="file" 
                         accept=".csv" 
@@ -56,8 +59,9 @@ const page = () => {
                         required
                     />
                 </div>
-                <div className="addProjects-three">
+                <div className="addProjects-two-b">
                     <button onClick={handleSubmit}>Submit</button>
+                </div>
                 </div>
 
             </div>

@@ -1,0 +1,56 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+.addActivitiesComponent{
+    width: 100%;
+}
+
+.addActivitiesComponent-in{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.addActivities-one{
+    width: 100%;
+    padding: .5rem;
+    background-color: black;
+    color: white;
+}
+
+.addActivities-two{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.addActivities-two-a{
+    width: 25%;
+}
+
+#input input{
+    width: 100%;
+    padding: 1rem;
+}
+
+.addActivities-two-b button{
+    width: 100%;
+    padding: .5rem;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.addActivities-two-b button:hover{
+    background-color: rgb(0, 147, 0);
+    cursor: pointer;
+}

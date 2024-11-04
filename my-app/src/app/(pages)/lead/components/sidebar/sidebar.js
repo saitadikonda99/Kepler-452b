@@ -12,6 +12,7 @@ import { BsCalendar2MinusFill } from "react-icons/bs";
 import { IoMdImages } from "react-icons/io";
 import { MdOutlineChangeCircle } from "react-icons/md";
 import { MdViewQuilt } from "react-icons/md";
+import { RxActivityLog } from "react-icons/rx";
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -53,7 +54,7 @@ const sidebar = () => {
         { name: "Image", icon: <IoMdImages className="sideBar-icon" /> , link: "/lead/images" },
         { name: "Glimpse", icon: <MdViewQuilt className="sideBar-icon" /> , link: "/lead/glimpse" },
         { name: "Upcoming Events", icon: <BsCalendar2MinusFill className="sideBar-icon" /> , link: "/lead/upcomingEvents" },
-        { name: "Activities", icon: <IoMdImages className="sideBar-icon" /> , link: "/lead/activities" },
+        { name: "Activities", icon: <RxActivityLog className="sideBar-icon" /> , link: "/lead/activities" },
         { name: "Socials", icon: <IoMdImages className="sideBar-icon" /> , link: "/lead/socials" },
       ],
     },

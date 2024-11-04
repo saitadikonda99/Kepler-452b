@@ -11,6 +11,7 @@ import "./page.css";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
+
 // Add to imports at the top
 import Loader from "../../../animation/loader";
 
@@ -145,7 +146,7 @@ const page = () => {
           <div className="Activities-one">
             <div className="Activities-one-one">
               <p>
-                Instructions to update images{" "}
+                Instructions to update activities{" "}
                 <MdOutlineIntegrationInstructions className="Activities-icon" />
               </p>
             </div>
@@ -153,7 +154,7 @@ const page = () => {
               <div className="Activities-one-two-one">
                 <VscDebugBreakpointLog />
                 <p>
-                  Resize Image: Use the provided Canva link to resize the image
+                  Resize Poster: Use the provided Canva link to resize the poster
                   to the optimal dimensions for website display.
                 </p>
               </div>
@@ -161,7 +162,7 @@ const page = () => {
               <div className="Activities-one-two-one">
                 <VscDebugBreakpointLog />
                 <p>
-                  Upload and Generate Link: After resizing, download the image
+                  Upload and Generate Link: After resizing, download the poster
                   and upload it to a storage service like
                   <Link href="http://firebase.google.com/" target="_blank">
                     {" "}
@@ -180,6 +181,7 @@ const page = () => {
             isLoading ? <Loader /> :
             <div className="Activities-two">
               <div className="Activities-two-in">
+               <div className="Activities-two-in-a">
                 <div className="ActivitiesUpdate-one">
                   <label For="activityImage">Upcoming activity Image</label>
                   <input
@@ -202,6 +204,8 @@ const page = () => {
                     onChange={handleChange}
                   />
                 </div>
+                </div>
+                <div className="Activities-two-in-b">
                 <div className="ActivitiesUpdate-three">
                   <label For="activityDate">Upcoming activity Date</label>
                   <input
@@ -224,9 +228,12 @@ const page = () => {
                     onChange={handleChange}
                   />
                 </div>
+                </div>
+                <div className="Activities-two-in-c">
                 <div className="ActivitiesUpdate-five">
                   <button onClick={handleCancel}>Cancel</button>
                   <button onClick={handleSubmit}>Update</button>
+                </div>
                 </div>
               </div>
             </div>
@@ -240,10 +247,10 @@ const page = () => {
                       <div className="Activities-three-in-img">
                         <img src={data.activity_image} alt="heroImg" />
                       </div>
-                      <div className="Activities-three-in-name">
+                      <div className="Activities-three-in-name" id="ptag">
                         <p>{data.activity_name}</p>
                       </div>
-                      <div className="Activities-three-in-date">
+                      <div className="Activities-three-in-date" id="ptag">
                       <p>
                           {new Date(data.activity_date).toLocaleDateString(
                             "en-GB",
@@ -255,11 +262,12 @@ const page = () => {
                           )}
                         </p>
                       </div>
-                      <div className="Activities-three-in-venue">
+                      <div className="Activities-three-in-venue" id="ptag">
                         <p>{data.activity_venue}</p>
                       </div>
-
+                      <div className="Activities-three-in-button">
                       <button onClick={handleClick(data.id)}>Update</button>
+                      </div>
                     </div>
                   );
                 })}

@@ -127,7 +127,7 @@ const page = () => {
             <div className="Glimpse-one">
             <div className="Glimpse-one-one">
               <p>
-                Instructions to update images{" "}
+                Instructions to update Glimpse{" "}
                 <MdOutlineIntegrationInstructions className="Activities-icon" />
               </p>
             </div>

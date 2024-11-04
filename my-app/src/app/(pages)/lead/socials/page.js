@@ -11,6 +11,16 @@ import Loader from "../../../animation/loader";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
+
+const socialIcons = {
+  Facebook: <FaFacebook />,
+  Instagram: <FaInstagram />,
+  Twitter: <FaTwitter />,
+  LinkedIn: <FaLinkedin />,
+  YouTube: <FaYoutube />,
+};
+
 const page = () => {
   const [show, setShow] = useState(false);
   const [SocialsData, setSocialsData] = useState([]);
@@ -105,7 +115,7 @@ const page = () => {
           <div className="Socials-one">
             <div className="Socials-one-one">
               <p>
-                Instructions to update images{" "}
+                Instructions to update socials{" "}
                 <MdOutlineIntegrationInstructions className="Activities-icon" />
               </p>
             </div>
@@ -140,6 +150,9 @@ const page = () => {
             isLoading ? <Loader /> : (
               <div className="Socials-two">
                 <div className="Socials-two-in">
+                  <div className="SocialsUpdate-one">
+                  {socialIcons[data.social_name]}
+                  </div>
                   <div className="SocialsUpdate-two">
                     <p>{updatedData.socialName}</p>
                   </div>

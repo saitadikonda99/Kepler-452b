@@ -49,8 +49,11 @@ const page = () => {
     <Dashboard>
         <div className="addActivitiesComponent">
             <div className="addActivitiesComponent-in">
-
-                <div className="addActivities-two">
+              <div className="addActivities-one">
+                <h3>Add a new activity</h3>
+              </div>
+              <div className="addActivities-two">
+                <div className="addActivities-two-a">
                     <input 
                         type="file" 
                         accept=".csv" 
@@ -58,8 +61,9 @@ const page = () => {
                         required
                     />
                 </div>
-                <div className="addActivities-three">
+                <div className="addActivities-two-b">
                     <button onClick={handleSubmit}>Submit</button>
+                </div>
                 </div>
 
             </div>

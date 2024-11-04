@@ -140,7 +140,7 @@ const page = () => {
           <div className="UpcomingEvents-one">
             <div className="UpcomingEvents-one-one">
               <p>
-                Instructions to update images{" "}
+                Instructions to update Upcoming Events{" "}
                 <MdOutlineIntegrationInstructions className="Activities-icon" />
               </p>
             </div>
@@ -148,7 +148,7 @@ const page = () => {
               <div className="UpcomingEvents-one-two-one">
                 <VscDebugBreakpointLog />
                 <p>
-                  Resize Image: Use the provided Canva link to resize the image
+                  Resize Poster: Use the provided Canva link to resize the poster
                   to the optimal dimensions for website display.
                 </p>
               </div>
@@ -156,7 +156,7 @@ const page = () => {
               <div className="UpcomingEvents-one-two-one">
                 <VscDebugBreakpointLog />
                 <p>
-                  Upload and Generate Link: After resizing, download the image
+                  Upload and Generate Link: After resizing, download the poster
                   and upload it to a storage service like
                   <Link href="http://firebase.google.com/" target="_blank">
                     {" "}

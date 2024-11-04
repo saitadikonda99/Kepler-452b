@@ -1,4 +1,8 @@
-
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
 .ActivitiesComponent {
     width: 100%;
 }
@@ -55,4 +59,116 @@
 .Activities-one a{
     text-decoration: none;
     color: rgb(217, 3, 3);
+}
+
+.Activities-two{
+    width: 100%;
+}
+
+.Activities-two-in{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.Activities-two-in-a, .Activities-two-in-b, .Activities-two-in-c{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-top: .8rem;
+    padding-bottom: .2rem;
+}
+
+.ActivitiesUpdate-one, .ActivitiesUpdate-two, .ActivitiesUpdate-three, .ActivitiesUpdate-four{
+    width: 50%;
+}
+
+.Activities-two-in input{
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid rgb(202, 196, 196);
+    border-radius: 5px;
+}
+
+.ActivitiesUpdate-five{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.ActivitiesUpdate-five button{
+    font-size: .8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem; 
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.ActivitiesUpdate-five button:hover{
+    background-color: rgb(0, 147, 0);
+}
+
+.Activities-three{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.Activities-three-in{
+    width: 25%;
+    height: 25rem;
+    background-color: #f6f2f2;    
+    /* border-radius: 10px; */
+    box-shadow: 0 0 10px rgba(11, 6, 6, 0.1);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.Activities-three-in-img{
+    height: 18rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.Activities-three-in-img img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.Activities-three-in-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+.Activities-three-in-button button{
+    font-size: .8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem; 
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.Activities-three-in-button button:hover{
+    background-color: green;
+}
+
+#ptag{
+    padding-left: .5rem;
 }
