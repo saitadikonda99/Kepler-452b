@@ -162,27 +162,21 @@ const page = () => {
               <div className="Activities-one-two-one">
                 <VscDebugBreakpointLog />
                 <p>
-                  Upload and Generate Link: After resizing, download the poster
-                  and upload it to a storage service like
+                After resizing the image, download it and upload it to a storage service like 
                   <Link href="http://firebase.google.com/" target="_blank">
                     {" "}
                     Firebase Storage
                   </Link>{" "}
                   or{" "}
                   <Link href="https://www.imghippo.com/" target="_blank">
-                    Imghippo
-                  </Link>
-                </p>
-              </div>
-              <div className="Activities-one-two-one">
-                <VscDebugBreakpointLog />
-                <p>
-                To view a tutorial on uploading links, please visit <Link href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5" target="_blank">
+                    Imghippo.
+                  </Link> For a tutorial on uploading links, please refer to the <Link href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5" target="_blank">
                     {" "}
                     Video Tutorial
-                  </Link>{" "}.
+                  </Link>{" "}
                 </p>
               </div>
+              
 
             </div>
           </div>

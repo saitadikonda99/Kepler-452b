@@ -116,39 +116,7 @@ const page = () => {
     <Dashboard>
       <div className="SocialsComponent">
         <div className="SocialsComponent-in">
-          <div className="Socials-one">
-            <div className="Socials-one-one">
-              <p>
-                Instructions to update socials{" "}
-                <MdOutlineIntegrationInstructions className="Activities-icon" />
-              </p>
-            </div>
-            <div className="Socials-one-two">
-              <div className="Socials-one-two-one">
-                <VscDebugBreakpointLog />
-                <p>
-                  Resize Image: Use the provided Canva link to resize the image
-                  to the optimal dimensions for website display.
-                </p>
-              </div>
-
-              <div className="Socials-one-two-one">
-                <VscDebugBreakpointLog />
-                <p>
-                  Upload and Generate Link: After resizing, download the image
-                  and upload it to a storage service like
-                  <Link href="http://firebase.google.com/" target="_blank">
-                    {" "}
-                    Firebase Storage
-                  </Link>{" "}
-                  or{" "}
-                  <Link href="https://www.imghippo.com/" target="_blank">
-                    Imghippo
-                  </Link>
-                </p>
-              </div>
-            </div>
-          </div>
+          
 
           {show ? (
             isLoading ? <Loader /> : (
@@ -187,10 +155,16 @@ const page = () => {
                       <div key={index} className="Socials-three-in">
                         <div classname="Socials-three-in-one" id="final">
                           <div className="Socials-three-in-one-box">
+                            <div className="Socials-three-in-one-box icon">
                             {socialIcons[data.social_name]}
-                            
+                            </div>
+                            <div className="Socials-three-in-one-box name">
                             <p>{data.social_name}</p>
+                            </div>
+                            <div className="Socials-three-in-one-box link">
                             <p>{data.social_link}</p>
+                            </div>
+                            <div className="Socials-three-in-one-box button">
                             <button
                               onClick={handleClick(
                                 data.club_id,
@@ -199,6 +173,7 @@ const page = () => {
                             >
                               Update
                             </button>
+                            </div>
                           </div>
                         </div>
                       </div>
