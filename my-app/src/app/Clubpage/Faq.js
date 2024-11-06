@@ -1,27 +1,27 @@
 export const FaqArray = [
     {
-      question: "What is ZeroOne Code Club?",
+      question: "What is this Club About?",
       answer:
-        "The ZeroOne Code CLub is a student organization at the KL University at Vaddeswaram that aims to foster a community of coders and provide resources for students to learn and grow in the field of computer science.",
+      "Our club is a community where people with a shared interest come together to learn, connect, and engage in activities related to our theme. It’s a welcoming space for both beginners and enthusiasts."  
     },
     {
-      question: "How can I join ZeroOne Code Club?",
+      question: "How Can I Join the Club?",
       answer:
-        "You can join ZeroOne Code Club by attending our general meetings, collaborating with us in doing projects, workshops, etc which will take place every month. You can also join our telegram community to stay updated on events and opportunities.",
+      "You can join by following us on our website or social media for updates on events and joining steps. Some clubs may have a short application process or an introductory session."
     },
     {
-      question: "What programming languages does ZeroOne Code Club teach?",
+      question: "What Activities or Topics Does the Club Cover?",
       answer:
-        "ZeroOne COde CLub teaches a variety of programming languages, including Python, Java, C++, and more. We also offer workshops on web development, linux system administration, data science, and other topics.",
+        "We cover various topics through workshops, discussions, and hands-on activities, adapting based on members' interests. If you’re curious about something specific, let us know!"
     },
     {
-      question: "What events does ZeroOne Code Club host?",
+      question: "What Events Does the Club Host?",
       answer:
-        "ZeroOne Code Club hosts a variety of events, including workshops, hackathons, and socials. We also collaborate with other student organizations and companies to provide networking opportunities for our members.",
+        "Our events include competitions, collaborative projects, guest talks, and skill-building workshops. These provide opportunities to learn, make connections, and gain experience."
     },
     {
-      question: "How can I get involved with ZeroOne Code CLub?",
+      question: "How Can I Get More Involved with the Club?",
       answer:
-        "You can get involved with ZeroOne Code Club by attending our events, joining a project team, or becoming an official member. We also welcome suggestions for new events and workshops that you would like to see.",
+        "Get more involved by volunteering to help organize events, lead sessions, or assist with outreach. We’re always open to new ideas for engaging and supporting our members."
     },
   ];
