@@ -11,9 +11,6 @@ import Loader from "../../../animation/loader";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
-
-
 const page = () => {
 
   const socialIcons = {
@@ -116,7 +113,29 @@ const page = () => {
     <Dashboard>
       <div className="SocialsComponent">
         <div className="SocialsComponent-in">
-          
+        <div className="Socials-one">
+        <div className="Socials-one-one">
+              <p>
+              Update Your Club's Social Links{" "}
+                <MdOutlineIntegrationInstructions className="Activities-icon" />
+              </p>
+            </div>
+            <div className="Socials-one-two">
+              <div className="Socials-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                Manage your club’s online presence by providing up-to-date links to your social media platforms.
+                </p>
+              </div>
+
+              <div className="Socials-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                This information will be visible on the club's profile page.
+                </p>
+              </div>
+            </div>
+          </div>
 
           {show ? (
             isLoading ? <Loader /> : (
@@ -129,7 +148,7 @@ const page = () => {
                     <p>{updatedData.socialName}</p>
                   </div>
                   <div className="SocialsUpdate-three">
-                    <label For="socialLink">socialLink</label>
+                    <label For="socialLink">SocialLink</label>
                     <input
                       type="text"
                       value={updatedData.socialLink}

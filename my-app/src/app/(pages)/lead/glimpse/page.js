@@ -152,7 +152,7 @@ const page = () => {
                   or{" "}
                   <Link href="https://www.imghippo.com/" target="_blank">
                     Imghippo.
-                  </Link> For a tutorial on uploading links, please refer to the <Link href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5" target="_blank">
+                  </Link> Please refer to the <Link href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5" target="_blank">
                     {" "}
                     Video Tutorial
                   </Link>{" "}
@@ -167,6 +167,7 @@ const page = () => {
             ) : (
               <div className="Glimpse-two">
                 <div className="Glimpse-two-in">
+                  <div className="Glimpse-two-in-one">
                   <div className="GlimpseUpdate-one">
                     <label For="glimpseImage">Glimpse Image</label>
                     <input
@@ -188,6 +189,7 @@ const page = () => {
                       name="glimpseDesc"
                       onChange={handleChange}
                     />
+                  </div>
                   </div>
                   <div className="GlimpseUpdate-three">
                     <button onClick={handleCancel}>Cancel</button>
