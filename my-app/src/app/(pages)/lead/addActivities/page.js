@@ -9,6 +9,7 @@ import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { FileUploader } from "react-drag-drop-files";
 
 const Page = () => {
+
   const [data, setData] = useState(null);
   const [file, setFile] = useState(null);
 
@@ -28,7 +29,7 @@ const Page = () => {
     try {
       const response = await axios.post(
         `/api/clubUpdate/addActivities`,
-        { data },
+        data,
         {
           headers: {
             "Content-Type": "application/json",

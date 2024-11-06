@@ -52,7 +52,7 @@ const postHandler = async (req: NextRequest) => {
       activity.activity_name,
       activity.activity_type.toLowerCase(),
       clubName,
-      activity.activity_date,
+      new Date(activity.activity_date).toISOString().split('T')[0],
       activity.venue || null,
       activity.report_link || null,
     ]);

@@ -32,6 +32,9 @@ const postHandler = async (req: NextRequest) => {
     const clubName = clubData[0]?.club_name;
 
     const csvData = await req.json();
+
+    console.log(csvData)
+
     const rows = csvData.split("\n");
     const headers = rows[0].split(",");
     const dataRows = rows.slice(1);
