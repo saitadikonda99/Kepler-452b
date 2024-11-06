@@ -12,15 +12,14 @@ const Page = () => {
   const [data, setData] = useState(null);
   const [file, setFile] = useState(null);
 
-  // For reading the CSV file
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleFileChange = (file) => {
+    setFile(file);
     const reader = new FileReader();
-    reader.onload = (e) => {
-      const text = e.target.result;
-      setData(text);
+    reader.onload = (event) => {
+      const text = event.target.result;
+      setData(text);   
     };
-    reader.readAsText(file);
+    reader.readAsText(file);   
   };
 
   const fileTypes = ["CSV"];
@@ -86,7 +85,7 @@ const Page = () => {
                                 required
                             /> */}
               <FileUploader
-                handleChange={(file) => setFile(file)}
+                handleChange={handleFileChange} 
                 name="file"
                 types={fileTypes}
                 dropMessageStyle={{ height: "100px" }}
