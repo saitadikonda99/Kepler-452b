@@ -164,3 +164,59 @@
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+
+
+@media all and (max-width: 500px) {
+  .seven {
+    padding: 2rem 0rem;
+  }
+
+  .seven-in {
+    width: 95%;
+  }
+
+  .seven-in-one {
+    padding: 0.5rem 0rem;
+  }
+
+  .seven-in-one-one {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .seven-in-one-one .seven-in-one-one-box:first-child,
+  .seven-in-one-one .seven-in-one-one-box:nth-child(2),
+  .seven-in-one-one .seven-in-one-one-box:nth-child(3) {
+    width: 100%;
+  }
+
+  .seven-in-one-one .seven-in-one-one-box:first-child:before {
+    height: 5rem;
+  }
+
+  .seven-in-one-one .seven-in-one-one-box:nth-child(2),
+  .seven-in-one-one .seven-in-one-one-box:nth-child(3) {
+    box-shadow: none;
+  }
+
+  .seven-in-one-one-box-in-desc {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .seven-in-one-one .seven-in-one-one-box:nth-child(2) .seven-in-one-one-box-in-two h4,
+  .seven-in-one-one .seven-in-one-one-box:nth-child(3) .seven-in-one-one-box-in-two h4 {
+    font-size: 1.4rem;
+  }
+
+  .seven-in-one-one .seven-in-one-one-box:nth-child(2) .seven-in-one-one-box-in-two p,
+  .seven-in-one-one .seven-in-one-one-box:nth-child(3) .seven-in-one-one-box-in-two p {
+    font-size: 0.9rem;
+  }
+
+  .seven-in-one .seven-in-one-one:nth-child(2) {
+    flex-direction: column-reverse;
+    row-gap: 1rem;
+  }
+}

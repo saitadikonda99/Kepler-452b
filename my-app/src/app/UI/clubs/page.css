@@ -61,3 +61,45 @@ a{
   text-decoration: none;
   color: black;
 }
+
+
+@media all and (max-width: 500px) {
+  .HomeClubs-in {
+    width: 95%;
+    padding: 2rem 0;
+  }
+
+  .HomeClubs-in-one {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .HomeClubs-box {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .HomeClubs-box-in {
+    width: 100%;
+    padding-bottom: 0.8rem;
+  }
+
+  .HomeClubs-box-in h2 {
+    font-size: 1.2rem;
+  }
+
+  .HomeClubs-box-in-desc {
+    width: 100%;
+    height: auto;
+  }
+
+  .HomeClubs-box-in-desc p {
+    font-size: 0.9rem;
+  }
+
+  .HomeClubs-box-in-one-in-link {
+    font-size: 1rem;
+    padding: 0.2rem 0;
+  }
+}

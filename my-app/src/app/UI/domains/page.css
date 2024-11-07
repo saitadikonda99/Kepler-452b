@@ -65,3 +65,46 @@
   font-size: 0.9rem;
   font-weight: 500;
 }
+
+@media all and (max-width: 500px) {
+
+  .five {
+    padding: 2rem 0;
+  }
+
+  .five-in {
+    width: 95%;
+  }
+
+  .five-in-heading h1 {
+    text-align: left;
+    font-size: 2rem;
+  }
+
+  .five-in-heading p {
+    font-size: 1.2rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  .five-in-one {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .five-in-one-card {
+    width: 100%;
+  }
+
+  .five-in-one-card-in-two h2 {
+    font-size: 1.1rem;
+  }
+
+  .five-in-one-card-in-two p {
+    font-size: 0.9rem;
+  }
+
+  .five-in-one-card-in-two-link {
+    font-size: 0.8rem;
+  }
+}

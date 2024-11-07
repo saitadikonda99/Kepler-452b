@@ -50,3 +50,26 @@
   text-decoration: none;
   font-size: 1rem;
 }
+
+
+@media all and (max-width: 500px) { 
+
+  .here-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .here-text p {
+    font-size: 1rem;
+  }
+
+  .hero-explore {
+    position: absolute;
+    width: 100%;
+    bottom: -10%;
+    padding: 0.5rem 0rem;
+    background-color: rgb(151, 0, 3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

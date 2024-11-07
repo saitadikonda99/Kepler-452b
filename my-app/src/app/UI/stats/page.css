@@ -47,7 +47,6 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    /* padding: 1rem 0rem; */
 }
 
 
@@ -66,3 +65,48 @@
     padding: .5rem 0rem;
     color: rgb(39, 38, 38);
 }
+
+
+
+@media all and (max-width: 500px) {
+
+    .three-in {
+      padding: 2rem 0;
+      width: 95%;
+    }
+  
+    .three-one-in h1 {
+      text-align: left;
+      font-size: 2rem;
+    }
+  
+    .three-two {
+      width: 100%;
+      padding: 1rem 0;
+    }
+  
+    .three-two-in p {
+      text-align: left;
+      font-size: 1.2rem;
+      width: 100%;
+    }
+  
+    .three-three-one {
+      flex-direction: column;
+      row-gap: 1rem;
+    }
+  
+    .count-cm {
+      width: 100%;
+      padding: 1rem 0;
+    }
+  
+    .count-cm h1 {
+      font-size: 2.5rem;
+    }
+  
+    .count-cm h2 {
+      font-size: 2rem;
+    }
+  }
+  

@@ -107,3 +107,64 @@
 .translatable-text {
   cursor: pointer;
 }
+
+
+@media all and (max-width: 500px) {
+  .footer-in {
+    width: 95%;
+  }
+
+  .footer-in-two {
+    flex-direction: column;
+    padding: 1rem 0rem;
+  }
+
+  .footer-in-two-one,
+  .footer-in-two-two {
+    width: 100%;
+    padding: 1rem 0rem;
+  }
+
+  .footer-in-two-one h2,
+  .footer-in-two-two-one h2,
+  .footer-in-two-two-two h2 {
+    font-size: 1.2rem;
+  }
+
+  .footer-in-two-one p,
+  .footer-in-two-two-one p,
+  .footer-in-two-two-two p {
+    font-size: 0.9rem;
+  }
+
+  .footer-in-one {
+    align-items: center;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .footer-in-one-one,
+  .footer-in-one-two {
+    width: 20%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .footer-in-one-one {
+    width: 80%;
+  }
+
+  .footer-in-one-one .footer-in-one-one-link,
+  .footer-in-one-two a {
+    font-size: 0.9rem;
+  }
+
+  .footer-in-three p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .footer-in-one-two a {
+    gap: 0.3rem;
+  }
+}

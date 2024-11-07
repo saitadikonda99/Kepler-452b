@@ -70,3 +70,37 @@
       font-size: 1rem;
       border-radius: 10px;
   }
+
+  @media all and (max-width: 500px) {
+    .Eleven-in {
+      width: 95%;
+      padding: 2rem 0;
+    }
+  
+    .Eleven-one-in {
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 0;
+      row-gap: 1.5rem;
+    }
+  
+    .Social {
+      width: 100%;
+      border-width: 1px;
+      border-radius: 15px;
+    }
+  
+    .Social-in {
+      padding: 0.8rem;
+    }
+  
+    .Social-one {
+      font-size: 2.5rem;
+    }
+  
+    .Social-four a {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+  

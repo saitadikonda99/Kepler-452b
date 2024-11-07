@@ -85,31 +85,59 @@
   text-decoration: none;
 }
 
-.clubs-dropdown {
-  display: none; /* Initially hide the dropdown */
-  position: absolute;
-  left: 0rem;
-  min-width: 90%;
-  top: 5rem;
-  margin-left: 5%;
-  height: 80vh;
+@media all and (max-width: 700px) {
+  .NavbarComponent {
+    width: 100%;
+  }
 
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  background-color: white;
-  color: black;
-  border: 2px solid rgb(151, 0, 3);
-}
+  .NavbarComponent-in {
+    width: 100%;
+    padding: 0rem;
+    display: block;
+  }
 
-.clubs-hover:hover .clubs-dropdown {
-  display: block; /* Show the dropdown when .clubs-hover is hovered */
-}
+  .Navbar-one {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(151, 0, 3);
+  }
 
-.clubs-dropdown .thirteen-in {
-  padding: 1rem 0rem;
-}
+  .Nav-icon {
+    font-size: 1.8rem;
+    color: white;
+  }
 
-.clubs-dropdown .thirteen-box-in-one-in-link {
-  color: black;
-  font-size: 0.9rem;
-  margin-bottom: 0rem !important;
+  .Navbar-one img {
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .Navbar-one h1 {
+    font-size: .8rem;
+    color: white;
+  }
+
+  .Navbar-two {
+    width: 100%;
+  }
+
+  .Navbar-two ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: rgb(151, 0, 3);
+  }
+
+  .Navbar-hide {
+    display: none;
+  }
 }

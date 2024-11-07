@@ -28,3 +28,24 @@
 .Event-cm {
   width: 24%;
 }
+
+@media all and (max-width: 500px) {
+  .eight-in {
+    width: 95%;
+    padding: 2rem 0;
+  }
+
+  .eight-in-head {
+    padding: 1rem 0;
+  }
+
+  .eight-one-in {
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .Event-cm {
+    width: 100%;
+  }
+}
