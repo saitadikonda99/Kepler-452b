@@ -62,3 +62,21 @@
     stroke: white;
   }
 }
+
+@media all and (max-width: 500px) {
+
+
+  .loader-container {
+    height: 100vh;
+  }
+
+  .loader-content {
+    height: 80vh;
+  }
+
+  .loader-svg .loader-text {
+    font-size: 15rem;
+  }
+
+
+}

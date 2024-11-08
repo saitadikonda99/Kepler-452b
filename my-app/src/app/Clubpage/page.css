@@ -44,11 +44,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.4),
-    rgb(151, 0, 3),
-  );
 }
 
 .club-hero-in img {
@@ -74,7 +69,6 @@
   text-align: center;
   line-height: 6rem;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-
   margin-bottom: 1rem;
 }
 
@@ -150,17 +144,15 @@
   justify-content: space-around;
 }
 
+.club-slider-image {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.5s ease-in-out;
+}
 
-  .club-slider-image {
-    width: 100%;
-    height: auto;
-    transition: opacity 0.5s ease-in-out;
-  }
-  
 #hide-club {
-    display: none;
-  }
-   
+  display: none;
+}
 
 .c-op-cm {
   /* width: 18%; */
@@ -175,7 +167,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 4rem;
-  /* padding: 1rem 0rem; */
   gap: 1rem;
 }
 
@@ -188,8 +179,6 @@
 }
 
 .c-op-cm-in:hover {
-  /* background-color: rgb(151, 0, 3); */
-  /* background color as gradient */
   background-image: linear-gradient(to right, black, rgb(151, 0, 3));
   color: white;
 }
@@ -206,10 +195,9 @@
   width: 90%;
   margin: auto;
   padding: 2rem 0rem;
-  /* height: 50vh; */
 }
 
-.Club-four-one-in{
+.Club-four-one-in {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -217,41 +205,39 @@
 }
 
 .Club-four-one-in-one {
-  display: flex;        
-  width: 60%;             
-  align-items: center;           
-  background-color: #f9f9f9;    
-  border: 1px solid #ddd;            
-  border-radius: 8px;    
-  margin: 20px;                      
-  overflow: hidden;       
+  display: flex;
+  width: 60%;
+  align-items: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 20px;
+  overflow: hidden;
 }
 
-
 .Club-four-one-in-one-img {
-  width: 50%;  
-  height: 20rem;
+  width: 50%;
 }
 
 .Club-four-one-in-one-img img {
-  width: 100%; 
-  height: 100%;                 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .Club-four-one-in-one-text {
-  width: 50%;   
-  padding: 15px;                
-  display: flex;                    
-  justify-content: center;        
-  align-items: center;          
+  width: 50%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.Club-four-one-in-one-text p {                     
-  color: #333;                      
-  font-size: 16px;     
+.Club-four-one-in-one-text p {
+  color: #333;
+  font-size: 16px;
 }
-
 
 .Club-five {
   width: 100%;
@@ -260,8 +246,7 @@
 .Club-five-in {
   width: 90%;
   margin: auto;
-  padding: 10rem 0rem;
-  /* height: 50vh; */
+  padding: 4rem 0rem;
 }
 
 .Club-five-one {
@@ -317,7 +302,6 @@
   border: 2px solid black;
 }
 
-
 .cm-club-stats {
   width: 33%;
   display: flex;
@@ -339,7 +323,6 @@
   color: rgb(64, 63, 63);
 }
 
-
 /* Activities boxes */
 
 .Club-four-three {
@@ -347,7 +330,7 @@
 }
 
 .Club-four-three-in {
-    width: 100%;
+  width: 100%;
 }
 
 .Club-four-three-in-one {
@@ -367,8 +350,8 @@
   flex-direction: column;
 }
 
-.Club-four-three-in-one-card-in-one{
-  height: 18rem;
+.Club-four-three-in-one-card-in-one {
+  width: 100%;
 }
 .Club-four-three-in-one-card-in-one img {
   width: 100%;
@@ -405,6 +388,14 @@
 }
 
 /* Upcoming Boxes*/
+
+.Club-four-two {
+  width: 100%;
+}
+
+.Club-four-two-in {
+  width: 100%;
+}
 
 .Club-four-two-in-one {
   display: flex;
@@ -455,14 +446,12 @@
 }
 
 .Club-four-four-in img {
-  width: 60%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
   object-fit: cover;
   border-radius: 20px;
 }
 
-
-/* ClubPage-six */
 
 .ClubPage-six {
   width: 100%;
@@ -527,7 +516,6 @@
   font-weight: 500;
 }
 
-
 /* ----------------- Home Faq's ----------------- */
 
 .HomeFaq {
@@ -582,7 +570,6 @@
   width: 60%;
   padding: 4rem 0rem 0rem 0rem;
 }
-
 
 .HomeFaq-find p {
   color: rgb(67, 67, 67);
@@ -642,7 +629,7 @@
 }
 
 .HomeFaq-ans-show {
-  max-height: 200px; 
+  max-height: 200px;
   padding: 1rem 0rem 0rem 0rem;
 }
 
@@ -660,10 +647,10 @@
 
 @keyframes rotate {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(180deg);
+    transform: rotate(180deg);
   }
 }
 
@@ -680,4 +667,307 @@
 #color-option {
   background-image: linear-gradient(to right, black, rgb(151, 0, 3));
   color: white;
+}
+
+@media all and (max-width: 500px) {
+  .ClubPageComponent {
+    width: 100%;
+  }
+
+  .club-hero-in-description h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 3rem;
+  }
+
+  .club-hero-in-description h3 {
+    width: 90%;
+    margin: auto;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .Club-two-one-one p {
+    font-size: 1rem;
+  }
+
+  .Club-two-one-two {
+    width: 100%;
+    padding: 1rem 0rem;
+  }
+
+  .Club-two-one-two h1 {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .Club-two-one-three {
+    width: 100%;
+    padding: 1rem 0rem;
+  }
+
+  .Club-three {
+    width: 100%;
+  }
+
+  .Club-three-one {
+    width: 100%;
+    padding: 1rem 0rem;
+  }
+
+  .Club-three-options {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-around;
+  }
+
+  .c-op-cm {
+    width: 40%;
+  }
+
+  .c-op-cm-in {
+    padding: 0.5rem 0rem;
+  }
+
+  .c-op-cm-in p {
+    font-size: 0.6rem;
+  }
+
+  .icon-op {
+    font-size: 0.6rem;
+  }
+
+  .Club-four-one-in-one {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .Club-four-one-in-one-img {
+    width: 100%;
+  }
+
+  .Club-four-one-in-one-text {
+    width: 100%;
+  }
+
+  .Club-four-one-in-one-text p {
+    color: #333;
+    font-size: 0.8rem;
+  }
+
+  .Club-four-one-in-two {
+    flex-direction: column-reverse;
+  }
+
+  .Club-five-in {
+    width: 90%;
+    margin: auto;
+    padding: 2rem 0rem;
+  }
+
+  .Club-five-one p {
+    font-size: 1.5rem;
+  }
+
+  .Club-five-one h1 {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+  .Club-five-one h1 {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .cm-club-stats h1 {
+    font-size: 3rem;
+  }
+
+  .cm-club-stats p {
+    font-size: 1rem;
+  }
+
+  .Club-four-two-in-one {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .Club-four-three-in-one-card {
+    width: 100%;
+  }
+
+  .Club-four-two-in-one-card {
+    width: 95%;
+  }
+
+  .Club-four-three-in-one {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .Club-four-three-in-one-card {
+    width: 95%;
+  }
+
+  .Club-four-four-in img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  /* Base styling */
+  .HomeFaq {
+    width: 100%;
+    background-color: white;
+  }
+
+  .HomeFaq-in {
+    width: 100%;
+    padding: 2rem 0;
+  }
+
+  .HomeFaq-in-one {
+    width: 100%;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .HomeFaq-in-one-one p {
+    color: rgb(67, 67, 67);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .HomeFaq-in-one-two h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: black;
+    margin-top: 0.5rem;
+  }
+
+  /* FAQ Content */
+  .HomeFaq-in-two {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .HomeFaq-in-two-in {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Assistance Section */
+  .HomeFaq-in-two-one {
+    width: 100%;
+  }
+
+  .HomeFaq-find {
+    width: 100%;
+    padding-top: 1rem;
+    text-align: center;
+  }
+
+  .HomeFaq-find p {
+    color: rgb(67, 67, 67);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .HomeFaq-find h1 {
+    color: black;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .HomeFaq-icon {
+    width: 100%;
+    text-align: center;
+  }
+
+  .msg-icon {
+    color: rgb(10, 119, 237);
+    font-size: 3rem;
+  }
+
+  /* Question and Answer Section */
+  .HomeFaq-in-two-two {
+    width: 100%;
+  }
+
+  .HomeFaq-in-two-two-in {
+    padding: 0rem 0rem;
+  }
+
+  .HomeFaq-ques-component {
+    width: 100%;
+    border-bottom: 1px solid rgb(67, 67, 67);
+    padding: 1rem 0;
+  }
+
+  .HomeFaq-ques {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .HomeFaq-ques h1 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: black;
+  }
+
+  .HomeFaq-ans {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out, padding 0.3s ease-out;
+  }
+
+  .HomeFaq-ans-show {
+    max-height: 200px;
+    padding: 0.5rem 0;
+  }
+
+  .icon,
+  .icon-close {
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: transform 0.3s ease-out;
+  }
+
+  /* Active State for Icon */
+  .icon-active {
+    transform: rotate(45deg);
+  }
+
+  .ClubPage-six-in {
+    padding: 2rem 0rem;
+  }
+
+  .ClubPage-six-one p {
+    font-size: 1.5rem;
+  }
+
+  .ClubPage-six-two h1 {
+    font-size: 2rem;
+  }
+
+  .ClubPage-six-three {
+    width: 90%;
+  }
+
+  .ClubPage-six-three p {
+    font-size: 1rem;
+  }
 }

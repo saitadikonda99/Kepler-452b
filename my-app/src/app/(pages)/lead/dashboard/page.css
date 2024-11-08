@@ -34,3 +34,12 @@
     height: 83.5vh;
     overflow: scroll;
 }
+
+@media all and (max-width: 500px) {
+
+    .DashboardComponent {
+        width: 100%;
+        min-width: 1024px;
+        overflow-x: auto; 
+    }
+}

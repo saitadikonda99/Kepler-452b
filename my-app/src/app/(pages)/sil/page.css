@@ -143,3 +143,54 @@
 .pagination .page-active:hover {
   background-color: rgb(151, 3, 0);
 }
+
+@media all and (max-width: 500px) {
+  /* Component wrapper */
+  .activitiesComponent-one {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* Table styling */
+  .activitiesComponent-one table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .activitiesComponent-one table th,
+  .activitiesComponent-one table td {
+    padding: 0.5rem;
+  }
+
+  .activitiesComponent-one table thead th {
+    font-size: 0.9rem;
+  }
+
+  /* Controls (search and filter) */
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 90%;
+    padding: 0;
+  }
+
+  .search-input,
+  .club-filter {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  /* Pagination */
+  .pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+
+  .pagination button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}

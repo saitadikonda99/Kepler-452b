@@ -35,3 +35,27 @@
   color: white;
   text-decoration: none;
 }
+
+
+@media all and (max-width: 500px) {
+  
+  .SilNavbar-in {
+    padding: 0.5rem 1rem;
+  }
+
+  .SilNavbar-one {
+    width: 70%;
+  }
+
+  .SilNavbar-two {
+    width: 30%;
+    text-align: left;
+  }
+
+  .SilNavbar-one h1 {
+    font-size: 1rem;
+  }
+  .SilNavbar-two a {
+    font-size: 0.8rem;
+  }
+}

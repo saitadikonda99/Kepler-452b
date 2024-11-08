@@ -199,7 +199,7 @@ const page = () => {
                   </div>
                 </div>
 
-                <div className="Club-four-one-in-one">
+                <div className="Club-four-one-in-one Club-four-one-in-two">
                   <div className="Club-four-one-in-one-text">
                     <p> {glimpse[1]?.glimpse_desc}</p>
                   </div>

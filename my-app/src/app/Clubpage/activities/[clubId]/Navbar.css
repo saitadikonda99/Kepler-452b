@@ -35,4 +35,30 @@
     color: white;
     text-decoration: none;
   }
+
+  @media all and (max-width: 500px) {
+
+
+    .clubActivitiesComponentNav-one {
+      width: 70%;
+    }
+
+    .clubActivitiesComponentNav-two {
+      width: 30%;
+    }
+    
+    .clubActivitiesComponentNav-in {
+      padding: 0.5rem 1rem;
+    }
+
+    .clubActivitiesComponentNav-one h1 {
+      font-size: 1rem;
+    }
+
+    .clubActivitiesComponentNav-two p {
+      font-size: 0.8rem;
+    }
+
+  }
+
   
