@@ -9,7 +9,6 @@ export const GET = async (req: NextRequest) => {
     
     const { valid, payload } = await verifyJWT();
 
-
     if (!valid) {
       return NextResponse.json({ message: "Unauthorized", status: 401 });
     }
