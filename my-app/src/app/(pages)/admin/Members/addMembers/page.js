@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import { toast } from "react-hot-toast";
 import Dashboard from "../../dashboard/dashboard";
+import { VscDebugBreakpointLog } from "react-icons/vsc";
+import { MdOutlineIntegrationInstructions } from "react-icons/md";
+import "./page.css";
+import { FileUploader } from "react-drag-drop-files";
+
 
 
 const page = () => {
@@ -15,19 +20,21 @@ const page = () => {
     
     const [clubId, setClubId] = useState("");
 
+    const fileTypes = ["CSV"];
+
     const handleSelectChange = (e) => {
       setClubId(e.target.value);
     }
 
-    const handleChange = (e) => {
-        const file = e.target.files[0];
+    const handleFileChange = (file) => {
+        setFile(file);
         const reader = new FileReader();
-        reader.onload = (e) => {
-            const text = e.target.result;
-            setData(text);
+        reader.onload = (event) => {
+          const text = event.target.result;
+          setData(text);   
         };
-        reader.readAsText(file);
-    }
+        reader.readAsText(file);   
+      };
 
     const handleSubmit = async () => {
         try {
@@ -77,8 +84,32 @@ const page = () => {
     <Dashboard>
         <div className="addMembersComponent">
             <div className="addMembersComponent-in">
-
-                <div className="addMembers-one">
+            <div className="addMembers-one">
+            <div className="addMembers-one-one">
+              <p>
+              Instructions for Uploading Member Details{" "}
+                <MdOutlineIntegrationInstructions className="Activities-icon" />
+              </p>
+            </div>
+            <div className="addMembers-one-two">
+              <div className="addMembers-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                Upload a file to add new members to the club records.
+                </p>
+              </div>
+              <div className="addMembers-one-two-one">
+                <VscDebugBreakpointLog />
+                <p>
+                  Please ensure the file is in the 
+                  <a href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Activities.csv?alt=media&token=399dde4b-3835-43e1-9813-379e39e75f9c" download="Activities.csv"> .csv format</a> and relevant
+                  and includes information relevant to the members you want to add.
+                </p>
+              </div>
+            </div>
+          </div>
+               <div className="addMember-two" id="final">
+                <div className="addMembers-two-a" id="final-one">
                     <select value={clubId} onChange={handleSelectChange}>
                         <option value="" disabled>
                         Select a club
@@ -94,16 +125,17 @@ const page = () => {
                     </select>
                 </div>
 
-                <div className="addMembers-two">
-                    <input 
-                        type="file" 
-                        accept=".csv" 
-                        onChange={handleChange} 
-                        required
-                    />
+                <div className="addMembers-two-b" id="final-two">
+                <FileUploader
+                handleChange={handleFileChange} 
+                name="file"
+                types={fileTypes}
+                dropMessageStyle={{ height: "100px" }}
+              />
                 </div>
-                <div className="addMembers-three">
+                <div className="addMembers-two-c" id="final-three">
                     <button onClick={handleSubmit}>Submit</button>
+                </div>
                 </div>
 
             </div>
