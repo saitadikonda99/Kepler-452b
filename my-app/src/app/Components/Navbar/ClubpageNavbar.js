@@ -78,7 +78,7 @@ const ClubNavbar = ({ setOption }) => {
       <div className="NavbarComponent-in" id={showDiv ? "show-color" : "show-shadow"}>
         <div className="Navbar-one">
           {showDiv ? (
-            <h1 onClick={handleScroll}>ZeroOne Code Club</h1>
+            <h1 onClick={handleScroll}>Student Activity Center</h1>
           ) : (
             <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/HeroVideo%2FOfficialSacLogo.png?alt=media&token=8a73bd93-832c-4d5d-819d-0e371d12b01c" alt="" />
           )}

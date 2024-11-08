@@ -6,7 +6,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import "./page.css";
-import { encryptClubId } from './encrypt'
 
 
 const page = () => {
