@@ -96,6 +96,8 @@ export const POST = async (req: NextRequest) => {
     // Get the last inserted lead ID
     const leadId = (result as any).insertId;
 
+    console.log(clubDomain)
+
     const [club]: any = await pool.query(
       `
       INSERT INTO clubs (club_name, lead_id, club_domain, club_description, club_about, club_logo)

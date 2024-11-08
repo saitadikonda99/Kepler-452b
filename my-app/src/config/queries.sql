@@ -13,6 +13,8 @@ ALTER TABLE users ADD COLUMN upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UP
 
 CREATE INDEX idx_username_password ON users(username, password);
 
+ALTER TABLE clubs MODIFY club_domain ENUM('TEC', 'LCH', 'ESO', 'TIE', 'HWB', 'IIE') NOT NULL;
+
 
 INSERT INTO events (event_link, event_name, event_date, event_venue)
 VALUES 
