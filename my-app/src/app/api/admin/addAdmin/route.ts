@@ -2,6 +2,7 @@ import { pool } from "../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../lib/verifyRoles";
+import bcrypt from "bcrypt";
 
 export const POST = async (req: NextRequest) => {
 
@@ -37,11 +38,15 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "User already exists" }, { status: 409 });
     }
 
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(adminPassword, salt);
+
     await pool.query('START TRANSACTION');
 
     const [result]: any = await pool.query(
       `INSERT INTO users (username, name, password, email, role, RefreshToken) VALUES (?, ?, ?, ?, ?, ?)`,
-      [adminUsername, adminName, adminPassword, adminEmail, "admin", null]
+      [adminUsername, adminName, hashedPassword, adminEmail, "admin", null]
     );
 
     await pool.query('COMMIT');

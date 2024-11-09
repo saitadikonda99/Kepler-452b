@@ -11,6 +11,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "axios": "^1.6.7",
+    "bcrypt": "^5.1.1",
     "caniuse-lite": "^1.0.30001667",
     "chart.js": "^4.4.4",
     "chartjs-plugin-datalabels": "^2.2.0",

@@ -2,6 +2,7 @@ import { pool } from "../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../lib/verifyJWT";
 import { verifyRoles } from "../../../lib/verifyRoles";
+import bcrypt from "bcrypt";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -38,9 +39,13 @@ export const POST = async (req: NextRequest) => {
 
     await pool.query('START TRANSACTION');
 
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     await pool.query(
       `UPDATE users SET password = ? WHERE id = ?`,
-      [password, userData.id]  
+      [hashedPassword, userData.id]  
     );
 
     await pool.query('COMMIT');

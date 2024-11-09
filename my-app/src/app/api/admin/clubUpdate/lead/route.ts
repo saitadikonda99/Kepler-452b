@@ -3,6 +3,7 @@ import { redisClient } from "../../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
+import bcrypt from "bcrypt";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -47,12 +48,16 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "User or Email already exists" }, { status: 409 });
     }
 
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(leadPassword, salt);
+
     await pool.query('START TRANSACTION');
   
     const [result]: any = await pool.query(
       `INSERT INTO users (username, name, password, email, role, RefreshToken)
        VALUES (?, ?, ?, ?, ?, ?)`,
-      [leadUsername, leadName, leadPassword, leadEmail, "club_lead", null]
+      [leadUsername, leadName, hashedPassword, leadEmail, "club_lead", null]
     );
 
     const [getLeadUser]: any = await pool.query(

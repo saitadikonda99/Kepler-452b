@@ -4,19 +4,28 @@ import { pool } from "../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-
+import bcrypt from "bcrypt";
 
 
 const isAuth = async (username, password) => {
+
   const user = await pool.query(
-    `SELECT username, name, role, active, id 
+    `SELECT username, name, role, active, id, password
      FROM users 
-     WHERE username = ? AND password = ?
+     WHERE username = ?
      LIMIT 1`,
-    [username, password]
+    [username]
   );
 
-  return user[0];
+  const userData = user[0] as any[];
+
+  if (userData.length === 0) {
+    return null;
+  }
+
+  const isPasswordMatch = await bcrypt.compare(password, userData[0]?.password);
+
+  return isPasswordMatch ? user[0] : '';
 };
 
 
@@ -27,11 +36,11 @@ export const POST = async (req: NextRequest) => {
 
     const user = await isAuth(username, password);
 
-    const Authenticated = user as any[];
-
-    if (Authenticated.length === 0) {
+    if (user === null) {
       return NextResponse.json({ message: "Invalid credentials" }, { status: 404 });
     }
+
+    const Authenticated = user as any[];
 
     if (Authenticated[0].active === 0) {
       return NextResponse.json({ message: "Account suspended" }, { status: 404 });
