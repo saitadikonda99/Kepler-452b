@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Image  from "next/image";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
@@ -15,7 +15,6 @@ import { FaqArray } from "../Faq";
 
 import "../page.css";
 
-import newsImg from './News.png'
 
 import ClubNavbar from "../../Components/Navbar/ClubpageNavbar";
 import Footer from "../../Components/Footer/page";
@@ -115,7 +114,7 @@ const page = () => {
 
         <div className="club-hero">
           <div className="club-hero-in">
-            <Image src={newsImg} alt="image" />
+            <img src={clubImages[0]?.hero_img} alt="image" />
 
             <div className="club-hero-in-description">
               <h1>{clubInfo.club_name}</h1>
@@ -285,7 +284,11 @@ const page = () => {
             {/* Team */}
             <div className="Club-four-four" id={option == 4 ? "" : "hide-club"}>
               <div className="Club-four-four-in">
-                <Image src={newsImg} alt="image" />
+                <img
+                  className="club-slider-image"
+                  src={clubImages[0]?.team_img}
+                  alt="Sliding Image"
+                />
               </div>
             </div>
           </div>
