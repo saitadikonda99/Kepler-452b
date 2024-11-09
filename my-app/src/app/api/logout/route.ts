@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { pool } from "../../../config/db";
+import { pool } from "../../../config/db"
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
@@ -11,17 +11,11 @@ export const GET = async (req: NextRequest) => {
 
     console.log(JWT);
     if (!JWT) {
-      return NextResponse.json(
-        { valid: false, reason: "JWT missing" },
-        { status: 400 }
-      );
+      return NextResponse.redirect(new URL('/', req.url));
     }
 
     await connection.query(
-      `
-            UPDATE users
-            SET RefreshToken = null
-            WHERE RefreshToken = ?`,
+      `UPDATE users SET RefreshToken = null WHERE RefreshToken = ?`,
       [JWT]
     );
 
@@ -29,40 +23,11 @@ export const GET = async (req: NextRequest) => {
 
     connection.release();
 
-    return NextResponse.json({ message: "Logged out"}, { status: 200 });
+    return NextResponse.redirect(new URL('/auth/login', req.url));
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: "Error logging out"}, { status: 500 });
+    return NextResponse.redirect(new URL('/auth/login', req.url));
   } finally {
     connection.release();
-  }
-};
-
-export const POST = async (req: NextRequest) => {
-  try {
-    const cookieStore = cookies();
-    const JWT = cookieStore.get("jwt")?.value;
-
-    console.log(JWT);
-    if (!JWT) {
-      return NextResponse.json(
-        { valid: false, reason: "JWT missing" },
-        { status: 400 }
-      );
-    }
-    
-    const userId = JWT;
-
-    await pool.query(
-      `UPDATE users SET RefreshToken = NULL WHERE id = ?`,
-      [userId]
-    );
-
-    cookieStore.set("jwt", "", { maxAge: 0 });
-
-    return NextResponse.json({ message: "Logged out successfully" }, { status: 200 });
-  } catch (error) {
-    console.error("Error in logout:", error);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 };
