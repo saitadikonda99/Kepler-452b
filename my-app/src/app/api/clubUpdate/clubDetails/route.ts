@@ -26,21 +26,31 @@ const postHandler = async (req: NextRequest) => {
   }
 
   try {
-    const { clubId, imagesId, heroImg, teamImg } = await req.json();
 
-    if (!clubId || !heroImg || !teamImg) {
-      console.log(clubId, heroImg, teamImg);
+    const { clubId, clubLogo, clubName, clubDesc, clubAbout } = await req.json();
+
+
+    if (!clubLogo || !clubName || !clubDesc || !clubAbout) {
       return NextResponse.json({ message: "All fields are required"}, { status: 401 });
     }
 
-    const [result]: any = await pool.query(
-      `UPDATE club_images 
-       SET club_id = ?, hero_img = ?, team_img = ? 
-       WHERE id = ?`,   
-      [clubId, heroImg, teamImg, imagesId]
-  );
+    if (clubAbout.split(" ").length < 10 || clubAbout.split(" ").length > 15) {
+      return NextResponse.json({ message: "About club should be 20 to 25 words"}, { status: 401 });
+    }
 
-    return NextResponse.json({ status: 200 });
+    if (clubDesc.split(" ").length < 10 || clubDesc.split(" ").length > 25) {
+      return NextResponse.json({ message: "Description should be 20 to 25 words"}, { status: 401 });
+    }
+
+    const [result]: any = await pool.query(
+        `UPDATE clubs 
+         SET club_logo = ?, club_name = ?, club_desc = ?, club_about = ? 
+         WHERE id = ?`,   
+        [clubLogo, clubName, clubDesc, clubAbout, clubId]
+    );
+     
+
+    return NextResponse.json({ message: "Club details updated successfully"}, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: "Server error"}, { status: 500 });
   } 
@@ -84,10 +94,9 @@ const getHandler = async (req: NextRequest) => {
     }
     
     const [result]: any = await pool.query(
-      `SELECT * FROM club_images WHERE club_id = ? ORDER BY upload_at DESC LIMIT 1`,
+      `SELECT * FROM clubs WHERE id = ?`,
       [clubId]
     );
-
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {

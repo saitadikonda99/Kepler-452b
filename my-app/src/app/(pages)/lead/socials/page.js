@@ -11,18 +11,16 @@ import Loader from "../../../animation/loader";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
-import { FaFacebook } from "react-icons/fa6";
+import { FaTelegram } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
-
-
 const page = () => {
 
   const socialIcons = {
-    Facebook: <FaFacebook />,
+    Telegram: <FaTelegram />,
     Instagram: <FaInstagram />,
     Twitter: <FaTwitter />,
     LinkedIn: <FaLinkedin />,

@@ -106,6 +106,7 @@ CREATE TABLE socials (
     PRIMARY KEY (id)
 );
 
+
 DELIMITER //
 
 CREATE PROCEDURE AddClubData(IN clubId INT)
@@ -135,11 +136,10 @@ BEGIN
 
     -- Insert into socials table
     INSERT INTO socials (club_id, social_name, social_link)
-    VALUES (clubId, 'Facebook', 'https://facebook.com'),
+    VALUES (clubId, 'Telegram', 'https://telegram.com'),
            (clubId, 'Instagram', 'https://instagram.com'),
            (clubId, 'Twitter', 'https://twitter.com'),
            (clubId, 'LinkedIn', 'https://linkedin.com');
-    
     
     -- Insert into faq table
     INSERT INTO faq (club_id, question, answer)

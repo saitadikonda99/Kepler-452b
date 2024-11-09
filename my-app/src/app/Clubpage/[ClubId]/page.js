@@ -109,7 +109,7 @@ const page = () => {
     <div className="ClubPageComponent">
       <div className="ClubPageComponent-in">
         <div className="ClubPageNavbar">
-          <ClubNavbar setOption={setOption} />
+          <ClubNavbar setOption={setOption} clubName={clubInfo.club_name} />
         </div>
 
         <div className="club-hero">

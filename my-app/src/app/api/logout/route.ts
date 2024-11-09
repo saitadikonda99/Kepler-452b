@@ -50,7 +50,7 @@ export const POST = async (req: NextRequest) => {
         { status: 400 }
       );
     }
-
+    
     const userId = JWT;
 
     await pool.query(

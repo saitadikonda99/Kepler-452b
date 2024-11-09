@@ -9,7 +9,6 @@ export const GET = async (req: NextRequest) => {
 
     const { valid, payload } = await verifyJWT();
 
-
     const [result]: any = await pool.query(
       `SELECT
         (SELECT COUNT(DISTINCT student_id) FROM student_registration) AS total_members,

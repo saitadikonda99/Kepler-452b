@@ -6,6 +6,7 @@ const useLogout = () => {
 
   const logout = async () => {
     try {
+
       const response = await axios.get("/api/logout", {
         headers: {
           "Content-Type": "application/json",
@@ -15,6 +16,7 @@ const useLogout = () => {
 
       localStorage.removeItem("user");
       window.location.href = "/admin/login";
+      
     } catch (error) {
       console.log(error);
       toast.error("Error logging out");

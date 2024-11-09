@@ -13,6 +13,13 @@ ALTER TABLE users ADD COLUMN upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UP
 
 CREATE INDEX idx_username_password ON users(username, password);
 
+DROP PROCEDURE IF EXISTS AddClubData;
+
+UPDATE socials 
+SET social_name = 'Telegram', social_link = 'https://telegram.com'
+WHERE social_name = 'Facebook';
+
+
 ALTER TABLE clubs MODIFY club_domain ENUM('TEC', 'LCH', 'ESO', 'TIE', 'HWB', 'IIE') NOT NULL;
 
 
