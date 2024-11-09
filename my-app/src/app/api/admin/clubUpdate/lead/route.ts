@@ -43,6 +43,7 @@ export const POST = async (req: NextRequest) => {
       `SELECT * FROM users WHERE username = ? OR email = ?`,
       [leadUsername, leadEmail]
     );
+    
 
     if (userCheck[0].length > 0) {
       return NextResponse.json({ message: "User or Email already exists" }, { status: 409 });
