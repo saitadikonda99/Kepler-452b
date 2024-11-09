@@ -39,7 +39,7 @@ const page = () => {
   const techClubs = clubData.filter((club) => club.club_domain === "TEC" && club.active === 1);
   const lchClubs = clubData.filter((club) => club.club_domain === "LCH" && club.active === 1);
   const esoClubs = clubData.filter((club) => club.club_domain === "ESO" && club.active === 1);
-  const hieClubs = clubData.filter((club) => club.club_domain === "HIE" && club.active === 1);
+  const hieClubs = clubData.filter((club) => club.club_domain === "IIE" && club.active === 1);
   const hwbClubs = clubData.filter((club) => club.club_domain === "HWB" && club.active === 1);
 
   return (
