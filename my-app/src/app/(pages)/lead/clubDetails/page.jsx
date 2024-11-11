@@ -123,7 +123,7 @@ const page = () => {
     <Dashboard>
       <div className="clubDetailsComponent">
         <div className="clubDetailsComponent-in">
-          <div className="clubDetailsComponent-one">
+          <div className="clubDetails-one">
             <div className="clubDetails-one-one">
               <p>
                 Instructions to update club details{" "}
@@ -231,10 +231,20 @@ const page = () => {
                     <div key={index} className="clubDetails-three-in">
                       <div className="clubDetails-three-in-two">
                         <div className="clubDetails-three-in-two-in">
+
+                          <div className="clubDetails-three-in-two-in-in">
                             <img src={data.club_logo} alt="clubLogo" />
-                            <p>{data.club_name}</p>
-                            <p>{data.club_description}</p>
-                            <p>{data.club_about}</p>
+                          </div>
+                          <div className="clubDetails-three-in-two-in-name">
+                            <p>Club Name: {data.club_name}</p>
+                          </div>
+                          <div className="clubDetails-three-in-two-in-name">
+                          <p>Club Description: {data.club_description}</p>
+                            </div>
+                          <div className="clubDetails-three-in-two-in-name">
+                            <p>Club About: {data.club_about}</p>
+                          </div>
+
                         </div>
                       </div>
 
