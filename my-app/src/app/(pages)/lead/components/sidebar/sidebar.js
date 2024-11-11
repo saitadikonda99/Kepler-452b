@@ -72,6 +72,10 @@ const sidebar = () => {
       name: "Change Password",
       icon: <RiLockPasswordFill className="sideBar-icon" />,
       link: "/lead/changePassword",
+    },{
+      name: "Update club details",
+      icon: <RiLockPasswordFill className="sideBar-icon" />,
+      link: "/lead/cclubDetails",
     }
   ];
 
