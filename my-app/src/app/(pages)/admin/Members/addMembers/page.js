@@ -14,6 +14,7 @@ import { FileUploader } from "react-drag-drop-files";
 const page = () => {
 
     const [data, setData] = useState(null);
+    const [file, setFile] = useState(null);
     
     const [clubData, setClubData] = useState([]);
 
@@ -52,6 +53,7 @@ const page = () => {
             }
 
         } catch (error) {
+            console.log(error)
             toast.error("Check the file data");
         }
     }

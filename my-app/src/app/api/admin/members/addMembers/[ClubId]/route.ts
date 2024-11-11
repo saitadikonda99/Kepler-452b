@@ -62,6 +62,7 @@ const handler = async (req: NextRequest) => {
   } catch (error) {
     console.log(error)
     await pool.query('ROLLBACK');
+    console.log(error);
     return NextResponse.json({ message: "Internal server error"}, {status: 500});
   }
 }
