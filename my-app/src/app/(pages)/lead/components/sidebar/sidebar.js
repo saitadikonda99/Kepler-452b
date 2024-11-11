@@ -47,10 +47,11 @@ const sidebar = () => {
       link: "/lead/home",
     },
     {
-      name: "Update Club Details",
+      name: "Update Club",
       icon: <MdOutlineChangeCircle className="sideBar-icon" />,
       link: "",
       subOptions: [
+        { name: "Club Details", icon: <MdOutlineChangeCircle className="sideBar-icon" /> , link: "/lead/clubDetails" },
         { name: "Image", icon: <IoMdImages className="sideBar-icon" /> , link: "/lead/images" },
         { name: "Glimpse", icon: <MdViewQuilt className="sideBar-icon" /> , link: "/lead/glimpse" },
         { name: "Upcoming Events", icon: <BsCalendar2MinusFill className="sideBar-icon" /> , link: "/lead/upcomingEvents" },
@@ -72,10 +73,6 @@ const sidebar = () => {
       name: "Change Password",
       icon: <RiLockPasswordFill className="sideBar-icon" />,
       link: "/lead/changePassword",
-    },{
-      name: "Update club details",
-      icon: <RiLockPasswordFill className="sideBar-icon" />,
-      link: "/lead/cclubDetails",
     }
   ];
 

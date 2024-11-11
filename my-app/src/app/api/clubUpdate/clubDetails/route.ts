@@ -27,27 +27,30 @@ const postHandler = async (req: NextRequest) => {
 
   try {
 
-    const { clubId, clubLogo, clubName, clubDesc, clubAbout } = await req.json();
+    const { clubId, clubLogo, clubName, clubDescription, clubAbout } = await req.json();
 
+    console.log(clubId, clubLogo, clubName, clubDescription, clubAbout);
 
-    if (!clubLogo || !clubName || !clubDesc || !clubAbout) {
+    if (!clubLogo || !clubName || !clubDescription || !clubAbout) {
       return NextResponse.json({ message: "All fields are required"}, { status: 401 });
     }
 
-    if (clubAbout.split(" ").length < 10 || clubAbout.split(" ").length > 15) {
-      return NextResponse.json({ message: "About club should be 20 to 25 words"}, { status: 401 });
+    if (clubAbout.split(" ").length > 20) {
+      return NextResponse.json({ message: "About club should less than 20 words"}, { status: 401 });
     }
 
-    if (clubDesc.split(" ").length < 10 || clubDesc.split(" ").length > 25) {
-      return NextResponse.json({ message: "Description should be 20 to 25 words"}, { status: 401 });
+    if (clubDescription.split(" ").length > 25) {
+      return NextResponse.json({ message: "Description should less than 25 words"}, { status: 401 });
     }
 
     const [result]: any = await pool.query(
         `UPDATE clubs 
-         SET club_logo = ?, club_name = ?, club_desc = ?, club_about = ? 
+         SET club_logo = ?, club_name = ?, club_description = ?, club_about = ? 
          WHERE id = ?`,   
-        [clubLogo, clubName, clubDesc, clubAbout, clubId]
+        [clubLogo, clubName, clubDescription, clubAbout, clubId]
     );
+
+    console.log(result);
      
 
     return NextResponse.json({ message: "Club details updated successfully"}, { status: 200 });

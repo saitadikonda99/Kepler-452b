@@ -25,7 +25,7 @@ const isAuth = async (username, password) => {
 
   const isPasswordMatch = await bcrypt.compare(password, userData[0]?.password);
 
-  return isPasswordMatch ? user[0] : '';
+  return isPasswordMatch ? user[0] : null;
 };
 
 
