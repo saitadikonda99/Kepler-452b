@@ -1,6 +1,5 @@
-
-*{
-    padding:0% ;
+* {
+    padding: 0%;
     margin: 0%;
     box-sizing: border-box;
 }
@@ -14,7 +13,7 @@
 }
 
 .clubDetails-one {
-    width: 100%;  
+    width: 100%;
     padding: 20px;
     background: rgb(255, 255, 255);
     border-radius: 10px;
@@ -26,7 +25,7 @@
     display: flex;
 }
 
-.clubDetailss-icon {
+.images-icon {
     font-size: 1.5rem;
 }
 
@@ -36,16 +35,16 @@
 }
 
 .clubDetails-one-one p {
-  font-size: 1.2rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;    
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .clubDetails-one-two {
-    padding: .8rem .5rem;
+    padding: 0.8rem 0.5rem;
 }
 
 .clubDetails-one-two-one {
@@ -53,15 +52,15 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: .5rem;
+    gap: 0.5rem;
 }
 
 .clubDetails-one-two-one p {
     font-size: 1rem;
-    padding: .2rem 0rem;
+    padding: 0.2rem 0rem;
 }
 
-.clubDetails-one a{
+.clubDetails-one a {
     text-decoration: none;
     color: rgb(217, 3, 3);
 }
@@ -72,6 +71,7 @@
 
 .clubDetails-three-in {
     width: 100%;
+    padding: 1rem;
 }
 
 .clubDetails-three-in-two {
@@ -81,44 +81,48 @@
 .clubDetails-three-in-two-in {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
-    padding: 1rem;
 }
 
-.clubDetails-three-in-two-img {
-    width: 50%;
+.clubDetails-three-in-two-in-in {
+    width: 100px;
+    height: 100px;
 }
 
-.clubDetails-three-in-two-img img{
+.clubDetails-three-in-two-in-in img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border: 1px solid rgb(202, 196, 196);
 }
 
-.clubDetails-three-in-three{
+.clubDetails-three-in-two-in-name p {
+    font-size: 1rem;
+}
+
+.clubDetails-three-in-three {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 0rem 1rem;
+    padding: 1rem 0;
 }
 
-.clubDetails-three-in-three button{
-  font-size: .8rem;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5rem 1rem; 
-  color: white;
-  background-color: black;
-  cursor: pointer;
+.clubDetails-three-in-three button {
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: black;
+    cursor: pointer;
 }
 
-.clubDetails-three-in-three button:hover{
-  background-color: rgb(0, 147, 0);
+.clubDetails-three-in-three button:hover {
+    background-color: rgb(0, 147, 0);
 }
-
 
 .clubDetails-two {
     width: 100%;
@@ -136,29 +140,24 @@
     padding: 1rem 0rem;
 }
 
-.clubDetailsUpdate-one {
-    width: 50%;
+.clubDetails-two-in-one-one,
+.clubDetails-two-in-one-two,
+.clubDetails-two-in-one-three,
+.clubDetails-two-in-one-four {
+    width: 100%;
 }
 
-.clubDetailsUpdate-two {
-    width: 50%;
-}
-
-.clubDetailsUpdate-one input {
+.clubDetails-two-in-one-one input,
+.clubDetails-two-in-one-two input,
+.clubDetails-two-in-one-three input,
+.clubDetails-two-in-one-four input {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid rgb(202, 196, 196);
     border-radius: 5px;
 }
 
-.clubDetailsUpdate-two input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid rgb(202, 196, 196);
-    border-radius: 5px;
-}
-
-.clubDetailsUpdate-three {
+.clubDetails-two-in-three {
     width: 100%;
     display: flex;
     align-items: center;
@@ -166,16 +165,16 @@
     gap: 1rem;
 }
 
-.clubDetailsUpdate-three button{
-    font-size: .8rem;
+.clubDetails-two-in-three button {
+    font-size: 0.8rem;
     border-radius: 5px;
     border: none;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     color: white;
     background-color: black;
     cursor: pointer;
-  }
-  
-  .clubDetailsUpdate-three button:hover{
+}
+
+.clubDetails-two-in-three button:hover {
     background-color: rgb(0, 147, 0);
-  }
+}
