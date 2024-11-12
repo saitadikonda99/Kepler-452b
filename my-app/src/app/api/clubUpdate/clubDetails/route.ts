@@ -36,11 +36,11 @@ const postHandler = async (req: NextRequest) => {
     }
 
     if (clubAbout.split(" ").length > 12) {
-      return NextResponse.json({ message: "About club should less than 20 words"}, { status: 401 });
+      return NextResponse.json({ message: "About club should less than 15 words"}, { status: 401 });
     }
 
     if (clubDescription.split(" ").length > 12) {
-      return NextResponse.json({ message: "Description should less than 25 words"}, { status: 401 });
+      return NextResponse.json({ message: "Description should less than 15 words"}, { status: 401 });
     }
 
     const [result]: any = await pool.query(

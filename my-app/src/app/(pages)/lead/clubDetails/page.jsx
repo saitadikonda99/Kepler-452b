@@ -72,7 +72,7 @@ const page = () => {
 
       if (response.status === 200) {
         setIsLoading(false);
-        toast.success("Images updated successfully!");
+        toast.success("Club Details updated successfully!");
         setShow(false);
         setClubData((prevData) =>
           prevData.map((data) =>
