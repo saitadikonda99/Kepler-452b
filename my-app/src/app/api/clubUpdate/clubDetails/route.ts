@@ -35,11 +35,11 @@ const postHandler = async (req: NextRequest) => {
       return NextResponse.json({ message: "All fields are required"}, { status: 401 });
     }
 
-    if (clubAbout.split(" ").length > 20) {
+    if (clubAbout.split(" ").length > 12) {
       return NextResponse.json({ message: "About club should less than 20 words"}, { status: 401 });
     }
 
-    if (clubDescription.split(" ").length > 25) {
+    if (clubDescription.split(" ").length > 12) {
       return NextResponse.json({ message: "Description should less than 25 words"}, { status: 401 });
     }
 
