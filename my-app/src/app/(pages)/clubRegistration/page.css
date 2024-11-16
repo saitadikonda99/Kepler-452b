@@ -85,10 +85,14 @@
 }
 
 .cr-three-in-one {
-    width: 20%;
+    width: 30%;
 }
 
 .cr-three-in-two {
+    width: 20%;
+}
+
+.cr-three-in-three {
     width: 40%;
     display: flex;
     align-items: center;
@@ -96,11 +100,11 @@
     gap: 1rem;
 }
 
-.cr-three-in-two-one {
+.cr-three-in-three-one {
     width: 40%;
 }
 
-.cr-three-in-two-two {
+.cr-three-in-three-two {
     width: 60%;
 }
 

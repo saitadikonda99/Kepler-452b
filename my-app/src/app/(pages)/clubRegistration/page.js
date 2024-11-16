@@ -14,9 +14,9 @@ import "./page.css";
 import { boyHostels, girlHostels, busRoutes } from "./residencyData/data";
 import { countryCodes, countryNames } from "./countryData/data";
 import { districtNames } from "./districtData/data";
+import { branchNames } from "./branchData/data";
 
 const page = () => {
-    
   const [clubData, setClubData] = React.useState([]);
 
   useEffect(() => {
@@ -83,6 +83,7 @@ const page = () => {
     name: "",
     idNumber: "",
     email: "",
+    branch: "",
     gender: "",
     countryCode: "",
     phoneNumber: "",
@@ -158,6 +159,22 @@ const page = () => {
               <div className="cr-three-in">
                 <div className="cr-three-in-one crSelect">
                   <select
+                    name="branch"
+                    value={data.branch}
+                    onChange={handleChange}
+                    id="selectInput"
+                  >
+                    <option value="">Select your branch</option>
+                    {branchNames.map((branch) => (
+                      <option key={branch.id} value={branch.name}>
+                        {branch.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="cr-three-in-two crSelect">
+                  <select
                     name="gender"
                     value={data.gender}
                     onChange={handleChange}
@@ -170,14 +187,15 @@ const page = () => {
                   </select>
                 </div>
 
-                <div className="cr-three-in-two crSelect">
-                  <div className="cr-three-in-two-one">
+                <div className="cr-three-in-three crSelect">
+                  <div className="cr-three-in-three-one">
                     <select
                       name="countryCode"
                       value={data.countryCode}
                       onChange={handleChange}
                       id="selectInput"
                     >
+                      <option value="">Country code</option>
                       {countryCodes.map((country, index) => (
                         <option
                           key={`${country.code}-${index}`}
@@ -189,7 +207,7 @@ const page = () => {
                     </select>
                   </div>
 
-                  <div className="cr-three-in-two-two crInput">
+                  <div className="cr-three-in-three-two crInput">
                     <input
                       type="text"
                       placeholder="Enter your Phone Number"
@@ -228,7 +246,10 @@ const page = () => {
                       >
                         <option value=" ">Select Hostel Name</option>
                         {girlHostels.map((hostel) => (
-                          <option key={hostel.hostelName} value={hostel.hostelName}>
+                          <option
+                            key={hostel.hostelName}
+                            value={hostel.hostelName}
+                          >
                             {hostel.hostelName}
                           </option>
                         ))}
@@ -246,7 +267,10 @@ const page = () => {
                     >
                       <option value=" ">Select Hostel Name</option>
                       {boyHostels.map((hostel) => (
-                        <option key={hostel.hostelName} value={hostel.hostelName}>
+                        <option
+                          key={hostel.hostelName}
+                          value={hostel.hostelName}
+                        >
                           {hostel.hostelName}
                         </option>
                       ))}
@@ -254,7 +278,7 @@ const page = () => {
                   </div>
                 )}
 
-                {data?.residency === "dayScholar" && (
+                {data?.residency === "Day Scholar" && (
                   <div className="cr-four-in-three crSelect">
                     <select
                       name="busRoute"

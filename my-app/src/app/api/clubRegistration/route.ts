@@ -8,6 +8,7 @@ export const POST = async (req: NextRequest) => {
       name, 
       idNumber, 
       email, 
+      branch,
       gender, 
       countryCode, 
       phoneNumber, 
@@ -40,6 +41,10 @@ export const POST = async (req: NextRequest) => {
   
       if (!email) {
           return NextResponse.json({ message: "Email is required"}, { status: 400 });
+      }
+
+      if (!branch) {
+        return NextResponse.json({ message: "Branch is required"}, { status: 400 });
       }
   
       if (!/^[A-Za-z0-9._%+-]+@kluniversity\.in$/.test(email)) {
@@ -89,14 +94,14 @@ export const POST = async (req: NextRequest) => {
 
     const query = `
         INSERT INTO club_registration (
-            name, id_number, email_id, gender, country_code, phone_number,
+            name, id_number, email_id, branch, gender, country_code, phone_number,
             residency, hostel_name, bus_route, country, state, district,
             pincode, domain, club_name, id_card_link, erp_payment_link
         ) 
         VALUES (
             ?, ?, ?, ?, ?, ?, 
             ?, ?, ?, ?, ?, ?, 
-            ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?, ?
         );
     `;
 
@@ -104,6 +109,7 @@ export const POST = async (req: NextRequest) => {
         name, 
         idNumber, 
         email, 
+        branch,
         gender, 
         countryCode, 
         phoneNumber, 
