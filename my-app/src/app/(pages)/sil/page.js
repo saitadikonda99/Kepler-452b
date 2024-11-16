@@ -162,7 +162,7 @@ const page = () => {
                   </td>
                   <td>{activity.venue}</td>
                   <td>
-                    <Link href={activity.report_link}>View Report</Link>
+                    <Link href={activity.report_link} target="_blank" passHref={true}>View Report</Link>
                   </td>
                 </tr>
               ))}
