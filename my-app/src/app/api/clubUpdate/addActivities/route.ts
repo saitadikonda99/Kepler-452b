@@ -44,17 +44,23 @@ const postHandler = async (req: NextRequest) => {
       }, {});
     });
 
+
     await pool.query("START TRANSACTION");
 
+    console.log(activitiesData)
+
+    
     // Prepare bulk insert values
-    const insertValues = activitiesData.map((activity) => [
-      clubId,
-      activity.activity_name,
-      activity.activity_type.toLowerCase(),
-      clubName,
-      new Date(activity.activity_date).toISOString().split('T')[0],
-      activity.venue || null,
-      activity.report_link || null,
+    const insertValues = activitiesData
+      .filter((activity) => activity.activity_name && activity.activity_type && activity.club_name && activity.activity_date) // Filter out null rows
+      .map((activity) => [
+        clubId,
+        activity.activity_name,
+        activity.activity_type.toLowerCase(),
+        clubName,
+        new Date(activity.activity_date).toISOString().split('T')[0],
+        activity.venue || null,
+        activity.report_link || null,
     ]);
 
     const insertQuery = `

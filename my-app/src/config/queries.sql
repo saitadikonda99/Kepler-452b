@@ -20,7 +20,7 @@ SET social_name = 'Telegram', social_link = 'https://telegram.com'
 WHERE social_name = 'Facebook';
 
 
-ALTER TABLE clubs MODIFY club_domain ENUM('TEC', 'LCH', 'ESO', 'TIE', 'HWB', 'IIE') NOT NULL;
+ALTER TABLE clubs MODIFY club_domain ENUM('TEC', 'LCH', 'ESO', 'HWB', 'IIE') NOT NULL;
 
 
 INSERT INTO events (event_link, event_name, event_date, event_venue)

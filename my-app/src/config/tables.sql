@@ -225,3 +225,31 @@ CREATE TABLE club_projects (
     PRIMARY KEY (id),
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
 );
+
+
+-- Student registration for clubs
+
+
+CREATE TABLE club_registration (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    id_number VARCHAR(100) UNIQUE NOT NULL,
+    email_id VARCHAR(100) UNIQUE NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    country_code VARCHAR(5) DEFAULT NULL,
+    phone_number VARCHAR(15) DEFAULT NULL,
+    residency ENUM('Day Scholar', 'Hosteler') NOT NULL,
+    hostel_name VARCHAR(100) DEFAULT NULL,
+    bus_route VARCHAR(100) DEFAULT NULL,
+    country VARCHAR(100) NOT NULL,
+    state VARCHAR(100) DEFAULT NULL,
+    district VARCHAR(100) DEFAULT NULL,
+    pincode VARCHAR(10) DEFAULT NULL,
+    domain ENUM('TEC', 'LCH', 'ESO', 'HWB', 'IIE') NOT NULL,
+    club_name VARCHAR(100),
+    id_card_link VARCHAR(255) NOT NULL,
+    erp_payment_link VARCHAR(255) NOT NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (club_name) REFERENCES clubs(club_name) ON DELETE SET NULL
+);

@@ -49,12 +49,13 @@ const postHandler = async (req: NextRequest) => {
 
     await pool.query("START TRANSACTION");
 
-    // Prepare bulk insert values
-    const insertValues = projectsData.map((project) => [
-        clubId,
-        project.name,
-        project.description,
-        clubName,
+    const insertValues = projectsData
+    .filter((project) => project.name && project.description)
+    .map((project) => [
+      clubId,
+      project.name,
+      project.description,
+      clubName,
     ]);
 
     const insertQuery = `
