@@ -16,6 +16,10 @@
 # production
 /build
 
+# pdf
+/idCards/
+/erpPayments/
+
 # misc
 .DS_Store
 *.pem

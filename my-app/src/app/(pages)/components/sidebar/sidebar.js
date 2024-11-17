@@ -84,11 +84,6 @@ const sidebar = () => {
       link: "/admin/viewClubs",
     },
     {
-      name: "Add Students",
-      icon: <BsPersonFillAdd className="sideBar-icon" />,
-      link: "/admin/Members/addMembers",
-    },
-    {
       name: "Add Admin",
       icon:<BsPersonFillAdd className="sideBar-icon"/>,
       link: "/admin/addAdmin",

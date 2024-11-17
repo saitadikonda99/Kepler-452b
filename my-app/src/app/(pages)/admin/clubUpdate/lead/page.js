@@ -20,14 +20,11 @@ const page = () => {
   const [updatedData, setUpdatedData] = useState({
     clubName: "",
     leadUsername: "",
-    leadName: "",
     leadEmail: "",
-    leadPassword: "",
-    leadConfirmPassword: "",
+    clubId: "",
   });
 
   const handleSelectChange = (e) => {
-
     setSelectedClubName(e.target.value);
 
     const selectedClub = clubData.find(
@@ -36,12 +33,11 @@ const page = () => {
 
     setUpdatedData({
       leadUsername: selectedClub.username,
-      leadName: selectedClub.user_name,
       leadEmail: selectedClub.email,
       clubName: selectedClub.club_name,
+      clubId: selectedClub.club_id,
     });
   };
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,7 +65,6 @@ const page = () => {
 
     fetchData();
   }, []);
-
 
   const handleSubmit = async () => {
     try {
@@ -113,83 +108,54 @@ const page = () => {
   };
 
   return (
-        <Dashboard>
-            <div className="UpdateClubLead">
-              <div className="UpdateClubLeadComponent">
-                <div className="UpdateClubLeadComponent-one">
-                  <h1>Update Club Lead</h1>
-                </div>
-                <div className="UpdateClubLeadComponent-two">
-                  <div className="UpdateClubLeadComponent-two-a">
-                    <select value={selectedClubName} onChange={handleSelectChange}>
-                    <option value="" disabled>
-                      Select a club
-                    </option>
-                    {Array.isArray(clubData) &&
-                      clubData.map((club) => (
-                        club.active === 1 && (
-                          <option key={club.club_id} value={club.club_name}>
-                            {club.club_name}
-                          </option>
-                        )
-                      ))}
-                    </select>
-                </div>
-                <div className="UpdateClubLeadComponent-two-b">
-                  <div className="UpdateClubLeadComponent-two-b-box">
-                    <input
-                    type="text"
-                    placeholder="Username should be University id"
-                    value={updatedData.leadUsername}
-                    name="leadUsername"
-                    onChange={handleChange}
-                    />
-                  </div>
-                  <div className="UpdateClubLeadComponent-two-b-box">
-                    <input
-                    type="text"
-                    placeholder="Enter new lead name"
-                    value={updatedData.leadName}
-                    name="leadName"
-                    onChange={handleChange}
-                    />
-                  </div>
-                  <div className="UpdateClubLeadComponent-two-b-box">
-                    <input
-                    type="email"
-                    placeholder="Enter new lead email"
-                    value={updatedData.leadEmail}
-                    name="leadEmail"
-                    onChange={handleChange}
-                    />
-                  </div>
-                </div>  
-                <div className="UpdateClubLeadComponent-two-c"> 
-                  <div className="UpdateClubLeadComponent-two-c-box">
-                   <input
-                   type="password"
-                   placeholder="Enter new lead password"
-                   value={updatedData.leadPassword}
-                   name="leadPassword"
-                   onChange={handleChange}
-                   />
-                  </div>
-                  <div className="UpdateClubLeadComponent-two-c-box"> 
-                   <input
-                   type="password"
-                   placeholder="Confirm new lead password"
-                   value={updatedData.leadConfirmPassword}
-                   name="leadConfirmPassword"
-                   onChange={handleChange}
-                   />
-                  </div>
-                  <div className="UpdateClubLeadComponent-two-c-button">
-                   <button onClick={handleSubmit}>Update</button>
-                  </div>
-                </div> 
+    <Dashboard>
+      <div className="UpdateClubLead">
+        <div className="UpdateClubLeadComponent">
+          <div className="UpdateClubLeadComponent-one">
+            <h1>Update Club Lead</h1>
+          </div>
+          <div className="UpdateClubLeadComponent-two">
+            <div className="UpdateClubLeadComponent-two-a">
+              <select value={selectedClubName} onChange={handleSelectChange}>
+                <option value="" disabled>
+                  Select a club
+                </option>
+                {Array.isArray(clubData) &&
+                  clubData.map((club) => (
+                    club.active === 1 && (
+                      <option key={club.club_id} value={club.club_name}>
+                        {club.club_name}
+                      </option>
+                    )
+                  ))}
+              </select>
             </div>
+            <div className="UpdateClubLeadComponent-two-b">
+              <div className="UpdateClubLeadComponent-two-b-box">
+                <input
+                  type="text"
+                  placeholder="Username should be University id"
+                  value={updatedData.leadUsername}
+                  name="leadUsername"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="UpdateClubLeadComponent-two-b-box">
+                <input
+                  type="email"
+                  placeholder="Enter new lead email"
+                  value={updatedData.leadEmail}
+                  name="leadEmail"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="UpdateClubLeadComponent-two-c-button">
+                <button onClick={handleSubmit}>Update</button>
+              </div>
             </div>
-          </ div>
+          </div>
+        </div>
+      </div>
     </Dashboard>
   );
 };

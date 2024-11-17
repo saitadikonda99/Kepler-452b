@@ -25,45 +25,62 @@ export const POST = async (req: NextRequest) => {
     const {
       leadUsername,
       clubName,
-      leadName,
       leadEmail,
-      leadPassword,
-      leadConfirmPassword,
+      clubId,
     } = await req.json();
 
-    if (leadPassword !== leadConfirmPassword) {
-      return NextResponse.json({ message: "Passwords do not match" }, { status: 400 });
-    }
-
-    if (!leadUsername || !clubName || !leadName || !leadEmail || !leadPassword || !leadConfirmPassword) {
+  
+    if (!leadUsername || !clubName || !leadEmail || !clubId) {
       return NextResponse.json({ message: "All fields are required" }, { status: 400 });
     }
 
-    const userCheck: any = await pool.query(
-      `SELECT * FROM users WHERE username = ? OR email = ?`,
-      [leadUsername, leadEmail]
-    );
-    
-
-    if (userCheck[0].length > 0) {
-      return NextResponse.json({ message: "User or Email already exists" }, { status: 409 });
+    if (!leadEmail.startsWith(leadUsername)) {
+      return NextResponse.json({ message: "Invalid email" }, { status: 400 });
     }
 
-    const salt = await bcrypt.genSalt(10);
-
-    const hashedPassword = await bcrypt.hash(leadPassword, salt);
-
-    await pool.query('START TRANSACTION');
-  
-    const [result]: any = await pool.query(
-      `INSERT INTO users (username, name, password, email, role, RefreshToken)
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [leadUsername, leadName, hashedPassword, leadEmail, "club_lead", null]
+    const [userCheck]: any = await pool.query(
+      `SELECT * FROM users WHERE username = ?`,
+      [leadUsername]
     );
 
+    if (userCheck.length === 0) {
+      return NextResponse.json({ message: "user must be registered" }, { status: 404 });
+    }
+
+    console.log(userCheck[0].role);
+
+    if (userCheck.length > 0 && userCheck[0].role === "club_lead") {
+      return NextResponse.json({ message: "User is already a club lead" }, { status: 409 });
+    }
+
+    if (userCheck.length > 0 && userCheck[0].role === "Admin") {
+      return NextResponse.json({ message: "User is already an admin" }, { status: 409 });
+    }
+
+
+    await pool.query('START TRANSACTION');
+
+    const [oldLead]: any = await pool.query(
+      `SELECT lead_id FROM clubs WHERE club_name = ?`,
+      [clubName]
+    );
+
+    if (oldLead.length > 0) {
+      await pool.query(
+        `UPDATE users SET role = 'student' WHERE id = ?`,
+        [oldLead[0].lead_id]
+      );
+    }
+
+    const [updatedUser]: any = await pool.query(
+      `UPDATE users SET role = 'club_lead' WHERE username = ?`,
+      [leadUsername]
+    );
+
+
     const [getLeadUser]: any = await pool.query(
-      `SELECT id FROM users WHERE email = ?`,
-      [leadEmail]
+      `SELECT id FROM users WHERE username = ?`,
+      [leadUsername]
     );
 
     const leadId = getLeadUser[0].id;
@@ -72,9 +89,6 @@ export const POST = async (req: NextRequest) => {
       `UPDATE clubs SET lead_id = ? WHERE club_name = ?`,
       [leadId, clubName]
     );
-
-    const MY_KEY = "getClubDetails";
-    redisClient.del(MY_KEY);
 
     await pool.query('COMMIT');
     

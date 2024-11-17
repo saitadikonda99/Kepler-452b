@@ -38,9 +38,14 @@ export async function middleware(req: NextRequest) {
       url.pathname = "/admin/home";
       return NextResponse.redirect(url)
     }
-    else {
+    else if (role === "club_lead") {
       const url = req.nextUrl.clone();
       url.pathname = "/lead/home";
+      return NextResponse.redirect(url)
+    }
+    else if (role === "student") {
+      const url = req.nextUrl.clone();
+      url.pathname = "/student/home";
       return NextResponse.redirect(url)
     }
   }
@@ -56,7 +61,20 @@ export async function middleware(req: NextRequest) {
   else if (
     path.includes("/lead") &&
     role !== "club_lead" &&
-    role !== "Admin"
+    role !== "Admin" &&
+    role !== "student"
+  ) {
+    return NextResponse.json(
+      { message: "You are not authorized to view this page" },
+      { status: 401 }
+    );
+  }
+  // student pages
+  else if (
+    path.includes("/student") &&
+    role !== "student" &&
+    role !== "Admin" &&
+    role !== "club_lead"
   ) {
     return NextResponse.json(
       { message: "You are not authorized to view this page" },
@@ -69,5 +87,5 @@ export async function middleware(req: NextRequest) {
 
 // Supports both a single string value or an array of matchers
 export const config = {
-  matcher: ["/", "/", "/auth/login", "/admin/:path*", "/lead/:path*"],
+  matcher: ["/", "/", "/auth/login", "/admin/:path*", "/lead/:path*", "/student/:path*"],
 };

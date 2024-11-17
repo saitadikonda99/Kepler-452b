@@ -9,7 +9,7 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    role ENUM('Admin', 'club_lead') NOT NULL, 
+    role ENUM('Admin', 'club_lead', 'student') NOT NULL, 
     active BOOLEAN DEFAULT 1, 
     upload_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     RefreshToken VARCHAR(255) DEFAULT NULL,
@@ -185,24 +185,6 @@ CREATE TABLE news_portrait (
     PRIMARY KEY (id)
 );
 
-
-CREATE TABLE student_registration (
-    id INT NOT NULL AUTO_INCREMENT,
-    student_id VARCHAR(256) NOT NULL,         
-    student_name VARCHAR(256) NOT NULL,      
-    batch VARCHAR(256) NOT NULL,              
-    department VARCHAR(50) NOT NULL,        
-    gender ENUM('Male', 'Female', 'Other') NOT NULL,  
-    residence VARCHAR(256) NOT NULL,        
-    club_id INT NOT NULL,         
-    active BOOLEAN DEFAULT 1,  -- Added active status
-    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
-    PRIMARY KEY (id),
-    UNIQUE KEY unique_registration (student_id, club_id),  
-    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE 
-);
-
-
 CREATE TABLE club_activities (
     id INT NOT NULL AUTO_INCREMENT,
     club_id INT NOT NULL,   
@@ -230,3 +212,27 @@ CREATE TABLE club_projects (
 -- Student registration for clubs
 
 
+CREATE TABLE user_details (
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    id_number VARCHAR(100) UNIQUE NOT NULL,
+    branch VARCHAR(100) NOT NULL,
+    email_id VARCHAR(100) UNIQUE NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    country_code VARCHAR(5) DEFAULT NULL,
+    phone_number VARCHAR(15) DEFAULT NULL,
+    residency ENUM('Day Scholar', 'Hosteler') NOT NULL,
+    hostel_name VARCHAR(100) DEFAULT NULL,
+    bus_route VARCHAR(100) DEFAULT NULL,
+    country VARCHAR(100) NOT NULL,
+    state VARCHAR(100) DEFAULT NULL,
+    district VARCHAR(100) DEFAULT NULL,
+    pincode VARCHAR(10) DEFAULT NULL,
+    club_id INT DEFAULT NULL,
+    domain ENUM('TEC', 'LCH', 'ESO', 'HWB', 'IIE') NOT NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE SET NULL
+);

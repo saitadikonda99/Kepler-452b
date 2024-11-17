@@ -6,9 +6,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import Navbar from "../sil/Navbar";
-import Footer from "../../Components/Footer/page";
+import Footer from '../components/footer/page'
 
 import "./page.css";
+
+
+
+import Loader from "../../animation/loader";
 
 // import data files here
 import { boyHostels, girlHostels, busRoutes } from "./residencyData/data";
@@ -18,6 +22,7 @@ import { branchNames } from "./branchData/data";
 
 const page = () => {
   const [clubData, setClubData] = React.useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -62,20 +67,42 @@ const page = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/clubRegistration", data, {
+  
+      setIsLoading(true);
+
+      if (!data.idCard || !data.erpPayment) {
+        toast.error("Please fill all the fields");
+        setIsLoading(false);
+        return;
+      }
+
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        if (key === 'idCard' || key === 'erpPayment') {
+          formData.append(key, data[key], data[key].name);
+        } else {
+          formData.append(key, data[key]);
+        }
+      });
+
+      console.log(formData);
+
+      const response = await axios.post("/api/clubRegistration", formData, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
         withCredentials: true,
       });
 
       if (response.status === 200) {
+        setIsLoading(false);
         console.log(response);
         toast.success("Registration Successful");
       }
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || 'An error occurred');
     }
   };
 
@@ -95,22 +122,49 @@ const page = () => {
     district: "",
     pinCode: "",
     domain: "",
+    clubId: "",
     clubName: "",
-    idCardLink: "",
-    erpPaymentLink: "",
+    idCard: "",
+    erpPayment: "",
   });
 
   console.log(data);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+  
+    if (name === "idNumber") {
+      setData({
+        ...data,
+        [name]: value,
+        email: value + "@kluniversity.in",
+      });
+    } 
+    else if (name === "clubName") {
+      setData({
+        ...data,
+        [name]: value,
+        clubId: clubData.find((club) => club.club_name === value)?.id,
+      });
+    }
+    else {
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleFileChange = (e, name) => {
+    const file = e.target.files[0];
     setData({
       ...data,
-      [name]: value,
+      [name]: file,
     });
   };
 
   return (
+    isLoading ? <Loader /> :
     <div className="ClubRegistrationComponent">
       <div className="ClubRegistrationComponent-in">
         <div className="ClubRegistration-Nav">
@@ -289,6 +343,7 @@ const page = () => {
                       <option value=" ">
                         Select Bus Route / Own transport
                       </option>
+                      <option value="Own Transport">Own Transport</option>
                       {busRoutes.map((route) => (
                         <option
                           key={route.id}
@@ -400,31 +455,31 @@ const page = () => {
                     <option value=" ">Select your club</option>
                     {data.domain === "TEC" &&
                       techClubs.map((club) => (
-                        <option key={club.club_id} value={club.club_name}>
+                        <option key={club.id} value={club.club_name}>
                           {club.club_name}
                         </option>
                       ))}
                     {data.domain === "LCH" &&
                       lchClubs.map((club) => (
-                        <option key={club.club_id} value={club.club_name}>
+                        <option key={club.id} value={club.club_name}>
                           {club.club_name}
                         </option>
                       ))}
                     {data.domain === "ESO" &&
                       esoClubs.map((club) => (
-                        <option key={club.club_id} value={club.club_name}>
+                        <option key={club.id} value={club.club_name}>
                           {club.club_name}
                         </option>
                       ))}
                     {data.domain === "IIE" &&
                       hieClubs.map((club) => (
-                        <option key={club.club_id} value={club.club_name}>
+                        <option key={club.id} value={club.club_name}>
                           {club.club_name}
                         </option>
                       ))}
                     {data.domain === "HWB" &&
                       hwbClubs.map((club) => (
-                        <option key={club.club_id} value={club.club_name}>
+                        <option key={club.id} value={club.club_name}>
                           {club.club_name}
                         </option>
                       ))}
@@ -437,25 +492,31 @@ const page = () => {
               <div className="cr-seven-in">
                 <div className="cr-seven-in-one">
                   <div className="cr-seven-in-one-one crInput">
-                    <input
-                      type="text"
-                      placeholder="Enter your Id Card Link"
-                      value={data.idCardLink}
-                      name="idCardLink"
-                      className="registrationInput"
-                      onChange={handleChange}
-                    />
+                    <label htmlFor="idCard">ID Card (PDF):</label>
+                    <div className={`custom-file-input ${data.idCard ? 'file-added' : ''}`}>
+                      <input
+                        type="file"
+                        id="idCard"
+                        name="idCard"
+                        accept=".pdf"
+                        onChange={(e) => handleFileChange(e, "idCard")}
+                      />
+                      <span>{data.idCard ? data.idCard.name : 'Drop your ID card here'}</span>
+                    </div>
                   </div>
 
                   <div className="cr-seven-in-one-two crInput">
-                    <input
-                      type="text"
-                      placeholder="Enter your ERP Payment Link"
-                      value={data.erpPaymentLink}
-                      name="erpPaymentLink"
-                      className="registrationInput"
-                      onChange={handleChange}
-                    />
+                    <label htmlFor="erpPayment">ERP Payment (PDF):</label>
+                    <div className={`custom-file-input ${data.erpPayment ? 'file-added' : ''}`}>
+                      <input
+                        type="file"
+                        id="erpPayment"
+                        name="erpPayment"
+                        accept=".pdf"
+                        onChange={(e) => handleFileChange(e, "erpPayment")}
+                      />
+                      <span>{data.erpPayment ? data.erpPayment.name : 'Drop your ERP payment here'}</span>
+                    </div>
                   </div>
                 </div>
 
@@ -466,7 +527,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="ClubRegistration-footer">{/* <Footer /> */}</div>
+        <div className="ClubRegistration-footer"><Footer /></div>
       </div>
     </div>
   );

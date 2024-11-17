@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 export const POST = async (req: NextRequest) => {
 
   try {
+    
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
@@ -43,6 +44,7 @@ export const POST = async (req: NextRequest) => {
     const hashedPassword = await bcrypt.hash(adminPassword, salt);
 
     await pool.query('START TRANSACTION');
+
 
     const [result]: any = await pool.query(
       `INSERT INTO users (username, name, password, email, role, RefreshToken) VALUES (?, ?, ?, ?, ?, ?)`,

@@ -1,0 +1,45 @@
+
+
+.DashboardComponent {
+    width: 100%;
+}
+
+.DashboardComponent-in {
+    width: 100%;
+}
+
+.DashboardComponent-Nav {
+    width: 100%;
+}
+
+.DashboardComponent-one {
+    width: 100%;
+}
+
+.DashboardComponent-one-in {
+    width: 100%;
+    display: flex;
+}
+
+.DC-sideBar {
+    width: 16%;
+}
+
+.DC-one {
+    width: 84%;
+}
+
+.DC-one {
+    width: 84%;
+    height: 83.5vh;
+    overflow: scroll;
+}
+
+@media all and (max-width: 500px) {
+
+    .DashboardComponent {
+        width: 100%;
+        min-width: 1024px;
+        overflow-x: auto; 
+    }
+}

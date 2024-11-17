@@ -33,9 +33,6 @@ export const POST = async (req: NextRequest) => {
 
     await pool.query('COMMIT');
 
-    const MY_KEY = "getClubs";
-    await redisClient.del(MY_KEY);
-
     const message = active === 1 ? "Club activated successfully" : "Club deactivated successfully";
     return NextResponse.json({ message }, { status: 200 });
 

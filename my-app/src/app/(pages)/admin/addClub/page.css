@@ -49,36 +49,16 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1.6rem;
   padding: 1rem 0rem 0rem 0rem;
 }
 
-.AddClubComponent-two-in-two-a-one , .AddClubComponent-two-in-two-a-two, .AddClubComponent-two-in-two-a-three {
+.AddClubComponent-two-in-two-a-one , .AddClubComponent-two-in-two-a-three {
   width: 32%;
 }
 
-.AddClubComponent-two-in-two-a-one input , .AddClubComponent-two-in-two-a-two input, .AddClubComponent-two-in-two-a-three input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 0.1px solid gray;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.AddClubComponent-two-in-two-b {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 1rem 0rem 1rem 0rem;
-  gap: 1.6rem;
-}
-
-.AddClubComponent-two-in-two-b-one , .AddClubComponent-two-in-two-b-two {
-  width: 32%;
-}
-
-.AddClubComponent-two-in-two-b-one input , .AddClubComponent-two-in-two-b-two input {
+.AddClubComponent-two-in-two-a-one input , .AddClubComponent-two-in-two-a-three input {
   width: 100%;
   padding: 0.8rem;
   border: 0.1px solid gray;

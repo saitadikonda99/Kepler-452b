@@ -1,145 +1,243 @@
 import { pool } from "../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
-import { emailQueue } from './emailQueue'  
+import { emailQueue } from "./emailQueue";
+import fs from "fs/promises";
+import path from "path";
+import bcrypt from "bcrypt";
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { 
-      name, 
-      idNumber, 
-      email, 
-      branch,
-      gender, 
-      countryCode, 
-      phoneNumber, 
-      residency, 
-      hostelName, 
-      busRoute, 
-      country, 
-      state, 
-      district, 
-      pinCode, 
-      domain, 
-      clubName, 
-      idCardLink, 
-      erpPaymentLink 
-    } = await req.json();
+    const formData = await req.formData();
 
-    console.log(residency);
-  
-      if (!name) {
-          return NextResponse.json({ message: "Name is required"}, { status: 400 });
-      }
-  
-      if (!/^[A-Za-z\s]+$/.test(name)) {
-        return NextResponse.json({ message: "Name should contain only letters and spaces"}, { status: 400 });
-      }
-  
-      if (!/^\d{10}$/.test(idNumber)) {
-        return NextResponse.json({ message: "Id number should be a 10-digit number"}, { status: 400 });
-      }
-  
-      if (!email) {
-          return NextResponse.json({ message: "Email is required"}, { status: 400 });
-      }
+    const name = formData.get("name") as string;
+    const idNumber = formData.get("idNumber") as string;
+    const email = formData.get("email") as string;
+    const branch = formData.get("branch") as string;
+    const gender = formData.get("gender") as string;
+    const countryCode = formData.get("countryCode") as string;
+    const phoneNumber = formData.get("phoneNumber") as string;
+    const residency = formData.get("residency") as string;
+    const hostelName = formData.get("hostelName") as string;
+    const busRoute = formData.get("busRoute") as string;
+    const country = formData.get("country") as string;
+    const state = formData.get("state") as string;
+    const district = formData.get("district") as string;
+    const pinCode = formData.get("pinCode") as string;
+    const domain = formData.get("domain") as string;
+    const clubName = formData.get("clubName") as string;
+    const clubId = formData.get("clubId") as string;
+    const idCard = formData.get("idCard") as File;
+    const erpPayment = formData.get("erpPayment") as File;
 
-      if (!branch) {
-        return NextResponse.json({ message: "Branch is required"}, { status: 400 });
-      }
-  
-      if (!/^[A-Za-z0-9._%+-]+@kluniversity\.in$/.test(email)) {
-        return NextResponse.json({ message: "Email should be a valid KL University email address"}, { status: 400 });
-      }
-  
-      if (!gender) {
-          return NextResponse.json({ message: "Gender is required"}, { status: 400 });
-      }
 
-      if (!residency) {
-        return NextResponse.json({ message: "Residency is required"}, { status: 400 });
-      }
-  
-      if (residency === "Hosteler" && !hostelName) {
-        return NextResponse.json({ message: "Hostel name is required"}, { status: 400 });
-      }
+    // Validation
 
-  
-      if (residency === "Day Scholar" && !busRoute) {
-        return NextResponse.json({ message: "Bus route is required"}, { status: 400 });
-      }
-
-      if (!country) {
-        return NextResponse.json({ message: "Country is required"}, { status: 400 });
-      }
-  
-      if (country === "India") {
-        if (!state || !district || !pinCode) {
-          return NextResponse.json({ message: "State, district, pinCode is required"}, { status: 400 });
-        }
-      }
-
-      if (!pinCode) {
-        return NextResponse.json({ message: "Pin code is required"}, { status: 400 });
-      }
-  
-      if (!domain || !clubName) {
-          return NextResponse.json({ message: "Domain and club name is required"}, { status: 400 });
-      }
-
-      if (!idCardLink || !erpPaymentLink) {
-        return NextResponse.json({ message: "Id card link and ERP payment link are required"}, { status: 400 });
+    if (!name) {
+      return NextResponse.json({ message: "Name is required." }, { status: 400 });
     }
 
-      console.log(residency);
+    if (!/^[A-Za-z\s]+$/.test(name)) {
+      return NextResponse.json(
+        { message: "Name should contain only letters and spaces." },
+        { status: 400 }
+      );
+    }
 
+    if (!idNumber) {
+      return NextResponse.json({ message: "Id number is required." }, { status: 400 });
+    }
+
+    if (!/^\d{10}$/.test(idNumber)) {
+      return NextResponse.json(
+        { message: "Id number should be a 10-digit number." },
+        { status: 400 }
+      );
+    }
+
+    if (!email) {
+      return NextResponse.json({ message: "Email is required." }, { status: 400 });
+    }
+
+    if (!email || !/^[A-Za-z0-9._%+-]+@kluniversity\.in$/.test(email)) {
+      return NextResponse.json(
+        { message: "Provide a valid KL University email address." },
+        { status: 400 }
+      );
+    }
+
+    if (!branch) {
+      return NextResponse.json({ message: "Branch is required." }, { status: 400 });
+    }
+
+    if (!gender) {
+      return NextResponse.json({ message: "Gender is required." }, { status: 400 });
+    }
+
+    if (!residency) {
+      return NextResponse.json({ message: "Residency is required." }, { status: 400 });
+    }
+
+    if (residency === "Hosteler" && !hostelName) {
+      return NextResponse.json(
+        { message: "Hostel name is required for hosteler." },
+        { status: 400 }
+      );
+    }
+
+    if (residency === "Day Scholar" && !busRoute) {
+      return NextResponse.json(
+        { message: "Bus route is required for day scholar." },
+        { status: 400 }
+      );
+    }
+
+    if (country === "India" && (!state || !district || !pinCode)) {
+      return NextResponse.json(
+        { message: "State, district, and pinCode are required for India." },
+        { status: 400 }
+      );
+    }
+
+    if (!domain || !clubName) {
+      return NextResponse.json(
+        { message: "Domain and club name are required." },
+        { status: 400 }
+      );
+    }
+
+    if (!idCard.name.endsWith('.pdf') || !erpPayment.name.endsWith('.pdf')) {
+      return NextResponse.json(
+        { message: "File type should be pdf." },
+        { status: 400 }
+      );
+    }
+
+    if (!idCard || !erpPayment || !(idCard instanceof File) || !(erpPayment instanceof File)) {
+      return NextResponse.json(
+        { message: "Both ID Card and ERP Payment files are required." },
+        { status: 400 }
+      );
+    }
+
+    // Save files to disk to home directory
+
+    const idCardDir = path.resolve(process.cwd(), "idCards");
+    const erpPaymentDir = path.resolve(process.cwd(), "erpPayments");
+
+    try {
+      await fs.mkdir(idCardDir, { recursive: true });
+      await fs.mkdir(erpPaymentDir, { recursive: true });
+    } catch (mkdirError) {
+      console.error("Error creating directories:", mkdirError);
+      return NextResponse.json(
+        { message: "Server error" },
+        { status: 500 }
+      );
+    }
+
+    const idCardFileName = `${idNumber}_idcard.pdf`;
+    const erpPaymentFileName = `${idNumber}_erpPayment.pdf`;
+
+    const idCardPath = path.join(idCardDir, idCardFileName);
+    const erpPaymentPath = path.join(erpPaymentDir, erpPaymentFileName);
+
+    try {
+      const idCardBuffer = new Uint8Array(await idCard.arrayBuffer());
+      const erpPaymentBuffer = new Uint8Array(await erpPayment.arrayBuffer());
+      await fs.writeFile(idCardPath, idCardBuffer);
+      await fs.writeFile(erpPaymentPath, erpPaymentBuffer);
+    } catch (writeError) {
+      console.error("Error saving files:", writeError);
+      return NextResponse.json(
+        { message: "Server error: Unable to save files." },
+        { status: 500 }
+      );
+    }
+
+    // Insert into database
     const query = `
-        INSERT INTO club_registration (
-            name, id_number, email_id, branch, gender, country_code, phone_number,
+        INSERT INTO user_details (
+            user_id, name, id_number, email_id, branch, gender, country_code, phone_number,
             residency, hostel_name, bus_route, country, state, district,
-            pincode, domain, club_name, id_card_link, erp_payment_link
+            pincode, club_id, domain
         ) 
         VALUES (
             ?, ?, ?, ?, ?, ?, 
             ?, ?, ?, ?, ?, ?, 
-            ?, ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?
         );
     `;
 
     const values = [
-        name, 
-        idNumber, 
-        email, 
-        branch,
-        gender, 
-        countryCode, 
-        phoneNumber, 
-        residency, 
-        hostelName, 
-        busRoute, 
-        country, 
-        state, 
-        district, 
-        pinCode, 
-        domain, 
-        clubName, 
-        idCardLink, 
-        erpPaymentLink
+      name,
+      idNumber,
+      email,
+      branch,
+      gender,
+      countryCode,
+      phoneNumber,
+      residency,
+      hostelName,
+      busRoute,
+      country,
+      state,
+      district,
+      pinCode,
+      clubId,
+      domain,
     ];
-    
-    const [result] = await pool.execute(query, values);
 
+
+    const [userCheck]: any = await pool.query(
+      `SELECT * FROM users WHERE email = ?`,
+      [email]
+    );
+  
+    if (userCheck.length > 0) {
+      return NextResponse.json({ message: "User already exists" }, { status: 409 });
+    }
+
+    await pool.query('START TRANSACTION');
+
+    // password is idNumber + last 4 digits of phoneNumber
+    const password = idNumber + phoneNumber.slice(-4);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const [result]: any = await pool.query(
+      `INSERT INTO users (username, name, password, email, role, RefreshToken)
+      VALUES (?, ?, ?, ?, ?, ?)
+      `,
+      [idNumber, name, hashedPassword, email, "student", null]
+    )
+
+    console.log(result);
+
+    const userId = result.insertId;
+    
+    await pool.query(query, [userId, ...values]);
+
+    await pool.query('COMMIT');
+
+    // Send confirmation email
     const emailJob = {
       email: email,
       subject: `Message from student club registration`,
-      text: `Hello ${name},\n\nYou have successfully registered for ${clubName} club. Please wait for the club lead to approve your registration.`
+      text: `Hello ${name},\n\nYou have successfully registered for ${clubName} club. Please wait for the club lead to approve your registration.`,
     };
 
     await emailQueue.add(emailJob);
 
-    return NextResponse.json({ message: "You have successfully registered. Confirmation email is on its way." }, { status: 200 });
+    return NextResponse.json(
+      {
+        message: "Registration successful. Confirmation email sent.",
+      },
+      { status: 200 }
+    );
 
   } catch (error) {
-    console.error(error);
+    await pool.query('ROLLBACK');
+    console.error("Unhandled error:", error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 };

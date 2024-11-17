@@ -11,7 +11,7 @@ export const GET = async (req: NextRequest) => {
 
     const [result]: any = await pool.query(
       `SELECT
-        (SELECT COUNT(DISTINCT student_id) FROM student_registration) AS total_members,
+        (SELECT COUNT(DISTINCT id_number) FROM user_details) AS total_members,
         (SELECT COUNT(DISTINCT activity_name) FROM club_activities) AS total_activities,
         (SELECT COUNT(DISTINCT name) FROM club_projects) AS total_projects;
       `);

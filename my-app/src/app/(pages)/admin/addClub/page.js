@@ -11,9 +11,6 @@ import Dashboard from "../dashboard/dashboard";
 const Page = () => {
   const [clubData, setClubData] = useState({
     leadUsername: "",
-    leadPassword: "",
-    leadConfirmPassword: "",
-    leadName: "",
     leadEmail: "",
     clubDomain: "",
     clubName: "",
@@ -62,7 +59,6 @@ const Page = () => {
               <div className="AddClubComponent-two-in-two">
                 <div className="AddClubComponent-two-in-two-a">
                   <div className="AddClubComponent-two-in-two-a-one">
-                    {/* <p>Enter Lead Username:</p>  */}
                     <input
                       type="text"
                       placeholder="Username should be University id"
@@ -72,45 +68,12 @@ const Page = () => {
                     />
                   </div>
 
-                  <div className="AddClubComponent-two-in-two-a-two">
-                    {/* <p>Enter Lead name:</p>  */}
-                    <input
-                      type="text"
-                      placeholder="Lead name"
-                      name="leadName"
-                      value={clubData.leadName}
-                      onChange={handleChange}
-                    />
-                  </div>
                   <div className="AddClubComponent-two-in-two-a-three">
-                    {/* <p>Enter Lead email:</p>  */}
                     <input
                       type="email"
                       placeholder="Lead email"
                       name="leadEmail"
                       value={clubData.leadEmail}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="AddClubComponent-two-in-two-b">
-                  <div className="AddClubComponent-two-in-two-b-one">
-                    {/* <p>Enter Lead password:</p>  */}
-                    <input
-                      type="password"
-                      placeholder="Lead password"
-                      name="leadPassword"
-                      value={clubData.leadPassword}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="AddClubComponent-two-in-two-b-two">
-                    {/* <p>Confirm password:</p>  */}
-                    <input
-                      type="email"
-                      placeholder="Lead confirm password"
-                      name="leadConfirmPassword"
-                      value={clubData.leadConfirmPassword}
                       onChange={handleChange}
                     />
                   </div>
@@ -124,7 +87,6 @@ const Page = () => {
 
                 <div className="AddClubComponent-two-in-two-d">
                   <div className="AddClubComponent-two-in-two-d-one">
-                    {/* <p>Enter name of the club:</p>  */}
                     <input
                       type="text"
                       value={clubData.clubName}
@@ -135,7 +97,6 @@ const Page = () => {
                   </div>
 
                   <div className="AddClubComponent-two-in-two-d-two">
-                    {/* <p>Select the domain</p>  */}
                     <select
                       name="clubDomain"
                       value={clubData.clubDomain}

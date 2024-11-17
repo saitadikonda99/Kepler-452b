@@ -42,3 +42,8 @@ INSERT INTO news_landscape (news_link, club_name, news_content)
 VALUES 
 ('https://i.imghippo.com/files/bEgS8115zCg.png', 'Art Club', 'Organized an exhibition showcasing student artwork.'),
 ('https://i.imghippo.com/files/bEgS8115zCg.png', 'Music Club', 'Performed a live concert to raise funds for charity.');
+
+
+
+ALTER TABLE users
+MODIFY COLUMN role ENUM('Admin', 'club_lead', 'student') NOT NULL;

@@ -63,6 +63,9 @@ const Login = () => {
           case "club_lead":
             router.push("/lead/home");
             break;
+          case "student":
+            router.push("/student/home");
+            break;
           default:
             router.push("/");
             break;

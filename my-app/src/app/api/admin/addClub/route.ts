@@ -28,26 +28,13 @@ export const POST = async (req: NextRequest) => {
 
     const {
       leadUsername,
-      leadPassword,
-      leadConfirmPassword,
-      leadName,
       leadEmail,
       clubDomain,
       clubName,
     } = await req.json();
 
-    if (leadPassword !== leadConfirmPassword) {
-      return NextResponse.json(
-        { message: "Passwords do not match" },
-        { status: 400 }
-      );
-    }
-
     if (
       !leadUsername ||
-      !leadPassword ||
-      !leadConfirmPassword ||
-      !leadName ||
       !leadEmail ||
       !clubDomain ||
       !clubName
@@ -60,48 +47,59 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const userCheck: any = await pool.query(
-      `SELECT * FROM users WHERE username = ? OR email = ?`,
-      [leadUsername, leadEmail]
+
+    if (!leadEmail.startsWith(leadUsername)) {
+      return NextResponse.json({ message: "Invalid email" }, { status: 400 });
+    }
+
+    const [userCheck]: any = await pool.query(
+      `SELECT * FROM users WHERE username = ?`,
+      [leadUsername]
     );
 
-    if (userCheck[0].length > 0) {
+    if (userCheck.length === 0) {
+      return NextResponse.json({ message: "user must be registered" }, { status: 404 });
+    }
+
+    if (userCheck[0].role === "club_lead") {
       return NextResponse.json(
-        { message: "User already exists" },
+        { message: "User is already a club lead" },
         { status: 409 }
       );
     }
 
-    const clubCheck: any = await pool.query(
+    if (userCheck[0].role === "Admin") {
+      return NextResponse.json({ message: "User is already an admin" }, { status: 409 });
+    }
+
+    const [clubCheck]: any = await pool.query(
       `SELECT * FROM clubs WHERE club_name = ?`,
       [clubName]
     );
 
-    if (clubCheck[0].length > 0) {
+    if (clubCheck.length > 0) {
       return NextResponse.json(
         { message: "Club already exists" },
         { status: 409 }
       );
     }
 
-    const salt = await bcrypt.genSalt(10);
-
-    const hashedPassword = await bcrypt.hash(leadPassword, salt);
-
     await pool.query('START TRANSACTION');
 
-    const [result]: any = await pool.query(
-      `
-      INSERT INTO users (username, name, password, email, role, RefreshToken)
-      VALUES (?, ?, ?, ?, ?, ?)
-      `,
-      [leadUsername, leadName, hashedPassword, leadEmail, "club_lead", null]
+    console.log(clubDomain)
+
+    // update user role to club_lead
+    await pool.query(
+      `UPDATE users SET role = 'club_lead' WHERE username = ?`,
+      [leadUsername]
     );
 
-    // Get the last inserted lead ID
-    const leadId = (result as any).insertId;
+    const [getLeadUser]: any = await pool.query(
+      `SELECT id FROM users WHERE username = ?`,
+      [leadUsername]
+    );
 
-    console.log(clubDomain)
+    const leadId = getLeadUser[0].id; 
 
     const [club]: any = await pool.query(
       `
@@ -117,7 +115,7 @@ export const POST = async (req: NextRequest) => {
         "logo",
       ]
     );
-
+    
     // Get the last inserted club ID
     const clubId = (club as any).insertId;
 
