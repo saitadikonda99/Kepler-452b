@@ -19,15 +19,18 @@
 
 .addActivities-two{
     width: 100%;
-    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 2rem;
+    padding: 2rem;
 }
 
 .addActivities-two-a{
-    width: 45%;
+    width: 50%;
+}
+
+.addActivities-two-b{
+    width: 50%;
 }
 
 .addActivities-two-b button{
@@ -76,6 +79,7 @@
 }
 
 .addActivities-one-two {
+    width: 100%;
     padding: .8rem .5rem;
 }
 
@@ -99,6 +103,9 @@
 
 #FileUploader{
     width: 100%;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -115,4 +122,72 @@
     background-color: #f8f9fa;
     transition: background-color 0.3s ease;
     cursor: pointer;
+}
+
+#final {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 1.8rem;
+  gap: 3rem;
+}
+
+#final-two {
+  width: 32%;
+}
+
+#final-three {
+  width: 10%;
+  padding-top: 0.3rem;
+}
+
+#final-three button {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#final-three button:hover {
+  background-color: rgb(0, 147, 0);
+  cursor: pointer;
+}
+
+.custom-file-input {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 6vh;
+  border: 2px dashed rgb(0, 166, 255);
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.custom-file-input.file-added {
+  border-color: green;
+}
+
+.custom-file-input input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.custom-file-input span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  font-size: 1rem;
+}
+
+.custom-file-input.file-added span {
+  color: green;
 }

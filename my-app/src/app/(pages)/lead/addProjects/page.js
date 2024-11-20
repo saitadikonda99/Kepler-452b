@@ -7,7 +7,6 @@ import Dashboard from "../dashboard/dashboard";
 import './page.css'
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
-import { FileUploader } from "react-drag-drop-files";
 
 const page = () => {
 
@@ -15,18 +14,16 @@ const page = () => {
     const [file, setFile] = useState(null);
     const [clubId, setClubId] = useState("");
 
-    const handleFileChange = (file) => {
+    const handleFileChange = (e) => {
+      const file = e.target.files[0];
       setFile(file);
       const reader = new FileReader();
       reader.onload = (event) => {
         const text = event.target.result;
         setData(text);   
       };
-      reader.readAsText(file);   
+      reader.readAsText(file);
     };
-
-  const fileTypes = ["CSV"];
-
 
     const handleSubmit = async () => {
         try {
@@ -78,22 +75,20 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="addProjects-two">
-            <div className="addActivities-two-a">
-              {/* <input 
-                                type="file" 
-                                accept=".csv" 
-                                onChange={handleFileChange} 
-                                required
-                            /> */}
-              <FileUploader
-                handleChange={handleFileChange} 
-                name="file"
-                types={fileTypes}
-                dropMessageStyle={{ height: "100px" }}
-              />
+          <div className="addProjects-two" id="final">
+            <div className="addProjects-two-a" id="final-two">
+              <div className={`custom-file-input ${file ? 'file-added' : ''}`}>
+                <input
+                  type="file"
+                  id="csvFile"
+                  name="csvFile"
+                  accept=".csv"
+                  onChange={handleFileChange}
+                />
+                <span>{file ? file.name : 'Drop or Add your CSV file here'}</span>
+              </div>
             </div>
-            <div className="addProjects-two-b">
+            <div className="addProjects-two-b" id="final-three">
               <button onClick={handleSubmit}>Submit</button>
             </div>
           </div>

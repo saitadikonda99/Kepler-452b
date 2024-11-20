@@ -211,7 +211,6 @@ CREATE TABLE club_projects (
 
 -- Student registration for clubs
 
-
 CREATE TABLE user_details (
     id INT NOT NULL AUTO_INCREMENT,
     user_id INT UNIQUE NOT NULL,

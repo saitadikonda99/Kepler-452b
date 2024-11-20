@@ -27,15 +27,16 @@ const page = () => {
       setClubId(e.target.value);
     }
 
-    const handleFileChange = (file) => {
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
         setFile(file);
         const reader = new FileReader();
         reader.onload = (event) => {
-          const text = event.target.result;
-          setData(text);   
+            const text = event.target.result;
+            setData(text);   
         };
-        reader.readAsText(file);   
-      };
+        reader.readAsText(file);
+    };
 
     const handleSubmit = async () => {
         try {
@@ -128,12 +129,16 @@ const page = () => {
                 </div>
 
                 <div className="addMembers-two-b" id="final-two">
-                <FileUploader
-                handleChange={handleFileChange} 
-                name="file"
-                types={fileTypes}
-                dropMessageStyle={{ height: "100px" }}
-              />
+                    <div className={`custom-file-input ${file ? 'file-added' : ''}`}>
+                        <input
+                            type="file"
+                            id="csvFile"
+                            name="csvFile"
+                            accept=".csv"
+                            onChange={handleFileChange}
+                        />
+                        <span>{file ? file.name : 'Drop or Add your CSV file here'}</span>
+                    </div>
                 </div>
                 <div className="addMembers-two-c" id="final-three">
                     <button onClick={handleSubmit}>Submit</button>

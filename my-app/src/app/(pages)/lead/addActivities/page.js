@@ -6,24 +6,21 @@ import Dashboard from "../dashboard/dashboard";
 import "./page.css";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
-import { FileUploader } from "react-drag-drop-files";
 
 const Page = () => {
-
   const [data, setData] = useState(null);
   const [file, setFile] = useState(null);
 
-  const handleFileChange = (file) => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
     setFile(file);
     const reader = new FileReader();
     reader.onload = (event) => {
       const text = event.target.result;
       setData(text);   
     };
-    reader.readAsText(file);   
+    reader.readAsText(file);
   };
-
-  const fileTypes = ["CSV"];
 
   const handleSubmit = async () => {
     try {
@@ -40,7 +37,7 @@ const Page = () => {
 
       console.log(response);
       if (response.status === 200) {
-        toast.success("Members added successfully");
+        toast.success("Activities added successfully");
       } else {
         toast.error("Check the file data");
       }
@@ -56,7 +53,7 @@ const Page = () => {
           <div className="addActivities-one">
             <div className="addActivities-one-one">
               <p>
-              Instructions for Uploading Club Activity Files{" "}
+                Instructions for Uploading Club Activity Files{" "}
                 <MdOutlineIntegrationInstructions className="Activities-icon" />
               </p>
             </div>
@@ -77,22 +74,20 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <div className="addActivities-two">
-            <div className="addActivities-two-a">
-              {/* <input 
-                                type="file" 
-                                accept=".csv" 
-                                onChange={handleFileChange} 
-                                required
-                            /> */}
-              <FileUploader
-                handleChange={handleFileChange} 
-                name="file"
-                types={fileTypes}
-                dropMessageStyle={{ height: "100px" }}
-              />
+          <div className="addActivities-two" id="final">
+            <div className="addActivities-two-a" id="final-two">
+              <div className={`custom-file-input ${file ? 'file-added' : ''}`}>
+                <input
+                  type="file"
+                  id="csvFile"
+                  name="csvFile"
+                  accept=".csv"
+                  onChange={handleFileChange}
+                />
+                <span>{file ? file.name : 'Drop or Add your CSV file here'}</span>
+              </div>
             </div>
-            <div className="addActivities-two-b">
+            <div className="addActivities-two-b" id="final-three">
               <button onClick={handleSubmit}>Submit</button>
             </div>
           </div>
