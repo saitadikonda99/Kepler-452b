@@ -89,6 +89,11 @@ const sidebar = () => {
       link: "/admin/addAdmin",
     },
     {
+      name: "Add Students",
+      icon: <BsPersonFillAdd className="sideBar-icon" />,
+      link: "/admin/Members/addMembers",
+    },
+    {
       name: "Change Password",
       icon: <RiLockPasswordFill className="sideBar-icon" />,
       link: "/admin/changePassword",
