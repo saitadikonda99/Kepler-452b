@@ -259,20 +259,34 @@ const Page = () => {
                     </td>
                     <td>
                       {course.is_active === 1 ? (
-                        <button onClick={() => handleActive(course.id, 0)}>
+                        <button 
+                          onClick={() => handleActive(course.id, 0)}
+                          className="DeactivateButton"
+                        >
                           Deactivate
                         </button>
                       ) : (
-                        <button onClick={() => handleActive(course.id, 1)}>
+                        <button 
+                          onClick={() => handleActive(course.id, 1)}
+                          className="ActivateButton"
+                        >
                           Activate
                         </button>
                       )}
                     </td>
                     <td>
-                      <button onClick={() => handleEdit(course)}>Edit</button>
+                      <button 
+                        onClick={() => handleEdit(course)}
+                        className="EditButton"
+                      >
+                        Edit
+                      </button>
                     </td>
                     <td>
-                      <button onClick={() => handleDelete(course.id)}>
+                      <button 
+                        onClick={() => handleDelete(course.id)}
+                        className="DeleteButton"
+                      >
                         Delete
                       </button>
                     </td>

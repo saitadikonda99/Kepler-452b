@@ -41,6 +41,7 @@
     cursor: pointer;
     padding: .5rem 1rem;
     margin: 0 .2rem;
+    color: #fff;
 }
 
 .updateCourseComponent-in table td button:nth-child(1) {
@@ -53,7 +54,6 @@
 
 .updateCourseComponent-in table td button:nth-child(3) {
     background-color: #d9534f;
-    color: #fff;
 }
 
 .editCourseForm {
@@ -124,4 +124,20 @@
 
 .editCourseActions button:hover {
     background-color: rgb(0, 147, 0);
+}
+
+.DeactivateButton {
+  background-color: #d9534f !important;
+}
+
+.ActivateButton {
+  background-color: #5cb85c !important;
+}
+
+.EditButton {
+  background-color: #f0ad4e !important;
+}
+
+.DeleteButton {
+  background-color: #d9534f !important;
 }
