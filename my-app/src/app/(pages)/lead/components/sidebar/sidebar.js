@@ -60,6 +60,15 @@ const sidebar = () => {
       ],
     },
     {
+      name: "Courses",
+      icon: <RiLockPasswordFill className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "Add Courses", icon: <MdOutlineChangeCircle className="sideBar-icon" /> , link: "/lead/addCourse" },
+        { name: "UpdateCourses", icon: <MdOutlineChangeCircle className="sideBar-icon" /> , link: "/lead/updateCourse" },
+      ],
+    },
+    {
       name: "Add Activities",
       icon: <BsCalendar2MinusFill className="sideBar-icon" />,
       link: "/lead/addActivities",

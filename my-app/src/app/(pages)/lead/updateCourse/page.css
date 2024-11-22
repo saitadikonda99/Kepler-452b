@@ -1,0 +1,127 @@
+.updateCourseComponent {
+    width: 100%;
+}
+
+.updateCourseComponent-in {
+    width: 100%;
+    padding: 1rem;
+    height: 83.5vh;
+}
+
+.updateCourseComponent-in h1 {
+    font-size: 1rem;
+    padding: 1rem 0;
+}
+
+.updateCourseComponent-in table {
+    width: 100%;
+    border: 1px solid rgb(100 116 139 / 1);
+    border-collapse: collapse;
+}
+
+.updateCourseComponent-in table th, 
+.updateCourseComponent-in table td {
+    border: 1px solid rgb(100 116 139 / 1);
+    text-align: center;
+    padding: .8rem;
+}
+
+.updateCourseComponent-in table th {
+    color: black;
+    font-weight: 600;
+}
+
+.updateCourseComponent-in table tbody tr:nth-child(odd) {
+    background-color: rgb(243, 244, 246);
+}
+
+.updateCourseComponent-in table td button {
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    padding: .5rem 1rem;
+    margin: 0 .2rem;
+}
+
+.updateCourseComponent-in table td button:nth-child(1) {
+    background-color: #5cb85c;
+}
+
+.updateCourseComponent-in table td button:nth-child(2) {
+    background-color: #f0ad4e;
+}
+
+.updateCourseComponent-in table td button:nth-child(3) {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.editCourseForm {
+    width: 100%;
+    padding: 20px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.editCourseForm-in {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.editCourseForm-in-one {
+    width: calc(50% - 0.5rem);
+}
+
+.editCourseForm-in-one label {
+    font-size: 1rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    display: block;
+}
+
+
+.editCourseForm-in-one input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 0.1px solid gray;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    appearance: none;
+}
+
+.editCourseForm-in-one select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 0.1px solid gray;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    appearance: none;
+}
+
+.editCourseActions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.editCourseActions button {
+    font-size: .8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.editCourseActions button:hover {
+    background-color: rgb(0, 147, 0);
+}
