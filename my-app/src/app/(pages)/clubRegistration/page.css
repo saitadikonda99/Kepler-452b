@@ -17,6 +17,14 @@
     padding: 1rem;
 }
 
+.ClubRegistration-notOpen {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .ClubRegistration-one-in {
     width: 90%;
     margin: auto;
@@ -199,6 +207,10 @@
 }
 
 .cr-six-in-two {
+    width: 30%;
+}
+
+.cr-six-in-three {
     width: 30%;
 }
 

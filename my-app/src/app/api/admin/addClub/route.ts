@@ -9,6 +9,8 @@ export const POST = async (req: NextRequest) => {
   try {
     const { valid, payload } = await verifyJWT();
 
+    const KEY = "getClubs";
+
     if (!valid) {
       return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }
@@ -123,6 +125,8 @@ export const POST = async (req: NextRequest) => {
     await pool.query("CALL AddClubData(?);", [clubId]);
 
     await pool.query('COMMIT');
+
+    await redisClient.del(KEY);
     
     return NextResponse.json({ message: "Club added successfully" }, { status: 200 });
 

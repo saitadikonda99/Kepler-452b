@@ -11,7 +11,6 @@ import Footer from '../components/footer/page'
 import "./page.css";
 
 
-
 import Loader from "../../animation/loader";
 
 // import data files here
@@ -23,31 +22,11 @@ import { branchNames } from "./branchData/data";
 const page = () => {
   const [clubData, setClubData] = React.useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [courseData, setCourseData] = useState([]);
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await axios.get("/api/getClubs", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
+  const [registration, setRegistration] = useState([]);
+  const [academicYearId, setAcademicYearId] = useState(null);
 
-        console.log(response);
-
-        if (response.status === 200) {
-          setClubData(response.data);
-        } else {
-          toast.error("Failed to fetch stats");
-        }
-      } catch (error) {
-        toast.error("Internal server error");
-      }
-    };
-
-    fetch();
-  }, []);
 
   const techClubs = clubData.filter(
     (club) => club.club_domain === "TEC" && club.active === 1
@@ -67,11 +46,18 @@ const page = () => {
 
   const handleSubmit = async () => {
     try {
-  
       setIsLoading(true);
 
       if (!data.idCard || !data.erpPayment) {
         toast.error("Please fill all the fields");
+        setIsLoading(false);
+        return;
+      }
+
+      // Check file size limit of 2MB
+      const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+      if (data.idCard.size > maxSizeInBytes || data.erpPayment.size > maxSizeInBytes) {
+        toast.error("File size exceeds the limit of 2MB");
         setIsLoading(false);
         return;
       }
@@ -84,8 +70,6 @@ const page = () => {
           formData.append(key, data[key]);
         }
       });
-
-      console.log(formData);
 
       const response = await axios.post("/api/clubRegistration", formData, {
         headers: {
@@ -114,6 +98,7 @@ const page = () => {
     gender: "",
     countryCode: "",
     phoneNumber: "",
+    year: "",
     residency: "",
     hostelName: "",
     busRoute: "",
@@ -126,9 +111,11 @@ const page = () => {
     clubName: "",
     idCard: "",
     erpPayment: "",
+    courseId: "",
+    academicYearId: "",
+    courseName: "",
   });
 
-  console.log(data);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -145,6 +132,16 @@ const page = () => {
         ...data,
         [name]: value,
         clubId: clubData.find((club) => club.club_name === value)?.id,
+        courseId: "",
+        courseName: "",
+      });
+    }
+    else if (name === "courseName") {
+      setData({
+        ...data,
+        [name]: value,
+        courseId: courseData.find((course) => course.course_name === value)?.id,
+        academicYearId: academicYearId,
       });
     }
     else {
@@ -162,6 +159,73 @@ const page = () => {
       [name]: file,
     });
   };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [registrationResponse, clubResponse] = await Promise.all([
+          axios.get("/api/admin/manageRegistration"),
+          axios.get("/api/getClubs", {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }),
+        ]);
+
+        setRegistration(registrationResponse.data);
+        const academicYearId = registrationResponse.data[0]?.academic_year_id;
+        setAcademicYearId(academicYearId);
+
+        if (clubResponse.status === 200) {
+          setClubData(clubResponse.data);
+        } else {
+          toast.error("Failed to fetch clubs");
+        }
+
+        if (academicYearId) {
+          const courseResponse = await axios.get(`/api/getCourses/${academicYearId}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          });
+
+          if (courseResponse.status === 200) {
+            setCourseData(courseResponse.data);
+          } else {
+            toast.error("Failed to fetch courses");
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        toast.error("Failed to load data");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const courseDetails = data.clubId && data.year
+    ? courseData.filter((course) => course.club_id === data.clubId && course.course_year === data.year)
+    : [];
+
+  console.log(registration);
+
+  if (registration.length === 0) {
+    return (
+      <div className="ClubRegistrationComponent">
+        <div className="ClubRegistrationComponent-in">
+            <Navbar/>
+              <div className="ClubRegistration-notOpen">
+                <h1>Registration's are closed</h1>
+              </div>
+            <Footer/>
+        </div>
+      </div>
+    )
+  }
 
   return (
     isLoading ? <Loader /> :
@@ -276,6 +340,22 @@ const page = () => {
             </div>
             <div className="cr-four">
               <div className="cr-four-in">
+
+              <div className="cr-four-in-one crSelect">
+                  <select
+                    name="year"
+                    value={data.year}
+                    onChange={handleChange}
+                    id="selectInput"
+                  >
+                    <option value="">Select Academic Year</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+
                 <div className="cr-four-in-one crSelect">
                   <select
                     name="residency"
@@ -485,6 +565,30 @@ const page = () => {
                       ))}
                   </select>
                 </div>
+
+                {data.clubName && (
+                  <div className="cr-six-in-three crSelect">
+                    <select
+                      name="courseName"
+                      value={data.courseName}
+                      onChange={handleChange}
+                      id="selectInput"
+                    >
+                      <option value="">Select a course</option>
+                      {courseDetails.length > 0 ? (
+                        courseDetails.map((course) => (
+                          <option key={course.id} value={course.course_name}>
+                            {course.course_name}
+                          </option>
+                        ))
+                      ) : (
+                        <option value="" disabled>
+                          {data.year ? 'No courses available' : 'Please select a year'}
+                        </option>
+                      )}
+                    </select>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -492,7 +596,7 @@ const page = () => {
               <div className="cr-seven-in">
                 <div className="cr-seven-in-one">
                   <div className="cr-seven-in-one-one crInput">
-                    <label htmlFor="idCard">ID Card (PDF):</label>
+                    <label htmlFor="idCard">ID Card (PDF MAX 2MB):</label>
                     <div className={`custom-file-input ${data.idCard ? 'file-added' : ''}`}>
                       <input
                         type="file"
@@ -506,7 +610,7 @@ const page = () => {
                   </div>
 
                   <div className="cr-seven-in-one-two crInput">
-                    <label htmlFor="erpPayment">ERP Payment (PDF):</label>
+                    <label htmlFor="erpPayment">ERP Payment (PDF MAX 2MB):</label>
                     <div className={`custom-file-input ${data.erpPayment ? 'file-added' : ''}`}>
                       <input
                         type="file"

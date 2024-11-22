@@ -5,10 +5,10 @@ import { verifyRoles } from "../../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../../middleware/middleware";
 import { redisClient } from "../../../../../config/redis";
 
+const KEY = "registration_status";
+
 const deleteHandler = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
-
-  const KEY = `getCourses`;
 
   if (!valid) {
     return NextResponse.json({ message: "Unauthorized"}, {status: 401});
@@ -18,7 +18,7 @@ const deleteHandler = async (req: NextRequest) => {
 
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
-    "club_lead"
+    "Admin"
   );
 
   if (!authorized) {  
@@ -26,12 +26,11 @@ const deleteHandler = async (req: NextRequest) => {
   }
 
   try {
-    
-    const courseId = req.nextUrl.pathname.split("/").pop();
+
+    const registrationId = req.nextUrl.pathname.split("/").pop();
 
     const [result]: any = await pool.query(
-      `DELETE FROM courses WHERE id = ?`,
-      [courseId]
+      `DELETE FROM registration_status`
     );
 
     await redisClient.del(KEY);

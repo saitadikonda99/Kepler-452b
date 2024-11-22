@@ -1,0 +1,102 @@
+.ManageRegistrationComponent {
+    width: 100%;
+}
+
+.ManageRegistrationComponent-in {
+    width: 100%;
+    padding: 1rem;
+    height: 83.5vh;
+}
+
+.manageRegistration-one {
+    width: 100%;
+}
+
+.manageRegistration-one h1 {
+    font-size: 1.2rem;
+    padding: .5rem 0rem;
+}
+
+.manageRegistration-one table {
+    width: 100%;
+    border: 1px solid rgb(100 116 139 / 1);
+    border-collapse: collapse;
+}
+
+.manageRegistration-one table th,
+.manageRegistration-one table td {
+    border: 1px solid rgb(100 116 139 / 1);
+    text-align: center;
+}
+
+.manageRegistration-one table th {
+    color: black;
+    font-weight: 600;
+    padding: .8rem;
+}
+
+.manageRegistration-one table td {
+    padding: .8rem;
+}
+
+.manageRegistration-one table tbody tr:nth-child(odd) {
+    background-color: rgb(243, 244, 246);
+}
+
+.manageRegistration-one table tr td:nth-child(1) {
+    width: 70%;
+}
+
+.manageRegistration-one table tr td:nth-child(2) {
+    width: 30%;
+}
+
+.manageRegistration-one table tr button {
+    color: #fff;
+    padding: .4rem .8em;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #d9534f;
+}
+
+.manageRegistration-two {
+    width: 100%;
+}
+
+.manageRegistration-two-in {
+    width: 100%;
+}
+
+.manageRegistration-two-in h1 {
+    font-size: 1.2rem;
+    padding: .5rem 0rem;
+}
+
+.manageRegistration-two-in-one {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 1rem;
+}
+
+.manageRegistration-two-in select {
+    width: 32%;
+    padding: 0.8rem;
+    border: 0.1px solid gray;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    appearance: none;
+}
+
+.manageRegistration-two-in button {
+    width: 15%;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

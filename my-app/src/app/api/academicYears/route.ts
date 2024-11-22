@@ -11,10 +11,9 @@ export const GET = async (req: NextRequest) => {
 
     const cache = await redisClient.get(Key);
 
-    // if (cache) {
-    //     console.log("Cache hit");
-    //   return NextResponse.json(JSON.parse(cache), { status: 200 });
-    // }
+    if (cache) {
+      return NextResponse.json(JSON.parse(cache), { status: 200 });
+    }
 
     const { valid, payload } = await verifyJWT();
 

@@ -235,3 +235,48 @@ CREATE TABLE user_details (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE SET NULL
 );
+
+CREATE TABLE academic_years (
+    id INT NOT NULL AUTO_INCREMENT,
+    year_range VARCHAR(20) NOT NULL, 
+    semester ENUM('Odd', 'Even') NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE (year_range, semester)  
+);
+
+CREATE TABLE courses (
+    id INT NOT NULL AUTO_INCREMENT,
+    course_code VARCHAR(20) NOT NULL,
+    course_name VARCHAR(255) NOT NULL,
+    course_handout VARCHAR(255) DEFAULT NULL,
+    course_year ENUM('1', '2', '3', '4') NOT NULL DEFAULT '1',
+    register_students INT NOT NULL DEFAULT 0,
+    course_slots INT NOT NULL DEFAULT 0,
+    is_active BOOLEAN DEFAULT 1,
+    club_id INT NOT NULL,
+    academic_year_id INT NOT NULL,  
+    PRIMARY KEY (id),
+    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
+    FOREIGN KEY (academic_year_id) REFERENCES academic_years(id) ON DELETE CASCADE  
+);
+
+CREATE TABLE course_registrations (
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    course_id INT NOT NULL,
+    academic_year_id INT NOT NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    FOREIGN KEY (academic_year_id) REFERENCES academic_years(id) ON DELETE CASCADE
+);
+
+CREATE TABLE registration_status (
+    id INT NOT NULL AUTO_INCREMENT,
+    academic_year_id INT NOT NULL,
+    status BOOLEAN DEFAULT 1,
+    PRIMARY KEY (id),
+    UNIQUE (academic_year_id),  
+    FOREIGN KEY (academic_year_id) REFERENCES academic_years(id) ON DELETE CASCADE
+);

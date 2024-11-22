@@ -103,6 +103,11 @@ const sidebar = () => {
       icon: <MdOutlineManageAccounts className="sideBar-icon" />,
       link: "/admin/manageUsers",
     },
+    {
+      name: "Manage Registration",
+      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      link: "/admin/manageRegistration",
+    },
   ];
 
   return (

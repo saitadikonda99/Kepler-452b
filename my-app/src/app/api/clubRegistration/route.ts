@@ -1,5 +1,6 @@
 import { pool } from "../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
+import { redisClient } from "../../../config/redis";
 import { emailQueue } from "./emailQueue";
 import fs from "fs/promises";
 import path from "path";
@@ -7,6 +8,9 @@ import bcrypt from "bcrypt";
 
 export const POST = async (req: NextRequest) => {
   try {
+    const KEY = `getCourses`;
+
+
     const formData = await req.formData();
 
     const name = formData.get("name") as string;
@@ -14,6 +18,7 @@ export const POST = async (req: NextRequest) => {
     const email = formData.get("email") as string;
     const branch = formData.get("branch") as string;
     const gender = formData.get("gender") as string;
+    const year = formData.get("year") as string;
     const countryCode = formData.get("countryCode") as string;
     const phoneNumber = formData.get("phoneNumber") as string;
     const residency = formData.get("residency") as string;
@@ -26,9 +31,17 @@ export const POST = async (req: NextRequest) => {
     const domain = formData.get("domain") as string;
     const clubName = formData.get("clubName") as string;
     const clubId = formData.get("clubId") as string;
+    const courseId = formData.get("courseId") as string;
+    const academicYearId = formData.get("academicYearId") as string;
+    const courseName = formData.get("courseName") as string;
     const idCard = formData.get("idCard") as File;
     const erpPayment = formData.get("erpPayment") as File;
 
+    const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+
+    if (idCard.size > maxSizeInBytes || erpPayment.size > maxSizeInBytes) {
+      return NextResponse.json({ message: 'File size exceeds the limit of 2MB' }, { status: 400 });
+    }
 
     // Validation
 
@@ -73,6 +86,10 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "Gender is required." }, { status: 400 });
     }
 
+    if (!year) {
+      return NextResponse.json({ message: "Year is required." }, { status: 400 });
+    }
+
     if (!residency) {
       return NextResponse.json({ message: "Residency is required." }, { status: 400 });
     }
@@ -101,6 +118,13 @@ export const POST = async (req: NextRequest) => {
     if (!domain || !clubName) {
       return NextResponse.json(
         { message: "Domain and club name are required." },
+        { status: 400 }
+      );
+    }
+
+    if (!courseId || !courseName) {
+      return NextResponse.json(
+        { message: "Course selection is required." },
         { status: 400 }
       );
     }
@@ -217,6 +241,21 @@ export const POST = async (req: NextRequest) => {
     
     await pool.query(query, [userId, ...values]);
 
+    // insert into course_registrations
+
+    const [academicYear]: any = await pool.query(
+      `INSERT INTO course_registrations (user_id, course_id, academic_year_id) VALUES (?, ?, ?);`,
+      [userId, courseId, academicYearId]
+    );
+
+    await pool.query(
+      `UPDATE courses SET register_students = register_students + 1 WHERE id = ? AND course_slots > register_students;`,
+      [courseId]
+    );
+
+
+    await redisClient.del(KEY);
+
     await pool.query('COMMIT');
 
     // Send confirmation email
@@ -237,7 +276,6 @@ export const POST = async (req: NextRequest) => {
 
   } catch (error) {
     await pool.query('ROLLBACK');
-    console.error("Unhandled error:", error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 };

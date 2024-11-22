@@ -8,6 +8,8 @@ import { redisClient } from "../../../../config/redis";
 const postHandler = async (req: NextRequest) => {
   const { valid, payload } = await verifyJWT();
 
+  const KEY = `getCourses`;
+
   if (!valid) {
     return NextResponse.json({ message: "Unauthorized"}, {status: 401});
   }
@@ -52,6 +54,7 @@ const postHandler = async (req: NextRequest) => {
         [clubIdValue, academicYear, courseName, courseCode, courseYear, courseSlots, courseHandout]
     );
     
+    await redisClient.del(KEY);
     return NextResponse.json({message: "New course added successfully"}, { status: 200 });
   } catch (error) {
     console.error(error);

@@ -6,6 +6,8 @@ import { verifyRoles } from "../../../../../lib/verifyRoles";
 
 export const POST = async (req: NextRequest) => {
   try {
+    const KEY = "getClubs";
+    
     const { valid, payload } = await verifyJWT();
 
     if (!valid || !payload) {
@@ -30,6 +32,8 @@ export const POST = async (req: NextRequest) => {
       `UPDATE clubs SET active = ? WHERE id = ?`,
       [active, clubId]   
     );
+
+    await redisClient.del(KEY);
 
     await pool.query('COMMIT');
 
