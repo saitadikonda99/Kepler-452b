@@ -18,6 +18,7 @@ const postHandler = async (req: NextRequest) => {
 
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
+    "Admin",
     "club_lead"
   );
 
@@ -27,12 +28,14 @@ const postHandler = async (req: NextRequest) => {
 
   try {
     
-    const {id, academicYear, courseName, courseCode, courseYear, courseSlots, courseHandout } = await req.json();
+    const {id, academicYear, courseName, courseCode, courseLevel, courseSlots, courseHandout } = await req.json();
 
+    console.log(id, academicYear, courseName, courseCode, courseLevel, courseSlots, courseHandout);
 
-    if ( !id || !academicYear || !courseName || !courseCode || !courseYear || !courseSlots || !courseHandout) {
+    if ( !id || !academicYear || !courseName || !courseCode || !courseLevel || !courseSlots || !courseHandout) {
         return NextResponse.json({ message: "All fields are required" }, { status: 400 });
     }
+
 
 
     if (isNaN(courseSlots)) {
@@ -40,8 +43,8 @@ const postHandler = async (req: NextRequest) => {
     }
 
     const [result]: any = await pool.query(
-        `UPDATE courses SET academic_year_id = ?, course_name = ?, course_code = ?, course_year = ?, course_slots = ?, course_handout = ? WHERE id = ?`,
-        [academicYear, courseName, courseCode, courseYear, courseSlots, courseHandout, id]
+        `UPDATE courses SET academic_year_id = ?, course_name = ?, course_code = ?, course_level = ?, course_slots = ?, course_handout = ? WHERE id = ?`,
+        [academicYear, courseName, courseCode, courseLevel, courseSlots, courseHandout, id]
     );
     
     await redisClient.del(KEY);

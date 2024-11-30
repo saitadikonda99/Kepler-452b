@@ -16,6 +16,7 @@ const postHandler = async (req: NextRequest) => {
 
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
+    "Admin",
     "club_lead"
   );
 

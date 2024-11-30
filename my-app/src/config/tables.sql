@@ -230,6 +230,7 @@ CREATE TABLE user_details (
     pincode VARCHAR(10) DEFAULT NULL,
     club_id INT DEFAULT NULL,
     domain ENUM('TEC', 'LCH', 'ESO', 'HWB', 'IIE') NOT NULL,
+    erp_reference_number VARCHAR(255) DEFAULT NULL,
     registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -246,10 +247,10 @@ CREATE TABLE academic_years (
 
 CREATE TABLE courses (
     id INT NOT NULL AUTO_INCREMENT,
-    course_code VARCHAR(20) NOT NULL,
-    course_name VARCHAR(255) NOT NULL,
+    course_code VARCHAR(20) NOT NULL UNIQUE,
+    course_name VARCHAR(255) NOT NULL UNIQUE,
     course_handout VARCHAR(255) DEFAULT NULL,
-    course_year ENUM('1', '2', '3', '4') NOT NULL DEFAULT '1',
+    course_level ENUM('Beginner', 'Intermediate', 'Advanced') NOT NULL DEFAULT 'Beginner',
     register_students INT NOT NULL DEFAULT 0,
     course_slots INT NOT NULL DEFAULT 0,
     is_active BOOLEAN DEFAULT 1,

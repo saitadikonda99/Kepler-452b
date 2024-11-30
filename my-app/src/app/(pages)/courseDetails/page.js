@@ -15,6 +15,8 @@ import "./page.css";
 
 import Loader from "../../animation/loader";
 
+const DOMAIN_ORDER = ["Technical", "Literary & Cultural", "Social", "Sports", "Others"];
+
 const page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [courseData, setCourseData] = useState([]);
@@ -75,70 +77,82 @@ const page = () => {
                 acc[course.club_name].courses.push(course);
                 return acc;
               }, {})
-            ).map(([clubName, { clubDomain, courses }]) => {
-              const slots = courses.some((course) => course.course_slots - course.register_students > 0);
+            )
+              .sort(([clubNameA, clubA], [clubNameB, clubB]) => {
+                const indexA = DOMAIN_ORDER.indexOf(clubA.clubDomain);
+                const indexB = DOMAIN_ORDER.indexOf(clubB.clubDomain);
+                if (indexA !== -1 && indexB !== -1) {
+                  return indexA - indexB;
+                } else if (indexA !== -1) {
+                  return -1;
+                } else if (indexB !== -1) {
+                  return 1;
+                } else {
+                  return clubNameA.localeCompare(clubNameB);
+                }
+              })
+              .map(([clubName, { clubDomain, courses }]) => {
+                const slots = courses.some((course) => course.course_slots - course.register_students > 0);
 
-              return (
-                <div key={clubName} className="Course-one-two">
-                  <div className="Course-one-two-in">
-                    <div className="Co-one" onClick={() => toggleOpen(clubName)}>
-                      <div className="Co-one-one">
-                        <p>{clubName}</p>
-                      </div>
-                      <div className="Co-one-two">
-                        <div className="Co-one-two-in-one">
-                          <p>Domain: {clubDomain}</p>
+                return (
+                  <div key={clubName} className="Course-one-two">
+                    <div className="Course-one-two-in">
+                      <div className="Co-one" onClick={() => toggleOpen(clubName)}>
+                        <div className="Co-one-one">
+                          <p>{clubName}</p>
                         </div>
-                        <div className="Co-one-two-in-two">
-                          <p className={slots ? "course-available" : "course-not-available"}>{slots ? "Slots Available" : "No Slots Available"}</p>
+                        <div className="Co-one-two">
+                          <div className="Co-one-two-in-one">
+                            <p>Domain: {clubDomain}</p>
+                          </div>
+                          <div className="Co-one-two-in-two">
+                            <p className={slots ? "course-available" : "course-not-available"}>{slots ? "Slots Available" : "No Slots Available"}</p>
+                          </div>
+                        </div>
+                        <div className="Co-one-three">
+                          {openStates[clubName] ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
                         </div>
                       </div>
-                      <div className="Co-one-three">
-                        {openStates[clubName] ? (
-                          <IoIosArrowUp />
-                        ) : (
-                          <IoIosArrowDown />
-                        )}
-                      </div>
-                    </div>
-                    {openStates[clubName] && (
-                      <div className="Co-two">
-                        <div className="Co-two-in">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Course Name</th>
-                                <th>Course Code</th>
-                                <th>Course Slots</th>
-                                <th>Course Offered Year</th>
-                                <th>Course Handout</th>
-                                <th>Registered Students</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {courses.map((course) => (
-                                <tr key={course.course_id}>
-                                  <td>{course.course_name}</td>
-                                  <td>{course.course_code}</td>
-                                  <td>{course.course_slots}</td>
-                                  <td>{course.course_year}</td>
-                                  <td>
-                                      <Link href={course.course_handout}>
-                                          <p>Handout</p>
-                                      </Link>
-                                  </td>
-                                  <td>{course.register_students}</td>
+                      {openStates[clubName] && (
+                        <div className="Co-two">
+                          <div className="Co-two-in">
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>Course Name</th>
+                                  <th>Course Code</th>
+                                  <th>Course Slots</th>
+                                  <th>Course Level</th>
+                                  <th>Course Handout</th>
                                 </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                              </thead>
+                              <tbody>
+                                {courses.map((course) => (
+                                  <tr key={course.course_id}>
+                                    <td>{course.course_name}</td>
+                                    <td>{course.course_code}</td>
+                                    <td>{course.course_slots}</td>
+                                    <td>{course.course_level}</td>
+                                    <td>
+                                        <Link href={course.course_handout}>
+                                            <p>Handout</p>
+                                        </Link>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
         <div className="Course-footer">

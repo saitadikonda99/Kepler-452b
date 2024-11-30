@@ -16,6 +16,7 @@ const getHandler = async (req: NextRequest) => {
 
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
+    "Admin",
     "club_lead"
   );
 
@@ -25,6 +26,15 @@ const getHandler = async (req: NextRequest) => {
 
   try {
     
+
+    if (userData.role === "Admin") {
+      const [result]: any = await pool.query(
+        `SELECT * FROM courses`
+      );
+
+      return NextResponse.json(result, { status: 200 });
+    }
+
     const userId = userData.id;
 
     // get club id with user id
@@ -40,6 +50,7 @@ const getHandler = async (req: NextRequest) => {
         `SELECT * FROM courses WHERE club_id = ?`,
         [clubIdValue]
     );
+
 
     console.log(result);
 

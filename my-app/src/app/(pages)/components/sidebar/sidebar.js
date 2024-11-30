@@ -108,6 +108,15 @@ const sidebar = () => {
       icon: <MdOutlineManageAccounts className="sideBar-icon" />,
       link: "/admin/manageRegistration",
     },
+    {
+      name: "Manage Courses",
+      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "Add Course", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/addCourse" },
+        { name: "Update Course", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/updateCourse" },
+      ],
+    },
   ];
 
   return (

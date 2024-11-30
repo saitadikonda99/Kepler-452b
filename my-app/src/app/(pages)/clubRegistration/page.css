@@ -203,17 +203,28 @@
 }
 
 .cr-six-in-one {
-    width: 30%;
+    width: 28%;
 }
 
 .cr-six-in-two {
-    width: 30%;
+    width: 18%;
 }
 
 .cr-six-in-three {
-    width: 30%;
+    width: 15%;
 }
 
+.cr-six-in-four {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.cr-six-in-four p{
+    font-size: .8rem;
+    color: rgb(240, 57, 57);
+}
 .cr-seven {
     width: 100%;
 }

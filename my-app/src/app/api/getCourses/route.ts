@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest) => {
             courses.course_code,
             courses.course_name,
             courses.course_handout,
-            courses.course_year,
+            courses.course_level,
             courses.register_students,
             courses.course_slots,
             courses.is_active AS course_active,

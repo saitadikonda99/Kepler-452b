@@ -17,17 +17,19 @@ const page = () => {
     academicYear: "",
     courseName: "",
     courseCode: "",
-    courseLevel: "",
     courseSlots: "",
     courseHandout: "",
+    courseLevel: "",
+    clubId: "",
   });
 
   const [academicYears, setAcademicYears] = useState([]);
+  const [clubs, setClubs] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/courses/addCourse", courseData, {
+      const response = await axios.post(`/api/courses/addCourse/${courseData.clubId}`, courseData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -50,10 +52,14 @@ const page = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/academicYears");
-        setAcademicYears(response.data);
+        const [academicYearsResponse, clubsResponse] = await Promise.all([
+          axios.get("/api/academicYears"),
+          axios.get("/api/getClubs"),
+        ]);
+        setAcademicYears(academicYearsResponse.data);
+        setClubs(clubsResponse.data);
       } catch (error) {
-        toast.error("Failed to load academic years");
+        toast.error("Failed to load data");
       }
     };
     fetchData();
@@ -66,6 +72,8 @@ const page = () => {
       [name]: value,
     }));
   };
+
+  console.log(courseData);
 
   return (
     <Dashboard>
@@ -83,7 +91,7 @@ const page = () => {
                 <VscDebugBreakpointLog />
                 <p>
                   The course code is created using details like the club name,
-                  course name, year offered, and academic year.
+                  course name, level of the course, and academic year.
                 </p>
               </div>
 
@@ -91,8 +99,8 @@ const page = () => {
                 <VscDebugBreakpointLog />
                 <p>
                   Example: If the club name is ZeroOne, the course name is Web
-                  Development, the year offered is 2, and the academic year is
-                  2024-25, the course code could be 24ZOCC2WD.
+                  Development, the level of the course is Intermediate, and the
+                  academic year is 2024-25, the course code could be 24ZOC2WD.
                 </p>
               </div>
             </div>
@@ -114,6 +122,37 @@ const page = () => {
                 ))}
               </select>
             </div>
+            <div className="addCourse-two-one">
+              <select
+                className="addCourse-select"
+                name="clubId"
+                onChange={handleChange}
+                value={courseData.clubId}
+              >
+                <option value="">Select Club</option>
+                {clubs.map((club) => (
+                  <option key={club.id} value={club.id}>
+                    {club.club_name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* add course Level */}
+
+            <div className="addCourse-two-one">
+              <select
+                className="addCourse-select"
+                name="courseLevel"
+                onChange={handleChange}
+                value={courseData.courseLevel}
+              >
+                <option value="">Select Level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+              </select>
+            </div>
+
             <div className="addCourse-two-two">
               <input
                 className="addCourse-input"
@@ -131,18 +170,6 @@ const page = () => {
                 value={courseData.courseCode}
                 onChange={handleChange}
               />
-            </div>
-            <div className="addCourse-two-four">
-              <select
-                className="addCourse-select"
-                name="courseLevel"
-                onChange={handleChange}
-                value={courseData.courseLevel}
-              >
-                <option value="">Select Level</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-              </select>
             </div>
             <div className="addCourse-two-five">
               <input
