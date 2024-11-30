@@ -1,306 +1,136 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .ClubRegistrationComponent {
-    width: 100%;
+  width: 100%;
 }
 
 .ClubRegistrationComponent-in {
-    width: 100%;
+  width: 100%;
 }
 
-.ClubRegistration-one {
-    width: 100%;
-    padding: 1rem;
+.clubRegistration-one {
+  width: 90%;
+  margin: auto;
+  height: 90vh;
 }
 
-.ClubRegistration-notOpen {
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ClubRegistration-one-in {
-    width: 90%;
-    margin: auto;
-    padding: 1rem;
-    border-radius: 20px;
-    height: 86vh;
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+.clubRegistration-in {
+  width: 100%;
+  height: 88vh;
 }
 
 .cr-one {
-    width: 100%;
-    padding: 1rem;
+  width: 100%;
+  height: 18vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cr-one h1{
-    font-size: 1.5rem;
-    text-align: center;
+.cr-one-in {
+    width: 100%;
 }
 
 .cr-two {
-    width: 100%;
+  width: 100%;
+  height: 68vh;
 }
 
 .cr-two-in {
-    width: 100%;
-    display: flex;
-    gap: 2rem;
+  width: 100%;
+  overflow: scroll;
+  border-top: 1px solid rgb(229, 227, 227);
 }
 
-.cr-two-in-one, .cr-two-in-two, .cr-two-in-three{
-    width: 30%;
+.cr-two-one {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  padding: 1rem 0rem;
 }
 
-.crInput label {
-    font-size: .8rem;
-}
-
-.crInput {
-    display: flex;
-    flex-direction: column;
-    gap: .2rem;
-}
-
-.crInput input {
-    padding: .8rem;
-    font-size: 1rem;
-    border: 2px solid rgb(221, 221, 221);
-    border-radius: 5px;       
-}
-
-.crInput input:focus {
-    outline: 2px solid rgb(131, 189, 251);
-}
-
-.cr-three {
-    width: 100%;
-}
-
-.cr-three-in {
-    width: 100%;
-    display: flex;
-    gap: 2rem;
-}
-
-.cr-three-in-one {
-    width: 30%;
-}
-
-.cr-three-in-two {
-    width: 20%;
-}
-
-.cr-three-in-three {
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.cr-three-in-three-one {
-    width: 40%;
-}
-
-.cr-three-in-three-two {
-    width: 60%;
-}
-
-.crSelect select {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    color: #333;
-    border: 2px solid rgb(221, 221, 221);
-    border-radius: 8px;
-    appearance: none;
-    cursor: pointer;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.crSelect select:focus {
-    border-color: rgb(131, 189, 251);  
-    box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);  
-    outline: none;
-}
-
-.crSelect select option {
-    padding: 10px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(51, 51, 51);
-}
-
-.crSelect select::-ms-expand {
-    display: none; 
-}
-
-.cr-four {
-    width: 100%;
-}
-
-.cr-four-in {
-    width: 100%;
-    display: flex;
-    gap: 2rem;
-}
-
-.cr-four-in-one, .cr-four-in-two, .cr-four-in-three{
-    width: 30%;
-}
-
-
-
-.cr-five {
-    width: 100%;
-}
-
-.cr-five-in {
-    width: 100%;
-    display: flex;
-    gap: 2rem;
-}
-
-.cr-five-in-one {
-    width: 20%;
-}
-
-.cr-five-in-two {
-    width: 50%;
-    display: flex;
-    gap: 2rem;
-}
-
-.cr-five-in-two-one {
-    width: 50%;
-}
-
-.cr-five-in-two-two {
-    width: 50%;
-}
-
-.cr-five-in-three {
-    width: 20%;
-}
-
-.cr-six {
-    width: 100%;
-}
-
-.cr-six-in {
-    width: 100%;
-    display: flex;
-    gap: 2rem;
-}
-
-.cr-six-in-one {
-    width: 28%;
-}
-
-.cr-six-in-two {
-    width: 18%;
-}
-
-.cr-six-in-three {
-    width: 15%;
-}
-
-.cr-six-in-four {
-    width: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.cr-six-in-four p{
-    font-size: .8rem;
-    color: rgb(240, 57, 57);
-}
-.cr-seven {
-    width: 100%;
-}
-
-.cr-seven-in {
-    width: 100%;
-    display: flex;
-    gap: 2rem;
-}
-
-.cr-seven-in-one {
-    width: 60%;
-    display: flex;
-    gap: 2rem;
-}
-
-.cr-seven-in-one-one {
-    width: 50%;
-}
-
-.cr-seven-in-one-two {
-    width: 50%;
-}
-
-.cr-seven-in-two {
-    width: 30%;
-    display: flex;
-    align-items: flex-end;
-}
-
-.cr-seven-in-two button {
-    width: 100%;
-    padding: .8rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
-
-.custom-file-input {
-  position: relative;
-  display: inline-block;
+.cr-two-two {
   width: 100%;
   height: 6vh;
-  border: 2px dashed rgb(0, 166, 255);
-  border-radius: 4px;
-  text-align: center;
-  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
-.custom-file-input.file-added {
-  border-color: green;
+.cr-two-two button {
+  width: 10%;
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.2rem;
+  background-color: black;
+  color: white;
 }
 
-.custom-file-input input[type="file"] {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+.cr-two-two button.cr-two-two-disabled {
+  border: 1px solid rgb(214, 209, 209);
+  background-color: #f0f0f0;
+  color: rgb(133, 133, 133);
+  cursor: not-allowed;
+}
+
+.cr-two-two-submit {
+  background-color: rgb(16, 120, 45);
+}
+
+.horizontal-timeline {
   width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.custom-file-input span {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 1rem;
-  height: 100%;
-  color: #999;
-  font-size: 1rem;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
 }
 
-.custom-file-input.file-added span {
-  color: green;
+.timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem 2rem;
+}
+
+.step-label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  transition: color 0.3s;
+}
+
+.step-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: 2px solid #ddd;
+  z-index: 2;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.timeline-step.completed .step-circle {
+  background-color: black; 
+  border-color: black
+}
+
+.timeline-step.completed .step-label {
+  color: black;
+}
+
+.timeline-step.active .step-circle {
+  background-color: black;
+  border-color: black;
+}
+
+.timeline-step.active .step-label {
+  font-weight: bold;
+  color: black;
 }

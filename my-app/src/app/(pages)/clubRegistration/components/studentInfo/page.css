@@ -1,0 +1,108 @@
+
+
+.StudentInfoComponent {
+    width: 100%;
+}
+
+.StudentInfoComponent-in {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cr-si-one {
+    width: 100%;
+    padding: 1rem 0rem;
+}
+
+.cr-si-one h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.cr-si-one p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.cr-si-two {
+    display: flex;
+    gap: 2rem;
+}
+
+.cr-si-two-one {
+    width: 33%;
+}
+
+.cr-si-two-one input {
+    width: 100%;
+}
+
+.crInput input {
+    width: 100%;
+    padding: .8rem;
+    font-size: 1rem;
+    border: 2px solid rgb(221, 221, 221);
+    border-radius: 5px;       
+}
+
+.crInput input:focus {
+    outline: 2px solid rgb(131, 189, 251);
+}
+
+.cr-si-three {
+    display: flex;
+    gap: 2rem;
+}
+
+.cr-si-three-one {
+    width: 40%;
+}
+
+.cr-si-three-two {
+    width: 15%;
+}
+
+.crSelect select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #333;
+    border: 2px solid rgb(221, 221, 221);
+    border-radius: 8px;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.crSelect select:focus {
+    border-color: rgb(131, 189, 251);  
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);  
+    outline: none;
+}
+
+.crSelect select option {
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+}
+
+.crSelect select::-ms-expand {
+    display: none; 
+}
+
+.cr-si-four {
+    display: flex;
+    gap: 2rem;
+}
+
+.cr-si-four-one {
+    width: 15%;
+}
+
+.cr-si-four-two {
+    width: 30%;
+}
+
+

@@ -1,0 +1,44 @@
+.RulesComponent {
+    width: 100%;
+}
+
+.RulesComponent-in {
+    width: 100%;
+}
+
+.rc-one {
+    width: 100%;
+}
+
+.rc-one h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.rc-one p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.rc-two {
+    width: 100%;
+}
+
+.rc-two-in {
+    width: 100%;
+    padding: 1rem 0rem;
+}
+
+.rc-two-in p {
+    padding: .5rem 0rem;
+}
+
+.rc-three {
+    width: 100%;
+    display: flex;
+}
+
+.rc-three input {
+    width: 1.5rem;
+    height: 1.5rem;
+}

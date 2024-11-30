@@ -1,0 +1,108 @@
+.ClubDataComponent {
+    width: 100%;
+}
+
+.ClubDataComponent-in {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ClubData-one {
+    width: 100%;
+    padding: 1rem 0rem;
+}
+
+.ClubData-one h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.ClubData-one p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.ClubData-two {
+    display: flex;
+    gap: 2rem;
+}
+
+.ClubData-two-one {
+    width: 33%;
+}
+
+.clubData-three {
+    display: flex;
+    gap: 2rem;
+}
+
+.ClubData-three-one {
+    width: 40%;
+}
+
+.ClubData-three-two {
+    width: 30%;
+}
+
+.ClubData-three-three {
+    width: 30%;
+}
+
+.ClubData-four {
+    width: 100%;
+}
+
+.ClubData-four-one {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+}
+
+.ClubData-four-one-one {
+    width: 50%;
+}
+
+.ClubData-four-one-two {
+    width: 50%;
+}
+
+.custom-file-input {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 6vh;
+    border: 2px dashed rgb(0, 166, 255);
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.custom-file-input.file-added {
+    border-color: green;
+}
+
+.custom-file-input input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.custom-file-input span {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    height: 100%;
+    color: #999;
+    font-size: 1rem;
+}
+
+.custom-file-input.file-added span {
+    color: green;
+}
