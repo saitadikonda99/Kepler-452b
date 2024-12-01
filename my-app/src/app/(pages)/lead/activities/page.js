@@ -13,7 +13,7 @@ import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
 
 // Add to imports at the top
-import Loader from "../../../animation/loader";
+import Loader from "../../../animation/Loading";
 
 const page = () => {
   const [show, setShow] = useState(false);

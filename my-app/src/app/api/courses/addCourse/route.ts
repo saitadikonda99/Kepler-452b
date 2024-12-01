@@ -26,6 +26,13 @@ const postHandler = async (req: NextRequest) => {
   }
 
   try {
+
+    const pattern = 'getCourses*'; 
+
+    const cachedData = await redisClient.keys(pattern);
+    if (cachedData) {
+      await redisClient.del(cachedData);
+    }
     
     const userId = userData.id;
 

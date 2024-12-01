@@ -2,6 +2,9 @@ import React from "react";
 
 import "./page.css";
 
+import { VscDebugBreakpointLog } from "react-icons/vsc";
+
+
 const page = ({ data, setData }) => {
   
   const handleChange = (e) => {
@@ -21,35 +24,39 @@ const page = ({ data, setData }) => {
         <div className="rc-two">
           <div className="rc-two-in">
             <p>
-              Before we get too far along, let's confirm your eligibility for
-              the program. In order to apply for this program you must meet all
-              of the criteria listed below.
+              <VscDebugBreakpointLog />
+              All students must register for one course only—either a beginner
+              or intermediate course.
             </p>
             <p>
-              Before we get too far along, let's confirm your eligibility for
-              the program. In order to apply for this program you must meet all
-              of the criteria listed below.
+              <VscDebugBreakpointLog />
+              Students cannot enroll in multiple courses at the same time.
             </p>
             <p>
-              Before we get too far along, let's confirm your eligibility for
-              the program. In order to apply for this program you must meet all
-              of the criteria listed below.
+              <VscDebugBreakpointLog />
+              Beginner courses are designed for students with no prior knowledge
+              of the subject.
             </p>
             <p>
-              Before we get too far along, let's confirm your eligibility for
-              the program. In order to apply for this program you must meet all
-              of the criteria listed below.
+              <VscDebugBreakpointLog />
+              Intermediate courses are open to students who have completed a
+              beginner course or have equivalent knowledge.
             </p>
             <p>
-              Before we get too far along, let's confirm your eligibility for
-              the program. In order to apply for this program you must meet all
-              of the criteria listed below.
+              <VscDebugBreakpointLog />
+              Students must complete the payment through the ERP system and provide
+              the payment reference number during registration.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Registration will be confirmed only after verifying the ERP payment
+              reference number.
             </p>
           </div>
         </div>
         <div className="rc-three">
           <input type="checkbox" checked={data.agree} onChange={handleChange} />
-          <p>I agree to the above terms and conditions</p>
+          <p>I have read and agree to the above rules and regulations</p>
         </div>
       </div>
     </div>

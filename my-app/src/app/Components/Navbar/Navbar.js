@@ -163,20 +163,6 @@ const Navbar = () => {
                 Upcoming Events
               </Scroll>
             </li>
-            <li>
-              <Scroll
-                className="nav-scroll-links"
-                activeClass="active"
-                to="Twelve"
-                spy={true}
-                smooth={true}
-                offset={-10}
-                duration={400}
-                onClick={closeNav}
-              >
-                FAQs
-              </Scroll>
-            </li>
             <li
               className="clubs-hover"
               onMouseEnter={handleHover}
@@ -199,6 +185,10 @@ const Navbar = () => {
 
             <li>
               <Link href="/sil">SIL</Link>
+            </li>
+
+            <li>
+              <Link href="/clubRegistration">Register</Link>
             </li>
 
             <li>
@@ -296,19 +286,6 @@ const Navbar = () => {
                 Upcoming Events
               </Scroll>
             </li>
-            <li>
-              <Scroll
-                className="nav-scroll-links"
-                activeClass="active"
-                to="Twelve"
-                spy={true}
-                smooth={true}
-                offset={-10}
-                duration={400}
-              >
-                FAQs
-              </Scroll>
-            </li>
             <li
               className="clubs-hover"
               onMouseEnter={handleHover}
@@ -335,6 +312,9 @@ const Navbar = () => {
               <Link href="https://sac-svr.vercel.app" target="_blank">
                 SVR
               </Link>
+            </li>
+            <li>
+              <Link href="/clubRegistration">Register</Link>
             </li>
           </ul>
         </div>

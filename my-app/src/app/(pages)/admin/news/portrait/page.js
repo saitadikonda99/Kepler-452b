@@ -10,7 +10,7 @@ import "./page.css";
 
 // Import components
 import Dashboard from "../../dashboard/dashboard";
-import Loader from "../../../../animation/loader";
+import Loader from "../../../../animation/Loading";
 
 const Page = () => {
   const [newsData, setNewsData] = useState([]);

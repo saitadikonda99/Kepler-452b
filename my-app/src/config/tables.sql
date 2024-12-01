@@ -231,6 +231,7 @@ CREATE TABLE user_details (
     club_id INT DEFAULT NULL,
     domain ENUM('TEC', 'LCH', 'ESO', 'HWB', 'IIE') NOT NULL,
     erp_reference_number VARCHAR(255) DEFAULT NULL,
+    payment_status ENUM('Paid', 'Unpaid') NOT NULL DEFAULT 'Unpaid',
     registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,

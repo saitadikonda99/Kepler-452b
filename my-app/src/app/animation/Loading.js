@@ -2,7 +2,7 @@ import React from 'react'
 
 import './loader.css'
 
-const loader = () => {
+const Loading = () => {
   return (
     <div className="LoaderComponent">
         <div className="Loader"></div>
@@ -10,4 +10,4 @@ const loader = () => {
   )
 }
 
-export default loader
+export default Loading

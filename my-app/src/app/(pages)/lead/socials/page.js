@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import Dashboard from "../dashboard/dashboard";
 import "./page.css";
-import Loader from "../../../animation/loader";
+import Loader from "../../../animation/Loading";
 
 // import icons here
 import { VscDebugBreakpointLog } from "react-icons/vsc";

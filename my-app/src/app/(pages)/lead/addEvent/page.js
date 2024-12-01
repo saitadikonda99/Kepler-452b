@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import Dashboard from "../dashboard/dashboard";
 import "./page.css";
 
-import Loader from "../../../animation/loader";
+import Loader from "../../../animation/Loading";
 
 
 const page = () => {

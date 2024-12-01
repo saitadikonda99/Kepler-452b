@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from 'next/navigation'
 import { toast } from "react-hot-toast";
 
-import Loader from '../../../animation/loader';
+import Loader from '../../../animation/Loading';
 
 import "./page.css";
 

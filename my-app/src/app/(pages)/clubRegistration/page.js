@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import Navbar from "../sil/Navbar";
 import Footer from "../components/footer/page";
 
-import Loader from "../../animation/Loader";
+import Loader from "../../animation/Loading";
 
 import "./page.css";
 
@@ -18,11 +18,11 @@ import Address from "./components/address/page.js";
 import ClubData from "./components/clubData/page.js";
 
 const steps = [
-  { label: "Rules", component: Rules },
   { label: "Course Details", component: CourseDetails },
+  { label: "Rules", component: Rules },
   { label: "Student Info", component: StudentInfo },
-  { label: "Address", component: Address },
-  { label: "Club Data", component: ClubData },
+  { label: "Address & Residency", component: Address },
+  { label: "Club Details", component: ClubData },
 ];
 
 const Page = () => {
@@ -61,9 +61,9 @@ const Page = () => {
 
   const validateStep = () => {
     let isValid = true;
-    if (currentStep === 1) {
+    if (currentStep === 2) {
       if (!data.agree) {
-        toast.error("Please agree to the terms and conditions");
+        toast.error("Please click on the checkbox to move forward");
         isValid = false;
       }
     } else if (currentStep === 3) {
@@ -163,7 +163,7 @@ const Page = () => {
     try {
       setIsLoading(true);
 
-      const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+      const maxSizeInBytes = 2 * 1024 * 1024;  
       if (data.idCard.size > maxSizeInBytes) {
         toast.error("File size exceeds the limit of 2MB");
         setIsLoading(false);
@@ -257,9 +257,11 @@ const Page = () => {
                 <div className="cr-two-in">
                   <div className="cr-two-one">
                     {currentStep === 1 && (
-                      <Rules data={data} setData={setData} />
+                      <CourseDetails />
                     )}
-                    {currentStep === 2 && <CourseDetails />}
+                    {currentStep === 2 && 
+                    (  <Rules data={data} setData={setData} />)
+                    }
                     {currentStep === 3 && (
                       <StudentInfo data={data} setData={setData} />
                     )}

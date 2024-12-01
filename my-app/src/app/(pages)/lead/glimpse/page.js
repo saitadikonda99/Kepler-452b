@@ -10,7 +10,7 @@ import "./page.css";
 // import icons here
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
-import Loader from "../../../animation/loader";
+import Loader from "../../../animation/Loading";
 
 const page = () => {
   const [show, setShow] = useState(false);

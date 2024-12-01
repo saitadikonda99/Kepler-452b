@@ -28,6 +28,13 @@ const deleteHandler = async (req: NextRequest) => {
 
   try {
     
+    const pattern = 'getCourses*'; 
+
+    const cachedData = await redisClient.keys(pattern);
+    if (cachedData) {
+      await redisClient.del(cachedData);
+    }
+
     const courseId = req.nextUrl.pathname.split("/").pop();
 
     const [result]: any = await pool.query(

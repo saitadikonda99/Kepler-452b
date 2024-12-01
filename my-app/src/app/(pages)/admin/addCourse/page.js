@@ -7,12 +7,15 @@ import Link from "next/link";
 import Dashboard from "../dashboard/dashboard";
 import "./page.css";
 
-import Loader from "../../../animation/loader";
+import Loader from "../../../animation/Loading";
 
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 
 const page = () => {
+
+  const [loading, setLoading] = useState(false);
+
   const [courseData, setCourseData] = useState({
     academicYear: "",
     courseName: "",
@@ -28,8 +31,10 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(`/api/courses/addCourse/${courseData.clubId}`, courseData, {
+        
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,6 +52,7 @@ const page = () => {
         toast.error(error.response.data.message);
       }
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -77,6 +83,7 @@ const page = () => {
 
   return (
     <Dashboard>
+      {loading && <Loader />}
       <div className="addCourseComponent">
         <div className="addCourseComponent-in">
           <div className="addCourse-one">

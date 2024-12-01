@@ -117,6 +117,15 @@ const sidebar = () => {
         { name: "Update Course", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/updateCourse" },
       ],
     },
+    {
+      name: "Manage Students",
+      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "View Students", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/viewStudents" },
+        { name: "Student Profile", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/studentProfile" },
+      ],
+    }
   ];
 
   return (

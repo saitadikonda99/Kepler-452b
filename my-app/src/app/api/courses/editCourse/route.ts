@@ -36,6 +36,12 @@ const postHandler = async (req: NextRequest) => {
         return NextResponse.json({ message: "All fields are required" }, { status: 400 });
     }
 
+    const pattern = 'getCourses*'; 
+
+    const cachedData = await redisClient.keys(pattern);
+    if (cachedData) {
+      await redisClient.del(cachedData);
+    }
 
 
     if (isNaN(courseSlots)) {

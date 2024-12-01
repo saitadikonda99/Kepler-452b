@@ -28,6 +28,13 @@ const postHandler = async (req: NextRequest) => {
     
     const courseId = req.nextUrl.pathname.split("/").pop();
 
+    const pattern = 'getCourses*'; 
+
+    const cachedData = await redisClient.keys(pattern);
+    if (cachedData) {
+      await redisClient.del(cachedData);
+    }
+
     const { active } = await req.json();
 
     if (courseId == null || active == null) {

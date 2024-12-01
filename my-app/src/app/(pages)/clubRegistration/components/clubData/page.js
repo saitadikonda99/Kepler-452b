@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 import "./page.css";
 
-import Loader from "../../../../animation/Loader";
+import Loader from "../../../../animation/Loading";
 
 
 const page = ({ data, setData }) => {

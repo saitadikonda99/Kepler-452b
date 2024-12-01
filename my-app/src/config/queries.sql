@@ -47,3 +47,17 @@ VALUES
 
 ALTER TABLE users
 MODIFY COLUMN role ENUM('Admin', 'club_lead', 'student') NOT NULL;
+
+
+INSERT INTO academic_years (year_range, semester)
+VALUES
+    ('2024-25', 'Even'),
+    ('2025-26', 'Odd'),
+    ('2025-26', 'Even'),
+    ('2026-27', 'Odd'),
+    ('2026-27', 'Even'),
+    ('2027-28', 'Odd'),
+    ('2027-28', 'Even'),
+    ('2028-29', 'Odd'),
+    ('2028-29', 'Even'),
+    ('2029-30', 'Odd');

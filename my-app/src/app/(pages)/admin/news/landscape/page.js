@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
-import Loader from "../../../../animation/loader";
+import Loader from "../../../../animation/Loading";
 
 import "./page.css";
 
