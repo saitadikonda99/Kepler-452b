@@ -282,6 +282,7 @@ export const POST = async (req: NextRequest) => {
     );
 
   } catch (error) {
+    console.log(error);
     await pool.query('ROLLBACK');
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }

@@ -23,6 +23,31 @@
   height: 88vh;
 }
 
+.RegistrationSuccess {
+  width: 100%;
+}
+
+.RegistrationSuccess-in {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.RegistrationClosed {
+  width: 100%;
+}
+
+.RegistrationClosed-in {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cr-one {
   width: 100%;
   height: 18vh;

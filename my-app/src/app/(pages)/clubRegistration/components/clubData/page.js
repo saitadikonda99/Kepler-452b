@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 import "./page.css";
 
-import Loader from "../../../../components/Loader/loader";
+import Loader from "../../../../animation/Loader";
 
 
 const page = ({ data, setData }) => {
@@ -21,7 +21,15 @@ const page = ({ data, setData }) => {
         [name]: value,
         courseId: courseData.find((course) => course.course_name === value)?.id,
       });
-    } else {
+    } 
+    else if (name === "clubName") {
+      setData({
+        ...data,
+        [name]: value,
+        clubId: clubData.find((club) => club.club_name === value)?.id,
+      });
+    }
+    else {
       setData({
         ...data,
         [name]: value,
@@ -31,10 +39,10 @@ const page = ({ data, setData }) => {
 
   const handleFileChange = useCallback((e, name) => {
     const file = e.target.files[0];
-    setData({
-      ...data,
+    setData(prevData => ({
+      ...prevData,
       [name]: file,
-    });
+    }));
   }, []);
 
   useEffect(() => {
