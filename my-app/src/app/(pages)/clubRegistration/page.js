@@ -7,19 +7,22 @@ import toast from "react-hot-toast";
 import Navbar from "../sil/Navbar";
 import Footer from "../components/footer/page";
 
-import Loader from "../../animation/Loading";
+import Loader from '../../animation/Loading';
+
 
 import "./page.css";
 
 import Rules from "./components/rules/page.js";
 import CourseDetails from "./components/courseDetails/page.js";
+import UnderTaking from "./underTaking/page.js";
 import StudentInfo from "./components/studentInfo/page.js";
 import Address from "./components/address/page.js";
 import ClubData from "./components/clubData/page.js";
 
 const steps = [
-  { label: "Course Details", component: CourseDetails },
+  { label: "Program Details", component: CourseDetails },
   { label: "Rules", component: Rules },
+  { label: "Under Taking", component: UnderTaking },
   { label: "Student Info", component: StudentInfo },
   { label: "Address & Residency", component: Address },
   { label: "Club Details", component: ClubData },
@@ -61,12 +64,12 @@ const Page = () => {
 
   const validateStep = () => {
     let isValid = true;
-    if (currentStep === 2) {
+    if (currentStep === 3) {
       if (!data.agree) {
         toast.error("Please click on the checkbox to move forward");
         isValid = false;
       }
-    } else if (currentStep === 3) {
+    } else if (currentStep === 4) {
       if (
         !data.name ||
         !data.idNumber ||
@@ -80,7 +83,7 @@ const Page = () => {
         toast.error("Please fill all the fields");
         isValid = false;
       }
-    } else if (currentStep === 4) {
+    } else if (currentStep === 5) {
       if (!data.country || !data.pinCode || !data.residency) {
         toast.error("Please fill all the fields");
         isValid = false;
@@ -100,7 +103,7 @@ const Page = () => {
         toast.error("Please fill all the fields");
         isValid = false;
       }
-    } else if (currentStep === 5) {
+    } else if (currentStep === 6) {
       if (
         !data.clubId ||
         !data.courseId ||
@@ -173,7 +176,7 @@ const Page = () => {
       const formData = new FormData();
       Object.keys(data).forEach((key) => {
         if (key === "idCard") {
-          formData.append(key, data[key], data[key].name);
+  +         formData.append(key, data[key], data[key].name);
         } else {
           formData.append(key, data[key]);
         }
@@ -260,15 +263,18 @@ const Page = () => {
                       <CourseDetails />
                     )}
                     {currentStep === 2 && 
-                    (  <Rules data={data} setData={setData} />)
+                    (  <Rules />)
                     }
                     {currentStep === 3 && (
-                      <StudentInfo data={data} setData={setData} />
+                      <UnderTaking data={data} setData={setData} />
                     )}
                     {currentStep === 4 && (
-                      <Address data={data} setData={setData} />
+                      <StudentInfo data={data} setData={setData} />
                     )}
                     {currentStep === 5 && (
+                      <Address data={data} setData={setData} />
+                    )}
+                    {currentStep === 6 && (
                       <ClubData data={data} setData={setData} />
                     )}
                   </div>
@@ -280,7 +286,7 @@ const Page = () => {
                     >
                       Previous
                     </button>
-                    {currentStep !== 5 ? (
+                    {currentStep !== 6 ? (
                       <button onClick={handleNext}>Next</button>
                     ) : (
                       <button

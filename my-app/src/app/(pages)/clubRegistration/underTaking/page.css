@@ -1,0 +1,72 @@
+.UnderTakingComponent {
+    width: 100%;
+    padding: 1rem;
+}
+
+.UnderTakingComponent-in {
+    width: 100%;
+}
+
+.ut-one {
+    width: 100%;
+    padding: 1rem 0rem;
+}
+
+.ut-one h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.ut-one p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.ut-two {
+    margin-bottom: 2rem;
+}
+
+.ut-two p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.ut-four {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ut-four input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.ut-four p {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+@media screen and (max-width: 768px) {
+    .UnderTakingComponent {
+        padding: 1rem;
+    }
+
+    .UnderTakingComponent-in {
+        padding: 1.5rem;
+    }
+
+    .ut-one h1 {
+        font-size: 1.8rem;
+    }
+
+    .ut-one p,
+    .ut-two p,
+    .ut-four p {
+        font-size: 1rem;
+    }
+}

@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 
 import "./page.css";
 
-import Loader from "../../../../animation/Loading";
+import Loader from '../../../../animation/Loading';
+
 
 
 const page = ({ data, setData }) => {
@@ -158,7 +159,7 @@ const page = ({ data, setData }) => {
               id="selectInput"
             >
               <option value=" ">Select your domain</option>
-              <option value="TEC">Central Technology Clubs under SAC</option>
+              <option value="TEC">Technology Clubs</option>
               <option value="LCH">
                 Liberal Arts, Creative Arts and Hobby Clubs
               </option>
@@ -223,10 +224,9 @@ const page = ({ data, setData }) => {
               onChange={handleChange}
               id="selectInput"
             >
-              <option value="">Select course level</option>
+              <option value="">Select Program Level</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
             </select>
           </div>
           <div className="ClubData-three-three crSelect">
@@ -239,7 +239,7 @@ const page = ({ data, setData }) => {
                   onChange={handleChange}
                   id="selectInput"
                 >
-                  <option value="">Select a course</option>
+                  <option value="">Select a Program</option>
 
                   {filteredCourseData.map((course) => (
                     <option key={course.id} value={course.course_name}>

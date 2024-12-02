@@ -15,7 +15,7 @@ const page = ({ data, setData }) => {
     <div className="RulesComponent">
       <div className="RulesComponent-in">
         <div className="rc-one">
-          <h1>Rules and Regulations</h1>
+          <h1>Rules and Regulations for Registration</h1>
           <p>
             Please read the following rules and regulations carefully before
             submitting your application.
@@ -25,38 +25,69 @@ const page = ({ data, setData }) => {
           <div className="rc-two-in">
             <p>
               <VscDebugBreakpointLog />
-              All students must register for one course only—either a beginner
-              or intermediate course.
+              Students are permitted to register under only one domain from the five available each semester.
             </p>
             <p>
               <VscDebugBreakpointLog />
-              Students cannot enroll in multiple courses at the same time.
+              Once a domain is selected, it cannot be changed for the duration of the semester.
             </p>
             <p>
               <VscDebugBreakpointLog />
-              Beginner courses are designed for students with no prior knowledge
-              of the subject.
+              Each domain encompasses several clubs.
             </p>
             <p>
               <VscDebugBreakpointLog />
-              Intermediate courses are open to students who have completed a
-              beginner course or have equivalent knowledge.
+              Students may register for only one club within their chosen domain.
             </p>
             <p>
               <VscDebugBreakpointLog />
-              Students must complete the payment through the ERP system and provide
-              the payment reference number during registration.
+              Multiple club registrations within the same domain are not permitted.
             </p>
             <p>
               <VscDebugBreakpointLog />
-              Registration will be confirmed only after verifying the ERP payment
-              reference number.
+              Students must thoroughly review the programs offered by their selected club before completing registration.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Upon registration, active participation in all assigned programs for the semester is mandatory.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Failure to participate in assigned programs will result in the deduction of points.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Regular attendance in club activities and programs is compulsory.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Students with unsatisfactory attendance will face penalties and may lose eligibility to continue with the Student Activity Center.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Once the registration process is completed, students cannot modify their selected club or domain for the semester.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Students are strongly advised to evaluate their options carefully before finalizing their registration.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Students must consult the Student Activity Center Handbook for comprehensive rules, regulations, and procedural guidelines related to registration and participation.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Students are encouraged to make informed decisions and avoid manipulation or hasty choices during registration.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Post-registration, club assignments will be mandatory, and students must comply with their designated responsibilities.
+            </p>
+            <p>
+              <VscDebugBreakpointLog />
+              Students failing to meet attendance or program participation requirements will face penalties, including potential removal from Student Activity Center activities.
             </p>
           </div>
-        </div>
-        <div className="rc-three">
-          <input type="checkbox" checked={data.agree} onChange={handleChange} />
-          <p>I have read and agree to the above rules and regulations</p>
         </div>
       </div>
     </div>

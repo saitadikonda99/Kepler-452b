@@ -13,7 +13,8 @@ import { IoIosArrowDown } from "react-icons/io";
 
 import "./page.css";
 
-import Loader from "../../../../components/Loader/loader";
+import Loader from '../../../../animation/Loading';
+
 
 const DOMAIN_ORDER = ["Technical", "Literary & Cultural", "Social", "Sports", "Others"];
 
@@ -61,7 +62,7 @@ const page = () => {
           <div className="Course-one-in">
 
             <div className="Course-one-one">
-              <h1>All Clubs Course Details</h1>
+              <h1>All Clubs Program Details</h1>
             </div>
 
             {Object.entries(
@@ -121,11 +122,11 @@ const page = () => {
                             <table>
                               <thead>
                                 <tr>
-                                  <th>Course Name</th>
-                                  <th>Course Code</th>
-                                  <th>Course Slots</th>
-                                  <th>Course Level</th>
-                                  <th>Course Handout</th>
+                                  <th>Program Name</th>
+                                  <th>Program Code</th>
+                                  <th>Program Slots</th>
+                                  <th>Program Level</th>
+                                  <th>Program Handout</th>
                                 </tr>
                               </thead>
                               <tbody>

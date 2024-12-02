@@ -7,6 +7,7 @@ import { districtNames } from "../../districtData/data";
 import "./page.css";
 
 const page = ({ data, setData }) => {
+  
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
