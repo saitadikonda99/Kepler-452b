@@ -12,12 +12,12 @@ import Loader from '../../animation/Loading';
 
 import "./page.css";
 
-import Rules from "./components/rules/page.js";
-import CourseDetails from "./components/courseDetails/page.js";
-import UnderTaking from "./underTaking/page.js";
-import StudentInfo from "./components/studentInfo/page.js";
-import Address from "./components/address/page.js";
-import ClubData from "./components/clubData/page.js";
+import Rules from "./components/rules/rules.js";
+import CourseDetails from "./components/courseDetails/courseDetails.js";
+import UnderTaking from "./components/underTaking/underTaking.js";
+import StudentInfo from "./components/studentInfo/studentInfo.js";
+import Address from "./components/address/address.js";
+import ClubData from "./components/clubData/clubData.js";
 
 const steps = [
   { label: "Program Details", component: CourseDetails },

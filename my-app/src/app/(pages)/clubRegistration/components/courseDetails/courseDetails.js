@@ -5,15 +5,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import Navbar from "../../../sil/Navbar";
-import Footer from "../../../components/footer/page";
 
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 
 import "./page.css";
 
-import Loader from "../../../components/Loader/loader";
+import Loader from '../../../../animation/Loading';
 
 const DOMAIN_ORDER = ["Technical", "Literary & Cultural", "Social", "Sports", "Others"];
 
@@ -57,13 +55,11 @@ const page = () => {
   ) : (
     <div className="CourseComponent">
       <div className="CourseComponent-in">
-        <div className="Course-Nav">
-          <Navbar />
-        </div>
         <div className="Course-one">
           <div className="Course-one-in">
+
             <div className="Course-one-one">
-              <h1>All Clubs Course Details</h1>
+              <h1>All Clubs Program Details</h1>
             </div>
 
             {Object.entries(
@@ -123,11 +119,11 @@ const page = () => {
                             <table>
                               <thead>
                                 <tr>
-                                  <th>Course Name</th>
-                                  <th>Course Code</th>
-                                  <th>Course Slots</th>
-                                  <th>Course Level</th>
-                                  <th>Course Handout</th>
+                                  <th>Program Name</th>
+                                  <th>Program Code</th>
+                                  <th>Program Slots</th>
+                                  <th>Program Level</th>
+                                  <th>Program Handout</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -154,9 +150,6 @@ const page = () => {
                 );
               })}
           </div>
-        </div>
-        <div className="Course-footer">
-          <Footer />
         </div>
       </div>
     </div>
