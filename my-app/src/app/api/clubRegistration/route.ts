@@ -265,11 +265,20 @@ export const POST = async (req: NextRequest) => {
 
     await pool.query('COMMIT');
 
+    // Read the HTML email template from the file
+    const emailTemplatePath = path.join(process.cwd(), 'src', 'app', 'api', 'clubRegistration', 'emailTemplate.html');
+    let emailTemplate = await fs.readFile(emailTemplatePath, 'utf-8');
+
+    // Replace placeholders in the email template with actual values
+    emailTemplate = emailTemplate.replace('{{name}}', name);
+    emailTemplate = emailTemplate.replace('{{clubName}}', clubName);
+    emailTemplate = emailTemplate.replace('{{domain}}', domain);
+
     // Send confirmation email
     const emailJob = {
       email: email,
-      subject: `Message from student club registration`,
-      text: `Hello ${name},\n\nYou have successfully registered for ${clubName} club. Please wait for the club lead to approve your registration.`,
+      subject: `Welcome to the Student Activity Center (SAC) at KL University!`,
+      html: emailTemplate,
     };
 
     await emailQueue.add(emailJob);

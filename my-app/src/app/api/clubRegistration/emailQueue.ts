@@ -12,7 +12,7 @@ const emailQueue = new Bull('emailQueue', {
 });
 
 emailQueue.process(async (job) => {
-  const { email, subject, text } = job.data;
+  const { email, subject, html } = job.data;
   const transporter = nodemailer.createTransport({
     host: 'smtp.office365.com',
     port: 587,
@@ -27,7 +27,7 @@ emailQueue.process(async (job) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: subject,
-    text: text,
+    html: html,
   };
 
   try {

@@ -17,16 +17,43 @@
 .Course-one-one {
     width: 100%;
     text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
-.Course-one-one h1 {
+.Course-one-one-one {
+    width: 50%;
+}
+
+.Course-one-one-one h1 {
     font-size: 1.8rem;
     font-weight: 600;
 }
 
-.Course-one-one p {
+.Course-one-one-two {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;  
+}
+
+.Course-one-one-two a {
     font-size: 1rem;
     font-weight: 400;
+    color: rgb(151, 0, 3);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: .5rem;
+}
+
+.Course-one-one-two a:hover {
+    text-decoration: underline;
+}
+
+.Course-one-one-two svg {
+    font-size: 1.2rem;
 }
 
 .Course-one-two {
@@ -133,3 +160,48 @@
     color: rgb(20, 85, 250);
     text-decoration: underline;
 }
+
+
+@media screen and (max-width: 600px) {
+    .Co-one {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  
+    .Co-one-one,
+    .Co-one-two,
+    .Co-one-three {
+      width: 100%;
+    }
+
+    .Course-one-one-one h1 {
+        font-size: 1rem;
+    }
+  
+    .Co-one-one h1 {
+      font-size: 1rem;
+    }
+  
+    .Co-one-two {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  
+    .Co-one-one p,
+    .Co-one-two-in-one p,
+    .Co-one-two-in-two p {
+      font-size: 0.9rem;
+    }
+  
+    .Co-two-in table {
+      overflow-x: auto;
+      display: block;
+    }
+  
+    .Co-two-in table th,
+    .Co-two-in table td {
+      font-size: 0.9rem;
+    }
+  }

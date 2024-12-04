@@ -35,6 +35,14 @@
     width: 33%;
 }
 
+.cr-si-two-two {
+    width: 33%;
+}
+
+.cr-si-two-three {
+    width: 33%;
+}
+
 .cr-si-two-one input {
     width: 100%;
 }
@@ -106,3 +114,62 @@
 }
 
 
+
+@media screen and (max-width: 768px) {
+    .cr-si-one h1 {
+        font-size: 1.6rem;
+    }
+
+    .cr-si-one p {
+        font-size: 0.9rem;
+    }
+
+    .cr-si-two-one,
+    .cr-si-two-two,
+    .cr-si-two-three {
+        width: 100%;
+    }
+
+    .cr-si-three-one,
+    .cr-si-three-two {
+        width: 100%;
+    }
+
+    .cr-si-four-one,
+    .cr-si-four-two {
+        width: 100%;
+    }   
+
+    .cr-si-four-one {
+        flex-direction: column;
+    }
+
+    .cr-si-two {
+        flex-direction: column;
+    }
+
+    .cr-si-three {
+        flex-direction: column;
+    }
+
+    .cr-si-four {
+        flex-direction: column;
+    }
+
+    .cr-si-four-one input,
+    .cr-si-four-two input {
+        width: 100%;
+    }
+
+    .crSelect select {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .crInput input {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+
+}

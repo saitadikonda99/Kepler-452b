@@ -98,3 +98,30 @@
 .crInput input:focus {
     outline: 2px solid rgb(131, 189, 251);
 }
+
+@media screen and (max-width: 768px) {
+  .Address-two,
+  .Address-three {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .Address-two-one,
+  .Address-two-two,
+  .Address-two-three,
+  .Address-three-one,
+  .Address-three-two,
+  .Address-three-three {
+    width: 100%;
+  }
+
+  .Address-three-two {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .Address-three-two-one,
+  .Address-three-two-two {
+    width: 100%;
+  }
+}

@@ -53,11 +53,12 @@
 
 @media screen and (max-width: 768px) {
     .UnderTakingComponent {
-        padding: 1rem;
+        width: 100%;
+        padding: 0rem;
     }
 
     .UnderTakingComponent-in {
-        padding: 1.5rem;
+        width: 100%;
     }
 
     .ut-one h1 {

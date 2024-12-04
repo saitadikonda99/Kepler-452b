@@ -55,3 +55,27 @@
     width: 1.5rem;
     height: 1.5rem;
 }
+
+@media screen and (max-width: 768px) {
+  .RulesComponent {
+    padding: 0rem;
+  }
+
+  .rc-one h1 {
+    font-size: 1.6rem;
+  }
+
+  .rc-one p,
+  .rc-two p {
+    font-size: 0.9rem;
+  }
+
+  .rc-two-in p {
+    font-size: 0.8rem;
+  }
+
+  .rc-two-in p svg {
+    display: none;
+  }
+
+}

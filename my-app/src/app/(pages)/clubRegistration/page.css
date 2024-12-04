@@ -75,7 +75,7 @@
   height: 68vh;
   display: flex;
   padding: 1rem 0rem;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .cr-two-two {
@@ -158,4 +158,52 @@
 .timeline-step.active .step-label {
   font-weight: bold;
   color: black;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .cr-one {
+    overflow-x: scroll;
+  }
+
+  .horizontal-timeline {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem 0;
+  }
+
+  .timeline-step {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+  }
+
+  .step-label {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .step-circle {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cr-two-two {
+    height: auto;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .cr-two-two button {
+    width: auto;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+
 }

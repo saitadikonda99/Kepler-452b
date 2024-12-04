@@ -39,10 +39,13 @@ const postHandler = async (req: NextRequest) => {
     const pattern = 'getCourses*'; 
 
     const cachedData = await redisClient.keys(pattern);
-    if (cachedData) {
+    if (cachedData && cachedData.length > 0) {
       await redisClient.del(cachedData);
     }
 
+    const key = "getAllCourses";
+
+    await redisClient.del(key);
 
     if (isNaN(courseSlots)) {
         return NextResponse.json({ message: "Course slots should be a number" }, { status: 400 });

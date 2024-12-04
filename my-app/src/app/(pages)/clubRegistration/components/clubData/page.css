@@ -106,3 +106,21 @@
 .custom-file-input.file-added span {
     color: green;
 }
+
+@media screen and (max-width: 768px) {
+  .ClubData-two,
+  .clubData-three,
+  .ClubData-four-one {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ClubData-two-one,
+  .ClubData-three-one,
+  .ClubData-three-two,
+  .ClubData-three-three,
+  .ClubData-four-one-one,
+  .ClubData-four-one-two {
+    width: 100%;
+  }
+}

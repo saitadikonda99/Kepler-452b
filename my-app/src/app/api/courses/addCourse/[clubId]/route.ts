@@ -30,9 +30,14 @@ const postHandler = async (req: NextRequest) => {
     const pattern = 'getCourses*'; 
 
     const cachedData = await redisClient.keys(pattern);
-    if (cachedData) {
+
+    if (cachedData && cachedData.length > 0) {
       await redisClient.del(cachedData);
     }
+
+    const key = "getAllCourses";
+
+    await redisClient.del(key);
     
     const { academicYear, courseName, courseCode, courseLevel, courseSlots, courseHandout, clubId } = await req.json();
 
@@ -52,6 +57,7 @@ const postHandler = async (req: NextRequest) => {
     await redisClient.del(KEY);
     return NextResponse.json({message: "New course added successfully"}, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ message: error.message }, { status: 500 });
   } 
 };
