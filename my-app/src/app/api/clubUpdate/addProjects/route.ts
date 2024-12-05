@@ -5,6 +5,7 @@ import { verifyRoles } from "../../../../lib/verifyRoles";
 import { withMiddleware } from "../../../../middleware/middleware";
 
 const postHandler = async (req: NextRequest) => {
+  
   const { valid, payload } = await verifyJWT();
   if (!valid) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });

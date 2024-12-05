@@ -117,7 +117,7 @@ export const POST = async (req: NextRequest) => {
         "logo",
       ]
     );
-    
+
     // Get the last inserted club ID
     const clubId = (club as any).insertId;
 

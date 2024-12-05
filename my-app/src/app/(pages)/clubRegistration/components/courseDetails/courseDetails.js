@@ -139,7 +139,7 @@ const Page = () => {
                                   <td>{course.course_slots}</td>
                                   <td>{course.course_level}</td>
                                   <td>
-                                    <Link href={course.course_handout}>
+                                    <Link href={course.course_handout} target="_blank">
                                       <p>Handout</p>
                                     </Link>
                                   </td>

@@ -9,6 +9,8 @@ const postHandler = async (req: NextRequest) => {
 
   const { valid, payload } = await verifyJWT();
 
+  const key = "getClubs";
+
   if (!valid) {
     return NextResponse.json({ message: "Unauthorized"}, {status: 401});
   }
@@ -52,6 +54,7 @@ const postHandler = async (req: NextRequest) => {
 
     console.log(result);
      
+    await redisClient.del(key);
 
     return NextResponse.json({ message: "Club details updated successfully"}, { status: 200 });
   } catch (error) {

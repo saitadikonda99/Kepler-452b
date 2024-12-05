@@ -3,7 +3,6 @@ import { redisClient } from "../../../../../config/redis";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "../../../../../lib/verifyJWT";
 import { verifyRoles } from "../../../../../lib/verifyRoles";
-import bcrypt from "bcrypt";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -76,7 +75,6 @@ export const POST = async (req: NextRequest) => {
       `UPDATE users SET role = 'club_lead' WHERE username = ?`,
       [leadUsername]
     );
-
 
     const [getLeadUser]: any = await pool.query(
       `SELECT id FROM users WHERE username = ?`,
