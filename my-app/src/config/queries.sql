@@ -61,3 +61,7 @@ VALUES
     ('2028-29', 'Odd'),
     ('2028-29', 'Even'),
     ('2029-30', 'Odd');
+
+
+ALTER TABLE courses
+MODIFY course_handout TEXT;

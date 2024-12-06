@@ -68,8 +68,8 @@ const postHandler = async (req: NextRequest) => {
     await redisClient.del(KEY);
     return NextResponse.json({message: "New course added successfully"}, { status: 200 });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: error }, { status: 500 });
+      
+    return NextResponse.json({ message: error.message }, { status: 500 });
   } 
 };
 

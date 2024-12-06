@@ -57,7 +57,10 @@ const postHandler = async (req: NextRequest) => {
     await redisClient.del(KEY);
     return NextResponse.json({message: "New course added successfully"}, { status: 200 });
   } catch (error) {
-    console.log(error);
+
+    if (error.code === "ER_DUP_ENTRY") {
+        return NextResponse.json({ message: "Course already exists" }, { status: 400 });
+    }
     return NextResponse.json({ message: error.message }, { status: 500 });
   } 
 };

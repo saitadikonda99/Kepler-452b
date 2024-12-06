@@ -7,117 +7,159 @@
   <title>Welcome to SAC</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.6;
-      color: #333;
-      background-color: white;
+      line-height: 1.7;
+      color: #2d3748;
+      background-color: #f7f9fc;
       margin: 0;
-      padding: 20px;
-      box-sizing: border-box;
+      padding: 30px 20px;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-    }
-
-    h1 {
-      color: #970300;
-      font-size: 1.5rem;
-      margin-bottom: 25px;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid #970300;
-      padding-bottom: 10px;
-    }
-
-    p {
-      margin-bottom: 20px;
-      color: #555;
-    }
-
-    p strong {
-      color: #000;
-    }
-
-    .highlight {
-      color: #970300;
-      font-weight: bold;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 14px 28px;
-      background-color: #970300;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 50px;
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 16px;
-      text-align: center;
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .cta-button:hover {
-      background-color: #750200;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .warm-regards {
-      margin-top: 40px;
-      text-align: left;
-      color: #444;
-      font-size: 16px;
-      border-top: 1px solid #ddd;
-      padding-top: 20px;
+      background: #ffffff;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      border: none;
     }
 
     .logo {
       display: block;
-      margin: 0 auto 20px;
+      margin: 0 auto 40px;
       max-width: 120px;
+      height: auto;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.08));
+    }
+
+    h1 {
+      color: #1a202c;
+      font-size: 1.75rem;
+      margin-bottom: 40px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, rgb(151, 0, 3), rgba(151, 0, 3, 0.7));
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #222222;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    p strong {
+      color: rgb(151, 0, 3);
+      font-weight: 600;
+    }
+
+    .highlight {
+      color: rgb(151, 0, 3);
+      font-weight: 600;
+      background: rgba(151, 0, 3, 0.05);
+      padding: 3px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      border: 1px solid rgba(151, 0, 3, 0.1);
     }
 
     ol, ul {
-      margin: 0 0 20px 20px;
-      padding: 0;
-      color: #444;
+      margin: 0 0 24px 24px;
+      color: #222222;
+      padding-left: 16px;
     }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      padding-left: 8px;
+      line-height: 1.7;
+    }
+
+    li strong {
+      color: rgb(151, 0, 3);
+    }
+
+    .warm-regards {
+      margin-top: 50px;
+      padding-top: 35px;
+      border-top: 1px solid #e2e8f0;
+      color: #4a5568;
+    }
+
+    .warm-regards p {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: rgb(151, 0, 3);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(151, 0, 3, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    a:hover {
+      color: rgba(151, 0, 3, 0.8);
+      border-bottom-color: rgba(151, 0, 3, 0.8);
     }
 
     @media (max-width: 768px) {
       body {
-        font-size: 14px;
+        padding: 15px;
+      }
+
+      .container {
+        padding: 30px;
+        margin: 0 15px;
       }
 
       h1 {
-        font-size: 1rem;
+        font-size: 1.4rem;
+        margin-bottom: 25px;
       }
 
-      .cta-button {
-        font-size: 14px;
-        padding: 10px 20px;
+      .logo {
+        max-width: 120px;
       }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #f7f9fc;
+      }
+
+      .container {
+        background: #ffffff;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      }
+    }
+
+    .warm-regards strong {
+      color: rgb(151, 0, 3);
     }
   </style>
 </head>
 <body>
   <div class="container">
     <img src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/HeroVideo%2FOfficialSacLogo.png?alt=media&token=8a73bd93-832c-4d5d-819d-0e371d12b01c" alt="SAC Logo" class="logo">
-    <h1>Welcome to the Student Activity Center (SAC)!</h1>
+    <h1>Welcome to <br> Student Activity Center!</h1>
     <p>Dear {{name}},</p>
     <p><strong>Congratulations on successfully registering with the Student Activity Center (SAC) at KL University!</strong></p>
     <p>We are delighted to have you as part of this dynamic and vibrant ecosystem of <span class="highlight">{{clubName}}</span> club where your passions and aspirations take center stage.</p>
@@ -151,3 +193,4 @@
   </div>
 </body>
 </html>
+
