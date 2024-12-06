@@ -11,15 +11,6 @@ const getHandler = async (req: NextRequest, { params }: { params: { clubName: st
 
   const { clubName } = params;
 
-  const KEY = `getCourses${clubName}`;
-
-  const cachedData = await redisClient.get(KEY);
-
-  if (cachedData) {
-    console.log("cachedData", cachedData);
-    return NextResponse.json(JSON.parse(cachedData), { status: 200 });
-  }
- 
   try {
     const [courses]: any = await pool.query(
         `SELECT c.id, c.course_name, c.course_code, c.course_slots, c.course_handout, c.course_level
@@ -29,8 +20,6 @@ const getHandler = async (req: NextRequest, { params }: { params: { clubName: st
            AND (c.course_slots - c.register_students) > 0`,
         [clubName]
     );
-
-    await redisClient.set(KEY, JSON.stringify(courses), { EX: 60 * 60 * 24 });
 
 
     return NextResponse.json(courses, { status: 200 });

@@ -105,7 +105,7 @@ const page = ({ data, setData }) => {
               onChange={handleChange}
               id="selectInput"
             >
-              <option value="">Select Academic Year</option>
+              <option value="">Select Year</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

@@ -107,46 +107,56 @@ const Page = () => {
                       {Object.entries(clubs).map(([clubName, courses]) => (
                         <div key={clubName} className="Club-one">
                           <div className="Club-one-in">
-                          <div onClick={() => toggleClubOpen(domain, clubName)} className="Club-header">
-                            <div className="Club-name">
-                              <h3>{clubName}</h3>
+                            <div onClick={() => toggleClubOpen(domain, clubName)} className="Club-header">
+                              <div className="Club-name">
+                                <h3>{clubName}</h3>
+                              </div>
+                              <div className={`Club-slots ${
+                                courses.some(
+                                  (course) => 
+                                    (course.course_slots ?? 0) - (course.register_students ?? 0) > 0
+                                ) ? 'course-available' : 'course-not-available'
+                              }`}>
+                                {courses.some(
+                                  (course) =>
+                                    (course.course_slots ?? 0) - (course.register_students ?? 0) > 0  
+                                ) ? <p>Slots Available</p> : <p>Slots Not Available</p>}
+                              </div>
+                              <div className="Club-toggle">
+                                {clubOpenStates[`${domain}-${clubName}`] ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                              </div>
                             </div>
-
-                            <div className="Club-toggle">
-                              {clubOpenStates[`${domain}-${clubName}`] ? <IoIosArrowUp /> : <IoIosArrowDown />}
-                            </div>
-                          </div>
-                          {clubOpenStates[`${domain}-${clubName}`] && (
-                            <div className="Course-table-container">
-                              <table>
-                                <thead>
-                                  <tr>
-                                    <th>Program Name</th>
-                                    <th>Program Code</th>
-                                    <th>Program Slots</th>
-                                    <th>Program Level</th>
-                                    <th>Program Handout</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {courses.map((course) => (
-                                    <tr key={course.course_id}>
-                                      <td>{course.course_name}</td>
-                                      <td>{course.course_code}</td>
-                                      <td>{course.course_slots}</td>
-                                      <td>{course.course_level}</td>
-                                      <td>
-                                        <a href={course.course_handout} target="_blank">
-                                          Handout
-                                        </a>
-                                      </td>
+                            {clubOpenStates[`${domain}-${clubName}`] && (
+                              <div className="Course-table-container">
+                                <table>
+                                  <thead>
+                                    <tr>
+                                      <th>Program Name</th>
+                                      <th>Program Code</th>
+                                      <th>Program Slots</th>
+                                      <th>Program Level</th>
+                                      <th>Program Handout</th>
                                     </tr>
-                                  ))}
-                                </tbody>
-                              </table>
-                            </div>
-                          )}
-                        </div>
+                                  </thead>
+                                  <tbody>
+                                    {courses.map((course) => (
+                                      <tr key={course.course_id}>
+                                        <td>{course.course_name}</td>
+                                        <td>{course.course_code}</td>
+                                        <td>{course.course_slots}</td>
+                                        <td>{course.course_level}</td>
+                                        <td>
+                                          <a href={course.course_handout} target="_blank">
+                                            Handout
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>

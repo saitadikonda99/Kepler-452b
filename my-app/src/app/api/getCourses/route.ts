@@ -6,16 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async (req: NextRequest) => {
   try {
 
-    const KEY = "getAllCourses";
-    
     const { valid, payload } = await verifyJWT();
     
     const academicYearId = req.nextUrl.pathname.split("/").pop();
-
-    const cachedData = await redisClient.get(KEY);
-    if (cachedData) {
-      return NextResponse.json(JSON.parse(cachedData), { status: 200 });
-    }
 
     const [result]: any = await pool.query(
       `SELECT 
@@ -40,7 +33,6 @@ export const GET = async (req: NextRequest) => {
             courses.club_id = clubs.id;`
     );
 
-    redisClient.set(KEY, JSON.stringify(result), { EX: 60 * 60 * 24 });
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {

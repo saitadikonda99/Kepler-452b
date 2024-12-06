@@ -104,6 +104,24 @@
     padding: .5rem 1rem;
 }
 
+.Club-name {
+    width: 50%;
+}
+
+.Club-slots {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Club-toggle {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .Club-name h3 {
     font-size: 1rem;
     font-weight: bold;
@@ -164,4 +182,20 @@
     .Course-table-container td {
         font-size: 0.9rem;
     }
+}
+
+.course-available p {
+  background-color: rgb(193, 254, 208);
+  color: rgb(16, 120, 45);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: .8rem;
+}
+
+.course-not-available p {
+  background-color: rgb(254, 193, 193);  
+  color: rgb(167, 44, 44);
+  padding: 4px 8px;
+  font-size: .8rem;
+  border-radius: 4px;
 }

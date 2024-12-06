@@ -12,14 +12,8 @@ export const GET = async (req: NextRequest) => {
     
     const academicYearId = req.nextUrl.pathname.split("/").pop();
     
-    const KEY = `getCourses`;
 
-    const cache = await redisClient.get(KEY);
-
-    if (cache) {
-      return NextResponse.json(JSON.parse(cache), { status: 200 });
-    }
-
+ 
     const [result]: any = await pool.query(
       `SELECT *, (course_slots - register_students) AS available_slots 
        FROM courses 
@@ -29,7 +23,6 @@ export const GET = async (req: NextRequest) => {
       [academicYearId]
     );
 
-    await redisClient.setEx(KEY, 3600, JSON.stringify(result));
   
 
     return NextResponse.json(result, { status: 200 });

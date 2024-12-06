@@ -110,7 +110,6 @@ const validateErpReferenceNumber = (erpReferenceNumber: string) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const KEY = `getCourses`;
 
     const formData = await req.formData();
 
@@ -260,8 +259,6 @@ export const POST = async (req: NextRequest) => {
       `UPDATE courses SET register_students = register_students + 1 WHERE id = ? AND course_slots > register_students;`,
       [courseId]
     );
-
-    await redisClient.del(KEY);
 
     await pool.query('COMMIT');
 
