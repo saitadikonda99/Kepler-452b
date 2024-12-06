@@ -85,7 +85,7 @@ const Page = () => {
                 <h1>Clubs Program Details</h1> 
               </div>
               <div className="Course-one-one-two">
-                <Link href="https://kluniversityin-my.sharepoint.com/personal/brambabu_kluniversity_in/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fbrambabu%5Fkluniversity%5Fin%2FDocuments%2FSAC%20%2D%20HANDBOOK%2FSAC%2Epdf&parent=%2Fpersonal%2Fbrambabu%5Fkluniversity%5Fin%2FDocuments%2FSAC%20%2D%20HANDBOOK&ct=1733465825600&or=OWA%2DNT%2DMail&cid=07f9faa7%2De5ae%2D1ce4%2Df19d%2Dc40a226c07ab&ga=1" target="_blank">
+                <Link href="" target="_blank">
                   <p>SAC Handbook</p>
                   <LiaExternalLinkAltSolid />
                 </Link>
