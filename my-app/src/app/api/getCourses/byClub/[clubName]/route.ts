@@ -2,8 +2,12 @@ import { pool } from "../../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
 import { withMiddleware } from "../../../../../middleware/middleware";
 import { redisClient } from "../../../../../config/redis";
+import { verifyJWT } from "../../../../../lib/verifyJWT";
 
 const getHandler = async (req: NextRequest, { params }: { params: { clubName: string } }) => {
+
+  const { valid, payload } = await verifyJWT();
+
 
   const { clubName } = params;
 
@@ -12,6 +16,7 @@ const getHandler = async (req: NextRequest, { params }: { params: { clubName: st
   const cachedData = await redisClient.get(KEY);
 
   if (cachedData) {
+    console.log("cachedData", cachedData);
     return NextResponse.json(JSON.parse(cachedData), { status: 200 });
   }
  
@@ -26,6 +31,7 @@ const getHandler = async (req: NextRequest, { params }: { params: { clubName: st
     );
 
     await redisClient.set(KEY, JSON.stringify(courses), { EX: 60 * 60 * 24 });
+
 
     return NextResponse.json(courses, { status: 200 });
   } catch (error) {
