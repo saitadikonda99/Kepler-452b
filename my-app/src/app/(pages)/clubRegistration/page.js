@@ -23,9 +23,9 @@ const steps = [
   { label: "Program Details", component: CourseDetails },
   { label: "Rules", component: Rules },
   { label: "Under Taking", component: UnderTaking },
+  { label: "Club Details", component: ClubData },
   { label: "Student Info", component: StudentInfo },
   { label: "Address & Residency", component: Address },
-  { label: "Club Details", component: ClubData },
 ];
 
 const Page = () => {
@@ -69,7 +69,7 @@ const Page = () => {
         toast.error("Please click on the checkbox to move forward");
         isValid = false;
       }
-    } else if (currentStep === 4) {
+    } else if (currentStep === 5) {
       if (
         !data.name ||
         !data.idNumber ||
@@ -83,7 +83,7 @@ const Page = () => {
         toast.error("Please fill all the fields");
         isValid = false;
       }
-    } else if (currentStep === 5) {
+    } else if (currentStep === 6) {
       if (!data.country || !data.pinCode || !data.residency) {
         toast.error("Please fill all the fields");
         isValid = false;
@@ -103,7 +103,7 @@ const Page = () => {
         toast.error("Please fill all the fields");
         isValid = false;
       }
-    } else if (currentStep === 6) {
+    } else if (currentStep === 4) {
       if (
         !data.clubId ||
         !data.courseId ||
@@ -269,13 +269,13 @@ const Page = () => {
                       <UnderTaking data={data} setData={setData} />
                     )}
                     {currentStep === 4 && (
-                      <StudentInfo data={data} setData={setData} />
+                      <ClubData data={data} setData={setData} />
                     )}
                     {currentStep === 5 && (
-                      <Address data={data} setData={setData} />
-                    )}
+                    <StudentInfo data={data} setData={setData} />
+                  )}
                     {currentStep === 6 && (
-                      <ClubData data={data} setData={setData} />
+                      <Address data={data} setData={setData} />
                     )}
                   </div>
                   <div className="cr-two-two">

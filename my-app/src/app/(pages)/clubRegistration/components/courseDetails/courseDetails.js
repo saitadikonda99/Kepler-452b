@@ -55,6 +55,7 @@ const Page = () => {
     fetchData();
   }, []);
 
+
   if (isLoading) {
     return <Loader />;
   }
@@ -83,12 +84,6 @@ const Page = () => {
               <div className="Course-one-one-one">
                 <h1>Clubs Program Details</h1>
               </div>
-              <div className="Course-one-one-two">
-                <a href="https://example.com/handbook" target="_blank">
-                  SAC Handbook
-                  <LiaExternalLinkAltSolid />
-                </a>
-              </div>
             </div>
 
             {DOMAIN_ORDER.map((domain) => {
@@ -99,7 +94,9 @@ const Page = () => {
                 <div key={domain} className="Domain-container">
                   <div className="Domain-header" onClick={() => toggleDomainOpen(domain)}>
                     <div className="Domain-name">
-                      <p>{domain} Domain</p>
+                      <p>
+                      {domain === "TEC" ? "Technology Clubs" : domain === "LCH" ? "Liberal Arts, Creative Arts and Hobby Clubs" : domain === "ESO" ? "Extension & Society Outreach Clubs" : domain === "IIE" ? "Innovation, Incubation and Entrepreneurship Clubs" : "Health and Wellbeing Clubs"}
+                      </p>
                     </div>
                     <div className="Domain-toggle">
                       {openStates[domain] ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -114,6 +111,7 @@ const Page = () => {
                             <div className="Club-name">
                               <h3>{clubName}</h3>
                             </div>
+
                             <div className="Club-toggle">
                               {clubOpenStates[`${domain}-${clubName}`] ? <IoIosArrowUp /> : <IoIosArrowDown />}
                             </div>
