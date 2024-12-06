@@ -35,9 +35,30 @@ export const POST = async (req: NextRequest) => {
       clubName,
     } = await req.json();
 
+
+    if (!leadUsername || !leadEmail) {
+      
+      const [club]: any = await pool.query(
+        `
+        INSERT INTO clubs (club_name, lead_id, club_domain, club_description, club_about, club_logo)
+        VALUES (?, ?, ?, ?, ?, ?)
+        `,
+        [
+          clubName,
+          null,
+          clubDomain,
+          "please update the description of your club",
+          "please update the About description of your club",
+          "logo",
+        ]
+      );
+
+      await redisClient.del(KEY);
+
+      return NextResponse.json({ message: "Club added successfully" }, { status: 200 });
+    }
+
     if (
-      !leadUsername ||
-      !leadEmail ||
       !clubDomain ||
       !clubName
     ) {

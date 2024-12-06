@@ -32,7 +32,6 @@ const postHandler = async (req: NextRequest) => {
     const { clubId, clubLogo, clubName, clubDescription, clubAbout } = await req.json();
 
 
-
     console.log(clubId, clubLogo, clubName, clubDescription, clubAbout);
 
     const trimmedClubName = clubName.trim();

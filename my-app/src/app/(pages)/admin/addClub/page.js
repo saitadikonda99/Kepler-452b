@@ -53,7 +53,7 @@ const Page = () => {
           <div className="AddClubComponent-two">
             <div className="AddClubComponent-two-in">
               <div className="AddClubComponent-two-in-one">
-                <h3>Club Lead Details</h3>
+                <h3>Club Lead Details (optional)</h3>
               </div>
 
               <div className="AddClubComponent-two-in-two">
