@@ -31,7 +31,11 @@ const postHandler = async (req: NextRequest) => {
 
     const { clubId, clubLogo, clubName, clubDescription, clubAbout } = await req.json();
 
+
+
     console.log(clubId, clubLogo, clubName, clubDescription, clubAbout);
+
+    const trimmedClubName = clubName.trim();
 
     if (!clubLogo || !clubName || !clubDescription || !clubAbout) {
       return NextResponse.json({ message: "All fields are required"}, { status: 401 });
@@ -49,7 +53,7 @@ const postHandler = async (req: NextRequest) => {
         `UPDATE clubs 
          SET club_logo = ?, club_name = ?, club_description = ?, club_about = ? 
          WHERE id = ?`,   
-        [clubLogo, clubName, clubDescription, clubAbout, clubId]
+        [clubLogo, trimmedClubName, clubDescription, clubAbout, clubId]
     );
 
     console.log(result);
