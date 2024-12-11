@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Dashboard from '../../dashboard/dashboard';
 import Loading from '../../../../animation/Loading';
+import { toast } from "react-hot-toast";
+
 import './page.css';
 
 const PAGE_SIZE = 15;
@@ -51,8 +53,10 @@ const VerifyPayment = () => {
 
       if (response.ok) {
         fetchStudents(currentPage);
+        toast.success("Payment status updated successfully");
       }
     } catch (error) {
+        toast.error("Error updating payment status");
       console.error('Error updating payment status:', error);
     } finally {
       setLoading(false);

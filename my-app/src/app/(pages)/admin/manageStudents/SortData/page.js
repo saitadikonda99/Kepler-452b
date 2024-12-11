@@ -37,7 +37,7 @@ const SortData = () => {
   const fetchStudents = async (page) => {
     try {
       setLoading(true);
-      const url = `/api/admin/manageStudents`;
+      const url = `/api/admin/sortData`;
       const params = {
         page,
         pageSize: PAGE_SIZE,

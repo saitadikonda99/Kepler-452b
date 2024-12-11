@@ -23,53 +23,42 @@ const handler = async (req: NextRequest) => {
 
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get('page') || '1', 10);
-    const pageSize = parseInt(searchParams.get('pageSize') || '15', 10);
-    const clubId = searchParams.get('clubId') || null;
+    const pageSize = parseInt(searchParams.get('pageSize') || '10', 10);
     const offset = (page - 1) * pageSize;
 
-    let query = `
+    const [users] = await pool.query(`
       SELECT 
-        u.id AS user_id,
-        u.name AS user_name,
-        ud.id_number,
-        ud.payment_status,
-        c.club_name,
-        co.course_name,
-        co.course_code
-      FROM 
-        users u
-      LEFT JOIN 
-        user_details ud ON u.id = ud.user_id
-      LEFT JOIN
-        clubs c ON ud.club_id = c.id
-      LEFT JOIN
-        course_registrations cr ON u.id = cr.user_id
-      LEFT JOIN
-        courses co ON cr.course_id = co.id
-      WHERE
-        u.role = 'student'
-    `;
+            u.id AS user_id,
+            u.name AS user_name,
+            u.email,
+            ud.id_number,
+            ud.branch,
+            ud.email_id AS contact_email,
+            ud.gender,
+            ud.residency,
+            ud.country,
+            ud.phone_number,
+            ud.payment_status,
+            ud.erp_reference_number,
+            ud.domain,
+            ud.registration_date,
+            c.club_name AS club_name
+        FROM 
+            users u
+        LEFT JOIN 
+            user_details ud
+        ON 
+            u.id = ud.user_id
+        LEFT JOIN
+            clubs c
+        ON
+            ud.club_id = c.id
+        WHERE
+            u.role = 'student'
+      LIMIT ? OFFSET ?
+    `, [pageSize, offset]);
 
-    const queryParams = [];
-
-    if (clubId) {
-      query += ' AND ud.club_id = ?';
-      queryParams.push(clubId);
-    }
-
-    query += ' LIMIT ? OFFSET ?';
-    queryParams.push(pageSize, offset);
-
-    const [users] = await pool.query(query, queryParams);
-
-    const countQuery = `
-      SELECT COUNT(*) AS total 
-      FROM users u 
-      LEFT JOIN user_details ud ON u.id = ud.user_id 
-      WHERE u.role = 'student' ${clubId ? 'AND ud.club_id = ?' : ''}
-    `;
-    
-    const [countResult] = await pool.query(countQuery, clubId ? [clubId] : []);
+    const [countResult] = await pool.query(`SELECT COUNT(*) AS total FROM users WHERE role = ?`, ['student']);
     const totalCount = countResult[0].total;
 
     return NextResponse.json({ users, totalCount }, { status: 200 });
