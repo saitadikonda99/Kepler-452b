@@ -270,10 +270,10 @@ const page = ({ data, setData }) => {
             </div>
 
             <div className="ClubData-four-one-two crInput">
-              <label htmlFor="erpReferenceNumber">ERP Reference Number:</label>
+              <label htmlFor="erpReferenceNumber">ERP Payment Reference Number:</label>
               <input
                 type="text"
-                placeholder="Enter your ERP Reference Number"
+                placeholder="Enter your ERP Payment Reference Number"
                 value={data.erpReferenceNumber}
                 name="erpReferenceNumber"
                 className="registrationInput"

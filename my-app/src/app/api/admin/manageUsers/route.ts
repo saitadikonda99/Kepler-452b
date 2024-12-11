@@ -29,7 +29,8 @@ const handler = async (req: NextRequest) => {
         END AS club_name
         FROM users u
         LEFT JOIN clubs c ON u.id = c.lead_id
-    `);
+        where role = 'Admin'
+    ` );
 
     return NextResponse.json(users, { status: 200 });
   } catch (error) {

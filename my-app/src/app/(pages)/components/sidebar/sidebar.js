@@ -122,8 +122,10 @@ const sidebar = () => {
       icon: <MdOutlineManageAccounts className="sideBar-icon" />,
       link: "",
       subOptions: [
+        { name: "Verify Payment", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/verifyPayment" },
         { name: "View Students", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/viewStudents" },
         { name: "Student Profile", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/studentProfile" },
+        { name: "Clubs Data", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/SortData" },
       ],
     }
   ];

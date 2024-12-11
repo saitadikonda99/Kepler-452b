@@ -2,7 +2,7 @@
 
 
 INSERT INTO users (username, name, password, email, role, RefreshToken) VALUES
-('2200030805', 'random', '123', 'sai@gmail.com', 'Admin', NULL);
+('2200030805', 'random', '$2b$10$QtfYSsQ/Y71udwuJJGeo6e/t5H5y6U5FvxpTOtG.6zM2XMdVRE14S', 'sai@gmail.com', 'Admin', NULL);
 
 INSERT INTO users (username, name, password, email, role, RefreshToken) VALUES
 ('2300033327', 'reycaa', '123', 'rekha@gmail.com', 'Admin', NULL);

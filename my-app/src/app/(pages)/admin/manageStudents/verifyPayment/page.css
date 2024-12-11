@@ -1,0 +1,180 @@
+.VerifyPaymentComponent {
+  width: 100%;
+  margin: auto;
+  padding: 1rem 1rem;
+}
+
+.VerifyPaymentComponent-in {
+  width: 100%;
+}
+
+.VerifyPaymentComponent-in p {
+  font-size: 1rem;
+  padding: 1rem 0;
+}
+
+table {
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid black;
+}
+
+th {
+  background-color: rgb(151, 3, 0);
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: rgb(240, 240, 240);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.verify-btn, .delete-btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 150px;
+}
+
+.verify-btn {
+  background-color: rgb(151, 3, 0);
+  color: white;
+  border-color: rgb(151, 3, 0);
+}
+
+.verify-btn:hover {
+  background-color: rgb(121, 3, 0);
+}
+
+.verify-btn.paid {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.verify-btn.paid:hover {
+  background-color: #c82333;
+}
+
+.delete-btn {
+  background-color: white;
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.status {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.status.paid {
+  color: #28a745;
+}
+
+.status.unpaid {
+  color: #dc3545;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.pagination button:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+  background-color: #f0f0f0;
+}
+
+.pagination .page-num {
+  min-width: 40px;
+}
+
+.pagination .page-active {
+  background-color: rgb(151, 3, 0);
+  color: white;
+  border-color: rgb(151, 3, 0);
+}
+
+.pagination .page-active:hover {
+  background-color: rgb(151, 3, 0);
+}
+
+@media all and (max-width: 500px) {
+  .VerifyPaymentComponent {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+  }
+
+  th {
+    font-size: 0.9rem;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+
+  .pagination button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .verify-btn, .delete-btn {
+    max-width: none;
+    width: 100%;
+    margin: 2px 0;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
