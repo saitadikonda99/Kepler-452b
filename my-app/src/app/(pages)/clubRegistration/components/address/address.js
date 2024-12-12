@@ -9,7 +9,32 @@ import "./page.css";
 const Address = ({ data, setData }) => {
   
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+
+    const { name, value } = e.target;
+
+    if (name === "residency") {
+      setData({
+        ...data,
+        [name]: value,
+        hostelName: '',
+        busRoute: '',
+      });
+    }
+    else if (name === "country") {
+      setData({
+        ...data,
+        [name]: value,
+        state: '',
+        district: '',
+        pinCode: '',
+      });
+    }
+    else {
+      setData({
+        ...data,
+        [name]: value,
+      });
+    }
   };
 
   return (
