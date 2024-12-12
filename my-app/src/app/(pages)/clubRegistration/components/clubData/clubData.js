@@ -43,6 +43,14 @@ const page = ({ data, setData }) => {
         courseId: '',
       });
     }
+    else if (name === "courseLevel") {
+      setData({
+        ...data,
+        [name]: value,
+        courseName: '',
+        courseId: '',
+      });
+    }
     else {
       setData({
         ...data,
