@@ -17,18 +17,30 @@ const page = ({ data, setData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "courseName") {
+    if (name === "clubName") {
+      setData({
+        ...data,
+        [name]: value,
+        clubId: clubData.find((club) => club.club_name === value)?.id,
+        courseName: '',
+        courseId: '',
+      });
+    }
+    else if (name === "courseName") {
       setData({
         ...data,
         [name]: value,
         courseId: courseData.find((course) => course.course_name === value)?.id,
       });
     } 
-    else if (name === "clubName") {
+    else if (name === "domain") {
       setData({
         ...data,
         [name]: value,
-        clubId: clubData.find((club) => club.club_name === value)?.id,
+        clubName: '',
+        clubId: '',
+        courseName: '',
+        courseId: '',
       });
     }
     else {
