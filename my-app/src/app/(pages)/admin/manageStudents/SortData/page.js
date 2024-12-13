@@ -3,9 +3,30 @@ import React, { useState, useEffect } from 'react';
 import Dashboard from '../../dashboard/dashboard';
 import Loading from '../../../../animation/Loading';
 import axios from 'axios';
+import { branchNames } from '../../../clubRegistration/branchData/data';
 import './page.css';
+import Pagination from '../../../../components/Pagination/Pagination';
 
 const PAGE_SIZE = 15;
+
+const getCurrentAcademicYear = () => {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear().toString();
+  const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-based
+  
+  // If current month is before June, consider previous year as academic year
+  return currentMonth < 6 ? (currentYear - 1).toString() : currentYear;
+};
+
+const getYearOptions = () => {
+  const currentAcademicYear = getCurrentAcademicYear();
+  return [
+    { value: currentAcademicYear, label: `${currentAcademicYear} - 1st Year` },
+    { value: (parseInt(currentAcademicYear) - 1).toString(), label: `${parseInt(currentAcademicYear) - 1} - 2nd Year` },
+    { value: (parseInt(currentAcademicYear) - 2).toString(), label: `${parseInt(currentAcademicYear) - 2} - 3rd Year` },
+    { value: (parseInt(currentAcademicYear) - 3).toString(), label: `${parseInt(currentAcademicYear) - 3} - 4th Year` }
+  ];
+};
 
 const SortData = () => {
   const [students, setStudents] = useState([]);
@@ -15,6 +36,13 @@ const SortData = () => {
   const [studentCount, setStudentCount] = useState(0);
   const [clubs, setClubs] = useState([]);
   const [selectedClub, setSelectedClub] = useState('');
+  const [selectedBranch, setSelectedBranch] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+  const [yearOptions, setYearOptions] = useState([]);
+
+  useEffect(() => {
+    setYearOptions(getYearOptions());
+  }, []);
 
   useEffect(() => {
     fetchClubs();
@@ -22,7 +50,7 @@ const SortData = () => {
 
   useEffect(() => {
     fetchStudents(currentPage);
-  }, [currentPage, selectedClub]);
+  }, [currentPage, selectedClub, selectedBranch, selectedYear]);
 
   const fetchClubs = async () => {
     try {
@@ -41,7 +69,9 @@ const SortData = () => {
       const params = {
         page,
         pageSize: PAGE_SIZE,
-        ...(selectedClub && { clubId: selectedClub })
+        ...(selectedClub && { clubId: selectedClub }),
+        ...(selectedBranch && { branch: selectedBranch }),
+        ...(selectedYear && { year: selectedYear })
       };
 
       const { data } = await axios.get(url, { params });
@@ -64,12 +94,48 @@ const SortData = () => {
     setCurrentPage(1);
   };
 
+  const handleBranchChange = (e) => {
+    setSelectedBranch(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+    setCurrentPage(1);
+  };
+
   return (
     <Dashboard>
       <div className="SortDataComponent">
         <div className="SortDataComponent-in">
-          <h1>Club-wise Student Data</h1>
+          <h1>Student Data</h1>
           <div className="filter-section">
+            <select 
+              value={selectedYear} 
+              onChange={handleYearChange}
+              className="year-select"
+            >
+              <option value="">All Years</option>
+              {yearOptions.map((year) => (
+                <option key={year.value} value={year.value}>
+                  {year.label}
+                </option>
+              ))}
+            </select>
+
+            <select 
+              value={selectedBranch} 
+              onChange={handleBranchChange}
+              className="branch-select"
+            >
+              <option value="">All Branches</option>
+              {branchNames.map((branch) => (
+                <option key={branch.id} value={branch.name}>
+                  {branch.name}
+                </option>
+              ))}
+            </select>
+
             <select 
               value={selectedClub} 
               onChange={handleClubChange}
@@ -90,6 +156,8 @@ const SortData = () => {
               <tr>
                 <th>ID Number</th>
                 <th>Name</th>
+                <th>Year</th>
+                <th>Branch</th>
                 <th>Club</th>
                 <th>Course</th>
                 <th>Course Code</th>
@@ -102,6 +170,8 @@ const SortData = () => {
                   <tr key={student.user_id}>
                     <td>{student.id_number}</td>
                     <td>{student.user_name}</td>
+                    <td>{student.year || 'N/A'}</td>
+                    <td>{student.branch || 'N/A'}</td>
                     <td>{student.club_name || 'N/A'}</td>
                     <td>{student.course_name || 'N/A'}</td>
                     <td>{student.course_code || 'N/A'}</td>
@@ -112,40 +182,16 @@ const SortData = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={6}>No students found.</td>
+                  <td colSpan={8}>No students found.</td>
                 </tr>
               )}
             </tbody>
           </table>
-          <div className="pagination">
-            <button
-              className="previous"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              aria-label="Previous Page"
-            >
-              Prev
-            </button>
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index + 1}
-                onClick={() => handlePageChange(index + 1)}
-                className={`page-num ${currentPage === index + 1 ? "page-active" : ""}`}
-                aria-label={`Page ${index + 1}`}
-                disabled={currentPage === index + 1}
-              >
-                {index + 1}
-              </button>
-            ))}
-            <button
-              className="next"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              aria-label="Next Page"
-            >
-              Next
-            </button>
-          </div>
+          <Pagination 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     </Dashboard>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Dashboard from '../../dashboard/dashboard';
 import Loading from '../../../../animation/Loading';
 import { toast } from "react-hot-toast";
+import Pagination from '../../../../components/Pagination/Pagination';
 
 import './page.css';
 
@@ -139,35 +140,11 @@ const VerifyPayment = () => {
               )}
             </tbody>
           </table>
-          <div className="pagination">
-            <button
-              className="previous"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              aria-label="Previous Page"
-            >
-              Prev
-            </button>
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index + 1}
-                onClick={() => handlePageChange(index + 1)}
-                className={`page-num ${currentPage === index + 1 ? "page-active" : ""}`}
-                aria-label={`Page ${index + 1}`}
-                disabled={currentPage === index + 1}
-              >
-                {index + 1}
-              </button>
-            ))}
-            <button
-              className="next"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              aria-label="Next Page"
-            >
-              Next
-            </button>
-          </div>
+          <Pagination 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     </Dashboard>

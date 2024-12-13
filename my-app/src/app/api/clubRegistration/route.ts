@@ -256,7 +256,7 @@ export const POST = async (req: NextRequest) => {
     );
 
     await pool.query(
-      `UPDATE courses SET register_students = register_students + 1 WHERE id = ? AND course_slots > register_students;`,
+      `UPDATE courses SET register_students = register_students + 1 WHERE id = ?`,
       [courseId]
     );
 

@@ -25,6 +25,8 @@ const handler = async (req: NextRequest) => {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const pageSize = parseInt(searchParams.get('pageSize') || '15', 10);
     const clubId = searchParams.get('clubId') || null;
+    const branch = searchParams.get('branch') || null;
+    const year = searchParams.get('year') || null;
     const offset = (page - 1) * pageSize;
 
     let query = `
@@ -33,6 +35,8 @@ const handler = async (req: NextRequest) => {
         u.name AS user_name,
         ud.id_number,
         ud.payment_status,
+        ud.branch,
+        SUBSTRING(ud.id_number, 1, 2) AS year,
         c.club_name,
         co.course_name,
         co.course_code
@@ -57,22 +61,45 @@ const handler = async (req: NextRequest) => {
       queryParams.push(clubId);
     }
 
+    if (branch) {
+      query += ' AND ud.branch = ?';
+      queryParams.push(branch);
+    }
+
+    if (year) {
+      query += ' AND SUBSTRING(ud.id_number, 1, 2) = ?';
+      queryParams.push(year.slice(-2));
+    }
+
     query += ' LIMIT ? OFFSET ?';
     queryParams.push(pageSize, offset);
 
-    const [users] = await pool.query(query, queryParams);
+    const [users] = await pool.query(query, queryParams) as [any[], any];
 
     const countQuery = `
       SELECT COUNT(*) AS total 
       FROM users u 
       LEFT JOIN user_details ud ON u.id = ud.user_id 
-      WHERE u.role = 'student' ${clubId ? 'AND ud.club_id = ?' : ''}
+      WHERE u.role = 'student'
+      ${clubId ? 'AND ud.club_id = ?' : ''}
+      ${branch ? 'AND ud.branch = ?' : ''}
+      ${year ? 'AND SUBSTRING(ud.id_number, 1, 2) = ?' : ''}
     `;
     
-    const [countResult] = await pool.query(countQuery, clubId ? [clubId] : []);
+    const countParams = [];
+    if (clubId) countParams.push(clubId);
+    if (branch) countParams.push(branch);
+    if (year) countParams.push(year.slice(-2));
+    
+    const [countResult] = await pool.query(countQuery, countParams);
     const totalCount = countResult[0].total;
 
-    return NextResponse.json({ users, totalCount }, { status: 200 });
+    const usersWithFormattedYear = users.map(user => ({
+      ...user,
+      year: user.year ? `20${user.year}` : 'N/A'
+    }));
+
+    return NextResponse.json({ users: usersWithFormattedYear, totalCount }, { status: 200 });
   } catch (error) {
     console.log(error)
     return NextResponse.json(

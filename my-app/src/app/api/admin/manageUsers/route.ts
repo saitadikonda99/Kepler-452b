@@ -22,14 +22,14 @@ const handler = async (req: NextRequest) => {
     }
 
     const [users] = await pool.query(`
-      SELECT u.id, u.username, u.name, u.email, u.role, u.active,
+        SELECT u.id, u.username, u.name, u.email, u.role, u.active,
         CASE 
             WHEN u.role = 'club_lead' THEN c.club_name
             ELSE 'N/A'
         END AS club_name
-        FROM users u
-        LEFT JOIN clubs c ON u.id = c.lead_id
-        where role = 'Admin'
+      FROM users u
+      LEFT JOIN clubs c ON u.id = c.lead_id
+      WHERE u.role IN ('Admin', 'club_lead')
     ` );
 
     return NextResponse.json(users, { status: 200 });

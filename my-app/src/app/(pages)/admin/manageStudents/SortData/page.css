@@ -14,16 +14,18 @@
 }
 
 .filter-section {
-  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
+.year-select,
+.branch-select,
 .club-select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1rem;
   min-width: 200px;
-  background-color: white;
 }
 
 table {
