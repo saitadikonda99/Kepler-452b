@@ -4,6 +4,7 @@ import Dashboard from '../../dashboard/dashboard';
 import Loading from '../../../../animation/Loading';
 import { toast } from "react-hot-toast";
 import Pagination from '../../../../Components/Pagination/Pagination';
+import axios from 'axios';
 
 import './page.css';
 
@@ -15,11 +16,32 @@ const VerifyPayment = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [studentCount, setStudentCount] = useState(0);
+  const [clubs, setClubs] = useState([]);
+  const [selectedClub, setSelectedClub] = useState('');
+
+  const fetchClubs = async () => {
+    try {
+      const { data } = await axios.get('/api/getClubs');
+      setClubs(data);
+    } catch (error) {
+      console.error('Error fetching clubs:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchClubs();
+  }, []);
 
   const fetchStudents = async (page) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/admin/manageStudents?page=${page}&pageSize=${PAGE_SIZE}`);
+      const params = {
+        page,
+        pageSize: PAGE_SIZE,
+        ...(selectedClub && { clubId: selectedClub })
+      };
+      
+      const response = await fetch(`/api/admin/manageStudents?${new URLSearchParams(params)}`);
       const data = await response.json();
       setStudents(data.users);
       setStudentCount(data.totalCount);
@@ -33,7 +55,7 @@ const VerifyPayment = () => {
 
   useEffect(() => {
     fetchStudents(currentPage);
-  }, [currentPage]);
+  }, [currentPage, selectedClub]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -57,7 +79,7 @@ const VerifyPayment = () => {
         toast.success("Payment status updated successfully");
       }
     } catch (error) {
-        toast.error("Error updating payment status");
+      toast.error("Error updating payment status");
       console.error('Error updating payment status:', error);
     } finally {
       setLoading(false);
@@ -85,11 +107,30 @@ const VerifyPayment = () => {
     }
   };
 
+  const handleClubChange = (e) => {
+    setSelectedClub(e.target.value);
+    setCurrentPage(1);
+  };
+
   return (
     <Dashboard>
       <div className="VerifyPaymentComponent">
         <div className="VerifyPaymentComponent-in">
           <h1>Verify Student Payments</h1>
+          <div className="filter-section">
+            <select 
+              value={selectedClub} 
+              onChange={handleClubChange}
+              className="club-select"
+            >
+              <option value="">All Clubs</option>
+              {clubs.map((club) => (
+                <option key={club.id} value={club.id}>
+                  {club.club_name}
+                </option>
+              ))}
+            </select>
+          </div>
           <p>Total students registered for the SAC: {studentCount}</p>
           {loading && <Loading />}
           <table>
@@ -112,8 +153,8 @@ const VerifyPayment = () => {
                     <td>{student.user_name}</td>
                     <td>{student.phone_number || 'N/A'}</td>
                     <td>{student.erp_reference_number || 'N/A'}</td>
-                    <td className={`status ${student.payment_status}`}>
-                      {student.payment_status || 'unpaid'}
+                    <td className={`status ${student.payment_status?.toLowerCase()}`}>
+                      {student.payment_status || 'Unpaid'}
                     </td>
                     <td>
                       <button
@@ -135,7 +176,7 @@ const VerifyPayment = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={6}>No students found.</td>
+                  <td colSpan={7}>No students found.</td>
                 </tr>
               )}
             </tbody>

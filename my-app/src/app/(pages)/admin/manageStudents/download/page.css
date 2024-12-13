@@ -1,0 +1,63 @@
+.DownloadComponent {
+  width: 100%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.DownloadComponent-in {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.DownloadComponent h1 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.download-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.download-section p {
+  margin-bottom: 1.5rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.download-btn {
+  background-color: rgb(151, 3, 0);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: rgb(121, 3, 0);
+}
+
+.download-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .DownloadComponent-in {
+    padding: 1rem;
+  }
+
+  .download-section {
+    padding: 1.5rem;
+  }
+
+  .download-btn {
+    width: 100%;
+  }
+}

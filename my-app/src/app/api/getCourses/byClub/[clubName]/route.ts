@@ -21,7 +21,6 @@ const getHandler = async (req: NextRequest, { params }: { params: { clubName: st
         [clubName]
     );
 
-
     return NextResponse.json(courses, { status: 200 });
   } catch (error) {
     console.error(error);
