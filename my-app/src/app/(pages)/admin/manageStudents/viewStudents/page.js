@@ -4,6 +4,7 @@ import Dashboard from '../../dashboard/dashboard';
 import './page.css';
 
 import Loading from '../../../../animation/Loading';
+
 import Pagination from '../../../../components/Pagination/Pagination';
 
 const PAGE_SIZE = 15;  
