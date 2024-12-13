@@ -5,7 +5,7 @@ import Loading from '../../../../animation/Loading';
 import axios from 'axios';
 import { branchNames } from '../../../clubRegistration/branchData/data';
 import './page.css';
-import Pagination from '../../../../components/Pagination/Pagination';
+import Pagination from '../../../../Components/Pagination/Pagination';
 
 const PAGE_SIZE = 15;
 

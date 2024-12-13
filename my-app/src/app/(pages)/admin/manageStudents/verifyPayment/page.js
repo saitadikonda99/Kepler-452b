@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Dashboard from '../../dashboard/dashboard';
 import Loading from '../../../../animation/Loading';
 import { toast } from "react-hot-toast";
-import Pagination from '../../../../components/Pagination/Pagination';
+import Pagination from '../../../../Components/Pagination/Pagination';
 
 import './page.css';
 

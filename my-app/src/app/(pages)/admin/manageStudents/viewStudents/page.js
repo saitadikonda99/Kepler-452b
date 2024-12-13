@@ -5,7 +5,7 @@ import './page.css';
 
 import Loading from '../../../../animation/Loading';
 
-import Pagination from '../../../../components/Pagination/Pagination';
+import Pagination from '../../../../Components/Pagination/Pagination';
 
 const PAGE_SIZE = 15;  
 
