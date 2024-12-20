@@ -1,0 +1,321 @@
+.addSessionComponent {
+    width: 100%;
+    padding: 1rem;
+}
+
+.addSessionComponent-in {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.addSession-one {
+    margin-bottom: 2rem;
+}
+
+.addSession-one h1 {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.addSession-two {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.ad-one {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ad-two {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ad-three {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ad-three-one, .ad-three-two, .ad-three-three{
+    width: 33%;
+}
+
+.ad-four {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.addSessionComponent input, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.addSessionComponent input:focus, select:focus {
+    outline: none;
+    border-color: rgb(151, 3, 0);
+    box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}
+
+input[type="date"], input[type="time"] {
+    cursor: pointer;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+/* Placeholder Styles */
+input::placeholder {
+    color: #999;
+}
+
+/* Number Input Specific Styles */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .addSession-two {
+        padding: 1.5rem;
+    }
+
+    .ad-one,
+    .ad-two,
+    .ad-three,
+    .ad-four {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    input, select {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.95rem;
+    }
+
+    .addSession-one h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Error State Styles */
+.error {
+    border-color: #dc3545;
+}
+
+.error:focus {
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+}
+
+/* Disabled State Styles */
+input:disabled, select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* Loading State Styles */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Add these styles to your existing CSS file */
+
+.incharge-input-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.add-incharge-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: rgb(151, 3, 0);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-incharge-btn:hover {
+    background-color: rgb(121, 3, 0);
+}
+
+.in-charge-list {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.in-charge-list h3 {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.in-charge-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.in-charge-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.remove-incharge-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-incharge-btn:hover {
+    color: #c82333;
+}
+
+@media (max-width: 768px) {
+    .incharge-input-container {
+        flex-direction: column;
+    }
+
+    .add-incharge-btn {
+        width: 100%;
+    }
+
+    .in-charge-list li {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Add these styles for the submit button */
+.ad-five {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ad-five-btn {
+    padding: 0.8rem 2rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ad-five-btn:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+.ad-five-btn:active {
+    transform: translateY(0);
+}
+
+/* Add this to the media query section */
+@media (max-width: 768px) {
+    .ad-five {
+        justify-content: center;
+    }
+
+    .ad-five-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+.autocomplete-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.autocomplete-item:hover {
+    background-color: #f5f5f5;
+}
+
+.autocomplete-item .username {
+    font-weight: 500;
+    color: #333;
+}
+
+.autocomplete-item .name {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.selected-user {
+    background-color: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+    display: inline-block;
+}

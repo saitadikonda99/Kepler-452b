@@ -97,6 +97,8 @@ const VerifyPayment = () => {
         method: 'DELETE',
       });
 
+      console.log(response);
+
       if (response.ok) {
         fetchStudents(currentPage);
       }

@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from 'next/navigation'
 import { useState } from "react";
 import "./page.css";
+import Link from "next/link";
 
 // import icons here
 import { MdEventAvailable } from "react-icons/md"; 
@@ -18,6 +19,9 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { IoMdPhoneLandscape } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
+import { MdOutlineLibraryAdd } from "react-icons/md";
+import { MdOutlineUpdate } from "react-icons/md";
+import { MdOutlineFactCheck } from "react-icons/md";
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -123,10 +127,20 @@ const sidebar = () => {
       link: "",
       subOptions: [
         { name: "Verify Payment", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/verifyPayment" },
-        { name: "View Students", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/viewStudents" },
         { name: "Student Profile", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/studentProfile" },
         { name: "Clubs Data", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/SortData" },
         { name: "Download Data", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/download" },
+      ],
+    },
+    {
+      name: "Manage Sessions",
+      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "Add Session", icon: <MdOutlineLibraryAdd className="sideBar-icon" />, link: "/admin/manageSessions/addSession" },
+        { name: "Update Session", icon: <MdOutlineUpdate className="sideBar-icon" />, link: "/admin/manageSessions/updateSession" },
+        { name: "Take Attendance", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/takeAttendance" },
+        { name: "Approve Sessions", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/approveSession" }
       ],
     }
   ];

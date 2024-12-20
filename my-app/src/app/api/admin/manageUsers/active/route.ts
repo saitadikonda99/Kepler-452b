@@ -8,6 +8,7 @@ const handlePost = async (req: NextRequest) => {
   try {
     const { valid, payload } = await verifyJWT();
 
+    
     if (!valid || !payload) {
       return NextResponse.json({ message: "Unauthorized"}, {status: 401});
     }

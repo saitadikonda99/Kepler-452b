@@ -60,6 +60,7 @@ const handler = async (req: NextRequest, { params }: { params: { userId: string 
         await connection.commit();
         return NextResponse.json({ message: "User deleted successfully" }, { status: 200 });
       } catch (error) {
+        
         await connection.rollback();
         throw error;
       } finally {

@@ -1,0 +1,53 @@
+.updateSessionComponent {
+  padding: 20px;
+  width: 100%;
+}
+
+.updateSessionComponent-in {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+.EditButton {
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.EditButton:hover {
+  background-color: #1976D2;
+}
+
+/* Edit Form Styles */
+.edit-form {
+  padding: 20px;
+}
+
+/* Rest of the styles similar to addSession page.css */ 

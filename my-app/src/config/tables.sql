@@ -185,18 +185,6 @@ CREATE TABLE news_portrait (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE club_activities (
-    id INT NOT NULL AUTO_INCREMENT,
-    club_id INT NOT NULL,   
-    activity_name VARCHAR(100) NOT NULL,
-    activity_type ENUM('workshop', 'activity') NOT NULL,
-    club_name VARCHAR(100) NOT NULL,   
-    activity_date DATE NOT NULL,
-    venue VARCHAR(255) DEFAULT NULL,
-    report_link VARCHAR(255) DEFAULT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
-);
 
 CREATE TABLE club_projects (
     id INT NOT NULL AUTO_INCREMENT,
@@ -281,4 +269,52 @@ CREATE TABLE registration_status (
     PRIMARY KEY (id),
     UNIQUE (academic_year_id),  
     FOREIGN KEY (academic_year_id) REFERENCES academic_years(id) ON DELETE CASCADE
+);
+
+CREATE TABLE sessions (
+    id INT NOT NULL AUTO_INCREMENT,
+    academic_year_id INT NOT NULL,
+    session_name VARCHAR(255) NOT NULL,
+    session_type ENUM('Lecture', 'Workshop', 'Seminar', 'Webinar') NOT NULL,
+    session_date DATE NOT NULL,
+    session_sTime TIME NOT NULL,
+    session_eTime TIME NOT NULL,
+    session_venue VARCHAR(255) NOT NULL,
+    session_course_id INT NOT NULL,
+    session_club_id INT NOT NULL,
+    session_lead_id INT NOT NULL,
+    session_points INT NOT NULL DEFAULT 0,
+    session_neg_points INT NOT NULL DEFAULT 0,
+    session_resource_person INT NOT NULL,
+    is_active BOOLEAN DEFAULT 0,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (academic_year_id) REFERENCES academic_years(id) ON DELETE CASCADE,
+    FOREIGN KEY (session_course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    FOREIGN KEY (session_club_id) REFERENCES clubs(id) ON DELETE CASCADE,
+    FOREIGN KEY (session_lead_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE session_inCharges (
+    id INT NOT NULL AUTO_INCREMENT,
+    session_id INT NOT NULL,
+    user_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE session_attendance (
+    id INT NOT NULL AUTO_INCREMENT,
+    session_id INT NOT NULL,
+    user_id INT NOT NULL,
+    attendance_status ENUM('Present', 'Absent') NOT NULL DEFAULT 'Absent',
+    attendance_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    attendance_points INT NOT NULL DEFAULT 0,
+    resource_person_points INT NOT NULL DEFAULT 0,
+    inCharge_points INT NOT NULL DEFAULT 0,
+    extra_points INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (id),
+    FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
