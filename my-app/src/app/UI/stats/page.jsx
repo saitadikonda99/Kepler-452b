@@ -1,11 +1,25 @@
 "use client"
-import React from "react";
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
 import "./page.css";
 
 const Page = () => {
+
+  const [stats, setStats] = useState({});
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      const response = await axios.get("/api/overAllStats");
+      setStats(response.data[0]);
+    };
+    fetchStats();
+  }, []);
+
+  console.log(stats);
 
   return (
     <div className="three">
@@ -38,7 +52,7 @@ const Page = () => {
             </div>
             <div className="three-three-in-two count-cm">
               <h2>Clubs</h2>
-              <CountUp start={1} duration={4} end={33} redraw={true}>
+              <CountUp start={0} duration={4} end={stats.total_clubs} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
                     <h1 ref={countUpRef} />
@@ -77,8 +91,8 @@ const Page = () => {
               </CountUp>
             </div>
             <div className="three-three-in-three count-cm">
-              <h2>Workshops</h2>
-              <CountUp start={1} duration={4} end={104} redraw={true}>
+              <h2>Activities</h2>
+              <CountUp start={1} duration={4} end={stats.total_activities} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
                     <h1 ref={countUpRef} />

@@ -8,7 +8,6 @@ const getHandler = async (req: NextRequest, { params }: { params: { clubName: st
 
   const { valid, payload } = await verifyJWT();
 
-
   const { clubName } = params;
 
   try {

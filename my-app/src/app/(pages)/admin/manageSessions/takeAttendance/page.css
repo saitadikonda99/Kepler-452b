@@ -1,135 +1,456 @@
 .takeAttendanceComponent {
-  padding: 20px;
-  width: 100%;
+    padding: 1rem;
 }
 
-.takeAttendanceComponent-in {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.takeAttendanceComponent h1 {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 1.8rem;
 }
 
-.club-filter {
-  margin-bottom: 20px;
-}
-
-.club-select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-  width: 200px;
+.sessionTable {
+    width: 100%;
+    overflow-x: auto;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
 }
 
 th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
 }
 
 th {
-  background-color: #f5f5f5;
-  font-weight: 600;
-  color: #333;
+    background-color: rgb(151, 3, 0);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 tr:hover {
-  background-color: #f9f9f9;
+    background-color: #f5f5f5;
 }
 
-.take-attendance-btn {
-  padding: 6px 12px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.take-btn {
+    padding: 8px 16px;
+    background-color: rgb(151, 3, 0);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.take-attendance-btn:hover {
-  background-color: #45a049;
+.take-btn:hover {
+    background-color: rgb(121, 3, 0);
 }
 
-.attendance-section {
-  padding: 20px;
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .takeAttendanceComponent h1 {
+        font-size: 1.5rem;
+    }
+    
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+.status {
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status.upcoming {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.status.active {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status.completed {
+    background-color: #f5f5f5;
+    color: #616161;
+}
+
+.take-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.take-btn:disabled:hover {
+    background-color: #ccc;
+}
+
+.take-btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #cccccc;
+}
+
+.take-btn.disabled:hover {
+  background-color: #cccccc;
 }
 
 .attendance-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.attendance-header h1 {
+    text-align: center;
+    font-size: 1rem;
+}
+
+
+.back-btn {
+  padding: 8px 16px;
+  background-color: rgb(151, 3, 0);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+  background-color: rgb(121, 3, 0);
+}
+
+.mark-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 4px;
+  font-weight: 500;
+}
+
+.mark-btn.present {
+  background-color: #4caf50;
+  color: white;
+}
+
+.mark-btn.present:hover {
+  background-color: #45a049;
+}
+
+.mark-btn.absent {
+  background-color: #f44336;
+  color: white;
+}
+
+.mark-btn.absent:hover {
+  background-color: #da190b;
+}
+
+.attendanceTable input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.attendanceTable input[type="number"] {
+  width: 80px;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+
+.attendanceTable input[type="number"]:focus {
+  border-color: rgb(151, 3, 0);
+  box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}
+
+.submit-btn {
+  margin-top: 2rem;
+  padding: 10px 24px;
+  background-color: rgb(151, 3, 0);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  float: right;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: rgb(121, 3, 0);
+}
+
+.attendanceTable td:nth-last-child(-n+2) {
+  text-align: center;
+}
+
+.attendanceTable {
+  margin-bottom: 4rem;
+}
+
+.attendanceTable table {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.attendanceTable th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.attendanceTable tr:last-child td {
+  border-bottom: none;
 }
 
 .attendance-controls {
   display: flex;
-  gap: 15px;
   align-items: center;
+  gap: 20px;
 }
 
 .negative-points-toggle {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 14px;
 }
 
-.back-btn {
+.negative-points-toggle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+  padding: 10px 0;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.academic-year-select,
+.course-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.academic-year-select:focus,
+.course-select:focus {
+  outline: none;
+  border-color: rgb(151, 3, 0);
+  box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}
+
+
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header-section h1 {
+  margin-bottom: 0;
+}
+
+.filter-section {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.academic-year-select,
+.course-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  width: 200px;
+}
+
+.academic-year-select:focus,
+.course-select:focus {
+  outline: none;
+  border-color: rgb(151, 3, 0);
+  box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}
+
+@media (max-width: 1024px) {
+  .header-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filter-section {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .academic-year-select,
+  .course-select {
+    width: 100%;
+  }
+}
+
+.export-btn {
+  background-color: #4CAF50;
+  color: white;
   padding: 8px 16px;
-  background-color: #f0f0f0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-right: 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
 }
 
-.attendance-table {
-  margin-top: 20px;
+.export-btn:hover {
+  background-color: #45a049;
 }
 
-.extra-points-input {
-  width: 60px;
-  padding: 4px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.attendance-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.attendance-actions {
-  margin-top: 20px;
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.action-buttons .take-btn,
+.action-buttons .export-btn {
+  padding: 6px 12px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.action-buttons .export-btn {
+  background-color: #4CAF50;
+}
+
+.action-buttons .export-btn:hover {
+  background-color: #45a049;
+}
+
+.export-row {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
 }
 
-.submit-btn {
-  padding: 10px 20px;
+.export-row .export-btn {
+  background-color: rgb(151, 3, 0);
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.export-row .export-btn:hover {
+  background-color: rgb(121, 3, 0);
+}
+
+.search-container {
+  flex: 1;
+  max-width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input:focus {
+  border-color: rgb(151, 3, 0);
+  box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.edit-btn {
+  padding: 6px 12px;
+  background-color: rgb(151, 3, 0);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.edit-btn:hover {
+  background-color: rgb(121, 3, 0);
+}
+
+.download-btn {
+  padding: 8px 16px;
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
 }
 
-.submit-btn:hover {
+.download-btn:hover {
   background-color: #45a049;
 }
 
-@media (max-width: 768px) {
-  .attendance-header {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .attendance-controls {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .back-btn {
-    width: 100%;
-  }
-} 
+.download-btn:active {
+  background-color: #3d8b40;
+}

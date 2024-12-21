@@ -14,6 +14,7 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [showDiv, setShowDiv] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   console.log(showNav)
 
@@ -184,7 +185,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/sil">SIL</Link>
+              <Link href="/activities">Activities</Link>
             </li>
 
             <li>
@@ -305,7 +306,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/sil">SIL</Link>
+              <Link href="/activities">Activities</Link>
             </li>
 
             <li>

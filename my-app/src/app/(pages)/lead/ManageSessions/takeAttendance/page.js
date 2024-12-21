@@ -262,6 +262,47 @@ const page = () => {
     }
   };
 
+  const handleDownloadAttendance = async (session) => {
+    try {
+      setIsLoading(true);
+      const attendanceResponse = await axios.get(
+        `/api/manageSessions/takeAttendance?sessionId=${session.id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (attendanceResponse.status === 200) {
+        const transformedData = attendanceResponse.data.map(student => ({
+          'Roll Number': student.username,
+          'Name': student.name,
+          'Course': student.course,
+          'Branch': student.branch,
+          'Session Name': student.session_name,
+          'Attendance Status': student.attendance_status || 'Absent',
+          'Extra Points': parseInt(student.extra_points) || 0,
+          'Last Updated': new Date(student.last_updated).toLocaleString()
+        }));
+
+        const ws = XLSX.utils.json_to_sheet(transformedData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Attendance');
+
+        const fileName = `${session.session_name}_attendance_${new Date().toISOString().split('T')[0]}.xlsx`;
+        XLSX.writeFile(wb, fileName);
+        toast.success('Attendance data exported successfully');
+      }
+    } catch (error) {
+      console.error('Export error:', error);
+      toast.error('Failed to export attendance data');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Dashboard>
       <div className="takeAttendanceComponent">
@@ -312,6 +353,7 @@ const page = () => {
                       <th>Points</th>
                       <th>Last Updated</th>
                       <th>Action</th>
+                      <th>Download</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -337,6 +379,14 @@ const page = () => {
                                 onClick={() => handleTakeAttendance(session)}
                               >
                                 Take Attendance
+                              </button>
+                            </td>
+                            <td>
+                              <button 
+                                className="download-btn"
+                                onClick={() => handleDownloadAttendance(session)}
+                              >
+                                Download
                               </button>
                             </td>
                           </tr>

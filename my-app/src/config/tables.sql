@@ -287,6 +287,7 @@ CREATE TABLE sessions (
     session_neg_points INT NOT NULL DEFAULT 0,
     session_resource_person INT NOT NULL,
     is_active BOOLEAN DEFAULT 0,
+    session_report TEXT DEFAULT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (academic_year_id) REFERENCES academic_years(id) ON DELETE CASCADE,

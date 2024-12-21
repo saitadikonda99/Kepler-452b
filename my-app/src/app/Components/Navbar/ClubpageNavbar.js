@@ -185,8 +185,8 @@ const ClubNavbar = ({ setOption, clubName}) => {
             </li>
 
             <li>
-              <Link href="/sil" onClick={closeNav}>
-                SIL
+              <Link href="/activities" onClick={closeNav}>
+                Activities
               </Link>
             </li>
           </ul>
@@ -284,7 +284,7 @@ const ClubNavbar = ({ setOption, clubName}) => {
             </li>
 
             <li>
-              <Link href="/sil">SIL</Link>
+              <Link href="/activities">Activities</Link>
             </li>
           </ul>
         </div>

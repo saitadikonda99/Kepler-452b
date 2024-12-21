@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-import Navbar from "../sil/Navbar";
+import Navbar from "../activities/Navbar";
 import Footer from "../components/footer/page";
 
 import Loader from '../../animation/Loading';

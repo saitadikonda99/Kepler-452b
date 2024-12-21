@@ -433,3 +433,22 @@ tr:hover {
 .edit-btn:hover {
   background-color: rgb(121, 3, 0);
 }
+
+.download-btn {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+  background-color: #45a049;
+}
+
+.download-btn:active {
+  background-color: #3d8b40;
+}

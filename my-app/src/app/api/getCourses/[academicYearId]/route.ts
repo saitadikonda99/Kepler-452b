@@ -11,9 +11,7 @@ export const GET = async (req: NextRequest) => {
     const { valid, payload } = await verifyJWT();
     
     const academicYearId = req.nextUrl.pathname.split("/").pop();
-    
 
- 
     const [result]: any = await pool.query(
       `SELECT *, (course_slots - register_students) AS available_slots 
        FROM courses 

@@ -55,7 +55,7 @@ const getHandler = async (req: NextRequest) => {
         JOIN 
             courses c ON c.id = s.session_course_id
         WHERE 
-            sa.session_id = ?;
+            sa.session_id = ? AND s.is_active = 1
         `,
         [sessionId]
     );

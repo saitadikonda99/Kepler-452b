@@ -12,9 +12,12 @@ export const GET = async (req: NextRequest) => {
     const [result]: any = await pool.query(
       `SELECT
         (SELECT COUNT(DISTINCT id_number) FROM user_details) AS total_members,
-        (SELECT COUNT(DISTINCT activity_name) FROM club_activities) AS total_activities,
-        (SELECT COUNT(DISTINCT name) FROM club_projects) AS total_projects;
+        (SELECT COUNT(DISTINCT session_name) FROM sessions) AS total_activities,
+        (SELECT COUNT(DISTINCT name) FROM club_projects) AS total_projects,
+        (SELECT COUNT(DISTINCT club_name) FROM clubs) AS total_clubs;
       `);
+
+    console.log(result);
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {

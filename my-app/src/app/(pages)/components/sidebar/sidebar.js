@@ -98,9 +98,15 @@ const sidebar = () => {
       link: "/admin/Members/addMembers",
     },
     {
-      name: "Change Password",
-      icon: <RiLockPasswordFill className="sideBar-icon" />,
-      link: "/admin/changePassword",
+      name: "Manage Sessions",
+      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "Add Session", icon: <MdOutlineLibraryAdd className="sideBar-icon" />, link: "/admin/manageSessions/addSession" },
+        { name: "Update Session", icon: <MdOutlineUpdate className="sideBar-icon" />, link: "/admin/manageSessions/updateSession" },
+        { name: "Take Attendance", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/takeAttendance" },
+        { name: "Approve Sessions", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/approveSessions" }
+      ],
     },
     {
       name: "Manage Users",
@@ -133,16 +139,11 @@ const sidebar = () => {
       ],
     },
     {
-      name: "Manage Sessions",
-      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
-      link: "",
-      subOptions: [
-        { name: "Add Session", icon: <MdOutlineLibraryAdd className="sideBar-icon" />, link: "/admin/manageSessions/addSession" },
-        { name: "Update Session", icon: <MdOutlineUpdate className="sideBar-icon" />, link: "/admin/manageSessions/updateSession" },
-        { name: "Take Attendance", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/takeAttendance" },
-        { name: "Approve Sessions", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/approveSession" }
-      ],
-    }
+      name: "Change Password",
+      icon: <RiLockPasswordFill className="sideBar-icon" />,
+      link: "/admin/changePassword",
+    },
+    
   ];
 
   return (

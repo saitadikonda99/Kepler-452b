@@ -1,5 +1,5 @@
 .activitiesComponent-one {
-  width: 90%;
+  width: 95%;
   margin: auto;
   padding: 2rem 0rem;
 }
@@ -18,7 +18,7 @@
 .activitiesComponent-one table td {
   border: 1px solid black;
   padding: 0.5rem;
-}
+  }
 
 .activitiesComponent-one table thead tr:nth-child(1) {
   background-color: rgb(151, 3, 0);
@@ -30,11 +30,11 @@
 }
 
 .activitiesComponent-one table thead th:nth-child(2) {
-  width: 30%;
+  width: 20%;
 }
 
 .activitiesComponent-one table thead th:nth-child(3) {
-  width: 15%;
+  width: 10%;
 }
 
 .activitiesComponent-one table thead th:nth-child(4) {
@@ -46,7 +46,19 @@
 }
 
 .activitiesComponent-one table thead th:nth-child(6) {
-  width: 15%;
+  width: 10%;
+}
+
+.activitiesComponent-one table thead th:nth-child(7) {
+  width: 10%;
+}
+
+.activitiesComponent-one table thead th:nth-child(8) {
+  width: 5%;
+}
+
+.activitiesComponent-one table thead th:nth-child(9) {
+  width: 10%;
 }
 
 .activitiesComponent-one table td:nth-child(1) {
@@ -61,47 +73,57 @@
   margin: 20px auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 90%;
+  width: 95%;
+  gap: 20px;
 }
 
 .search-input {
-  padding: .5rem;
+  padding: 8px 12px;
   border: 1px solid black;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
+  width: 300px;
+  margin-right: auto;
 }
 
 .search-input:focus {
   outline: none;
+  border-color: rgb(151, 3, 0);
 }
 
-.club-filter {
-  padding: 12px 20px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  width: 250px;
+.domain-filter,
+.club-filter,
+.status-filter {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 200px;
   background-color: #fff;
   color: #333;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
-.club-filter:focus {
+.domain-filter:focus,
+.club-filter:focus,
+.status-filter:focus {
   outline: none;
   border-color: rgb(151, 3, 0);
   box-shadow: 0 3px 8px rgba(151, 3, 0, 0.15);
 }
 
-.club-filter:hover {
-  border-color: #bbb;
+.domain-filter:hover,
+.club-filter:hover,
+.status-filter:hover {
+  border-color: rgb(151, 3, 0);
 }
 
-.club-filter option {
-  padding: 12px;
-  font-size: 16px;
+.domain-filter option,
+.club-filter option,
+.status-filter option {
+  padding: 8px;
+  font-size: 14px;
 }
 
 .pagination {
@@ -172,14 +194,19 @@
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
-    width: 90%;
+    width: 95%;
     padding: 0;
   }
 
-  .search-input,
-  .club-filter {
+  .search-input {
     width: 100%;
-    font-size: 1rem;
+    margin-right: 0;
+  }
+
+  .domain-filter,
+  .club-filter,
+  .status-filter {
+    width: 100%;
   }
 
   /* Pagination */
@@ -193,4 +220,38 @@
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+@media all and (max-width: 500px) {
+  .filters {
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.report-link {
+  color: rgb(151, 3, 0);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.report-link:hover {
+  text-decoration: underline;
+}
+
+.upcoming {
+  color: #2196F3;
+  font-weight: 500;
+}
+
+.na {
+  color: #757575;
+  font-style: italic;
 }

@@ -22,6 +22,8 @@ const page = () => {
   const [inChargeInput, setInChargeInput] = useState('');
   const [selectedInCharges, setSelectedInCharges] = useState([]);
   const [resourcePersonExists, setResourcePersonExists] = useState(false);
+  const [courseData, setCourseData] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const [updatedSessionData, setUpdatedSessionData] = useState({
     id: null,
@@ -34,11 +36,14 @@ const page = () => {
     sessionPoints: 0,
     sessionNegPoints: 0,
     sessionResourcePerson: "",
-    sessionInCharges: []
+    sessionInCharges: [],
+    academicYearId: "",
+    sessionCourseId: ""
   });
 
   const fetchCourses = async (yearId) => {
     try {
+      if (!yearId) return;
       const response = await axios.get(`/api/getCourses/clubCourses/${yearId}`);
       setCourses(response.data);
     } catch (error) {
@@ -123,8 +128,44 @@ const page = () => {
     setFilteredSessions(filtered);
   }, [searchQuery, sessions]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (updatedSessionData.academicYearId) {
+        try {
+          setIsLoading(true);
+          const courseResponse = await axios.get(
+            `/api/getCourses/clubCourses/${updatedSessionData.academicYearId}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            }
+          );
+
+          if (courseResponse.status === 200) {
+            setCourseData(courseResponse.data);
+          } else {
+            toast.error("Failed to fetch courses");
+          }
+        } catch (error) {
+          console.error("Error fetching courses:", error);
+          toast.error("Failed to fetch courses. Please try again.");
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setCourseData([]);
+      }
+    };
+    
+    fetchData();
+  }, [updatedSessionData.academicYearId]);
+
   const handleEdit = (session) => {
+    console.log("Session data:", session);
     setShowEdit(true);
+    
     setUpdatedSessionData({
       id: session.id,
       sessionName: session.session_name,
@@ -136,10 +177,26 @@ const page = () => {
       sessionPoints: session.session_points,
       sessionNegPoints: session.session_neg_points,
       sessionResourcePerson: session.session_resource_person,
-      sessionInCharges: session.inCharges || []
+      sessionInCharges: session.inCharges ? session.inCharges.map(ic => ic.user_id) : [],
+      academicYearId: session.academic_year_id,
+      sessionCourseId: session.session_course_id
     });
-    setResourcePersonInput(session.resource_person_name || "");
-    setSelectedInCharges(session.inCharges?.map(ic => ({ id: ic, name: ic.name })) || []);
+
+    // Set resource person input with name and username
+    setResourcePersonInput(
+      session.resource_person_name && session.resource_person_username
+        ? `${session.resource_person_name} (${session.resource_person_username})`
+        : ""
+    );
+    
+    // Map the in-charges with their full information
+    const mappedInCharges = session.inCharges ? session.inCharges.map(inCharge => ({
+      id: inCharge.user_id,
+      name: `${inCharge.name} (${inCharge.username})`
+    })) : [];
+    
+    console.log("Mapped in-charges:", mappedInCharges);
+    setSelectedInCharges(mappedInCharges);
     setResourcePersonExists(!!session.session_resource_person);
   };
 
@@ -261,40 +318,42 @@ const page = () => {
               <h1>Update Session</h1>
               {!showEdit && (
                 <div className="filter-section">
-                  <select 
-                    value={selectedAcademicYear}
-                    onChange={(e) => setSelectedAcademicYear(e.target.value)}
-                    className="academic-year-select"
-                  >
-                    <option value="">Select Academic Year</option>
-                    {academicYears.map((year) => (
-                      <option key={year.id} value={year.id}>
-                        {year.year_range} {"->"} {year.semester}
-                      </option>
-                    ))}
-                  </select>
-                  
-                  <select 
-                    value={selectedCourse}
-                    onChange={(e) => setSelectedCourse(e.target.value)}
-                    className="course-select"
-                  >
-                    <option value="">All Courses</option>
-                    {courses.map((course) => (
-                      <option key={course.course_id} value={course.course_id}>
-                        {course.course_code} - {course.course_name}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="filter-row">
+                    <select 
+                      value={selectedAcademicYear}
+                      onChange={(e) => setSelectedAcademicYear(e.target.value)}
+                      className="filter-select"
+                    >
+                      <option value="">Select Academic Year</option>
+                      {academicYears.map((year) => (
+                        <option key={year.id} value={year.id}>
+                          {year.year_range} {"->"} {year.semester}
+                        </option>
+                      ))}
+                    </select>
+                    
+                    <select 
+                      value={selectedCourse}
+                      onChange={(e) => setSelectedCourse(e.target.value)}
+                      className="filter-select"
+                    >
+                      <option value="">All Courses</option>
+                      {courses.map((course) => (
+                        <option key={course.course_id} value={course.course_id}>
+                          {course.course_code} - {course.course_name}
+                        </option>
+                      ))}
+                    </select>
 
-                  <div className="search-container">
-                    <input
-                      type="text"
-                      placeholder="Search sessions..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="search-input"
-                    />
+                    <div className="search-box">
+                      <input
+                        type="text"
+                        placeholder="Search sessions..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="search-input"
+                      />
+                    </div>
                   </div>
                 </div>
               )}
@@ -357,13 +416,48 @@ const page = () => {
                 </div>
               </div>
               <div className="ad-three">
-                <input
-                  type="text"
-                  name="sessionVenue"
-                  placeholder="Session Venue"
-                  value={updatedSessionData.sessionVenue}
-                  onChange={handleChange}
-                />
+                <div className="ad-three-one">
+                  <input
+                    type="text"
+                    name="sessionVenue"
+                    placeholder="Session Venue"
+                    value={updatedSessionData.sessionVenue}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="ad-three-two">
+                  <select
+                    className="addCourse-select"
+                    name="academicYearId"
+                    onChange={handleChange}
+                    value={updatedSessionData.academicYearId}
+                  >
+                    <option value="">Select Academic Year</option>
+                    {academicYears.map((academicYear) => (
+                      <option key={academicYear.id} value={academicYear.id}>
+                        {academicYear.year_range} {"->"} {academicYear.semester}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="ad-three">
+                <div className="ad-three-one">
+                  <select
+                    name="sessionCourseId"
+                    id="sessionCourseId"
+                    value={updatedSessionData.sessionCourseId}
+                    onChange={handleChange}
+                    disabled={!updatedSessionData.academicYearId}
+                  >
+                    <option value="">Select Course</option>
+                    {courseData && courseData.map((course) => (
+                      <option key={course.course_id} value={course.course_id}>
+                        {course.course_name} ({course.course_code})
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div className="ad-four">
                 <div className="ad-four-one">
@@ -388,12 +482,13 @@ const page = () => {
                   <div className="autocomplete-wrapper">
                     <input
                       type="text"
+                      name="sessionResourcePerson"
                       placeholder="Search Resource Person"
                       value={resourcePersonInput}
                       onChange={(e) => handleUserSearch(e.target.value, 'resource')}
                       onFocus={() => {
                         setActiveField('resource');
-                        resourcePersonInput.length >= 2 && setShowDropdown(true);
+                        if (resourcePersonInput.length >= 2) setShowDropdown(true);
                       }}
                     />
                     {showDropdown && activeField === 'resource' && searchResults.length > 0 && (
@@ -404,8 +499,11 @@ const page = () => {
                             className="autocomplete-item"
                             onClick={() => handleUserSelect(user)}
                           >
-                            <span className="username">{user.username}</span>
-                            <span className="name">{user.name}</span>
+                            <div className="user-info">
+                              <span className="username">{user.username}</span>
+                              <span className="name">{user.name}</span>
+                              <span className="role">{user.role}</span>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -413,31 +511,37 @@ const page = () => {
                   </div>
                 </div>
                 <div className="ad-four-three">
-                  <div className="autocomplete-wrapper">
-                    <input
-                      type="text"
-                      placeholder="Search In-Charge"
-                      value={inChargeInput}
-                      onChange={(e) => handleUserSearch(e.target.value, 'incharge')}
-                      onFocus={() => {
-                        setActiveField('incharge');
-                        inChargeInput.length >= 2 && setShowDropdown(true);
-                      }}
-                    />
-                    {showDropdown && activeField === 'incharge' && searchResults.length > 0 && (
-                      <div className="autocomplete-dropdown">
-                        {searchResults.map((user) => (
-                          <div
-                            key={user.id}
-                            className="autocomplete-item"
-                            onClick={() => handleUserSelect(user)}
-                          >
-                            <span className="username">{user.username}</span>
-                            <span className="name">{user.name}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                  <div className="incharge-input-container">
+                    <div className="autocomplete-wrapper">
+                      <input
+                        type="text"
+                        name="sessionInCharges"
+                        placeholder="Search In-Charge"
+                        value={inChargeInput}
+                        onChange={(e) => handleUserSearch(e.target.value, 'incharge')}
+                        onFocus={() => {
+                          setActiveField('incharge');
+                          if (inChargeInput.length >= 2) setShowDropdown(true);
+                        }}
+                      />
+                      {showDropdown && activeField === 'incharge' && searchResults.length > 0 && (
+                        <div className="autocomplete-dropdown">
+                          {searchResults.map((user) => (
+                            <div
+                              key={user.id}
+                              className="autocomplete-item"
+                              onClick={() => handleUserSelect(user)}
+                            >
+                              <div className="user-info">
+                                <span className="username">{user.username}</span>
+                                <span className="name">{user.name}</span>
+                                <span className="role">{user.role}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -451,6 +555,7 @@ const page = () => {
                         <button
                           onClick={() => handleRemoveInCharge(index)}
                           className="remove-incharge-btn"
+                          type="button"
                         >
                           ×
                         </button>
