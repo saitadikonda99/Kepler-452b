@@ -34,9 +34,7 @@ const SortData = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [studentCount, setStudentCount] = useState(0);
-  const [clubs, setClubs] = useState([]);
   const [courses, setCourses] = useState([]);
-  const [selectedClub, setSelectedClub] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedCourse, setSelectedCourse] = useState('');
@@ -47,34 +45,18 @@ const SortData = () => {
   }, []);
 
   useEffect(() => {
-    fetchClubs();
+    fetchCourses();
   }, []);
 
   useEffect(() => {
-    if (selectedClub) {
-      fetchCourses();
-    } else {
-      setCourses([]);
-    }
-  }, [selectedClub]);
-
-  useEffect(() => {
     fetchStudents(currentPage);
-  }, [currentPage, selectedClub, selectedBranch, selectedYear, selectedCourse]);
+    fetchCourses();
+  }, [currentPage, selectedBranch, selectedYear, selectedCourse]);
 
-  const fetchClubs = async () => {
-    try {
-      const { data } = await axios.get('/api/getClubs');
-      console.info(data)
-      setClubs(data);
-    } catch (error) {
-      console.error('Error fetching clubs:', error);
-    }
-  };
 
   const fetchCourses = async () => {
     try {
-      const { data } = await axios.get(`/api/getCourses/${selectedClub}`);
+      const { data } = await axios.get(`/api/getCourses`);
       setCourses(data);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -84,11 +66,10 @@ const SortData = () => {
   const fetchStudents = async (page) => {
     try {
       setLoading(true);
-      const url = `/api/admin/sortData`;
+      const url = `/api/lead/manageSessions/viewStudents`;
       const params = {
         page,
         pageSize: PAGE_SIZE,
-        ...(selectedClub && { clubId: selectedClub }),
         ...(selectedBranch && { branch: selectedBranch }),
         ...(selectedYear && { year: selectedYear }),
         ...(selectedCourse && { courseId: selectedCourse })
@@ -109,11 +90,6 @@ const SortData = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleClubChange = (e) => {
-    setSelectedClub(e.target.value);
-    setSelectedCourse('');
-    setCurrentPage(1);
-  };
 
   const handleBranchChange = (e) => {
     setSelectedBranch(e.target.value);
@@ -130,11 +106,48 @@ const SortData = () => {
     setCurrentPage(1);
   };
 
+  const handleDownloadExcel = async () => {
+    try {
+      const url = `/api/lead/manageSessions/viewStudents`;
+      const params = {
+        download: true,
+        ...(selectedBranch && { branch: selectedBranch }),
+        ...(selectedYear && { year: selectedYear }),
+        ...(selectedCourse && { courseId: selectedCourse })
+      };
+
+      const response = await axios.get(url, { 
+        params,
+        responseType: 'blob'
+      });
+
+      // Create download link
+      const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.setAttribute('download', 'students.xlsx');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error('Error downloading Excel:', error);
+      alert('Error downloading Excel file');
+    }
+  };
+
   return (
     <Dashboard>
       <div className="SortDataComponent">
         <div className="SortDataComponent-in">
-          <h1>Student Data</h1>
+          <div className="header-section">
+            <h1>Student Data</h1>
+            <button 
+              onClick={handleDownloadExcel}
+              className="download-btn"
+            >
+              Download Excel
+            </button>
+          </div>
           <div className="filter-section">
             <select 
               value={selectedYear} 
@@ -163,26 +176,13 @@ const SortData = () => {
             </select>
 
             <select 
-              value={selectedClub} 
-              onChange={handleClubChange}
-              className="club-select"
-            >
-              <option value="">All Clubs</option>
-              {clubs.map((club) => (
-                <option key={club.id} value={club.id}>
-                  {club.club_name}
-                </option>
-              ))}
-            </select>
-
-            <select 
               value={selectedCourse} 
               onChange={handleCourseChange}
               className="course-select"
             >
               <option value="">All Courses</option>
               {courses.map((course) => (
-                <option key={course.id} value={course.id}>
+                <option key={course.course_id} value={course.course_id}>
                   {course.course_name}
                 </option>
               ))}

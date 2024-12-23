@@ -1,8 +1,9 @@
-import { pool } from "../../../../config/db";
+import { pool } from "../../../../../config/db";
 import { NextRequest, NextResponse } from "next/server";
-import { verifyJWT } from "../../../../lib/verifyJWT";
-import { verifyRoles } from "../../../../lib/verifyRoles";
-import { withMiddleware } from "../../../../middleware/middleware";
+import { verifyJWT } from "../../../../../lib/verifyJWT";
+import { verifyRoles } from "../../../../../lib/verifyRoles";
+import { withMiddleware } from "../../../../../middleware/middleware";
+import * as XLSX from 'xlsx';
 
 const handler = async (req: NextRequest) => {
   try {
@@ -14,20 +15,31 @@ const handler = async (req: NextRequest) => {
 
     const { authorized, reason: roleReason } = verifyRoles(
       { ...payload, role: payload.role || "User" },
-      "Admin"
+      "club_lead"
     );
 
     if (!authorized) {
       return NextResponse.json({ message: roleReason }, { status: 403 });
     }
 
+    // get the club id from the payload
+    const userData: any = payload;
+    const leadId = userData.id;
+
+    const [clubData] = await pool.query(
+      `SELECT id FROM clubs WHERE lead_id = ?`,
+      [leadId]
+    );
+
+    const clubId = clubData[0].id;
+
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get('page') || '1', 10);
     const pageSize = parseInt(searchParams.get('pageSize') || '15', 10);
-    const clubId = searchParams.get('clubId') || null;
     const branch = searchParams.get('branch') || null;
     const year = searchParams.get('year') || null;
     const courseId = searchParams.get('courseId') || null;
+    const download = searchParams.get('download') === 'true';
     const offset = (page - 1) * pageSize;
 
     let query = `
@@ -52,15 +64,11 @@ const handler = async (req: NextRequest) => {
       LEFT JOIN
         courses co ON cr.course_id = co.id
       WHERE
-        u.role = 'student' OR u.role = 'club_lead'
+        (u.role = 'student' OR u.role = 'club_lead')
+        AND ud.club_id = ?
     `;
 
-    const queryParams = [];
-
-    if (clubId) {
-      query += ' AND ud.club_id = ?';
-      queryParams.push(clubId);
-    }
+    const queryParams = [clubId];
 
     if (branch) {
       query += ' AND ud.branch = ?';
@@ -77,17 +85,57 @@ const handler = async (req: NextRequest) => {
       queryParams.push(courseId);
     }
 
-    query += ' LIMIT ? OFFSET ?';
-    queryParams.push(pageSize, offset);
+    // Remove pagination for download
+    if (!download) {
+      query += ' LIMIT ? OFFSET ?';
+      queryParams.push(pageSize, offset);
+    }
 
     const [users] = await pool.query(query, queryParams) as [any[], any];
+
+    const usersWithFormattedYear = users.map(user => ({
+      ...user,
+      year: user.year ? `20${user.year}` : 'N/A'
+    }));
+
+    if (download) {
+      // Format data for Excel
+      const excelData = usersWithFormattedYear.map(user => ({
+        'ID Number': user.id_number || 'N/A',
+        'Name': user.user_name || 'N/A',
+        'Year': user.year || 'N/A',
+        'Branch': user.branch || 'N/A',
+        'Club': user.club_name || 'N/A',
+        'Course': user.course_name || 'N/A',
+        'Course Code': user.course_code || 'N/A',
+        'Payment Status': user.payment_status || 'Unpaid'
+      }));
+
+      // Create workbook and worksheet
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.json_to_sheet(excelData);
+
+      // Add worksheet to workbook
+      XLSX.utils.book_append_sheet(wb, ws, 'Students');
+
+      // Generate buffer
+      const buffer = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+
+      // Return Excel file
+      return new NextResponse(buffer, {
+        headers: {
+          'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          'Content-Disposition': 'attachment; filename="students.xlsx"'
+        }
+      });
+    }
 
     const countQuery = `
       SELECT COUNT(*) AS total 
       FROM users u 
       LEFT JOIN user_details ud ON u.id = ud.user_id 
       LEFT JOIN course_registrations cr ON u.id = cr.user_id
-      WHERE u.role = 'student'
+      WHERE (u.role = 'student' OR u.role = 'club_lead')
       ${clubId ? 'AND ud.club_id = ?' : ''}
       ${branch ? 'AND ud.branch = ?' : ''}
       ${year ? 'AND SUBSTRING(ud.id_number, 1, 2) = ?' : ''}
@@ -102,11 +150,6 @@ const handler = async (req: NextRequest) => {
     
     const [countResult] = await pool.query(countQuery, countParams);
     const totalCount = countResult[0].total;
-
-    const usersWithFormattedYear = users.map(user => ({
-      ...user,
-      year: user.year ? `20${user.year}` : 'N/A'
-    }));
 
     return NextResponse.json({ users: usersWithFormattedYear, totalCount }, { status: 200 });
   } catch (error) {

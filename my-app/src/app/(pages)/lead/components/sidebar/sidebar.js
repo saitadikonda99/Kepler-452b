@@ -78,11 +78,15 @@ const sidebar = () => {
         { name: "Update Session", icon: <MdOutlineChangeCircle className="sideBar-icon" /> , link: "/lead/ManageSessions/updateSession" },
       ],
     },
-    // {
-    //   name: "Add Activities",
-    //   icon: <BsCalendar2MinusFill className="sideBar-icon" />,
-    //   link: "/lead/addActivities",
-    // },
+    {
+      name: "Manage Students",
+      icon: <MdOutlineChangeCircle className="sideBar-icon" />,
+      link: "",
+      subOptions: [
+        { name: "Verify Payments", icon: <MdOutlineChangeCircle className="sideBar-icon" /> , link: "/lead/manageStudents/verifyPayments" },
+        { name: "View Students", icon: <MdOutlineChangeCircle className="sideBar-icon" /> , link: "/lead/manageStudents/viewStudents" },
+      ],
+    },
     {
       name: "Add Projects",
       icon: <LuNetwork className="sideBar-icon" />,

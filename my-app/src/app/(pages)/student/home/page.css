@@ -1,7 +1,86 @@
-.LeadHomeComponent {
+.StudentHomeComponent {
     width: 100%;
 }
 
-.LeadHomeComponent-in {
+.StudentHomeComponent-in {
     width: 100%;
+}
+
+.SHome-one {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem 0rem .5rem 1rem;
+}
+
+.SHome-one h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+}
+
+.LHome-one p {
+    font-size: .8rem;
+    color: #333;
+}
+
+.LHome-two {
+    width: 100%;
+}
+
+.SHome-two-in {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.SHome-two-in-one, .SHome-two-in-two, .SHome-two-in-three {
+    width: 32%;
+    background-color: rgb(233, 233, 233);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.SHome-two-in-one-one {
+    width: 70%;
+    padding: 1rem;
+}
+
+.SHome-two-in-one-one p {
+    font-size: 1.2rem;
+}
+
+.SHome-two-in-one-one h1 {
+    font-size: 1rem;
+}
+
+.SHome-two-in-one-two {
+    width: 30%;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.SHome-icon {
+    font-size: 2rem;
+    color: #333;
+}
+
+.SHome-three {
+    width: 100%;
+    padding: 1rem;
+    font-size: .8rem;
+    color: #333;
+}
+
+.SHome-three p {
+    font-size: .8rem;
+    color: #333;
 }

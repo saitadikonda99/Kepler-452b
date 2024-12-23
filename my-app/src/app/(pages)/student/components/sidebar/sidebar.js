@@ -6,6 +6,11 @@ import "./page.css";
 
 // import icons here
 import { IoMdHome } from "react-icons/io";
+import { MdGroups } from "react-icons/md";
+import { BiCalendarEvent } from "react-icons/bi";
+import { AiFillStar } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -38,6 +43,31 @@ const sidebar = () => {
       name: "Home",
       icon: <IoMdHome className="sideBar-icon" />,
       link: "/student/home",
+    },
+    {
+      name: "My Club",
+      icon: <MdGroups className="sideBar-icon" />,
+      link: "/student/myClub",
+    },
+    {
+      name: "My Sessions",
+      icon: <BiCalendarEvent className="sideBar-icon" />,
+      link: "/student/mySessions",
+    },
+    {
+      name: "My Points",
+      icon: <AiFillStar className="sideBar-icon" />,
+      link: "/student/myPoints",
+    },
+    {
+      name: "My Profile",
+      icon: <CgProfile className="sideBar-icon" />,
+      link: "/student/myProfile",
+    },
+    {
+      name: "Change Password",
+      icon: <RiLockPasswordFill className="sideBar-icon" />,
+      link: "/student/changePassword",
     }
   ];
 

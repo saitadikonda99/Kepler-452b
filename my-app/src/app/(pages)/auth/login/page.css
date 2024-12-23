@@ -123,3 +123,14 @@
     font-size: 1rem;
   }
 }
+
+
+.Login-in-four {
+  width: 50%;
+  margin: auto;
+}
+
+.Login-in-four a {
+  text-decoration: none;
+  color: rgb(16, 19, 24);
+}

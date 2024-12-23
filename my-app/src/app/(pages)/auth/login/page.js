@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from 'next/navigation'
 import { toast } from "react-hot-toast";
+import Link from 'next/link';
 
 import Loader from '../../../animation/Loading';
 
@@ -95,7 +96,7 @@ const Login = () => {
     <div className="LoginComponent">
       <div className="LoginComponent-in">
         <div className="Login-one">
-          <h1>SAC Admin Dashboard</h1>
+          <h1>Welcome to SAC Portal</h1>
         </div>
         <div className="Login-two">
           <div className="Login-two-in">
@@ -119,6 +120,9 @@ const Login = () => {
             </div>
             <div className="Login-in-three">
               <button onClick={handleLogin}>Login</button>
+            </div>
+            <div className="Login-in-four">
+              <Link href="/auth/forgotPassword">Forgot Password?</Link>
             </div>
           </div>
         </div>

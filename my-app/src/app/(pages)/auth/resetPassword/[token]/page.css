@@ -1,0 +1,66 @@
+.ResetComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.ResetComponent-in {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 40%;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.Reset-one {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.Reset-one h2 {
+    margin-bottom: 0.5rem;
+}
+
+.Reset-two {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Reset-two input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.Reset-three {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.Reset-three button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Reset-three button:hover {
+    background-color: #333;
+}

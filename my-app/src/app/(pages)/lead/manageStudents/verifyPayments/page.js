@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import Dashboard from '../../dashboard/dashboard';
 import Loading from '../../../../animation/Loading';
+import { toast } from "react-hot-toast";
+import Pagination from '../../../../Components/Pagination/Pagination';
 import axios from 'axios';
 import { branchNames } from '../../../clubRegistration/branchData/data';
+
 import './page.css';
-import Pagination from '../../../../Components/Pagination/Pagination';
 
 const PAGE_SIZE = 15;
 
@@ -28,53 +30,30 @@ const getYearOptions = () => {
   ];
 };
 
-const SortData = () => {
+const VerifyPayment = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [studentCount, setStudentCount] = useState(0);
-  const [clubs, setClubs] = useState([]);
   const [courses, setCourses] = useState([]);
-  const [selectedClub, setSelectedClub] = useState('');
+  const [yearOptions, setYearOptions] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedCourse, setSelectedCourse] = useState('');
-  const [yearOptions, setYearOptions] = useState([]);
 
   useEffect(() => {
     setYearOptions(getYearOptions());
+    fetchCourses();
   }, []);
-
-  useEffect(() => {
-    fetchClubs();
-  }, []);
-
-  useEffect(() => {
-    if (selectedClub) {
-      fetchCourses();
-    } else {
-      setCourses([]);
-    }
-  }, [selectedClub]);
 
   useEffect(() => {
     fetchStudents(currentPage);
-  }, [currentPage, selectedClub, selectedBranch, selectedYear, selectedCourse]);
-
-  const fetchClubs = async () => {
-    try {
-      const { data } = await axios.get('/api/getClubs');
-      console.info(data)
-      setClubs(data);
-    } catch (error) {
-      console.error('Error fetching clubs:', error);
-    }
-  };
+  }, [currentPage, selectedBranch, selectedYear, selectedCourse]);
 
   const fetchCourses = async () => {
     try {
-      const { data } = await axios.get(`/api/getCourses/${selectedClub}`);
+      const { data } = await axios.get('/api/getCourses');
       setCourses(data);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -84,17 +63,15 @@ const SortData = () => {
   const fetchStudents = async (page) => {
     try {
       setLoading(true);
-      const url = `/api/admin/sortData`;
       const params = {
         page,
         pageSize: PAGE_SIZE,
-        ...(selectedClub && { clubId: selectedClub }),
         ...(selectedBranch && { branch: selectedBranch }),
         ...(selectedYear && { year: selectedYear }),
         ...(selectedCourse && { courseId: selectedCourse })
       };
-
-      const { data } = await axios.get(url, { params });
+      
+      const { data } = await axios.get(`/api/lead/manageSessions/viewStudents`, { params });
       setStudents(data.users);
       setStudentCount(data.totalCount);
       setTotalPages(Math.ceil(data.totalCount / PAGE_SIZE));
@@ -109,10 +86,46 @@ const SortData = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleClubChange = (e) => {
-    setSelectedClub(e.target.value);
-    setSelectedCourse('');
-    setCurrentPage(1);
+  const handleVerifyPayment = async (userId, currentStatus) => {
+    try {
+      setLoading(true);
+      const newStatus = currentStatus === 'Paid' ? 'Unpaid' : 'Paid';
+      
+      const response = await axios.put(`/api/lead/manageSessions/verifyPayments/${userId}`, {
+        payment_status: newStatus
+      });
+
+      if (response.status === 200) {
+        fetchStudents(currentPage);
+        toast.success("Payment status updated successfully");
+      }
+    } catch (error) {
+      toast.error("Error updating payment status");
+      console.error('Error updating payment status:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteUser = async (userId) => {
+    if (!window.confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await axios.delete(`/api/lead/manageSessions/verifyPayments/${userId}`);
+
+      if (response.status === 200) {
+        fetchStudents(currentPage);
+        toast.success("User deleted successfully");
+      }
+    } catch (error) {
+      toast.error("Error deleting user");
+      console.error('Error deleting user:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleBranchChange = (e) => {
@@ -132,9 +145,9 @@ const SortData = () => {
 
   return (
     <Dashboard>
-      <div className="SortDataComponent">
-        <div className="SortDataComponent-in">
-          <h1>Student Data</h1>
+      <div className="VerifyPaymentComponent">
+        <div className="VerifyPaymentComponent-in">
+          <h1>Verify Student Payments</h1>
           <div className="filter-section">
             <select 
               value={selectedYear} 
@@ -163,26 +176,13 @@ const SortData = () => {
             </select>
 
             <select 
-              value={selectedClub} 
-              onChange={handleClubChange}
-              className="club-select"
-            >
-              <option value="">All Clubs</option>
-              {clubs.map((club) => (
-                <option key={club.id} value={club.id}>
-                  {club.club_name}
-                </option>
-              ))}
-            </select>
-
-            <select 
               value={selectedCourse} 
               onChange={handleCourseChange}
               className="course-select"
             >
               <option value="">All Courses</option>
               {courses.map((course) => (
-                <option key={course.id} value={course.id}>
+                <option key={course.course_id} value={course.course_id}>
                   {course.course_name}
                 </option>
               ))}
@@ -197,10 +197,10 @@ const SortData = () => {
                 <th>Name</th>
                 <th>Year</th>
                 <th>Branch</th>
-                <th>Club</th>
                 <th>Course</th>
                 <th>Course Code</th>
                 <th>Payment Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -211,11 +211,24 @@ const SortData = () => {
                     <td>{student.user_name}</td>
                     <td>{student.year || 'N/A'}</td>
                     <td>{student.branch || 'N/A'}</td>
-                    <td>{student.club_name || 'N/A'}</td>
                     <td>{student.course_name || 'N/A'}</td>
                     <td>{student.course_code || 'N/A'}</td>
                     <td className={`status ${student.payment_status?.toLowerCase()}`}>
                       {student.payment_status || 'Unpaid'}
+                    </td>
+                    <td className="actions">
+                      <button
+                        className={`verify-btn ${student.payment_status}`}
+                        onClick={() => handleVerifyPayment(student.user_id, student.payment_status)}
+                      >
+                        {student.payment_status === 'Paid' ? 'Mark Unpaid' : 'Verify Payment'}
+                      </button>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDeleteUser(student.user_id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -237,4 +250,4 @@ const SortData = () => {
   );
 };
 
-export default SortData;
+export default VerifyPayment;

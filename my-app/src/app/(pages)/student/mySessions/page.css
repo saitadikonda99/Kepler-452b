@@ -1,0 +1,149 @@
+.SortDataComponent {
+    width: 100%;
+    margin: auto;
+    padding: 1rem 1rem;
+}
+
+.SortDataComponent-in {
+    width: 100%;
+}
+
+.SortDataComponent-in p {
+    font-size: 1rem;
+    padding: 1rem 0;
+}
+
+.sessions-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 200px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.filter-select:hover {
+    border-color: #666;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: rgb(151, 3, 0);
+    box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    min-width: 1200px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid black;
+    white-space: nowrap;
+}
+
+td {
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: rgb(151, 3, 0);
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: rgb(240, 240, 240);
+}
+
+.status {
+    padding: 0.5rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status.present {
+    color: #28a745;
+}
+
+.status.absent {
+    color: #dc3545;
+}
+
+.status.pending {
+    color: #fa8c16;
+}
+
+.points-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.total-points {
+    font-weight: 600;
+    color: #1890ff;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+@media all and (max-width: 500px) {
+    .SortDataComponent {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 0.5rem;
+    }
+
+    th {
+        font-size: 0.9rem;
+    }
+
+    .filter-section {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}

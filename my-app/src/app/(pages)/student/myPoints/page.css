@@ -1,0 +1,110 @@
+.MyPointsComponents {
+    width: 100%;
+    margin: auto;
+    padding: 1rem 1rem;
+}
+
+.MyPointsComponents-in {
+    width: 100%;
+}
+
+.points-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 200px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.filter-select:hover {
+    border-color: #666;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: rgb(151, 3, 0);
+    box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}
+
+.points-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.points-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.points-card.grand-total {
+    grid-column: auto;
+}
+
+.points-card.grand-total h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.points-card.grand-total .points-value {
+    font-size: 2.5rem;
+}
+
+.points-card:hover {
+    transform: translateY(-2px);
+}
+
+.points-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.points-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(151, 3, 0);
+}
+
+@media all and (max-width: 1200px) {
+    .points-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media all and (max-width: 500px) {
+    .MyPointsComponents {
+        padding: 1rem;
+    }
+
+    .points-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-section {
+        flex-direction: column;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}

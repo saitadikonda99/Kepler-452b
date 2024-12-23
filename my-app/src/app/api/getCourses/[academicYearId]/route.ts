@@ -21,7 +21,6 @@ export const GET = async (req: NextRequest) => {
       [academicYearId]
     );
 
-  
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {

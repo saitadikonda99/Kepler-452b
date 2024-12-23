@@ -21,13 +21,17 @@ export const GET = async (req: NextRequest) => {
             s.updated_at,
             COUNT(sa.id) AS total_participants,
             c.club_name,
-            c.club_domain
+            c.club_domain,
+            co.course_name,
+            co.course_code
         FROM 
             sessions s
         JOIN 
             session_attendance sa ON s.id = sa.session_id
         LEFT JOIN 
             clubs c ON s.session_club_id = c.id
+        LEFT JOIN
+            courses co ON s.course_id = co.id
         WHERE
             c.active = 1
         GROUP BY 

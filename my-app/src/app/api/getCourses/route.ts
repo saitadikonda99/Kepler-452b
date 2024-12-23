@@ -8,7 +8,17 @@ export const GET = async (req: NextRequest) => {
 
     const { valid, payload } = await verifyJWT();
     
-    const clubId = req.nextUrl.pathname.split("/").pop();
+    const userData: any = payload;
+    const leadId = userData.id;
+
+    const [clubData] = await pool.query(
+      `SELECT id FROM clubs WHERE lead_id = ?`,
+      [leadId]
+    );
+
+    console.info(clubData)
+
+    const clubId = clubData[0].id;
 
     const [result]: any = await pool.query(
       `SELECT 
@@ -30,9 +40,11 @@ export const GET = async (req: NextRequest) => {
         INNER JOIN 
             clubs
         ON 
-            courses.club_id = clubs.id;`
+            courses.club_id = clubs.id
+        WHERE 
+            courses.club_id = ?;`,
+      [clubId]
     );
-
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {

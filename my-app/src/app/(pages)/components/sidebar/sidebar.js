@@ -8,20 +8,25 @@ import Link from "next/link";
 // import icons here
 import { MdEventAvailable } from "react-icons/md"; 
 import { ImNewspaper } from "react-icons/im";  
-import { HiUserGroup } from "react-icons/hi";   
-import { FaUsersViewfinder } from "react-icons/fa6";
-import { BsPersonFillAdd } from "react-icons/bs";  
-// import { CiViewList } from "react-icons/ci";   
+import { MdGroups } from "react-icons/md";   
+import { HiUserGroup } from "react-icons/hi";
+import { MdPersonAdd } from "react-icons/md";  
 import { IoMdHome } from "react-icons/io";  
-import { MdOutlineManageAccounts } from "react-icons/md";
-import { MdOutlinePublishedWithChanges } from "react-icons/md"; 
+import { MdManageAccounts } from "react-icons/md";
+import { MdUpdate } from "react-icons/md"; 
 import { RiLockPasswordFill } from "react-icons/ri";
-import { IoMdPhonePortrait } from "react-icons/io";
-import { IoMdPhoneLandscape } from "react-icons/io";
-import { IoPerson } from "react-icons/io5";
-import { MdOutlineLibraryAdd } from "react-icons/md";
+import { IoPhonePortraitOutline } from "react-icons/io5";
+import { IoPhoneLandscapeOutline } from "react-icons/io5";
+import { MdSupervisorAccount } from "react-icons/md";
+import { MdLibraryAdd } from "react-icons/md";
 import { MdOutlineUpdate } from "react-icons/md";
-import { MdOutlineFactCheck } from "react-icons/md";
+import { MdFactCheck } from "react-icons/md";
+import { MdApproval } from "react-icons/md";
+import { MdPayment } from "react-icons/md";
+import { MdPersonSearch } from "react-icons/md";
+import { MdGroups3 } from "react-icons/md";
+import { MdDownload } from "react-icons/md";
+import { MdSchool } from "react-icons/md";
 
 const sidebar = () => {
   const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -65,77 +70,77 @@ const sidebar = () => {
       icon: <ImNewspaper className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Portrait", icon: <IoMdPhonePortrait className="sideBar-icon" />, link: "/admin/news/portrait" },
-        { name: "Landscape", icon: <IoMdPhoneLandscape className="sideBar-icon" />, link: "/admin/news/landscape" },
+        { name: "Portrait", icon: <IoPhonePortraitOutline className="sideBar-icon" />, link: "/admin/news/portrait" },
+        { name: "Landscape", icon: <IoPhoneLandscapeOutline className="sideBar-icon" />, link: "/admin/news/landscape" },
       ],
     },
     {
       name: "Add Club",
-      icon: <HiUserGroup className="sideBar-icon" />,
+      icon: <MdGroups className="sideBar-icon" />,
       link: "/admin/addClub",
     },
     {
       name: "Update Club",
-      icon: <MdOutlinePublishedWithChanges className="sideBar-icon" />,
+      icon: <MdUpdate className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Update Lead", icon: <IoPerson className="sideBar-icon" />, link: "/admin/clubUpdate/lead" }
+        { name: "Update Lead", icon: <MdSupervisorAccount className="sideBar-icon" />, link: "/admin/clubUpdate/lead" }
       ],
     },
     {
       name: "View Clubs",
-      icon: <FaUsersViewfinder className="sideBar-icon" />,
+      icon: <HiUserGroup className="sideBar-icon" />,
       link: "/admin/viewClubs",
     },
     {
       name: "Add Admin",
-      icon:<BsPersonFillAdd className="sideBar-icon"/>,
+      icon: <MdPersonAdd className="sideBar-icon"/>,
       link: "/admin/addAdmin",
     },
     {
       name: "Add Students",
-      icon: <BsPersonFillAdd className="sideBar-icon" />,
+      icon: <MdPersonAdd className="sideBar-icon" />,
       link: "/admin/Members/addMembers",
     },
     {
       name: "Manage Sessions",
-      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      icon: <MdManageAccounts className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Add Session", icon: <MdOutlineLibraryAdd className="sideBar-icon" />, link: "/admin/manageSessions/addSession" },
+        { name: "Add Session", icon: <MdLibraryAdd className="sideBar-icon" />, link: "/admin/manageSessions/addSession" },
         { name: "Update Session", icon: <MdOutlineUpdate className="sideBar-icon" />, link: "/admin/manageSessions/updateSession" },
-        { name: "Take Attendance", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/takeAttendance" },
-        { name: "Approve Sessions", icon: <MdOutlineFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/approveSessions" }
+        { name: "Take Attendance", icon: <MdFactCheck className="sideBar-icon" />, link: "/admin/manageSessions/takeAttendance" },
+        { name: "Approve Sessions", icon: <MdApproval className="sideBar-icon" />, link: "/admin/manageSessions/approveSessions" }
       ],
     },
     {
       name: "Manage Users",
-      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      icon: <MdManageAccounts className="sideBar-icon" />,
       link: "/admin/manageUsers",
     },
     {
       name: "Manage Registration",
-      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      icon: <MdManageAccounts className="sideBar-icon" />,
       link: "/admin/manageRegistration",
     },
     {
       name: "Manage Courses",
-      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      icon: <MdSchool className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Add Course", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/addCourse" },
-        { name: "Update Course", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/updateCourse" },
+        { name: "Add Course", icon: <MdLibraryAdd className="sideBar-icon" />, link: "/admin/addCourse" },
+        { name: "Update Course", icon: <MdOutlineUpdate className="sideBar-icon" />, link: "/admin/updateCourse" },
       ],
     },
     {
       name: "Manage Students",
-      icon: <MdOutlineManageAccounts className="sideBar-icon" />,
+      icon: <MdManageAccounts className="sideBar-icon" />,
       link: "",
       subOptions: [
-        { name: "Verify Payment", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/verifyPayment" },
-        { name: "Student Profile", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/studentProfile" },
-        { name: "Clubs Data", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/SortData" },
-        { name: "Download Data", icon: <MdOutlineManageAccounts className="sideBar-icon" />, link: "/admin/manageStudents/download" },
+        { name: "Verify Payment", icon: <MdPayment className="sideBar-icon" />, link: "/admin/manageStudents/verifyPayment" },
+        { name: "Student Profile", icon: <MdPersonSearch className="sideBar-icon" />, link: "/admin/manageStudents/studentProfile" },
+        { name: "Clubs Data", icon: <MdGroups3 className="sideBar-icon" />, link: "/admin/manageStudents/SortData" },
+        { name: "Download Data", icon: <MdDownload className="sideBar-icon" />, link: "/admin/manageStudents/download" },
       ],
     },
     {

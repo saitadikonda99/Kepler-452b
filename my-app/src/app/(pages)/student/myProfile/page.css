@@ -1,0 +1,262 @@
+/* Variables */
+:root {
+    /* Colors */
+    --color-primary: rgb(151, 3, 0);
+    --color-success: rgb(151, 3, 0);
+    --color-warning: rgb(151, 3, 0);
+    --color-text-primary: #000000;
+    --color-text-secondary: #666666;
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f8f8;
+    --color-border: rgb(151, 3, 0);
+    --color-hover: rgba(151, 3, 0, 0.05);
+    
+    /* Icon Colors - All using the same red */
+    --color-icon: rgb(151, 3, 0);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 6px rgba(151, 3, 0, 0.05);
+    --shadow-md: 0 6px 12px rgba(151, 3, 0, 0.1);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-full: 9999px;
+}
+
+/* Layout Containers */
+.student-profile {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background-color: var(--color-bg-secondary);
+    min-height: calc(100vh - 80px);
+}
+
+/* Navigation */
+.profile-navigation {
+    background: var(--color-bg-primary);
+    border-bottom: 2px solid var(--color-border);
+    padding: var(--spacing-md) var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navigation-list {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.navigation-list::-webkit-scrollbar {
+    display: none;
+}
+
+.navigation-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    user-select: none;
+    border: 1px solid transparent;
+}
+
+.navigation-item:hover {
+    background: var(--color-hover);
+    color: var(--color-primary);
+    border-color: var(--color-border);
+}
+
+.navigation-item.active {
+    background: var(--color-hover);
+    color: var(--color-primary);
+    border-color: var(--color-border);
+}
+
+.navigation-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: color 0.2s ease;
+    color: var(--color-icon);
+}
+
+/* Section Headers */
+.section-header {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.section-title {
+    color: var(--color-text-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+}
+
+/* Content Cards */
+.content-card {
+    background: var(--color-bg-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-xl);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--color-border);
+}
+
+.content-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Field Styles */
+.field-group {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(151, 3, 0, 0.1);
+}
+
+.field-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.field-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.field-value {
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Contact Information */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s ease;
+}
+
+.contact-item:hover {
+    background-color: var(--color-hover);
+}
+
+.contact-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-primary);
+}
+
+/* Status Indicators */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+}
+
+.status-badge--paid {
+    background-color: rgba(151, 3, 0, 0.1);
+    color: var(--color-primary);
+}
+
+.status-badge--pending {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--color-text-primary);
+}
+
+/* Club Section */
+.club-card {
+    background: linear-gradient(to right bottom, var(--color-bg-primary), rgba(151, 3, 0, 0.05));
+}
+
+.club-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
+    border: 2px solid var(--color-border);
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Empty States */
+.empty-text {
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .student-profile {
+        padding: var(--spacing-md);
+    }
+
+    .content-card {
+        padding: var(--spacing-md) !important;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+}
