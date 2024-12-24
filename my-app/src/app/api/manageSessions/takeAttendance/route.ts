@@ -59,6 +59,8 @@ const getHandler = async (req: NextRequest) => {
         `,
         [sessionId]
     );
+
+    console.log(result);
     
     return NextResponse.json(result, { status: 200 });
 

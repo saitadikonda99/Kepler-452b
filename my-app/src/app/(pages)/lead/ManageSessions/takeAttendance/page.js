@@ -51,7 +51,8 @@ const page = () => {
       });
 
       if (sessionResponse.status === 200) {
-        setSessionData(sessionResponse.data);
+        const activeSessionsOnly = sessionResponse.data.filter(session => session.is_active === 1);
+        setSessionData(activeSessionsOnly);
       }
     } catch (error) {
       console.log(error);
