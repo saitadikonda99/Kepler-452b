@@ -31,7 +31,7 @@ export const GET = async (req: NextRequest) => {
         LEFT JOIN 
             clubs c ON s.session_club_id = c.id
         LEFT JOIN
-            courses co ON s.course_id = co.id
+            courses co ON s.session_course_id = co.id
         WHERE
             c.active = 1
         GROUP BY 

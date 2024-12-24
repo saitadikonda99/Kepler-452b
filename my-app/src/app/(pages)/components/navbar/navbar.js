@@ -29,7 +29,7 @@ const navbar = ({ userDetails}) => {
             </div>
             <div className="AN-two">
               <div className="AN-two-in">
-                <h1>Student Activity Center - {userDetails.role} Panel</h1>
+                <h1>Student Activity Center - {userDetails.role} Portal</h1>
               </div>
             </div>
             <div className="AN-three">
