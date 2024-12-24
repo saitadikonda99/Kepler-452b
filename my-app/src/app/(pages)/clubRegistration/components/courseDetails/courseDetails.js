@@ -37,7 +37,7 @@ const Page = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("/api/getCourses");
+        const response = await axios.get("/api/clubRegistration/getCourses");
         if (response.status === 200) {
           setCourseData(response.data);
         } else {
