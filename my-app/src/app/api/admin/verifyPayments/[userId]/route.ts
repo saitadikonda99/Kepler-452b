@@ -46,6 +46,9 @@ const handler = async (req: NextRequest, { params }: { params: { userId: string 
           [params.userId]
         );
 
+        console.log(registrations)
+
+
         // Update the register_students count for each course
 
         const [updateSlots] : any = await connection.query(
