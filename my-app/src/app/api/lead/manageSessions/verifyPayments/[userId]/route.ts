@@ -41,14 +41,14 @@ const handler = async (req: NextRequest, { params }: { params: { userId: string 
         await connection.beginTransaction();
 
         // Get all courses the user is registered for
-        const [registrations] = await connection.query(
+        const [registrations] : any = await connection.query(
           'SELECT course_id FROM course_registrations WHERE user_id = ?',
           [params.userId]
         );
 
         // Update the register_students count for each course
 
-        const [updateSlots] = await connection.query(
+        const [updateSlots] : any = await connection.query(
           'UPDATE courses SET register_students = register_students - 1 WHERE id = ?',
           [registrations[0].course_id]
         );
