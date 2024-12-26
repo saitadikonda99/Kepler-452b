@@ -74,7 +74,7 @@ const SortData = () => {
 
   const fetchCourses = async () => {
     try {
-      const { data } = await axios.get(`/api/getCourses/${selectedClub}`);
+      const { data } = await axios.get(`/api/getCourses/byClub/${selectedClub}`);
       setCourses(data);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -169,7 +169,7 @@ const SortData = () => {
             >
               <option value="">All Clubs</option>
               {clubs.map((club) => (
-                <option key={club.id} value={club.id}>
+                <option key={club.id} value={club.club_name}>
                   {club.club_name}
                 </option>
               ))}

@@ -36,42 +36,35 @@ const handler = async (req: NextRequest, { params }: { params: { userId: string 
 
     if (req.method === 'DELETE') {
       // Start a transaction
-      const connection = await pool.getConnection();
+
+      await pool.query('START TRANSACTION')
       try {
-        await connection.beginTransaction();
 
         // Get all courses the user is registered for
-        const [registrations] : any = await connection.query(
+        const [registrations] : any = await pool.query(
           'SELECT course_id FROM course_registrations WHERE user_id = ?',
           [params.userId]
         );
 
-        console.log(registrations)
 
-
-        // Update the register_students count for each course
-
-        const [updateSlots] : any = await connection.query(
-          'UPDATE courses SET register_students = register_students - 1 WHERE id = ?',
-          [registrations[0].course_id]
-        );
+        if (registrations.length !== 0) {
+          const [updateSlots] : any = await pool.query(
+            'UPDATE courses SET register_students = register_students - 1 WHERE id = ?',
+            [registrations[0].course_id]
+          );
+        }
         
+        await pool.query('DELETE FROM user_details WHERE user_id = ?', [params.userId]);
+        await pool.query('DELETE FROM users WHERE id = ?', [params.userId]);
 
-        await connection.query('DELETE FROM user_details WHERE user_id = ?', [params.userId]);
-        await connection.query('DELETE FROM users WHERE id = ?', [params.userId]);
-
-        await connection.commit();
+        await pool.query('COMMIT');
         return NextResponse.json({ message: "User deleted successfully" }, { status: 200 });
       } catch (error) {
-        
-        await connection.rollback();
-        throw error;
-      } finally {
-        connection.release();
+        await pool.query('ROLLBACK');
+        return NextResponse.json({ message: "Error deleting user" }, { status: 500 });
       }
     }
 
-    return NextResponse.json({ message: "Method not allowed" }, { status: 405 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

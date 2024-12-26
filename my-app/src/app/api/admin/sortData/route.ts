@@ -31,7 +31,7 @@ const handler = async (req: NextRequest) => {
     const offset = (page - 1) * pageSize;
 
     let query = `
-      SELECT 
+      SELECT DISTINCT
         u.id AS user_id,
         u.name AS user_name,
         ud.id_number,
@@ -52,13 +52,13 @@ const handler = async (req: NextRequest) => {
       LEFT JOIN
         courses co ON cr.course_id = co.id
       WHERE
-        u.role = 'student' OR u.role = 'club_lead'
+        (u.role = 'student' OR u.role = 'club_lead')
     `;
 
     const queryParams = [];
 
     if (clubId) {
-      query += ' AND ud.club_id = ?';
+      query += ' AND c.club_name = ?';
       queryParams.push(clubId);
     }
 
@@ -77,18 +77,20 @@ const handler = async (req: NextRequest) => {
       queryParams.push(courseId);
     }
 
-    query += ' LIMIT ? OFFSET ?';
+    query += ' ORDER BY ud.id_number ASC, u.name ASC LIMIT ? OFFSET ?';
     queryParams.push(pageSize, offset);
 
     const [users] = await pool.query(query, queryParams) as [any[], any];
 
     const countQuery = `
-      SELECT COUNT(*) AS total 
+      SELECT COUNT(DISTINCT u.id) AS total 
       FROM users u 
       LEFT JOIN user_details ud ON u.id = ud.user_id 
+      LEFT JOIN clubs c ON ud.club_id = c.id
       LEFT JOIN course_registrations cr ON u.id = cr.user_id
-      WHERE u.role = 'student'
-      ${clubId ? 'AND ud.club_id = ?' : ''}
+      LEFT JOIN courses co ON cr.course_id = co.id
+      WHERE (u.role = 'student' OR u.role = 'club_lead')
+      ${clubId ? 'AND c.club_name = ?' : ''}
       ${branch ? 'AND ud.branch = ?' : ''}
       ${year ? 'AND SUBSTRING(ud.id_number, 1, 2) = ?' : ''}
       ${courseId ? 'AND cr.course_id = ?' : ''}

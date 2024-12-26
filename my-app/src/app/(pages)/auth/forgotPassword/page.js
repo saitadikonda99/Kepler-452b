@@ -19,7 +19,7 @@ function Forgot() {
     }
 
     const handlePassword = async (e) => {
-
+        setLoading(true)
         try {
             const response = await axios.post('/api/auth/forgotPassword',
                 formData,
