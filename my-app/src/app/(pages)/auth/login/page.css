@@ -62,12 +62,12 @@
   font-size: 1rem;
 }
 
-.Login-in-three {
+.Login-in-four {
   width: 50%;
   margin: auto;
 }
 
-.Login-in-three button {
+.Login-in-four button {
   width: 100%;
   padding: 0.8rem;
   border: 0.1px solid gray;
@@ -78,6 +78,44 @@
   font-size: 1rem;
 }
 
+.Login-in-three {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Login-in-three-one {
+  width: 50%;
+  border: 0.1px solid gray;
+  text-align: center;
+}
+
+.Login-in-three-one {
+  font-size: 1.4rem;
+  background-color: rgb(216, 215, 215);
+  color: rgb(76, 76, 230);
+  padding: 0.5rem;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Login-in-three-two {
+  width: 50%;
+}
+
+.Login-in-three-two input {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border: 0.1px solid gray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 1rem;
+}
 
 @media all and (max-width: 500px) {
 
@@ -107,30 +145,33 @@
   /* Username and Password Input Fields */
   .Login-in-one,
   .Login-in-two,
-  .Login-in-three {
+  .Login-in-three,
+  .Login-in-four {
     width: 100%;
   }
 
   .Login-in-one input,
-  .Login-in-two input {
+  .Login-in-two input,
+  .Login-in-three input,
+  .Login-in-four input {
     padding: 0.6rem;
     font-size: 0.9rem; /* Slightly smaller font for inputs */
   }
 
   /* Login Button Styling */
-  .Login-in-three button {
+  .Login-in-four button {
     padding: 0.7rem;
     font-size: 1rem;
   }
 }
 
 
-.Login-in-four {
+.Login-in-five {
   width: 50%;
   margin: auto;
 }
 
-.Login-in-four a {
+.Login-in-five a {
   text-decoration: none;
   color: rgb(16, 19, 24);
 }

@@ -21,13 +21,34 @@ const Login = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [randomText, setRandomText] = useState('');
+  const [userInput, setUserInput] = useState('');
 
+  useEffect(() => {
+    generateRandomText();
+  }, []);
+
+  const generateRandomText = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    setRandomText(result);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!userData.username || !userData.password) {
       toast.error("Please fill all fields");
+      return;
+    }
+
+    if (userInput.toLowerCase() !== randomText.toLowerCase()) {
+      toast.error("Verification text doesn't match");
+      generateRandomText();
+      setUserInput('');
       return;
     }
 
@@ -85,10 +106,14 @@ const Login = () => {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setUserData({
-      ...userData,
-      [name]: value,
-    });
+    if (name === 'verificationText') {
+      setUserInput(value);
+    } else {
+      setUserData({
+        ...userData,
+        [name]: value,
+      });
+    }
   };
 
   return (
@@ -119,9 +144,27 @@ const Login = () => {
               />
             </div>
             <div className="Login-in-three">
-              <button onClick={handleLogin}>Login</button>
+              <div className="Login-in-three-one">
+                {
+                  randomText.split('').map((char, index) => (
+                    <p key={index}>{char}</p>
+                  ))
+                }
+              </div>
+                <div className="Login-in-three-two">
+                  <input
+                    type="text"
+                    value={userInput}
+                    onChange={handleInput}
+                    name="verificationText"
+                    placeholder="Enter text"
+                  />
+                </div>
             </div>
             <div className="Login-in-four">
+              <button onClick={handleLogin}>Login</button>
+            </div>
+            <div className="Login-in-five">
               <Link href="/auth/forgotPassword">Forgot Password?</Link>
             </div>
           </div>
