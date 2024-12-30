@@ -144,7 +144,7 @@ const Login = () => {
               />
             </div>
             <div className="Login-in-three">
-              <div className="Login-in-three-one">
+              <div className="Login-in-three-one" onClick={generateRandomText}>
                 {
                   randomText.split('').map((char, index) => (
                     <p key={index}>{char}</p>
