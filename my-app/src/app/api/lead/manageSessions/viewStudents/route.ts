@@ -49,6 +49,9 @@ const handler = async (req: NextRequest) => {
         ud.id_number,
         ud.payment_status,
         ud.branch,
+        ud.residency,
+        ud.hostel_name,
+        ud.bus_route,
         SUBSTRING(ud.id_number, 1, 2) AS year,
         c.club_name,
         co.course_name,
@@ -108,7 +111,10 @@ const handler = async (req: NextRequest) => {
         'Club': user.club_name || 'N/A',
         'Course': user.course_name || 'N/A',
         'Course Code': user.course_code || 'N/A',
-        'Payment Status': user.payment_status || 'Unpaid'
+        'Payment Status': user.payment_status || 'Unpaid',
+        'residency': user.residency || 'N/A',
+        'hostel_name': user.hostel_name || 'N/A',
+        'bus_route': user.bus_route || 'N/A'
       }));
 
       // Create workbook and worksheet
