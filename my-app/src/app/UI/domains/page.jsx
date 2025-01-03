@@ -1,9 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import "./page.css";
+// import React from "react";
+import { Link as Scroll } from "react-scroll";
+// import React from "react";
 
 const page = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+  const [showDiv, setShowDiv] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  console.log(showNav)
+
+  const handleNav = () => {
+    setShowNav(!showNav);
+  };
+
+  const closeNav = () => {
+    setShowNav(false);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleHover = () => {
+    setShowDropdown(true);
+  };
+
+  const handleLeave = () => {
+    setShowDropdown(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > window.innerHeight * 0.3) {
+        setShowDiv(true);
+      } else {
+        setShowDiv(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="five">
       <div className="five-in">
@@ -27,13 +89,29 @@ const page = () => {
               <div className="five-in-one-card-in-two">
                 <h2>Technology</h2>
                 <p>
-                  Explore cutting-edge tech trends and hands-on projects, from
-                  coding to robotics, in our vibrant tech enthusiast community.
+                Exploring cutting-edge innovations and build exciting projects in coding,
+                 robotics, and more with our vibrant tech community.
                 </p>
 
-                <Link href="/" className="five-in-one-card-in-two-link">
-                  Explore
-                </Link>
+                <ul><li
+              className="clubs-hover"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+              onClick={closeNav}
+            >
+              <Scroll
+                className="nav-scroll-links"
+                activeClass="active"
+                to="HomeClubs"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
+                onClick={closeNav}
+              >
+                Explore
+              </Scroll>
+            </li></ul>
               </div>
             </div>
           </div>
@@ -49,13 +127,29 @@ const page = () => {
               <div className="five-in-one-card-in-two">
                 <h2>Liberal Arts</h2>
                 <p>
-                  Explore cutting-edge tech trends and hands-on projects, from
-                  coding to robotics, in our vibrant tech enthusiast community.
+                Immerse yourself in creativity and expression through engaging 
+                discussions on literature, art, and culture in our passionate community.
                 </p>
 
-                <Link href="/" className="five-in-one-card-in-two-link">
-                  Explore
-                </Link>
+                <ul><li
+              className="clubs-hover"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+              onClick={closeNav}
+            >
+              <Scroll
+                className="nav-scroll-links"
+                activeClass="active"
+                to="HomeClubs"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
+                onClick={closeNav}
+              >
+                Explore
+              </Scroll>
+            </li></ul>
               </div>
             </div>
           </div>
@@ -71,13 +165,28 @@ const page = () => {
               <div className="five-in-one-card-in-two">
                 <h2>Outreach</h2>
                 <p>
-                  Explore cutting-edge tech trends and hands-on projects, from
-                  coding to robotics, in our vibrant tech enthusiast community.
+                Making a meaningful impact by participating in initiatives that connect and contribute
+                 to society through our dynamic programs.
                 </p>
-
-                <Link href="/" className="five-in-one-card-in-two-link">
-                  Explore
-                </Link>
+                <ul><li
+              className="clubs-hover"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+              onClick={closeNav}
+            >
+              <Scroll
+                className="nav-scroll-links"
+                activeClass="active"
+                to="HomeClubs"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
+                onClick={closeNav}
+              >
+                Explore
+              </Scroll>
+            </li></ul>
               </div>
             </div>
           </div>
@@ -93,15 +202,29 @@ const page = () => {
               <div className="five-in-one-card-in-two">
                 <h2>Entrepreneurship</h2>
                 <p>
-                  Explore cutting-edge tech trends and hands-on projects, from
-                  coding to robotics, in our vibrant tech enthusiast community.
+                Unleashing potentials by exploring ideas, crafting strategies, 
+                and collaborating in our thriving entrepreneurship community.
                 </p>
 
-                <Link legacyBehavior href="https://www.acickl.in/" className="five-in-one-card-in-two-link">
-                  <a target="_blank"> 
-                    Explore
-                  </a>
-                </Link>
+                <ul><li
+              className="clubs-hover"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+              onClick={closeNav}
+            >
+              <Scroll
+                className="nav-scroll-links"
+                activeClass="active"
+                to="HomeClubs"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
+                onClick={closeNav}
+              >
+                Explore
+              </Scroll>
+            </li></ul>
               </div>
             </div>
           </div>
@@ -117,13 +240,29 @@ const page = () => {
               <div className="five-in-one-card-in-two">
                 <h2>Health</h2>
                 <p>
-                  Explore cutting-edge tech trends and hands-on projects, from
-                  coding to robotics, in our vibrant tech enthusiast community.
+                Promoting wellness and innovation through interactive workshops, 
+                insightful discussions, and impactful health projects.
                 </p>
 
-                <Link href="/" className="five-in-one-card-in-two-link">
-                  Explore
-                </Link>
+                <ul><li
+              className="clubs-hover"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+              onClick={closeNav}
+            >
+              <Scroll
+                className="nav-scroll-links"
+                activeClass="active"
+                to="HomeClubs"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={400}
+                onClick={closeNav}
+              >
+                Explore
+              </Scroll>
+            </li></ul>
               </div>
             </div>
           </div>

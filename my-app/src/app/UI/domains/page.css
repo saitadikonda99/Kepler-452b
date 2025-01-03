@@ -66,6 +66,27 @@
   font-weight: 500;
 }
 
+.five-in-one-card-in-two ul {
+  width: 80%;
+  list-style: none;
+  height: 100%;
+}
+
+.five-in-one-card-in-two li {
+  font-size: 1.1rem;
+  color: rgb(155, 0, 3);
+
+}
+
+.five-in-one-card-in-two li:hover {
+  cursor: pointer;
+}
+
+.five-in-one-card-in-two a {
+  color: rgb(155, 0, 3);
+  text-decoration: none;
+}
+
 @media all and (max-width: 500px) {
 
   .five {
