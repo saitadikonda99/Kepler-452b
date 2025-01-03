@@ -441,6 +441,7 @@ const page = () => {
                       <th>Branch</th>
                       <th>Course</th>
                       <th>Session Name</th>
+                      <th>Residency type</th>
                       <th>Present</th>
                       <th>Extra Points</th>
                     </tr>
@@ -454,6 +455,7 @@ const page = () => {
                           <td>{student.branch}</td>
                           <td>{student.course}</td>
                           <td>{student.session_name}</td>
+                          <td>{student.residency}</td>
                           <td>
                             <input 
                               type="checkbox" 

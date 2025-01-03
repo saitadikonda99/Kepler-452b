@@ -352,3 +352,21 @@ input:disabled, select:disabled {
     margin-top: 4px;
     display: inline-block;
 }
+
+.addCourse-select,
+.residency-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.addCourse-select:focus,
+.residency-select:focus {
+  border-color: rgb(151, 3, 0);
+  box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+}

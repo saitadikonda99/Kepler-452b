@@ -39,6 +39,7 @@ const postHandler = async (req: NextRequest) => {
       sessionNegPoints,
       sessionResourcePerson,
       sessionInCharges,
+      sessionFor,
     } = await req.json();
 
     console.log(sessionNegPoints);
@@ -61,9 +62,9 @@ const postHandler = async (req: NextRequest) => {
     await pool.query('START TRANSACTION');
 
     const [sessionResult]: any = await pool.query(
-      `INSERT INTO sessions (academic_year_id, session_name, session_type, session_date, session_sTime, session_eTime, session_venue, session_course_id, session_points, session_neg_points, session_resource_person, session_club_id, session_lead_id)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [academicYearId, sessionName, sessionType, sessionDate, sessionStartTime, sessionEndTime, sessionVenue, sessionCourseId, sessionPoints, sessionNegPoints, sessionResourcePerson, clubId, leadId]
+      `INSERT INTO sessions (academic_year_id, session_name, session_type, session_date, session_sTime, session_eTime, session_venue, session_course_id, session_points, session_neg_points, session_resource_person, session_club_id, session_lead_id, session_for)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [academicYearId, sessionName, sessionType, sessionDate, sessionStartTime, sessionEndTime, sessionVenue, sessionCourseId, sessionPoints, sessionNegPoints, sessionResourcePerson, clubId, leadId, sessionFor]
     );
 
     const sessionId = sessionResult.insertId;
@@ -75,13 +76,20 @@ const postHandler = async (req: NextRequest) => {
       );
     }
 
-    const [students]: any = await pool.query(
+    const [students]: any[] = await pool.query(
       `SELECT 
         cr.user_id
       FROM course_registrations cr
-      WHERE cr.course_id = ?`,
-      [sessionCourseId]
+      JOIN user_details ud ON cr.user_id = ud.user_id
+      WHERE cr.course_id = ? 
+      ${sessionFor !== 'all' ? 'AND ud.residency = ?' : ''}`,
+      sessionFor === 'all' ? 
+        [sessionCourseId] : 
+        [sessionCourseId, sessionFor]
     );
+    
+    console.log("Session For:", sessionFor);
+    console.log("Query Results:", students);
 
     for (const student of students) {
       await pool.query(

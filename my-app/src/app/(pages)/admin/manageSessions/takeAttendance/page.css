@@ -255,21 +255,22 @@ tr:hover {
 }
 
 .academic-year-select,
-.course-select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
+.course-select,
+.residency-select {
+  padding: 8px;
+  border: 1px solid #ccc;
   border-radius: 4px;
+  margin-right: 10px;
   font-size: 14px;
-  background-color: white;
-  cursor: pointer;
   min-width: 200px;
 }
 
 .academic-year-select:focus,
-.course-select:focus {
+.course-select:focus,
+.residency-select:focus {
   outline: none;
-  border-color: rgb(151, 3, 0);
-  box-shadow: 0 0 0 2px rgba(151, 3, 0, 0.1);
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 

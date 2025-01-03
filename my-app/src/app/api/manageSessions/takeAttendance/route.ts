@@ -37,6 +37,7 @@ const getHandler = async (req: NextRequest) => {
             ud.name AS 'name',
             c.course_name AS 'course',
             ud.branch AS 'branch',
+            ud.residency AS 'residency',
             CASE 
                 WHEN sa.attendance_status = 'Present' THEN 'Present'
                 ELSE 'Absent'
@@ -56,6 +57,8 @@ const getHandler = async (req: NextRequest) => {
             courses c ON c.id = s.session_course_id
         WHERE 
             sa.session_id = ? AND s.is_active = 1
+        ORDER BY 
+            ud.residency ASC, ud.name ASC
         `,
         [sessionId]
     );

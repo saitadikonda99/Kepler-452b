@@ -14,7 +14,8 @@ const handler = async (req: NextRequest, { params }: { params: { userId: string 
 
     const { authorized, reason: roleReason } = verifyRoles(
       { ...payload, role: payload.role || "User" },
-      "Admin"
+      "Admin",
+      "club_lead"
     );
 
     if (!authorized) {
@@ -60,6 +61,7 @@ const handler = async (req: NextRequest, { params }: { params: { userId: string 
         await pool.query('COMMIT');
         return NextResponse.json({ message: "User deleted successfully" }, { status: 200 });
       } catch (error) {
+        console.log(error)
         await pool.query('ROLLBACK');
         return NextResponse.json({ message: "Error deleting user" }, { status: 500 });
       }

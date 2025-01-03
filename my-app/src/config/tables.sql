@@ -284,6 +284,7 @@ CREATE TABLE sessions (
     session_club_id INT NOT NULL,
     session_lead_id INT NOT NULL,
     session_points INT NOT NULL DEFAULT 0,
+    session_for ENUM('all', 'Hosteler', 'Day Scholar') NOT NULL DEFAULT 'all',
     session_neg_points INT NOT NULL DEFAULT 0,
     session_resource_person INT NOT NULL,
     is_active BOOLEAN DEFAULT 0,
@@ -295,6 +296,7 @@ CREATE TABLE sessions (
     FOREIGN KEY (session_club_id) REFERENCES clubs(id) ON DELETE CASCADE,
     FOREIGN KEY (session_lead_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE session_inCharges (
     id INT NOT NULL AUTO_INCREMENT,

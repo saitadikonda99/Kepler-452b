@@ -35,7 +35,8 @@ const postHandler = async (req: NextRequest) => {
       sessionNegPoints,
       sessionResourcePerson,
       sessionInCharges,
-      clubId
+      clubId,
+      sessionFor
     } = await req.json();
 
     if (!sessionName || !sessionType || !sessionDate || !sessionStartTime || 
@@ -72,13 +73,13 @@ const postHandler = async (req: NextRequest) => {
         academic_year_id, session_name, session_type, session_date, 
         session_sTime, session_eTime, session_venue, session_course_id, 
         session_points, session_neg_points, session_resource_person, 
-        session_club_id, session_lead_id, is_active
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        session_club_id, session_lead_id, is_active, session_for
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         academicYearId, sessionName, sessionType, sessionDate,
         sessionStartTime, sessionEndTime, sessionVenue, sessionCourseId,
         sessionPoints, sessionNegPoints, sessionResourcePerson,
-        clubId, lead_id, 1
+        clubId, lead_id, 1, sessionFor || 'all'
       ]
     );
 
@@ -97,8 +98,12 @@ const postHandler = async (req: NextRequest) => {
       `SELECT 
         cr.user_id
       FROM course_registrations cr
-      WHERE cr.course_id = ?`,
-      [sessionCourseId]
+      JOIN user_details ud ON cr.user_id = ud.user_id
+      WHERE cr.course_id = ? 
+      ${sessionFor !== 'all' ? 'AND ud.residency = ?' : ''}`,
+      sessionFor === 'all' ? 
+        [sessionCourseId] : 
+        [sessionCourseId, sessionFor]
     );
 
     for (const student of students) {

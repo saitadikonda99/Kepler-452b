@@ -21,6 +21,7 @@ const page = () => {
   const [clubs, setClubs] = useState([]);
   const [selectedClub, setSelectedClub] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedResidency, setSelectedResidency] = useState('all');
 
   const fetchClubs = async () => {
     try {
@@ -360,6 +361,16 @@ const page = () => {
                   ))}
                 </select>
 
+                <select 
+                  value={selectedResidency}
+                  onChange={(e) => setSelectedResidency(e.target.value)}
+                  className="residency-select"
+                >
+                  <option value="all">All Students</option>
+                  <option value="Hosteler">Hostelers Only</option>
+                  <option value="Day Scholar">Day Scholars Only</option>
+                </select>
+
                 <div className="search-container">
                   <input
                     type="text"
@@ -384,6 +395,7 @@ const page = () => {
                       <th>Time</th>
                       <th>Venue</th>
                       <th>Points</th>
+                      <th>Residency</th>
                       <th>Last Updated</th>
                       <th>Action</th>
                       <th>Download</th>
@@ -401,6 +413,10 @@ const page = () => {
                             session.session_venue.toLowerCase().includes(searchLower)
                           );
                         })
+                        .filter(session => {
+                          if (selectedResidency === 'all') return true;
+                          return session.session_for === selectedResidency;
+                        })
                         .map((session) => {
                           const started = isSessionStarted(session.session_date, session.session_sTime);
                           return (
@@ -413,6 +429,7 @@ const page = () => {
                               </td>
                               <td>{session.session_venue}</td>
                               <td>+{session.session_points} / -{session.session_neg_points}</td>
+                              <td>{session.session_for === 'all' ? 'All Students' : session.session_for}</td>
                               <td>{formatDate(session.updated_at)}</td>
                               <td>
                                 <button 

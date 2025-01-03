@@ -65,3 +65,6 @@ VALUES
 
 ALTER TABLE courses
 MODIFY course_handout TEXT;
+
+
+ ALTER TABLE sessions ADD COLUMN session_for ENUM('all', 'Hosteler', 'Day Scholar') NOT NULL DEFAULT 'all';

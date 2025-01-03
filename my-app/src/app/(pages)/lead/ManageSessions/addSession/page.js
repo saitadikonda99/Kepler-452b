@@ -31,6 +31,7 @@ const page = () => {
      sessionCourseId: "",
      sessionPoints: "",
      sessionNegPoints: "",
+     sessionFor: "all",
      sessionResourcePerson: "",
      sessionInCharges: [],
   });
@@ -370,6 +371,17 @@ const page = () => {
                                 {courseData.map((course) => (
                                     <option key={course.id} value={course.course_id}>{course.course_name}</option>
                                 ))}
+                            </select>
+                        </div>
+                        <div className="ad-three-four">
+                            <select 
+                                name="sessionFor"
+                                value={sessionData.sessionFor} 
+                                onChange={handleChange}
+                            >
+                                <option value="all">All Students</option>
+                                <option value="Hosteler">Hostellers Only</option>
+                                <option value="Day Scholar">Day Scholars Only</option>
                             </select>
                         </div>
                     </div>
