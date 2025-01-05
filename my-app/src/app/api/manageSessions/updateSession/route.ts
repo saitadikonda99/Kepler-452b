@@ -13,6 +13,7 @@ export async function PUT(req: NextRequest) {
   const userData: any = payload;
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
+    "Admin",
     "club_lead"
   );
 

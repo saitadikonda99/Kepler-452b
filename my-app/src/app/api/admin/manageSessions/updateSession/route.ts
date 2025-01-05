@@ -115,7 +115,8 @@ const postHandler = async (req: NextRequest) => {
   const userData: any = payload;
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
-    "Admin"
+    "Admin",
+    "club_lead"
   );
 
   if (!authorized) {
@@ -157,7 +158,8 @@ const deleteHandler = async (req: NextRequest) => {
   const userData: any = payload;
   const { authorized, reason: roleReason } = verifyRoles(
     { ...userData, role: userData.role || "User" },
-    "Admin"
+    "Admin",
+    "club_lead"
   );
 
   if (!authorized) {
