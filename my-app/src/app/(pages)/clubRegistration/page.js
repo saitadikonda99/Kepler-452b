@@ -198,7 +198,7 @@ const Page = () => {
     } catch (error) {
       setIsLoading(false);
       console.log(error);
-      toast.error(error.response?.data?.message || "An error occurred");
+      toast.error(error.response?.data?.message || "Please compress the pdf file");
     }
   };
 

@@ -66,7 +66,7 @@ export const POST = async (req: NextRequest) => {
         id: Authenticated[0].id,
       },
       process.env.REFRESH_TOKEN_SECRET as string,
-      { expiresIn: "15m", algorithm: "HS256" }
+      { expiresIn: "40m", algorithm: "HS256" }
     );
 
     // save the refresh token into the database of the users table
