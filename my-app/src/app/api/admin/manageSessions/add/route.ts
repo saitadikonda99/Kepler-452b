@@ -106,6 +106,7 @@ const postHandler = async (req: NextRequest) => {
         [sessionCourseId, sessionFor]
     );
 
+    // Add attendance records for students
     for (const student of students) {
       await pool.query(
         `INSERT INTO session_attendance 
@@ -114,6 +115,24 @@ const postHandler = async (req: NextRequest) => {
         [sessionId, student.user_id]
       );
     }
+
+    // Add attendance records for session in-charges
+    for (const inCharge of sessionInCharges) {
+      await pool.query(
+        `INSERT INTO session_attendance 
+        (session_id, user_id, attendance_status, attendance_points) 
+        VALUES (?, ?, 'Present', ?)`,
+        [sessionId, inCharge, sessionPoints]
+      );
+    }
+
+    // Add attendance record for resource person
+    await pool.query(
+      `INSERT INTO session_attendance 
+      (session_id, user_id, attendance_status, attendance_points) 
+      VALUES (?, ?, 'Present', ?)`,
+      [sessionId, sessionResourcePerson, sessionPoints]
+    );
 
     await pool.query('COMMIT');
 

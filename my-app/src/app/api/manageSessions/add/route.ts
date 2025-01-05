@@ -100,6 +100,24 @@ const postHandler = async (req: NextRequest) => {
       );
     }
 
+    // Add attendance records for session in-charges
+    for (const inCharge of sessionInCharges) {
+      await pool.query(
+        `INSERT INTO session_attendance 
+        (session_id, user_id, attendance_status, attendance_points) 
+        VALUES (?, ?, 'Present', ?)`,
+        [sessionId, inCharge, sessionPoints]
+      );
+    }
+
+    // Add attendance record for resource person
+    await pool.query(
+      `INSERT INTO session_attendance 
+      (session_id, user_id, attendance_status, attendance_points) 
+      VALUES (?, ?, 'Present', ?)`,
+      [sessionId, sessionResourcePerson, sessionPoints]
+    );
+
     await pool.query('COMMIT');
 
     return NextResponse.json({ message: "Session added successfully"}, { status: 200 });
