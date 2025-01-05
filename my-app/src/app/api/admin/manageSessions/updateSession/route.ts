@@ -83,14 +83,14 @@ const putHandler = async (req: NextRequest) => {
     if (sessionInCharges && sessionInCharges.length > 0) {
       // First delete existing in-charges
       await pool.query(
-        `DELETE FROM session_incharges WHERE session_id = ?`,
+        `DELETE FROM session_inCharges WHERE session_id = ?`,
         [id]
       );
 
       // Insert new in-charges
       const inChargeValues = sessionInCharges.map(inCharge => [id, inCharge]);
       await pool.query(
-        `INSERT INTO session_incharges (session_id, user_id) VALUES ?`,
+        `INSERT INTO session_inCharges (session_id, user_id) VALUES ?`,
         [inChargeValues]
       );
     }
