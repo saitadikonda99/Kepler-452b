@@ -25,6 +25,7 @@ const handler = async (req: NextRequest) => {
     const page = parseInt(searchParams.get('page') || '1', 10);
     const pageSize = parseInt(searchParams.get('pageSize') || '10', 10);
     const clubId = searchParams.get('clubId');
+    const searchTerm = searchParams.get('search');
     const offset = (page - 1) * pageSize;
 
     let query = `
@@ -61,6 +62,12 @@ const handler = async (req: NextRequest) => {
       queryParams.push(clubId);
     }
 
+    if (searchTerm) {
+      query += ` AND (u.name LIKE ? OR ud.id_number LIKE ? OR ud.phone_number LIKE ? OR ud.erp_reference_number LIKE ?)`;
+      const searchPattern = `%${searchTerm}%`;
+      queryParams.push(searchPattern, searchPattern, searchPattern, searchPattern);
+    }
+
     query += ` LIMIT ? OFFSET ?`;
     queryParams.push(pageSize, offset);
 
@@ -75,6 +82,12 @@ const handler = async (req: NextRequest) => {
     if (clubId) {
       countQuery += ` AND ud.club_id = ?`;
       countParams.push(clubId);
+    }
+
+    if (searchTerm) {
+      countQuery += ` AND (u.name LIKE ? OR ud.id_number LIKE ? OR ud.phone_number LIKE ? OR ud.erp_reference_number LIKE ?)`;
+      const searchPattern = `%${searchTerm}%`;
+      countParams.push(searchPattern, searchPattern, searchPattern, searchPattern);
     }
 
     const [countResult] = await pool.query(countQuery, countParams);

@@ -18,6 +18,8 @@ const VerifyPayment = () => {
   const [studentCount, setStudentCount] = useState(0);
   const [clubs, setClubs] = useState([]);
   const [selectedClub, setSelectedClub] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTimeout, setSearchTimeout] = useState(null);
 
   const fetchClubs = async () => {
     try {
@@ -38,7 +40,8 @@ const VerifyPayment = () => {
       const params = {
         page,
         pageSize: PAGE_SIZE,
-        ...(selectedClub && { clubId: selectedClub })
+        ...(selectedClub && { clubId: selectedClub }),
+        ...(searchTerm && { search: searchTerm })
       };
       
       const response = await fetch(`/api/admin/manageStudents?${new URLSearchParams(params)}`);
@@ -55,7 +58,7 @@ const VerifyPayment = () => {
 
   useEffect(() => {
     fetchStudents(currentPage);
-  }, [currentPage, selectedClub]);
+  }, [currentPage, selectedClub, searchTerm]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -114,6 +117,24 @@ const VerifyPayment = () => {
     setCurrentPage(1);
   };
 
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    setCurrentPage(1);
+
+    // Clear existing timeout
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+
+    // Set new timeout for debouncing
+    const timeout = setTimeout(() => {
+      setSearchTerm(value);
+    }, 500);
+
+    setSearchTimeout(timeout);
+  };
+
   return (
     <Dashboard>
       <div className="VerifyPaymentComponent">
@@ -132,6 +153,13 @@ const VerifyPayment = () => {
                 </option>
               ))}
             </select>
+            <input
+              type="text"
+              placeholder="Search by name, ID, phone, or ERP reference..."
+              value={searchTerm}
+              onChange={handleSearch}
+              className="search-input"
+            />
           </div>
           <p>Total students registered for the SAC: {studentCount}</p>
           {loading && <Loading />}
