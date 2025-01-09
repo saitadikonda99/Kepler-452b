@@ -275,7 +275,7 @@ CREATE TABLE sessions (
     id INT NOT NULL AUTO_INCREMENT,
     academic_year_id INT NOT NULL,
     session_name VARCHAR(255) NOT NULL,
-    session_type ENUM('Lecture', 'Workshop', 'Seminar', 'Webinar') NOT NULL,
+    session_type ENUM('Lecture', 'Workshop', 'Seminar', 'Webinar', 'Practice', 'Project Review', 'Hackathon', 'Learnathon', 'Other') NOT NULL,
     session_date DATE NOT NULL,
     session_sTime TIME NOT NULL,
     session_eTime TIME NOT NULL,

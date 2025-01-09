@@ -68,3 +68,18 @@ MODIFY course_handout TEXT;
 
 
  ALTER TABLE sessions ADD COLUMN session_for ENUM('all', 'Hosteler', 'Day Scholar') NOT NULL DEFAULT 'all';
+
+
+
+ ALTER TABLE sessions 
+MODIFY COLUMN session_type ENUM(
+    'Lecture', 
+    'Workshop', 
+    'Seminar', 
+    'Webinar', 
+    'Practice', 
+    'Project Review', 
+    'Hackathon', 
+    'Learnathon', 
+    'Other'
+) NOT NULL;

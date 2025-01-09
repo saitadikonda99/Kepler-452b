@@ -9,47 +9,46 @@ import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 
 const page = () => {
-   
   const [isLoading, setIsLoading] = useState(false);
   const [courseData, setCourseData] = useState([]);
-  const [inChargeInput, setInChargeInput] = useState('');
-  const [resourcePersonInput, setResourcePersonInput] = useState('');
+  const [inChargeInput, setInChargeInput] = useState("");
+  const [resourcePersonInput, setResourcePersonInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [activeField, setActiveField] = useState('');
+  const [activeField, setActiveField] = useState("");
   const [selectedInCharges, setSelectedInCharges] = useState([]);
   const [resourcePersonExists, setResourcePersonExists] = useState(false);
   const [clubs, setClubs] = useState([]);
   const [sessions, setSessions] = useState([]);
 
   const [sessionData, setSessionData] = useState({
-     sessionName: "",
-     sessionType: "",
-     sessionDate: "",
-     sessionStartTime: "",
-     sessionEndTime: "",
-     sessionVenue: "",
-     academicYearId: "",
-     clubId: "",
-     sessionCourseId: "",
-     sessionPoints: "",
-     sessionNegPoints: "",
-     sessionFor: "all",
-     sessionResourcePerson: "",
-     sessionInCharges: [],
+    sessionName: "",
+    sessionType: "",
+    sessionDate: "",
+    sessionStartTime: "",
+    sessionEndTime: "",
+    sessionVenue: "",
+    academicYearId: "",
+    clubId: "",
+    sessionCourseId: "",
+    sessionPoints: "",
+    sessionNegPoints: "",
+    sessionFor: "all",
+    sessionResourcePerson: "",
+    sessionInCharges: [],
   });
 
   console.log(sessionData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'sessionInCharges') {
+    if (name === "sessionInCharges") {
       setInChargeInput(value);
-    } else if (name === 'clubId' || name === 'academicYearId') {
-      setSessionData({ 
-        ...sessionData, 
+    } else if (name === "clubId" || name === "academicYearId") {
+      setSessionData({
+        ...sessionData,
         [name]: value,
-        sessionCourseId: "" 
+        sessionCourseId: "",
       });
     } else {
       setSessionData({ ...sessionData, [name]: value });
@@ -60,9 +59,9 @@ const page = () => {
     if (inChargeInput.trim() && !sessionData.sessionInCharges.includes(inChargeInput.trim())) {
       setSessionData({
         ...sessionData,
-        sessionInCharges: [...sessionData.sessionInCharges, inChargeInput.trim()]
+        sessionInCharges: [...sessionData.sessionInCharges, inChargeInput.trim()],
       });
-      setInChargeInput('');
+      setInChargeInput("");
     } else {
       toast.error("Please provide a valid and unique In-Charge ID");
     }
@@ -71,19 +70,19 @@ const page = () => {
   const handleRemoveInCharge = (indexToRemove) => {
     setSessionData({
       ...sessionData,
-      sessionInCharges: sessionData.sessionInCharges.filter((_, index) => index !== indexToRemove)
+      sessionInCharges: sessionData.sessionInCharges.filter((_, index) => index !== indexToRemove),
     });
     setSelectedInCharges(selectedInCharges.filter((_, index) => index !== indexToRemove));
   };
 
   const handleUserSearch = async (value, field) => {
-    if (field === 'resource') {
+    if (field === "resource") {
       setResourcePersonInput(value);
     } else {
       setInChargeInput(value);
     }
     setActiveField(field);
-    
+
     if (value.trim().length < 2) {
       setSearchResults([]);
       setShowDropdown(false);
@@ -122,10 +121,10 @@ const page = () => {
   }, []);
 
   const handleUserSelect = (user) => {
-    if (activeField === 'resource') {
+    if (activeField === "resource") {
       setSessionData({
         ...sessionData,
-        sessionResourcePerson: user.id
+        sessionResourcePerson: user.id,
       });
       setResourcePersonInput(`${user.name} (${user.username})`);
       setResourcePersonExists(true);
@@ -133,14 +132,17 @@ const page = () => {
       if (!sessionData.sessionInCharges.includes(user.id)) {
         setSessionData({
           ...sessionData,
-          sessionInCharges: [...sessionData.sessionInCharges, user.id]
+          sessionInCharges: [...sessionData.sessionInCharges, user.id],
         });
-        setSelectedInCharges([...selectedInCharges, { 
-          id: user.id, 
-          name: `${user.name} (${user.username})`
-        }]);
+        setSelectedInCharges([
+          ...selectedInCharges,
+          {
+            id: user.id,
+            name: `${user.name} (${user.username})`,
+          },
+        ]);
       }
-      setInChargeInput('');
+      setInChargeInput("");
     }
     setSearchResults([]);
     setShowDropdown(false);
@@ -176,7 +178,7 @@ const page = () => {
         setCourseData([]);
       }
     };
-    
+
     fetchData();
   }, [sessionData.academicYearId, sessionData.clubId]);
 
@@ -259,6 +261,7 @@ const page = () => {
           sessionVenue: "",
           sessionCourseId: "",
           sessionPoints: "",
+          sessionNegPoints: "",
           sessionResourcePerson: "",
           sessionInCharges: [],
         });
@@ -266,7 +269,7 @@ const page = () => {
         setSelectedInCharges([]);
         setResourcePersonExists(false);
       } else {
-        toast.error("Failed to add session");
+        toast.error(response.data.message || "Failed to add session");
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to add session");
@@ -278,9 +281,9 @@ const page = () => {
   useEffect(() => {
     if (!resourcePersonInput) {
       setResourcePersonExists(false);
-      setSessionData(prev => ({
+      setSessionData((prev) => ({
         ...prev,
-        sessionResourcePerson: ""
+        sessionResourcePerson: "",
       }));
     }
   }, [resourcePersonInput]);
@@ -299,249 +302,256 @@ const page = () => {
 
   return (
     <Dashboard>
-        <div className="addSessionComponent">
-            <div className="addSessionComponent-in">
-                <div className="addSession-one">
-                    <h1>Add Session</h1>
-                </div>
-                
-                <div className="addSession-two">
-                    <div className="ad-one">
-                        <div className="ad-one-one">
-                            <input 
-                                type="text" 
-                                name="sessionName"
-                                placeholder="Session Name" 
-                                value={sessionData.sessionName} 
-                                onChange={handleChange} 
-                            />
-                        </div>
-                        <div className="ad-one-two">
-                            <select 
-                                name="sessionType"
-                                id="sessionType"
-                                value={sessionData.sessionType} 
-                                onChange={handleChange}
-                            >
-                                <option value="">Select Session Type</option>
-                                <option value="Lecture">Lecture</option>
-                                <option value="Workshop">Workshop</option>
-                                <option value="Seminar">Seminar</option>
-                                <option value="Practice">Practice</option>
-                                <option value="Project">Project</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="ad-two">
-                        <div className="ad-two-one">
-                            <input 
-                                type="date" 
-                                name="sessionDate"
-                                value={sessionData.sessionDate} 
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="ad-two-two">
-                            <input 
-                                type="time" 
-                                name="sessionStartTime"
-                                value={sessionData.sessionStartTime} 
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="ad-two-three">
-                            <input 
-                                type="time" 
-                                name="sessionEndTime"
-                                value={sessionData.sessionEndTime} 
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div>
-                    <div className="ad-three">
-                        <div className="ad-three-one">
-                          <input 
-                              type="text" 
-                              name="sessionVenue"
-                              placeholder="Session Venue" 
-                              value={sessionData.sessionVenue} 
-                              onChange={handleChange}
-                          />
-                        </div>
-                        <div className="ad-three-two">
-                              <select
-                                  className="addCourse-select"
-                                  name="academicYearId"
-                                  onChange={handleChange}
-                                  value={sessionData.academicYearId}
-                                >
-                                  <option value="">Select Academic Year</option>
-                                  {academicYears.map((academicYear) => (
-                                    <option key={academicYear.id} value={academicYear.id}>
-                                      {academicYear.year_range} {"->"} {academicYear.semester}
-                                    </option>
-                                  ))}
-                              </select>
-                        </div>
-                        <div className="ad-three-three">
-                          <select
-                              className="addCourse-select"
-                              name="clubId"
-                              onChange={handleChange}
-                              value={sessionData.clubId}
-                            >
-                              <option value="">Select Club</option>
-                              {clubs.map((club) => (
-                                <option key={club.id} value={club.id}>
-                                  {club.club_name}
-                                </option>
-                              ))}
-                          </select>
-                        </div>
-                    </div>
-                    <div className="ad-three">
-                      <div className="ad-three-one">
-                        <select 
-                            name="sessionCourseId"
-                            id="sessionCourseId"
-                            value={sessionData.sessionCourseId} 
-                            onChange={handleChange}
-                            disabled={!sessionData.academicYearId || !sessionData.clubId}
-                        >
-                            <option value="">Select Course</option>
-                            {courseData && courseData.map((course) => (
-                                <option key={course.course_id} value={course.course_id}>
-                                  {course.course_name} ({course.course_code})
-                                </option>
-                            ))}
-                        </select>
-                      </div>
-                      <div className="ad-three-two">
-                        <select
-                            name="sessionFor"
-                            value={sessionData.sessionFor}
-                            onChange={handleChange}
-                            className="residency-select"
-                        >
-                            <option value="all">All Students</option>
-                            <option value="Hosteler">Hostelers Only</option>
-                            <option value="Day Scholar">Day Scholars Only</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="ad-four">
-                        <div className="ad-four-one">
-                            <input 
-                                type="number" 
-                                name="sessionPoints"
-                                placeholder="Session Points" 
-                                value={sessionData.sessionPoints} 
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="ad-four-two">
-                            <input 
-                                type="number" 
-                                name="sessionNegPoints"
-                                placeholder="Session Negative Points" 
-                                value={sessionData.sessionNegPoints} 
-                                onChange={handleChange}
-                            />
-                        </div>
+      <div className="addSessionComponent">
+        <div className="addSessionComponent-in">
+          <div className="addSession-one">
+            <h1>Add Session</h1>
+          </div>
 
-                        <div className="ad-four-three">
-                            <div className="autocomplete-wrapper">
-                                <input 
-                                    type="text" 
-                                    name="sessionResourcePerson"
-                                    placeholder="Search Resource Person" 
-                                    value={resourcePersonInput} 
-                                    onChange={(e) => handleUserSearch(e.target.value, 'resource')}
-                                    onFocus={() => {
-                                        setActiveField('resource');
-                                        if (resourcePersonInput.length >= 2) setShowDropdown(true);
-                                    }}
-                                />
-                                {showDropdown && activeField === 'resource' && searchResults.length > 0 && (
-                                    <div className="autocomplete-dropdown">
-                                        {searchResults.map((user) => (
-                                            <div 
-                                                key={user.id} 
-                                                className="autocomplete-item"
-                                                onClick={() => handleUserSelect(user)}
-                                            >
-                                                <div className="user-info">
-                                                    <span className="username">{user.username}</span>
-                                                    <span className="name">{user.name}</span>
-                                                    <span className="role">{user.role}</span>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="ad-four-three">
-                            <div className="incharge-input-container">
-                                <div className="autocomplete-wrapper">
-                                    <input 
-                                        type="text" 
-                                        name="sessionInCharges"
-                                        placeholder="Search In-Charge" 
-                                        value={inChargeInput} 
-                                        onChange={(e) => handleUserSearch(e.target.value, 'incharge')}
-                                        onFocus={() => {
-                                            setActiveField('incharge');
-                                            if (inChargeInput.length >= 2) setShowDropdown(true);
-                                        }}
-                                    />
-                                    {showDropdown && activeField === 'incharge' && searchResults.length > 0 && (
-                                        <div className="autocomplete-dropdown">
-                                            {searchResults.map((user) => (
-                                                <div 
-                                                    key={user.id} 
-                                                    className="autocomplete-item"
-                                                    onClick={() => handleUserSelect(user)}
-                                                >
-                                                    <div className="user-info">
-                                                        <span className="username">{user.username}</span>
-                                                        <span className="name">{user.name}</span>
-                                                        <span className="role">{user.role}</span>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="ad-five">
-                        <button className="ad-five-btn" onClick={handleSubmit}>Submit</button>
-                    </div>
-                    {/* Display added in-charges */}
-                    {sessionData.sessionInCharges.length > 0 && (
-                        <div className="in-charge-list">
-                            <h3>Added In-Charges:</h3>
-                            <ul>
-                                {selectedInCharges.map((inCharge, index) => (
-                                    <li key={index}>
-                                        <span>{inCharge.name}</span>
-                                        <button 
-                                            onClick={() => handleRemoveInCharge(index)}
-                                            className="remove-incharge-btn"
-                                            type="button"
-                                        >
-                                            ×
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
+          <div className="addSession-two">
+            <div className="ad-one">
+              <div className="ad-one-one">
+                <input
+                  type="text"
+                  name="sessionName"
+                  placeholder="Session Name"
+                  value={sessionData.sessionName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="ad-one-two">
+                <select
+                  name="sessionType"
+                  id="sessionType"
+                  value={sessionData.sessionType}
+                  onChange={handleChange}
+                >
+                  <option value="">Select Session Type</option>
+                  <option value="Lecture">Lecture</option>
+                  <option value="Workshop">Workshop</option>
+                  <option value="Seminar">Seminar</option>
+                  <option value="Webinar">Webinar</option>
+                  <option value="Practice">Practice</option>
+                  <option value="Project Review">Project Review</option>
+                  <option value="Hackathon">Hackathon</option>
+                  <option value="Learnathon">Learnathon</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
             </div>
+            <div className="ad-two">
+              <div className="ad-two-one">
+                <input
+                  type="date"
+                  name="sessionDate"
+                  value={sessionData.sessionDate}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="ad-two-two">
+                <input
+                  type="time"
+                  name="sessionStartTime"
+                  value={sessionData.sessionStartTime}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="ad-two-three">
+                <input
+                  type="time"
+                  name="sessionEndTime"
+                  value={sessionData.sessionEndTime}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="ad-three">
+              <div className="ad-three-one">
+                <input
+                  type="text"
+                  name="sessionVenue"
+                  placeholder="Session Venue"
+                  value={sessionData.sessionVenue}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="ad-three-two">
+                <select
+                  className="addCourse-select"
+                  name="academicYearId"
+                  onChange={handleChange}
+                  value={sessionData.academicYearId}
+                >
+                  <option value="">Select Academic Year</option>
+                  {academicYears.map((academicYear) => (
+                    <option key={academicYear.id} value={academicYear.id}>
+                      {academicYear.year_range} {"->"} {academicYear.semester}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="ad-three-three">
+                <select
+                  className="addCourse-select"
+                  name="clubId"
+                  onChange={handleChange}
+                  value={sessionData.clubId}
+                >
+                  <option value="">Select Club</option>
+                  {clubs.map((club) => (
+                    <option key={club.id} value={club.id}>
+                      {club.club_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="ad-three">
+              <div className="ad-three-one">
+                <select
+                  name="sessionCourseId"
+                  id="sessionCourseId"
+                  value={sessionData.sessionCourseId}
+                  onChange={handleChange}
+                  disabled={!sessionData.academicYearId || !sessionData.clubId}
+                >
+                  <option value="">Select Course</option>
+                  {courseData &&
+                    courseData.map((course) => (
+                      <option key={course.course_id} value={course.course_id}>
+                        {course.course_name} ({course.course_code})
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="ad-three-two">
+                <select
+                  name="sessionFor"
+                  value={sessionData.sessionFor}
+                  onChange={handleChange}
+                  className="residency-select"
+                >
+                  <option value="all">All Students</option>
+                  <option value="Hosteler">Hostelers Only</option>
+                  <option value="Day Scholar">Day Scholars Only</option>
+                </select>
+              </div>
+            </div>
+            <div className="ad-four">
+              <div className="ad-four-one">
+                <input
+                  type="number"
+                  name="sessionPoints"
+                  placeholder="Session Points"
+                  value={sessionData.sessionPoints}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="ad-four-two">
+                <input
+                  type="number"
+                  name="sessionNegPoints"
+                  placeholder="Session Negative Points e.g. 40"
+                  value={sessionData.sessionNegPoints}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="ad-four-three">
+                <div className="autocomplete-wrapper">
+                  <input
+                    type="text"
+                    name="sessionResourcePerson"
+                    placeholder="Search Resource Person"
+                    value={resourcePersonInput}
+                    onChange={(e) => handleUserSearch(e.target.value, "resource")}
+                    onFocus={() => {
+                      setActiveField("resource");
+                      if (resourcePersonInput.length >= 2) setShowDropdown(true);
+                    }}
+                  />
+                  {showDropdown && activeField === "resource" && searchResults.length > 0 && (
+                    <div className="autocomplete-dropdown">
+                      {searchResults.map((user) => (
+                        <div
+                          key={user.id}
+                          className="autocomplete-item"
+                          onClick={() => handleUserSelect(user)}
+                        >
+                          <div className="user-info">
+                            <span className="username">{user.username}</span>
+                            <span className="name">{user.name}</span>
+                            <span className="role">{user.role}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="ad-four-three">
+                <div className="incharge-input-container">
+                  <div className="autocomplete-wrapper">
+                    <input
+                      type="text"
+                      name="sessionInCharges"
+                      placeholder="Search In-Charge"
+                      value={inChargeInput}
+                      onChange={(e) => handleUserSearch(e.target.value, "incharge")}
+                      onFocus={() => {
+                        setActiveField("incharge");
+                        if (inChargeInput.length >= 2) setShowDropdown(true);
+                      }}
+                    />
+                    {showDropdown && activeField === "incharge" && searchResults.length > 0 && (
+                      <div className="autocomplete-dropdown">
+                        {searchResults.map((user) => (
+                          <div
+                            key={user.id}
+                            className="autocomplete-item"
+                            onClick={() => handleUserSelect(user)}
+                          >
+                            <div className="user-info">
+                              <span className="username">{user.username}</span>
+                              <span className="name">{user.name}</span>
+                              <span className="role">{user.role}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="ad-five">
+              <button className="ad-five-btn" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
+            {/* Display added in-charges */}
+            {sessionData.sessionInCharges.length > 0 && (
+              <div className="in-charge-list">
+                <h3>Added In-Charges:</h3>
+                <ul>
+                  {selectedInCharges.map((inCharge, index) => (
+                    <li key={index}>
+                      <span>{inCharge.name}</span>
+                      <button
+                        onClick={() => handleRemoveInCharge(index)}
+                        className="remove-incharge-btn"
+                        type="button"
+                      >
+                        ×
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
+      </div>
     </Dashboard>
   );
 };

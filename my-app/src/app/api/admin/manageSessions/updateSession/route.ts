@@ -34,7 +34,9 @@ const putHandler = async (req: NextRequest) => {
       sessionPoints,
       sessionNegPoints,
       sessionResourcePerson,
-      sessionInCharges
+      sessionInCharges,
+      academicYearId,
+      sessionCourseId
     } = await req.json();
 
     await pool.query('START TRANSACTION');
@@ -62,6 +64,8 @@ const putHandler = async (req: NextRequest) => {
            session_points = ?,
            session_neg_points = ?,
            session_resource_person = ?,
+           academic_year_id = ?,
+           session_course_id = ?,
            updated_at = CURRENT_TIMESTAMP
        WHERE id = ? AND session_club_id = ?`,
       [
@@ -74,6 +78,8 @@ const putHandler = async (req: NextRequest) => {
         sessionPoints,
         sessionNegPoints,
         sessionResourcePerson,
+        academicYearId,
+        sessionCourseId,
         id,
         clubId
       ]
@@ -100,8 +106,12 @@ const putHandler = async (req: NextRequest) => {
     return NextResponse.json({ message: "Session updated successfully" }, { status: 200 });
   } catch (error) {
     await pool.query('ROLLBACK');
-    console.error(error);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
+    console.error("Error updating session:", error);
+    let errorMessage = "Server error while updating session";
+    if (error.message.includes("Incorrect date value")) {
+      errorMessage = "Invalid date format for session date";
+    }
+    return NextResponse.json({ message: errorMessage }, { status: 500 });
   }
 };
 
@@ -143,8 +153,8 @@ const postHandler = async (req: NextRequest) => {
     return NextResponse.json({ message: "Session status updated successfully" }, { status: 200 });
   } catch (error) {
     await pool.query('ROLLBACK');
-    console.error(error);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
+    console.error("Error updating session status:", error);
+    return NextResponse.json({ message: error.message || "Server error while updating session status" }, { status: 500 });
   }
 };
 
@@ -210,8 +220,8 @@ const deleteHandler = async (req: NextRequest) => {
     return NextResponse.json({ message: "Session deleted successfully" }, { status: 200 });
   } catch (error) {
     await pool.query('ROLLBACK');
-    console.error(error);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
+    console.error("Error deleting session:", error);
+    return NextResponse.json({ message: error.message || "Server error while deleting session" }, { status: 500 });
   }
 };
 

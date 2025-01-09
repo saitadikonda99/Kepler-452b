@@ -33,7 +33,9 @@ export async function PUT(req: NextRequest) {
       sessionPoints,
       sessionNegPoints,
       sessionResourcePerson,
-      sessionInCharges
+      sessionInCharges,
+      academicYearId,
+      sessionCourseId
     } = await req.json();
 
     // Update main session data
@@ -48,6 +50,8 @@ export async function PUT(req: NextRequest) {
            session_points = ?,
            session_neg_points = ?,
            session_resource_person = ?,
+           academic_year_id = ?,
+           session_course_id = ?,
            updated_at = CURRENT_TIMESTAMP
        WHERE id = ?`,
       [
@@ -60,6 +64,8 @@ export async function PUT(req: NextRequest) {
         sessionPoints,
         sessionNegPoints,
         sessionResourcePerson,
+        academicYearId,
+        sessionCourseId,
         id
       ]
     );

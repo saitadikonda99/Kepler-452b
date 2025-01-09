@@ -49,8 +49,8 @@ const page = () => {
       const response = await axios.get("/api/admin/getClubDetails");
       setClubs(response.data);
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to fetch clubs");
+      console.error("Error fetching clubs:", error);
+      toast.error(error.response?.data?.message || "Failed to fetch clubs. Please try again.");
     }
   };
 
@@ -63,8 +63,8 @@ const page = () => {
       const response = await axios.get(url);
       setCourses(response.data);
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to fetch courses");
+      console.error("Error fetching courses:", error);
+      toast.error(error.response?.data?.message || "Failed to fetch courses. Please try again.");
     }
   };
 
@@ -94,8 +94,8 @@ const page = () => {
         setFilteredSessions(response.data);
       }
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to fetch sessions");
+      console.error("Error fetching sessions:", error);
+      toast.error(error.response?.data?.message || "Failed to fetch sessions. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -327,8 +327,12 @@ const page = () => {
         setShowEdit(false);
       }
     } catch (error) {
-      console.error(error);
-      toast.error(error.response?.data?.message || "Failed to update session");
+      console.error("Error updating session:", error);
+      let errorMessage = error.response?.data?.message || "Failed to update session. Please try again.";
+      if (errorMessage.includes("Incorrect date value")) {
+        errorMessage = "Invalid date format for session date";
+      }
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -438,8 +442,12 @@ const page = () => {
                     <option value="Lecture">Lecture</option>
                     <option value="Workshop">Workshop</option>
                     <option value="Seminar">Seminar</option>
+                    <option value="Webinar">Webinar</option>
                     <option value="Practice">Practice</option>
-                    <option value="Project">Project</option>
+                    <option value="Project Review">Project Review</option>
+                    <option value="Hackathon">Hackathon</option>
+                    <option value="Learnathon">Learnathon</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
               </div>

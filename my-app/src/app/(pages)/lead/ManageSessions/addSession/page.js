@@ -246,6 +246,7 @@ const page = () => {
           sessionVenue: "",
           sessionCourseId: "",
           sessionPoints: "",
+          sessionNegPoints: "",
           sessionResourcePerson: "",
           sessionInCharges: [],
         });
@@ -253,7 +254,7 @@ const page = () => {
         setSelectedInCharges([]);
         setResourcePersonExists(false);
       } else {
-        toast.error("Failed to add session");
+        toast.error(response.data.message || "Failed to add session");
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to add session");
@@ -302,8 +303,12 @@ const page = () => {
                                 <option value="Lecture">Lecture</option>
                                 <option value="Workshop">Workshop</option>
                                 <option value="Seminar">Seminar</option>
+                                <option value="Webinar">Webinar</option>
                                 <option value="Practice">Practice</option>
-                                <option value="Project">Project</option>
+                                <option value="Project Review">Project Review</option>
+                                <option value="Hackathon">Hackathon</option>
+                                <option value="Learnathon">Learnathon</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
@@ -399,7 +404,7 @@ const page = () => {
                             <input 
                                 type="number" 
                                 name="sessionNegPoints"
-                                placeholder="Session Negative Points" 
+                                placeholder="Session Negative Points e.g. 40" 
                                 value={sessionData.sessionNegPoints} 
                                 onChange={handleChange}
                             />
