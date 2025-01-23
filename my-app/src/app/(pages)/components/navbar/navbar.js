@@ -23,7 +23,7 @@ const navbar = ({ userDetails}) => {
             {/* AN -> AdminNav */}
             <div className="AN-one">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/HeroVideo%2FOfficialSacLogo.png?alt=media&token=8a73bd93-832c-4d5d-819d-0e371d12b01c"
+                src="https://i.imghippo.com/files/Jgak4143wH.png"
                 alt=""
                />
             </div>

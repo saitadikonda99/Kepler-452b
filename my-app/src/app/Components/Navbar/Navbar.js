@@ -82,7 +82,7 @@ const Navbar = () => {
             <h1 onClick={handleScroll}>Student Activity Center</h1>
           ) : (
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/HeroVideo%2FOfficialSacLogo.png?alt=media&token=8a73bd93-832c-4d5d-819d-0e371d12b01c"
+              src="https://i.imghippo.com/files/Jgak4143wH.png"
               alt=""
             />
           )}
@@ -193,7 +193,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="https://sac-svr.vercel.app" target="_blank">
+              <Link href="https://svr.kluniversity.in" target="_blank">
                 SVR
               </Link>
             </li>
@@ -214,7 +214,7 @@ const Navbar = () => {
             <h1 onClick={handleScroll}>Student Activity Center</h1>
           ) : (
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/HeroVideo%2FOfficialSacLogo.png?alt=media&token=8a73bd93-832c-4d5d-819d-0e371d12b01c"
+              src="https://i.imghippo.com/files/Jgak4143wH.png"
               alt=""
             />
           )}
@@ -310,7 +310,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="https://sac-svr.vercel.app" target="_blank">
+              <Link href="https://svr.kluniversity.in" target="_blank">
                 SVR
               </Link>
             </li>
