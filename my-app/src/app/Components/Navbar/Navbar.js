@@ -82,7 +82,7 @@ const Navbar = () => {
             <h1 onClick={handleScroll}>Student Activity Center</h1>
           ) : (
             <img
-              src="https://i.imghippo.com/files/Jgak4143wH.png"
+              src="https://i.imghippo.com/files/TmgW3869FDs.png"
               alt=""
             />
           )}
@@ -214,7 +214,7 @@ const Navbar = () => {
             <h1 onClick={handleScroll}>Student Activity Center</h1>
           ) : (
             <img
-              src="https://i.imghippo.com/files/Jgak4143wH.png"
+              src="https://i.imghippo.com/files/TmgW3869FDs.png"
               alt=""
             />
           )}

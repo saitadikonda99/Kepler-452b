@@ -23,7 +23,7 @@ const navbar = ({ userDetails}) => {
             {/* AN -> AdminNav */}
             <div className="AN-one">
               <img
-                src="https://i.imghippo.com/files/Jgak4143wH.png"
+                src="https://i.imghippo.com/files/TmgW3869FDs.png"
                 alt=""
                />
             </div>
