@@ -53,6 +53,10 @@ export const POST = async (req: NextRequest) => {
         ]
       );
 
+      const clubId = (club as any).insertId;
+
+      await pool.query("CALL AddClubData(?);", [clubId]);
+  
       await redisClient.del(KEY);
 
       return NextResponse.json({ message: "Club added successfully" }, { status: 200 });
@@ -143,7 +147,8 @@ export const POST = async (req: NextRequest) => {
     const clubId = (club as any).insertId;
 
     // Call the stored procedure to insert additional data
-    await pool.query("CALL AddClubData(?);", [clubId]);
+    const [result]: any = await pool.query("CALL AddClubData(?);", [clubId]);
+
 
     await pool.query('COMMIT');
 
