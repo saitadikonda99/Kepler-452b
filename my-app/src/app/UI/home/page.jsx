@@ -20,7 +20,7 @@ const page = () => {
           loop
           muted
           style={{ width: "100%" }}
-          src="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/2281737997851759787.MP4?alt=media&token=cf3cb996-6d57-4508-a6f1-4c57c92c2cfc"
+          src={'/hero.mp4'}
         />
         <div className="here-text">
           <h1>Student Activity Center</h1>
