@@ -43,30 +43,41 @@
 .three-three-one {
     width: 100%;
     display: flex;
-    row-gap: 1rem;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+    row-gap: 2rem;
 }
-
 
 .count-cm {
     width: 33.33%;
+    margin-bottom: 2rem;
 }
 
-.count-cm h1{
-    font-size: 2.5rem;
+.count-cm h1 {
+    font-size: 3rem;
     text-align: center;
     padding: .5rem 0rem;
+    color: #8b0000;
+    font-weight: bold;
 }
 
-.count-cm h2{
+.count-cm h2 {
     text-align: center;
     padding: .5rem 0rem;
     color: rgb(39, 38, 38);
+    font-size: 1.2rem;
 }
 
+.count-cm h2 a {
+    color: rgb(39, 38, 38);
+    text-decoration: none;
+}
 
+.count-cm h2 a:hover {
+    color: #8b0000;
+    text-decoration: underline;
+}
 
 @media all and (max-width: 500px) {
 

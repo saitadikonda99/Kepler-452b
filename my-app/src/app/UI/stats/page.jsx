@@ -40,9 +40,10 @@ const Page = () => {
         </div>
         <div className="three-three">
           <div className="three-three-one">
+            {/* First Row */}
             <div className="three-three-in-one count-cm">
-              <h2>Collaborations</h2>
-              <CountUp start={0} duration={4} end={100} redraw={true}>
+              <h2>Actively Engaged Students</h2>
+              <CountUp start={0} duration={4} end={15593} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
                     <h1 ref={countUpRef} />
@@ -51,18 +52,18 @@ const Page = () => {
               </CountUp>
             </div>
             <div className="three-three-in-two count-cm">
-              <h2>Clubs</h2>
-              <CountUp start={0} duration={4} end={stats.total_clubs} redraw={true}>
+              <h2>Awards</h2>
+              <CountUp start={0} duration={4} end={368} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
-                    <h1 ref={countUpRef} />
+                    <h1 ref={countUpRef}>+</h1>
                   </VisibilitySensor>
                 )}
               </CountUp>
             </div>
             <div className="three-three-in-three count-cm">
               <h2>Industry Mentors</h2>
-              <CountUp start={1} duration={4} end={50} redraw={true}>
+              <CountUp start={0} duration={4} end={49} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
                     <h1 ref={countUpRef} />
@@ -70,32 +71,33 @@ const Page = () => {
                 )}
               </CountUp>
             </div>
+            {/* Second Row */}
             <div className="three-three-in-one count-cm">
-              <h2>Actively Engaged Students</h2>
-              <CountUp start={1} duration={4} end={6000} redraw={true}>
+              <h2>Events</h2>
+              <CountUp start={0} duration={4} end={404} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
-                    <h1 ref={countUpRef} />
+                    <h1 ref={countUpRef}>+</h1>
                   </VisibilitySensor>
                 )}
               </CountUp>
             </div>
             <div className="three-three-in-two count-cm">
-              <h2>Events</h2>
-              <CountUp start={1} duration={4} end={534} redraw={true}>
+              <h2>Clubs</h2>
+              <CountUp start={0} duration={4} end={88} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
-                    <h1 ref={countUpRef} />
+                    <h1 ref={countUpRef}>+</h1>
                   </VisibilitySensor>
                 )}
               </CountUp>
             </div>
             <div className="three-three-in-three count-cm">
-              <h2>Activities</h2>
-              <CountUp start={1} duration={4} end={stats.total_activities} redraw={true}>
+              <h2>Workshops</h2>
+              <CountUp start={0} duration={4} end={104} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
-                    <h1 ref={countUpRef} />
+                    <h1 ref={countUpRef}>+</h1>
                   </VisibilitySensor>
                 )}
               </CountUp>

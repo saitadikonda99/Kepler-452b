@@ -15,6 +15,8 @@ const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
   const [showDiv, setShowDiv] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showAboutDropdown, setShowAboutDropdown] = useState(false);
+  const router = useRouter();
 
   console.log(showNav)
 
@@ -71,6 +73,19 @@ const Navbar = () => {
     });
   };
 
+  const handleAboutHover = () => {
+    setShowAboutDropdown(true);
+  };
+
+  const handleAboutLeave = () => {
+    setShowAboutDropdown(false);
+  };
+
+  const handleOrganogramClick = () => {
+    router.push('/organogram');
+    closeNav();
+  };
+
   return isMobile ? (
     <div className="NavbarComponent">
       <div
@@ -94,19 +109,33 @@ const Navbar = () => {
         </div>
         <div className={showNav ? "Navbar-two" : "Navbar-hide"}>
           <ul>
-            <li>
-              <Scroll
-                className="nav-scroll-links"
-                activeClass="active"
-                to="three"
-                spy={true}
-                smooth={true}
-                offset={-10}
-                duration={400}
-                onClick={closeNav}
-              >
-                About
-              </Scroll>
+            <li
+              className="about-hover"
+              onMouseEnter={handleAboutHover}
+              onMouseLeave={handleAboutLeave}
+            >
+              <span className="nav-scroll-links">About</span>
+              {showAboutDropdown && (
+                <div className="about-dropdown">
+                  <div onClick={handleOrganogramClick}>Organogram</div>
+                  <div>
+                    <Scroll
+                      to="three"
+                      spy={true}
+                      smooth={true}
+                      offset={-10}
+                      duration={400}
+                      onClick={closeNav}
+                      style={{ width: '100%', display: 'block' }}
+                    >
+                      Stats
+                    </Scroll>
+                  </div>
+                  <div>
+                    <Link href="/mentors" onClick={closeNav}>Mentors</Link>
+                  </div>
+                </div>
+              )}
             </li>
             <li>
               <Scroll
@@ -222,18 +251,33 @@ const Navbar = () => {
 
         <div className="Navbar-two">
           <ul>
-            <li>
-              <Scroll
-                className="nav-scroll-links"
-                activeClass="active"
-                to="three"
-                spy={true}
-                smooth={true}
-                offset={-10}
-                duration={400}
-              >
-                About
-              </Scroll>
+            <li
+              className="about-hover"
+              onMouseEnter={handleAboutHover}
+              onMouseLeave={handleAboutLeave}
+            >
+              <span className="nav-scroll-links">About</span>
+              {showAboutDropdown && (
+                <div className="about-dropdown">
+                  <div onClick={handleOrganogramClick}>Organogram</div>
+                  <div>
+                    <Scroll
+                      to="three"
+                      spy={true}
+                      smooth={true}
+                      offset={-10}
+                      duration={400}
+                      onClick={closeNav}
+                      style={{ width: '100%', display: 'block' }}
+                    >
+                      Stats
+                    </Scroll>
+                  </div>
+                  <div>
+                    <Link href="/mentors">Mentors</Link>
+                  </div>
+                </div>
+              )}
             </li>
             <li>
               <Scroll
