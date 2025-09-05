@@ -11,6 +11,7 @@ import Stats from "./UI/stats/page";
 import Domains from "./UI/domains/page";
 import News from "./UI/news/page";
 import Events from "./UI/events/page";
+import Team from "./UI/Team/team";
 import Socials from "./UI/socials/page";
 import Faq from "./UI/Faq/page";
 import Clubs from "./UI/clubs/page";
@@ -68,6 +69,8 @@ const page = () => {
         <News />
         {/* Home Events */}
         <Events />
+        {/* Home Team */}
+        <Team /> 
         {/* Home Socials */}
         <Socials />
         {/* Home Faq's */}

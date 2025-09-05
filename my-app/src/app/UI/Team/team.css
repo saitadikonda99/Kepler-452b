@@ -1,0 +1,135 @@
+
+
+.TeamComponent {
+    width: 100%;
+}
+  
+.TeamComponent-in {
+    width: 90%;
+    margin: auto;
+    padding: 3rem 0rem;
+}
+
+.team-one {
+    width: 100%;
+    text-align: left;
+}
+
+.team-one span {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+.team-two {
+    width: 100%;
+    text-align: left;
+}
+
+.team-two h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: black;
+}
+
+.team-two p {
+    font-size: 1rem;
+    color: grey;
+    font-weight: 400;
+    padding: .5rem 0rem;
+}
+
+.team-three {
+    width: 100%;
+}
+
+.team-three-in {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.team-card {
+    width: 18%;
+    padding: 2rem 0rem 0rem 0rem;
+}
+
+.team-card-in {
+    width: 100%;
+    min-height: 20rem;
+    background-size: contain ;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.team-card-in-one {
+    width: 80%;
+    margin: auto;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: .5rem 0rem;
+    border: 1px solid rgb(206, 205, 205);
+}
+
+.team-card-in-one-one {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-card-in-one-one p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+}
+
+.team-card-in-one-one p:nth-child(2) {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: grey;
+}
+
+.team-card-in-one-two {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.team-four {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 2rem 0rem 0rem 0rem;
+}
+
+.team-four a {
+    color: rgb(151, 0, 3);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.team-four svg {
+    font-size: 1.5rem;
+    color: rgb(151, 0, 3);
+}
+
+.team-four a:hover {
+    color: black;
+    font-weight: 500;
+}
