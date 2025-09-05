@@ -321,3 +321,19 @@ CREATE TABLE session_attendance (
     FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+-- Team members table
+CREATE TABLE team_members (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    image_url VARCHAR(500) NOT NULL,
+    linkedin_url VARCHAR(500) DEFAULT NULL,
+    email VARCHAR(255) NOT NULL,
+    category ENUM('leadership', 'coordinators', 'club_leaders', 'core_team', 'staff', 'trainers', 'mentors', 'previous_council') NOT NULL,
+    display_order INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);

@@ -218,7 +218,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/clubRegistration">Register</Link>
+              <Link href="https://sacactivities.kluniversity.in/auth/register" target="_blank">Register</Link>
             </li>
 
             <li>
@@ -296,7 +296,7 @@ const Navbar = () => {
               <Scroll
                 className="nav-scroll-links"
                 activeClass="active"
-                to="four"
+                to="teamComponent"
                 spy={true}
                 smooth={true}
                 offset={-10}
@@ -359,7 +359,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/clubRegistration">Register</Link>
+              <Link href="https://sacactivities.kluniversity.in/auth/register" target="_blank">Register</Link>
             </li>
           </ul>
         </div>

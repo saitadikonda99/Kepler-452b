@@ -83,3 +83,14 @@ MODIFY COLUMN session_type ENUM(
     'Learnathon', 
     'Other'
 ) NOT NULL;
+
+
+
+INSERT INTO team_members (name, title, image_url, linkedin_url, email, category, display_order, is_active) VALUES
+('Kunal Kushwaha', 'President', 'https://i.imghippo.com/files/KHQV5981JOM.png', 'https://www.linkedin.com/in/tadikondasaimanikanta/', 'kunal@gmail.com', 'leadership', 1, 1),
+
+-- Vice Presidents
+('Aarav Mehta', 'Vice President', 'https://i.imghippo.com/files/KHQV5981JOM.png', NULL, 'aarav.mehta@example.com', 'leadership', 2, 1),
+('Riya Sharma', 'Vice President', 'https://i.imghippo.com/files/KHQV5981JOM.png', NULL, 'riya.sharma@example.com', 'leadership', 3, 1),
+('Arjun Verma', 'Vice President', 'https://i.imghippo.com/files/KHQV5981JOM.png', NULL, 'arjun.verma@example.com', 'leadership', 4, 1),
+('Sneha Patel', 'Vice President', 'https://i.imghippo.com/files/KHQV5981JOM.png', NULL, 'sneha.patel@example.com', 'leadership', 5, 1);

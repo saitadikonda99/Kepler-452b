@@ -75,6 +75,11 @@ const sidebar = () => {
       ],
     },
     {
+      name: "Team",
+      icon: <MdGroups className="sideBar-icon" />,
+      link: "/admin/team",
+    },
+    {
       name: "Add Club",
       icon: <MdGroups className="sideBar-icon" />,
       link: "/admin/addClub",
