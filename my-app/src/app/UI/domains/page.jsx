@@ -121,7 +121,7 @@ const page = () => {
             <div className="five-in-one-card-in">
               <div className="five-in-one-card-in-one">
                 <img
-                  src="https://i.imghippo.com/files/lDeL7511A.png"
+                  src="https://i.imghippo.com/files/CLgj5702gVg.jpg"
                   alt=""
                 />
               </div>
