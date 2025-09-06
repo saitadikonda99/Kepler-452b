@@ -83,7 +83,7 @@ const page = () => {
             <div className="five-in-one-card-in">
               <div className="five-in-one-card-in-one">
                 <img
-                  src="https://i.imghippo.com/files/TUqr6957Gk.png"
+                  src="https://i.imghippo.com/files/hJ1452jU.jpg"
                   alt=""
                 />
               </div>
@@ -121,7 +121,7 @@ const page = () => {
             <div className="five-in-one-card-in">
               <div className="five-in-one-card-in-one">
                 <img
-                  src="https://i.imghippo.com/files/prtV8611dI.png"
+                  src="https://i.imghippo.com/files/lDeL7511A.png"
                   alt=""
                 />
               </div>
@@ -159,7 +159,7 @@ const page = () => {
             <div className="five-in-one-card-in">
               <div className="five-in-one-card-in-one">
                 <img
-                  src="https://i.imghippo.com/files/Khsj8104jI.png"
+                  src="https://i.imghippo.com/files/TSld1028vI.jpg"
                   alt=""
                 />
               </div>
@@ -196,7 +196,7 @@ const page = () => {
             <div className="five-in-one-card-in">
               <div className="five-in-one-card-in-one">
                 <img
-                  src="https://i.imghippo.com/files/wDBg7876h.png"
+                  src="https://i.imghippo.com/files/AEMl1128uY.jpg"
                   alt=""
                 />
               </div>
@@ -234,7 +234,7 @@ const page = () => {
             <div className="five-in-one-card-in">
               <div className="five-in-one-card-in-one">
                 <img
-                  src="https://i.imghippo.com/files/qbF3467ljo.png"
+                  src="https://i.imghippo.com/files/wm3785fhc.jpg"
                   alt=""
                 />
               </div>
