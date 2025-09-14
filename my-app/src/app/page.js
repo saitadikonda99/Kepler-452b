@@ -15,6 +15,8 @@ import Team from "./UI/Team/team";
 import Socials from "./UI/socials/page";
 import Faq from "./UI/Faq/page";
 import Clubs from "./UI/clubs/page";
+import Partners from "./UI/partners/partners";
+import Testimonials from "./UI/testimonials/testimonials";
 
 import LoaderComponent from "./Components/loader/loader";
 
@@ -54,8 +56,12 @@ const page = () => {
         <Home />
         {/* Home Stats */}
         <Stats />
+
         {/* Home Domains */}
         <Domains />
+
+        {/* Home Partners */}
+        <Partners />
 
         {/* Home Image */}
        <div className="four">
@@ -77,6 +83,9 @@ const page = () => {
         <Faq />
         {/* Home Clubs */}
         <Clubs />
+
+        {/* Home Testimonials */}
+        <Testimonials />
 
         {/* Footer */}
         <div className="Footer">

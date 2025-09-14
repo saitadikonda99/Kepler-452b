@@ -1,0 +1,79 @@
+
+
+.PartnersComponent {
+    width: 100%;
+}
+
+.PartnersComponent-in {
+    width: 90%;
+    margin: auto;
+    padding: 2rem 0rem;
+}
+
+.PartnersComponent-header {
+    width: 100%;
+    text-align: left;
+    padding: 2rem 0rem;
+}
+
+.PartnersComponent-header h1 {
+    font-size: 2rem;
+    color: black;
+    font-weight: 700;
+}
+
+.partners-one {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 1rem 0rem;
+}
+
+.partners-scroll-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.partners-scroll-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    animation: scroll 20s linear infinite;
+    width: calc(200% + 4rem);  
+}
+
+.partners-one-in-box {
+    flex-shrink: 0;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.partners-one-in-box:hover {
+    transform: scale(1.05);
+}
+
+.partners-one-in-box img {
+    max-width: 200px;
+    max-height: 60px;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.partners-scroll-track:hover {
+    animation-play-state: paused;
+}

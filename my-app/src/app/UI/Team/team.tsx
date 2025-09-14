@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './team.css'
+import Image from 'next/image';
 import axios from 'axios';
 
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -41,24 +42,7 @@ const Team = () => {
                 </div>
                 <div className="team-three">
                     <div className="team-three-in">
-                        {isLoading ? (
-                            <p>Loading team members...</p>
-                        ) : teamData.length > 0 ? (
-                            teamData.map((team, index) => (
-                                <div key={team.id || index} className="team-card">
-                                    <div className="team-card-in" style={{backgroundImage: `url(${team.image_url})`}}>
-                                        <div className="team-card-in-one">
-                                            <div className="team-card-in-one-one">
-                                                <p>{team.name}</p>
-                                                <p>{team.title}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No leadership team members found.</p>
-                        )}
+                        <Image src="https://i.imghippo.com/files/wPfl7432Uao.JPG" alt="Team" width={100} height={100} />
                     </div>
                 </div>
                 <div className="team-four">
