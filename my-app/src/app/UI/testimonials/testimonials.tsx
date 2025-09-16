@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import "./testimonials.css";
 
@@ -6,57 +8,47 @@ import { BiSolidQuoteAltLeft } from "react-icons/bi";
 import Image from "next/image";
 
 const testimonials = () => {
-  const testimonialsData = [
-    {
-      image: "https://i.imghippo.com/files/KHQV5981JOM.png",
-      name: "Pavan karthik Madadapu",
-      title: "CEO @ Karthik Creations",
-      description:
-        "Creative geniuses who listen, understand, and craft captivating visuals - an agency that truly understands our needs.",
-    },
-    {
-      image: "https://i.imghippo.com/files/KHQV5981JOM.png",
-      name: "Isabella Rodriguez",
-      title: "CEO of ABC Company",
-      description:
-        "Their ability to capture our brand essence in every project is unparalleled - an invaluable creative collaborator.",
-    },
-    {
-      image: "https://i.imghippo.com/files/KHQV5981JOM.png",
-      name: "Gabrielle Williams",
-      title: "CEO of ABC Company",
-      description:
-        "Creative geniuses who listen, understand, and craft captivating visuals - an agency that truly understands our needs.",
-    },
-    {
-      image: "https://i.imghippo.com/files/KHQV5981JOM.png",
-      name: "Samantha Johnson",
-      title: "CEO of ABC Company",
-      description:
-        "Exceeded our expectations with innovative designs that brought our vision to life - a truly remarkable creative agency.",
-    },
-    {
-      image: "https://i.imghippo.com/files/KHQV5981JOM.png",
-      name: "Natalie Martinez",
-      title: "CEO and Co-founder of ABC Company",
-      description:
-        "From concept to execution, their creativity knows no bounds - a game-changer for our brand's success.",
-    },
-    {
-      image: "https://i.imghippo.com/files/KHQV5981JOM.png",
-      name: "Victoria Thompson",
-      title: "CEO and Co-founder of ABC Company",
-      description:
-        "A refreshing and imaginative agency that consistently delivers exceptional results - highly recommended for any project.",
-    },
-    {
-      image: "https://i.imghippo.com/files/KHQV5981JOM.png",
-      name: "John Peter",
-      title: "CEO and Co-founder of ABC Company",
-      description:
-        "Their team's artistic flair and strategic approach resulted in remarkable campaigns - a reliable creative partner.",
-    },
-  ];
+  const [testimonialsData, setTestimonialsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get("/api/admin/testimonials", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+        setTestimonialsData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+        setIsLoading(false);
+        setTestimonialsData([]);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="TestimonialsComponent">
+        <div className="TestimonialsComponent-in">
+          <div className="TestimonialsComponent-header cmn-heading">
+            <div className="breadcrumb">
+              <span>Home / Testimonials</span>
+            </div>
+            <h1>Discover what others are saying about us.</h1>
+          </div>
+          <div className="testimonials-loading">
+            <p>Loading testimonials...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="TestimonialsComponent">
@@ -69,29 +61,47 @@ const testimonials = () => {
         </div>
         <div className="testimonials-scroll-container">
           <div className="testimonials-scroll-container">
+            {testimonialsData.length > 0 ? (
+              <>
+                <div className="testimonials-scroll-row testimonials-scroll-left">
+                  <div className="testimonials-scroll-content">
+                    {[
+                      ...testimonialsData,
+                      ...testimonialsData,
+                      ...testimonialsData,
+                    ].map((testimonial, index) => (
+                      <TestimonialsCard 
+                        key={`left-${index}`} 
+                        image={testimonial.testimonial_image}
+                        name={testimonial.testimonial_name}
+                        title={testimonial.testimonial_title}
+                        description={testimonial.testimonial_text}
+                      />
+                    ))}
+                  </div>
+                </div>
 
-            <div className="testimonials-scroll-row testimonials-scroll-left">
-              <div className="testimonials-scroll-content">
-                {[
-                  ...testimonialsData,
-                  ...testimonialsData,
-                  ...testimonialsData,
-                ].map((testimonial, index) => (
-                  <TestimonialsCard key={`left-${index}`} {...testimonial} />
-                ))}
+                <div className="testimonials-scroll-row testimonials-scroll-right">
+                  <div className="testimonials-scroll-content">
+                    {[...testimonialsData, ...testimonialsData, ...testimonialsData]
+                      .reverse()
+                      .map((testimonial, index) => (
+                        <TestimonialsCard 
+                          key={`right-${index}`} 
+                          image={testimonial.testimonial_image}
+                          name={testimonial.testimonial_name}
+                          title={testimonial.testimonial_title}
+                          description={testimonial.testimonial_text}
+                        />
+                      ))}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="no-testimonials-message">
+                <p>No testimonials available at the moment.</p>
               </div>
-            </div>
-
-            <div className="testimonials-scroll-row testimonials-scroll-right">
-              <div className="testimonials-scroll-content">
-                {[...testimonialsData, ...testimonialsData, ...testimonialsData]
-                  .reverse()
-                  .map((testimonial, index) => (
-                    <TestimonialsCard key={`right-${index}`} {...testimonial} />
-                  ))}
-              </div>
-            </div>
-            
+            )}
           </div>
         </div>
       </div>

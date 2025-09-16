@@ -322,18 +322,65 @@ CREATE TABLE session_attendance (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- Team categories table (must be created before team_members)
+CREATE TABLE team_categories (
+    id INT NOT NULL AUTO_INCREMENT,
+    category_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 -- Team members table
 CREATE TABLE team_members (
     id INT NOT NULL AUTO_INCREMENT,
+    category_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
     image_url VARCHAR(500) NOT NULL,
     linkedin_url VARCHAR(500) DEFAULT NULL,
     email VARCHAR(255) NOT NULL,
-    category ENUM('leadership', 'coordinators', 'club_leaders', 'core_team', 'staff', 'trainers', 'mentors', 'previous_council') NOT NULL,
     display_order INT DEFAULT 0,
     is_active BOOLEAN DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (category_id) REFERENCES team_categories(id)
+);
+
+CREATE TABLE partners (
+    id INT NOT NULL AUTO_INCREMENT,
+    partner_name VARCHAR(255) NOT NULL UNIQUE,
+    partner_image VARCHAR(255) NOT NULL,
+    partner_link VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE testimonials (
+    id INT NOT NULL AUTO_INCREMENT,
+    testimonial_name VARCHAR(255) NOT NULL UNIQUE,
+    testimonial_title VARCHAR(255) NOT NULL,
+    testimonial_image VARCHAR(255) NOT NULL,
+    testimonial_text TEXT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE overall_activities (
+    id INT NOT NULL AUTO_INCREMENT,
+    ClubName VARCHAR(255) NOT NULL,
+    clubDomain ENUM('TEC', 'LCH', 'ESO', 'HWB', 'IIE') NOT NULL,
+    ActivityName VARCHAR(255) NOT NULL,
+    ActivityDate DATE NOT NULL,
+    ActivityVenue VARCHAR(255) NOT NULL,
+    ActivityType VARCHAR(255) NOT NULL,
+    ActivityReportLink VARCHAR(255) DEFAULT NULL UNIQUE,
+    ActivityParticipants INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
+-- Insert default team categories
+INSERT INTO team_categories (category_name) VALUES 
+('Executive Team'),
+('Technical Team'),
+('Marketing Team'),
+('Finance Team'),
+('Operations Team'),
+('Advisory Board');

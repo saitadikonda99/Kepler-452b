@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+
 import {
   FaLinkedin,
   FaEnvelope,
@@ -11,6 +12,7 @@ import {
   FaEye,
   FaEyeSlash,
 } from "react-icons/fa";
+
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 
@@ -19,12 +21,17 @@ import "./page.css";
 // import components here
 import Dashboard from "../dashboard/dashboard";
 import Loader from "../../../animation/Loading";
+import DropZone from "../../../Components/ui/dropZone";
 
 const Page = () => {
   const [teamData, setTeamData] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [editingMember, setEditingMember] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -32,21 +39,25 @@ const Page = () => {
     image_url: "",
     linkedin_url: "",
     email: "",
-    category: "leadership",
+    category: "",
     display_order: 0,
     is_active: true,
   });
 
-  const categories = [
-    { value: "leadership", label: "Leadership Team" },
-    { value: "coordinators", label: "Domain Coordinators" },
-    { value: "club_leaders", label: "Club Leaders" },
-    { value: "core_team", label: "Core Team" },
-    { value: "staff", label: "Staff" },
-    { value: "trainers", label: "Trainers" },
-    { value: "mentors", label: "Industry Mentors" },
-    { value: "previous_council", label: "Previous Council" },
-  ];
+  const handleUploadSuccess = (data: any) => {
+    toast.success(data.message || "Team members uploaded successfully!");
+    setUploading(false);
+    fetchTeamData();
+  };
+
+  const handleUploadError = (error: string) => {
+    toast.error(error);
+    setUploading(false);
+  };
+
+  const handleUploadStart = () => {
+    setUploading(true);
+  };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -79,7 +90,7 @@ const Page = () => {
       image_url: "",
       linkedin_url: "",
       email: "",
-      category: "leadership",
+      category: categories.length > 0 ? categories[0].category_name : "",
       display_order: 0,
       is_active: true,
     });
@@ -95,7 +106,7 @@ const Page = () => {
       image_url: "",
       linkedin_url: "",
       email: "",
-      category: "leadership",
+      category: categories.length > 0 ? categories[0].category_name : "",
       display_order: 0,
       is_active: true,
     });
@@ -103,7 +114,7 @@ const Page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setSending(true);
 
     try {
       const submitData = {
@@ -120,6 +131,16 @@ const Page = () => {
         toast.success(response.data.message);
         setShowForm(false);
         setEditingMember(null);
+        setFormData({
+          name: "",
+          title: "",
+          image_url: "",
+          linkedin_url: "",
+          email: "",
+          category: categories.length > 0 ? categories[0].category_name : "",
+          display_order: 0,
+          is_active: true,
+        });
         fetchTeamData();
       } else {
         toast.error(response.data.message || "Failed to save team member");
@@ -127,23 +148,23 @@ const Page = () => {
     } catch (error) {
       toast.error(error.response?.data?.message || "Error saving team member");
     } finally {
-      setIsLoading(false);
+      setSending(false);
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this team member?")) {
+  const handleDelete = async (id, memberName) => {
+    if (!window.confirm(`Are you sure you want to delete "${memberName}"? This action cannot be undone.`)) {
       return;
     }
 
-    setIsLoading(true);
+    setDeletingId(id);
     try {
       const response = await axios.delete(`/api/admin/Team?id=${id}`, {
         withCredentials: true,
       });
 
       if (response.status === 200) {
-        toast.success("Team member deleted successfully");
+        toast.success(`"${memberName}" has been deleted successfully`);
         fetchTeamData();
       } else {
         toast.error(response.data.message || "Failed to delete team member");
@@ -153,7 +174,7 @@ const Page = () => {
         error.response?.data?.message || "Error deleting team member"
       );
     } finally {
-      setIsLoading(false);
+      setDeletingId(null);
     }
   };
 
@@ -163,6 +184,7 @@ const Page = () => {
       const response = await axios.get("/api/admin/Team", {
         withCredentials: true,
       });
+      console.log(response.data);
       setTeamData(response.data);
     } catch (error) {
       toast.error("Failed to fetch team data");
@@ -172,12 +194,24 @@ const Page = () => {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("/api/admin/Team/addCategory", {
+        withCredentials: true,
+      });
+      setCategories(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
   useEffect(() => {
     fetchTeamData();
+    fetchCategories();
   }, []);
 
-  const getTeamByCategory = (category) => {
-    return teamData.filter((member) => member.category === category);
+  const getTeamByCategory = (categoryName) => {
+    return teamData.filter((member) => member.category === categoryName);
   };
 
   return (
@@ -186,67 +220,46 @@ const Page = () => {
         <div className="TeamAdminComponent-in">
           <div className="TeamAdmin-one">
             <div className="TeamAdmin-one-one">
-              <h1>Team Management</h1>
-              <button onClick={handleAddNew} className="add-btn">
-                <FaPlus /> Add New Member
-              </button>
-            </div>
-            <div className="TeamAdmin-one-two">
               <p>
-                Instructions to update team images{" "}
+                Instructions to update team data{" "}
                 <MdOutlineIntegrationInstructions className="TeamAdmin-icon" />
               </p>
             </div>
-            <div className="TeamAdmin-one-three">
-              <div className="TeamAdmin-one-three-one">
-                <VscDebugBreakpointLog />
+            <div className="TeamAdmin-one-two">
+              <div className="TeamAdmin-one-two-one">
                 <p>
-                  Image Dimensions: Team member images should be 400px x 500px for optimal display on the website.
+                  Download the provided Excel template and fill in the details
+                  of the team members you want to add.
                 </p>
+                <a href="/Team.xlsx" download="Team.xlsx">Download Excel Template</a>
               </div>
-              <div className="TeamAdmin-one-three-one">
-                <VscDebugBreakpointLog />
-                <p>
-                  After resizing the image, download it and upload it to a storage service like
-                  <a
-                    href="http://firebase.google.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {" "}
-                    Firebase Storage
-                  </a>{" "}
-                  or{" "}
-                  <a
-                    href="https://www.imghippo.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Imghippo
-                  </a>
-                  . Please refer to the{" "}
-                  <a
-                    href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Video_Tutorial.mp4?alt=media&token=a9487ecb-40aa-423a-bf20-26150128b7f5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Video Tutorial
-                  </a>
-                </p>
+              <div className="TeamAdmin-one-two-one">
+                <p>Download the CSV file and upload it to the database.</p>
+              </div>
+              <div className="TeamAdmin-one-two-one">
+                <p><strong>Note:</strong> Your Excel/CSV file can use either 'category_id' (numeric ID from Categories page) or 'category' (category name). Both formats are supported.</p>
               </div>
             </div>
           </div>
+          <div className="TeamAdmin-two">
+            <div className="TeamAdmin-two-in">
+              <DropZone
+                endpoint="/api/admin/Team"
+                onUploadSuccess={handleUploadSuccess}
+                onUploadError={handleUploadError}
+                onUploadStart={handleUploadStart}
+              />
 
-          {showForm ? (
-            isLoading ? (
-              <Loader />
-            ) : (
-              <div className="TeamAdmin-form">
-                <div className="TeamAdmin-form-in">
-                  <h2>
-                    {editingMember ? "Edit Team Member" : "Add New Team Member"}
-                  </h2>
-                  <form onSubmit={handleSubmit}>
+              {uploading && (
+                <div className="upload-status">
+                  <div className="spinner"></div>
+                  <p>Uploading CSV file...</p>
+                </div>
+              )}
+
+              {showForm && (
+                <div className="manual-entry-section">
+                  <form onSubmit={handleSubmit} className="team-form">
                     <div className="form-row">
                       <div className="form-group">
                         <label htmlFor="name">Name *</label>
@@ -257,6 +270,7 @@ const Page = () => {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
+                          placeholder="Enter team member name"
                         />
                       </div>
                       <div className="form-group">
@@ -268,6 +282,7 @@ const Page = () => {
                           value={formData.title}
                           onChange={handleInputChange}
                           required
+                          placeholder="Enter position"
                         />
                       </div>
                     </div>
@@ -282,6 +297,7 @@ const Page = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
+                          placeholder="Enter email"
                         />
                       </div>
                       <div className="form-group">
@@ -292,6 +308,7 @@ const Page = () => {
                           name="linkedin_url"
                           value={formData.linkedin_url}
                           onChange={handleInputChange}
+                          placeholder="Enter LinkedIn URL"
                         />
                       </div>
                     </div>
@@ -306,6 +323,7 @@ const Page = () => {
                           value={formData.image_url}
                           onChange={handleInputChange}
                           required
+                          placeholder="Enter image URL"
                         />
                       </div>
                       <div className="form-group">
@@ -317,13 +335,11 @@ const Page = () => {
                           onChange={handleInputChange}
                           required
                         >
-                          {categories
-                            .filter((cat) => cat.value !== "leadership")
-                            .map((cat) => (
-                              <option key={cat.value} value={cat.value}>
-                                {cat.label}
-                              </option>
-                            ))}
+                          {categories.map((cat) => (
+                            <option key={cat.id} value={cat.category_name}>
+                              {cat.category_name}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -338,6 +354,7 @@ const Page = () => {
                           value={formData.display_order}
                           onChange={handleInputChange}
                           min="0"
+                          placeholder="Enter display order"
                         />
                       </div>
                       <div className="form-group checkbox-group">
@@ -354,92 +371,114 @@ const Page = () => {
                     </div>
 
                     <div className="form-actions">
-                      <button
-                        type="button"
+                      <button 
+                        type="button" 
                         onClick={handleCancel}
-                        className="cancel-btn"
+                        className="cancel-button"
                       >
                         Cancel
                       </button>
-                      <button type="submit" className="submit-btn">
-                        {editingMember ? "Update" : "Add"} Member
+                      <button 
+                        type="submit" 
+                        disabled={sending}
+                        className="submit-button"
+                      >
+                        {sending ? "Adding..." : (editingMember ? "Update Member" : "Add Member")}
                       </button>
                     </div>
                   </form>
-                </div>
-              </div>
-            )
-          ) : isLoading ? (
-            <Loader />
-          ) : (
-            <div className="TeamAdmin-list">
-              {categories.map((category) => {
-                const categoryMembers = getTeamByCategory(category.value);
-                if (categoryMembers.length === 0) return null;
 
-                return (
-                  <div key={category.value} className="category-section">
-                    <h3 className="category-title">{category.label}</h3>
-                    <div className="team-grid">
-                      {categoryMembers.map((member) => (
-                        <div key={member.id} className="team-member-card">
-                          <div
-                            className="member-image"
-                            style={{
-                              backgroundImage: `url(${member.image_url})`,
-                            }}
-                          >
-                            <div className="member-actions">
-                              <button
-                                onClick={() => handleEdit(member)}
-                                className="edit-btn"
-                              >
-                                <FaEdit />
-                              </button>
-                              <button
-                                onClick={() => handleDelete(member.id)}
-                                className="delete-btn"
-                              >
-                                <FaTrash />
-                              </button>
-                            </div>
-                          </div>
-                          <div className="member-info">
-                            <h4>{member.name}</h4>
-                            <p>{member.title}</p>
-                            <div className="member-social">
-                              {member.linkedin_url && (
-                                <a
-                                  href={member.linkedin_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="social-link"
-                                >
-                                  <FaLinkedin />
-                                </a>
-                              )}
-                              <a
-                                href={`mailto:${member.email}`}
-                                className="social-link"
-                              >
-                                <FaEnvelope />
-                              </a>
-                            </div>
-                            <div className="member-status">
-                              <span
-                                className={`status ${member.is_active ? "active" : "inactive"}`}
-                              >
-                                {member.is_active ? <FaEye /> : <FaEyeSlash />}
-                                {member.is_active ? "Active" : "Inactive"}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                  {sending && (
+                    <div className="upload-status">
+                      <div className="spinner"></div>
+                      <p>Adding team member...</p>
                     </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {!showForm && (
+            <div className="TeamAdmin-list">
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  <div className="list-header">
+                    <h2>Team Members</h2>
+                    <button onClick={handleAddNew} className="add-btn">
+                      Add New Team Member
+                    </button>
                   </div>
-                );
-              })}
+                  {categories.map((category) => {
+                    const categoryMembers = getTeamByCategory(category.category_name);
+                    if (categoryMembers.length === 0) return null;
+
+                    return (
+                      <div key={category.id} className="category-section">
+                        <h3 className="category-title">{category.category_name}</h3>
+                        <div className="team-grid">
+                          {categoryMembers.map((member) => (
+                            <div key={member.id} className="team-card">
+                              <div className="team-card-in">
+                                <div className="team-card-one">
+                                  <img src={member.image_url} alt={member.name} />
+                                  <div className="member-actions">
+                                    <button
+                                      onClick={() => handleEdit(member)}
+                                      className="edit-btn"
+                                      title="Edit team member"
+                                    >
+                                      <FaEdit />
+                                    </button>
+                                    <button
+                                      onClick={() => handleDelete(member.id, member.name)}
+                                      className="delete-btn"
+                                      disabled={deletingId === member.id}
+                                      title="Delete team member"
+                                    >
+                                      {deletingId === member.id ? (
+                                        <div className="spinner-small"></div>
+                                      ) : (
+                                        <FaTrash />
+                                      )}
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="team-card-two">
+                                <div className="team-card-two-one">
+                                  <h1>{member.name}</h1>
+                                  <p>{member.title}</p>
+                                </div>
+                                <div className="team-card-two-two">
+                                  {member.linkedin_url && (
+                                    <a
+                                      href={member.linkedin_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="social-link"
+                                    >
+                                      <FaLinkedin className="team-card-two-two-one" />
+                                    </a>
+                                  )}
+                                  <a
+                                    href={`mailto:${member.email}`}
+                                    className="social-link"
+                                  >
+                                    <FaEnvelope className="team-card-two-two-two" />
+                                  </a>
+                                </div>
+                              </div>
+                              </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
             </div>
           )}
         </div>

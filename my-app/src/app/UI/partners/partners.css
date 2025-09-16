@@ -77,3 +77,31 @@
 .partners-scroll-track:hover {
     animation-play-state: paused;
 }
+
+.partner-link {
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.partner-link:hover {
+    opacity: 0.8;
+}
+
+.partners-loading {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.no-partners-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.no-partners-message p {
+    margin: 0;
+}

@@ -75,9 +75,27 @@ const sidebar = () => {
       ],
     },
     {
+      name: "Activities",
+      icon: <MdGroups className="sideBar-icon" />,
+      link: "/admin/activities",
+    },
+    {
       name: "Team",
       icon: <MdGroups className="sideBar-icon" />,
-      link: "/admin/team",
+      subOptions: [
+        { name: "Categories", icon: <MdGroups className="sideBar-icon" />, link: "/admin/addCategories" },
+        { name: "Members", icon: <MdGroups className="sideBar-icon" />, link: "/admin/team" },
+      ],
+    },
+    {
+      name: "Partners",
+      icon: <MdGroups className="sideBar-icon" />,
+      link: "/admin/partners",
+    },
+    {
+      name: "Testimonials",
+      icon: <MdGroups className="sideBar-icon" />,
+      link: "/admin/testimonials",
     },
     {
       name: "Add Club",

@@ -87,7 +87,7 @@ const ClubNavbar = ({ setOption, clubName}) => {
             <h1 onClick={handleScroll}>{clubName}</h1>
           ) : (
             <img
-              src="https://i.imghippo.com/files/TmgW3869FDs.png"
+              src="https://i.imghippo.com/files/fPU9820QVk.png"
               alt=""
               onClick={handleClick}
             />
@@ -204,7 +204,7 @@ const ClubNavbar = ({ setOption, clubName}) => {
             <h1 onClick={handleScroll}>{clubName}</h1>
           ) : (
             <img
-              src="https://i.imghippo.com/files/TmgW3869FDs.png"
+              src="https://i.imghippo.com/files/fPU9820QVk.png"
               alt=""
               onClick={handleClick}
             />

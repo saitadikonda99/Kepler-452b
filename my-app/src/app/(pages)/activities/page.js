@@ -14,54 +14,20 @@ const page = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [activitiesPerPage] = useState(12);
+  const [loading, setLoading] = useState(true);
 
-  const [clubData, setClubData] = React.useState([]);
-  const [selectedClub, setSelectedClub] = useState("all");
   const [selectedDomain, setSelectedDomain] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
 
   const domains = ["all", "TEC", "LCH", "ESO", "IIE", "HWB"];
   const statusOptions = ["all", "upcoming", "completed"];
 
-  const filteredClubs = React.useMemo(() => {
-    if (selectedDomain === "all") {
-      return clubData.filter(club => club.active === 1);
-    }
-    return clubData.filter(
-      (club) => club.club_domain === selectedDomain && club.active === 1
-    );
-  }, [clubData, selectedDomain]);
-
-  useEffect(() => {
-    setSelectedClub("all");
-  }, [selectedDomain]);
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await axios.get("/api/getClubs", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
-
-        if (response.status === 200) {
-          setClubData(response.data);
-        } else {
-          toast.error("Failed to fetch clubs");
-        }
-      } catch (error) {
-        toast.error("Internal server error");
-      }
-    };
-
-    fetch();
-  }, []);
+   
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get("/api/activities");
 
         console.log(response.data);
@@ -69,10 +35,12 @@ const page = () => {
         if (response.status === 200) {
           setActivities(response.data);
         } else {
-          toast.error("Failed to fetch UpcomingEvents");
+          toast.error("Failed to fetch activities");
         }
       } catch (error) {
         toast.error("Internal server error");
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -82,32 +50,40 @@ const page = () => {
     let filtered = activities.filter((activity) => {
       const matchesSearch =
         activity.club_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        activity.session_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        activity.session_type.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesClub = 
-        selectedClub === "all" || activity.club_name === selectedClub;
+        activity.activity_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        activity.activity_type.toLowerCase().includes(searchTerm.toLowerCase());
 
       const matchesDomain =
         selectedDomain === "all" || activity.club_domain === selectedDomain;
 
       const currentDate = new Date();
-      const sessionDate = new Date(activity.session_date);
+      const activityDate = new Date(activity.activity_date);
       currentDate.setHours(0, 0, 0, 0);
-      sessionDate.setHours(0, 0, 0, 0);
+      activityDate.setHours(0, 0, 0, 0);
       
       const matchesStatus = 
         selectedStatus === "all" ? true :
-        selectedStatus === "upcoming" ? sessionDate >= currentDate :
-        selectedStatus === "completed" ? sessionDate < currentDate : true;
+        selectedStatus === "upcoming" ? activityDate >= currentDate :
+        selectedStatus === "completed" ? activityDate < currentDate : true;
 
-      return matchesSearch && matchesClub && matchesDomain && matchesStatus;
+      return matchesSearch && matchesDomain && matchesStatus;
     });
 
+    // Sort activities based on status
     return filtered.sort((a, b) => {
-      const dateA = new Date(a.session_date);
-      const dateB = new Date(b.session_date);
-      return selectedStatus === "upcoming" ? dateA - dateB : dateB - dateA;
+      const dateA = new Date(a.activity_date);
+      const dateB = new Date(b.activity_date);
+      
+      if (selectedStatus === "upcoming") {
+        // For upcoming activities, sort by date ascending (earliest first)
+        return dateA - dateB;
+      } else if (selectedStatus === "completed") {
+        // For completed activities, sort by date descending (most recent first)
+        return dateB - dateA;
+      } else {
+        // For all activities, sort by date descending (most recent first)
+        return dateB - dateA;
+      }
     });
   };
 
@@ -128,7 +104,7 @@ const page = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, selectedStatus]);
+  }, [searchTerm, selectedStatus, selectedDomain]);
 
   return (
     <div className="activitiesComponent">
@@ -170,111 +146,106 @@ const page = () => {
                 </option>
               ))}
             </select>
-
-            <select 
-              value={selectedClub}
-              onChange={(e) => setSelectedClub(e.target.value)}
-              className="club-filter"
-            >
-              <option value="all">All Clubs</option>
-              {filteredClubs.map((club) => (
-                <option key={club.id} value={club.club_name}>
-                  {club.club_name}
-                </option>
-              ))}
-            </select>
           </div>
         </div>
 
         <div className="activitiesComponent-one">
-          <table>
-            <thead>
-              <tr>
-                <th>Club Name</th>
-                <th>Session Name</th>
-                <th>Session Type</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Venue</th>
-                <th>Report</th>
-                <th>Participants</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentActivities.map((session) => (
-                <tr key={session.session_id}>
-                  <td>{session.club_name}</td>
-                  <td>{session.session_name}</td>
-                  <td>{session.session_type}</td>
-                  <td>
-                    {new Date(session.session_date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </td>
-                  <td>
-                    {new Date(`2000-01-01 ${session.session_sTime}`).toLocaleTimeString('en-US', {
-                      hour: 'numeric',
-                      minute: '2-digit',
-                      hour12: true
-                    })}
-                    {" - "}
-                    {new Date(`2000-01-01 ${session.session_eTime}`).toLocaleTimeString('en-US', {
-                      hour: 'numeric',
-                      minute: '2-digit',
-                      hour12: true
-                    })}
-                  </td>
-                  <td>{session.session_venue}</td>
-                  <td>
-                    {session.session_report ? (
-                      <a href={session.session_report} target="_blank" rel="noopener noreferrer" className="report-link">
-                        View Report
-                      </a>
-                    ) : (
-                      new Date(session.session_date) > new Date() ? (
-                        <span className="upcoming">Upcoming</span>
-                      ) : (
-                        <span className="na">N/A</span>
-                      )
-                    )}
-                  </td>
-                  <td>{session.total_participants}</td>
+          {loading ? (
+            <div className="loading-state">
+              <div className="spinner"></div>
+              <p>Loading activities...</p>
+            </div>
+          ) : filteredActivities.length === 0 ? (
+            <div className="empty-state">
+              <p>No activities found matching your criteria.</p>
+            </div>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>Club Name</th>
+                  <th>Club Domain</th>
+                  <th>Activity Name</th>
+                  <th>Activity Type</th>
+                  <th>Date</th>
+                  <th>Venue</th>
+                  <th>Report</th>
+                  <th>Participants</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {currentActivities.map((activity) => (
+                  <tr key={activity.id}>
+                    <td>{activity.club_name}</td>  
+                    <td>{activity.club_domain}</td>
+                    <td>{activity.activity_name}</td>
+                    <td>{activity.activity_type}</td>
+                    <td>
+                      {new Date(activity.activity_date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </td>
+                    <td>{activity.activity_venue}</td>
+                    <td>
+                      {activity.activity_report ? (
+                        <a href={activity.activity_report} target="_blank" rel="noopener noreferrer" className="report-link">
+                          View Report
+                        </a>
+                      ) : (
+                        new Date(activity.activity_date) > new Date() ? (
+                          <span className="upcoming">Upcoming</span>
+                        ) : (
+                          <span className="na">N/A</span>
+                        )
+                      )}
+                    </td>
+                    <td>{activity.total_participants}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
 
           <div className="pagination">
-            <button
-              className="previous"
-              onClick={handlePrevious}
-              disabled={currentPage === 1}
-              aria-label="Previous Page"
-            >
-              Prev
-            </button>
-            {pageNumbers.map((number) => (
+            <div className="pagination-info">
+              <span>
+                Showing {indexOfFirstActivity + 1} to {Math.min(indexOfLastActivity, filteredActivities.length)} of {filteredActivities.length} activities
+              </span>
+            </div>
+            <div className="pagination-controls">
               <button
-                key={number}
-                onClick={() => paginate(number)}
-                className={`page-num ${
-                  currentPage === number ? "page-active" : ""
-                }`}
-                aria-label={`Page ${number}`}
+                className="previous"
+                onClick={handlePrevious}
+                disabled={currentPage === 1}
+                aria-label="Previous Page"
               >
-                {number}
+                Previous
               </button>
-            ))}
-            <button
-              className="next"
-              onClick={handleNext}
-              disabled={currentPage === totalPages}
-              aria-label="Next Page"
-            >
-              Next
-            </button>
+              <div className="page-numbers">
+                {pageNumbers.map((number) => (
+                  <button
+                    key={number}
+                    onClick={() => paginate(number)}
+                    className={`page-num ${
+                      currentPage === number ? "page-active" : ""
+                    }`}
+                    aria-label={`Page ${number}`}
+                  >
+                    {number}
+                  </button>
+                ))}
+              </div>
+              <button
+                className="next"
+                onClick={handleNext}
+                disabled={currentPage === totalPages}
+                aria-label="Next Page"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -42,7 +42,7 @@ const Team = () => {
                 </div>
                 <div className="team-three">
                     <div className="team-three-in">
-                        <Image src="https://i.imghippo.com/files/wPfl7432Uao.JPG" alt="Team" width={100} height={100} />
+                        
                     </div>
                 </div>
                 <div className="team-four">

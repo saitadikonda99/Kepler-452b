@@ -149,3 +149,25 @@
     color: rgb(169, 163, 163);
     font-weight: 400;
 }
+
+.testimonials-loading {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.testimonials-loading p {
+    margin: 0;
+}
+
+.no-testimonials-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.no-testimonials-message p {
+    margin: 0;
+}
