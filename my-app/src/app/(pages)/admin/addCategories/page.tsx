@@ -155,7 +155,7 @@ const page = () => {
                   Download the provided Excel template and fill in the details
                   of the categories you want to add.
                 </p>
-                <a href="https://firebasestorage.googleapis.com/v0/b/sacwebsite-8d0b5.appspot.com/o/Categories.xlsx?alt=media&token=399dde4b-3835-43e1-9813-379e39e75f9c" download="Categories.xlsx">Download Excel Template</a>
+                <a href="/category_name.csv" download="category_name.csv">Download Excel Template</a>
               </div>
               <div className="AddCategoriesComponent-in-one-two-one">
                 <p>Download the CSV file and upload it to the database.</p>
