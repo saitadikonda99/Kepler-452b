@@ -53,7 +53,6 @@ const page = () => {
         if (response.status === 200) {
           const data = response.data;
 
-          // Separate the data according to the type
           const separatedData = data.reduce((acc, item) => {
             const { type, data } = item;
             acc[type] = data;
