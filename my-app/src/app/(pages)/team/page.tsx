@@ -36,7 +36,12 @@ const Page = () => {
     try {
       setCategoriesLoading(true);
       const response = await axios.get("/api/admin/Team/addCategory");
-      setCategories(response.data);
+      const sortedCategories = [...response.data].sort((a: any, b: any) => {
+        const aIndex = typeof a.index === 'number' ? a.index : a.id ?? 0;
+        const bIndex = typeof b.index === 'number' ? b.index : b.id ?? 0;
+        return aIndex - bIndex;
+      });
+      setCategories(sortedCategories);
     } catch (error) {
       console.error("Error fetching categories:", error);
       setCategories([]);
