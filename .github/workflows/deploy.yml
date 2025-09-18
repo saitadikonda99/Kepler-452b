@@ -25,11 +25,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: /home/sac/Kepler-425b/my-app
+        working-directory: /home/sac/Kepler-452b/my-app
 
       - name: Build app
         run: npm run build
-        working-directory: /home/sac/Kepler-425b/my-app
+        working-directory: /home/sac/Kepler-452b/my-app
 
       - name: Reload PM2 process
         run: pm2 reload sac
