@@ -15,6 +15,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Pull latest code
+        run: |
+          cd /home/sac/Kepler-452b/my-app
+          git pull origin main
+
       - name: Cache node modules
         uses: actions/cache@v4
         with:
@@ -33,4 +38,3 @@ jobs:
 
       - name: Reload PM2 process
         run: pm2 reload sac
-
