@@ -55,7 +55,7 @@ const Page = () => {
     fetchCategories();
   }, []);
 
-  const handleCategoryClick = (categoryValue) => {
+  const handleCategoryClick = (categoryValue: string) => {
     setSelectedCategory(categoryValue);
     
     if (categoryValue === "viewAll") {
@@ -64,6 +64,10 @@ const Page = () => {
       const filtered = teamData.filter((member) => member.category === categoryValue);
       setFilteredTeamData(filtered);
     }
+  };
+
+  const handleClick = (url: string) => {
+    window.open(url, "_blank");
   };
 
   return (
@@ -137,8 +141,8 @@ const Page = () => {
                     <p>{item.title}</p>
                   </div>
                 <div className="team-card-two-two">
-                  <FaLinkedin className="team-card-two-two-one" />
-                  <MdOutlineMail className="team-card-two-two-two" />
+                  <FaLinkedin className="team-card-two-two-one" onClick={() => handleClick(item.linkedin_url)} />
+                  <MdOutlineMail className="team-card-two-two-two" onClick={() => handleClick(item.email)}/>
                 </div>
                 </div>
               </div>
