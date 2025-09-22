@@ -18,6 +18,12 @@ interface ActivityData {
   ActivityParticipants: number;
 }
 
+// Helper function to convert DD-MM-YYYY to YYYY-MM-DD
+function convertDateFormat(dateStr: string): string {
+  const [day, month, year] = dateStr.split('-');
+  return `${year}-${month}-${day}`;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { valid, payload } = await verifyJWT();
@@ -65,10 +71,10 @@ export async function POST(request: NextRequest) {
         );
       }
       
-      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+      const dateRegex = /^\d{2}-\d{2}-\d{4}$/;
       if (!dateRegex.test(activityData.ActivityDate)) {
         return NextResponse.json(
-          { success: false, message: "ActivityDate must be in YYYY-MM-DD format" },
+          { success: false, message: "ActivityDate must be in DD-MM-YYYY format" },
           { status: 400 }
         );
       }
@@ -94,7 +100,7 @@ export async function POST(request: NextRequest) {
           activityData.ClubName.trim(),
           activityData.clubDomain,
           activityData.ActivityName.trim(),
-          activityData.ActivityDate.trim(),
+          convertDateFormat(activityData.ActivityDate.trim()),
           activityData.ActivityVenue.trim(),
           activityData.ActivityType.trim(),
           activityData.ActivityReportLink?.trim() || null,
@@ -214,10 +220,10 @@ export async function POST(request: NextRequest) {
             continue;
           }
 
-          const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+          const dateRegex = /^\d{2}-\d{2}-\d{4}$/;
           if (!dateRegex.test(record.ActivityDate)) {
             errors.push(
-              `Row ${rowNumber}: ActivityDate must be in YYYY-MM-DD format`
+              `Row ${rowNumber}: ActivityDate must be in DD-MM-YYYY format`
             );
             continue;
           }
@@ -244,7 +250,7 @@ export async function POST(request: NextRequest) {
             ClubName: record.ClubName.trim(),
             clubDomain: record.clubDomain as ActivityData["clubDomain"],
             ActivityName: record.ActivityName.trim(),
-            ActivityDate: record.ActivityDate.trim(),
+            ActivityDate: convertDateFormat(record.ActivityDate.trim()),
             ActivityVenue: record.ActivityVenue.trim(),
             ActivityType: record.ActivityType.trim(),
             ActivityReportLink: record.ActivityReportLink?.trim() || null,
