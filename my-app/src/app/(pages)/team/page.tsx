@@ -77,7 +77,7 @@ const Page = () => {
       </div>
       <div className="TeamPageComponent-in">
         <div className="teamPage-one">
-          <img src="https://i.imghippo.com/files/PYQ7895.jpg" alt="Team" />
+          <img src="https://i.imghippo.com/files/YKA2792s.jpg" alt="Team" />
           <div className="teamPage-one-one">
             <h1>THE TEAM</h1>
           </div>
