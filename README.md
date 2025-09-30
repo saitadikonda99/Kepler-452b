@@ -117,30 +117,25 @@ config/                         # Database and configuration files
 
 ## Configuration Files
 
-This project includes several configuration files that manage various aspects of the development environment, build process, and deployment. Below is a brief overview of each file:
+This project includes several configuration files that manage various aspects of the development environment, build process, and deployment:
 
-- **`.vscode/settings.json`**  Visual Studio Code settings specific to this project.
+### Development Configuration
+- **`package.json`** - Project dependencies, scripts, and metadata
+- **`tsconfig.json`** - TypeScript compiler options and configuration
+- **`jsconfig.json`** - JavaScript configuration for enhanced IDE support
+- **`next.config.mjs`** - Custom settings and configurations for Next.js framework
+- **`components.json`** - UI components library configuration
+- **`.vscode/settings.json`** - Visual Studio Code project-specific settings
 
-- **`jsconfig.json`**  Configuration for JavaScript, enhancing IDE support for features like IntelliSense.
+### Deployment & Containerization  
+- **`Dockerfile`** - Instructions to build Docker image for the application
+- **`docker-compose.yml`** - Multi-container Docker application configuration
+- **`nextjs-deployment.yaml`** - Kubernetes configuration for Next.js application deployment
+- **`mysql-deployment.yaml`** - Kubernetes configuration for MySQL database deployment
 
-- **`.env.local`**  Local environment variables. This file is typically excluded from version control.
-
-- **`Dockerfile`**  Instructions to build a Docker image for the application.
-
-- **`nextjs-deployment.yaml`**  Kubernetes configuration for deploying the Next.js application.
-
-- **`mysql-deployment.yaml`**  Kubernetes configuration for deploying a MySQL database.
-
-- **`next.config.mjs`**  Custom settings and configurations for the Next.js framework.
-
-- **`.gitignore`**  Specifies files and directories for Git to ignore in version control.
-
-- **`package.json`**  Contains project dependencies, scripts, and metadata.
-
-- **`tsconfig.json`**  TypeScript compiler options and configuration.
-
-- **`docker-compose.yml`**  Configuration for Docker Compose to manage multi-container Docker applications.
-
+### Environment & Version Control
+- **`.gitignore`** - Files and directories excluded from Git version control
+- **`.env.local`** - Local environment variables (not tracked in version control)
 
 ## Installation
 
@@ -209,3 +204,28 @@ docker run -p 3000:3000 kepler-452b
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint for code quality
+
+## Architecture Overview
+
+**Kepler-452b** follows a modern full-stack architecture:
+
+- **Frontend**: Next.js 14 with App Router, React 18, TailwindCSS for styling
+- **Backend**: Next.js API Routes with TypeScript
+- **Database**: MySQL with custom query management
+- **Caching**: Redis for session management and performance optimization
+- **Authentication**: JWT-based authentication with secure token management
+- **File Handling**: Custom file upload system with CSV processing capabilities
+- **Email Service**: Nodemailer integration for automated communications
+- **Deployment**: Docker containerization with Kubernetes deployment configurations
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
