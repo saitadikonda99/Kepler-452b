@@ -84,7 +84,7 @@ const Page = () => {
             </div>
             <div className="three-three-in-two count-cm">
               <h2>Clubs</h2>
-              <CountUp start={0} duration={4} end={88} redraw={true}>
+              <CountUp start={0} duration={4} end={stats.total_clubs} redraw={true}>
                 {({ countUpRef, start }) => (
                   <VisibilitySensor onChange={start} delayedCall>
                     <h1 ref={countUpRef}>+</h1>
