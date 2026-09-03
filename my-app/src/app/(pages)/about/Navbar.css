@@ -6,7 +6,8 @@
 
 .SilNavbar {
   width: 100%;
-  background-color: rgb(151, 3, 0);
+  background: #ffffff;
+  border-bottom: 1px solid #d9d9d7;
 }
 
 .SilNavbar-in {
@@ -14,7 +15,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 2rem;
+  min-height: 64px;
+  padding: 0.75rem clamp(1.25rem, 4vw, 4rem);
 }
 
 .SilNavbar-one {
@@ -22,8 +24,11 @@
 }
 
 .SilNavbar-one h1 {
-  font-size: 1.5rem;
-  color: white;
+  color: #18181b;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .SilNavbar-two {
@@ -32,8 +37,17 @@
 }
 
 .SilNavbar-two a {
-  color: white;
+  color: #18181b;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-decoration: none;
+}
+
+.SilNavbar-two a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 

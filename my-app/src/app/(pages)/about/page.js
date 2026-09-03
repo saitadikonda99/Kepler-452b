@@ -9,35 +9,32 @@ const AboutPage = () => {
       <Navbar />
       <div className="about-container">
         <div className="about-header">
-          <h1>Important Notice</h1>
+          <p className="about-eyebrow">SAC / Original implementation</p>
+          <h1>About this version.</h1>
           <p className="about-subtitle">
-            A note about this website and its purpose
+            A preserved record of the work originally developed for SAC.
           </p>
         </div>
 
         <div className="about-card">
           <div className="about-card-in">
-            <h2>About this website</h2>
+            <p className="about-section-label">01 — A note on this website</p>
             <p>
-              This is an independent version of the Student Activity Center
-              (SAC) website, created to showcase{" "}
-              <strong>Sai Tadikonda&apos;s</strong> original work on the
-              project. It is not the official SAC website.
-            </p>
-            <p>
-              The content, structure, and features displayed here reflect the
-              work done as part of this project and are used for demonstration
-              and portfolio purposes only.
+              This is not the official website. This is an independent version
+              created to showcase the work I originally developed for SAC.
+              After my graduation, the project is now maintained by my juniors,
+              and the current official version has been significantly changed.
+              This version preserves and demonstrates my original work and
+              implementation.
             </p>
           </div>
         </div>
 
         <div className="about-card official">
           <div className="about-card-in">
-            <h2>Visit the official website</h2>
+            <p className="about-section-label">02 — Current official website</p>
             <p>
-              To visit the real, official Student Activity Center website of KL
-              University, please use the link below.
+              For the current official website, please visit SAC.
             </p>
             <a
               className="official-link"
@@ -45,7 +42,7 @@ const AboutPage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Official SAC Website &rarr;
+              Visit SAC <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
