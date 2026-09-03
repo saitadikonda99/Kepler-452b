@@ -7,7 +7,7 @@ export const pool = mysql2.createPool( {
     database: process.env.DB_NAME,
     port: parseInt(process.env.DB_PORT || '3306'),
     ssl: {
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
     },
     waitForConnections: true,
     connectionLimit: 20,
