@@ -5,9 +5,7 @@ import nodemailer from 'nodemailer';
 
 const emailQueue = new Bull('emailQueue', {
     redis: {
-        host: 'localhost',
-        port: 6379,
-        password: process.env.REDIS_PASSWORD
+        url: process.env.REDIS_URL,
     },
 });
 
