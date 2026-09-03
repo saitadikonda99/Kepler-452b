@@ -9,7 +9,6 @@ const AboutPage = () => {
       <Navbar />
       <div className="about-container">
         <div className="about-header">
-          <p className="about-eyebrow">SAC / Original implementation</p>
           <h1>About this version.</h1>
           <p className="about-subtitle">
             A preserved record of the work originally developed for SAC.
@@ -32,7 +31,6 @@ const AboutPage = () => {
 
         <div className="about-card official">
           <div className="about-card-in">
-            <p className="about-section-label">02 — Current official website</p>
             <p>
               For the current official website, please visit SAC.
             </p>
