@@ -18,7 +18,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.55rem 2rem;
+  padding: 0.5rem 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,7 +29,9 @@
 .announcement-info {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.65rem;
+  flex-wrap: wrap;
 }
 
 .announcement-icon {
@@ -39,25 +41,27 @@
   animation: announce-pulse 2.4s ease-in-out infinite;
 }
 
+.announcement-title {
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 .announcement-text {
-  color: rgba(255, 255, 255, 0.96);
+  color: rgba(255, 255, 255, 0.94);
   font-size: 0.92rem;
   font-weight: 400;
   line-height: 1.4;
   text-align: center;
 }
 
-.announcement-name {
-  font-weight: 600;
-  color: #ffffff;
-}
-
 .announcement-link {
   color: #ffffff;
   font-weight: 600;
   text-decoration: none;
-  padding: 0.12rem 0.6rem;
-  margin-left: 0.2rem;
+  padding: 0.12rem 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 999px;
   display: inline-block;
@@ -113,10 +117,15 @@
 
   .announcement-info {
     align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .announcement-icon {
-    margin-top: 0.15rem;
+    margin-top: 0.2rem;
+  }
+
+  .announcement-title {
+    font-size: 0.82rem;
   }
 
   .announcement-text {
@@ -125,7 +134,7 @@
   }
 
   .announcement-link {
-    padding: 0.08rem 0.5rem;
+    padding: 0.08rem 0.55rem;
     font-size: 0.78rem;
   }
 }

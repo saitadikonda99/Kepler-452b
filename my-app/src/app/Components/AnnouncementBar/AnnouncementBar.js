@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { FaInfoCircle } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import "./AnnouncementBar.css";
@@ -30,19 +31,15 @@ const AnnouncementBar = () => {
       <div className="announcement-bar-in">
         <div className="announcement-info">
           <FaInfoCircle className="announcement-icon" />
+          <p className="announcement-title">Important Notice</p>
           <p className="announcement-text">
-            This website is not official. It is purely for demonstrating{" "}
-            <span className="announcement-name">Sai Tadikonda&apos;s</span> work.
-            Want to visit the official website?{" "}
-            <a
-              href="https://sac.kluniversity.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="announcement-link"
-            >
-              Check SAC
-            </a>
+            This is an independent version of SAC, created to showcase Sai
+            Tadikonda&apos;s original work on the project. It is not the
+            official SAC website.
           </p>
+          <Link href="/about" className="announcement-link">
+            Read more &rarr;
+          </Link>
         </div>
         <button
           className="announcement-close"

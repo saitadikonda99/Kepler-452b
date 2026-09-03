@@ -1,0 +1,114 @@
+.about-container {
+  padding: 3rem 2rem;
+  min-height: calc(100vh - 58px);
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Styles */
+.about-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.about-header h1 {
+  color: rgb(151, 3, 0);
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.about-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+/* Card Styles */
+.about-card {
+  width: 100%;
+  max-width: 760px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1.5rem;
+  border-left: 5px solid rgb(151, 3, 0);
+  overflow: hidden;
+}
+
+.about-card-in {
+  padding: 2rem;
+}
+
+.about-card-in h2 {
+  color: rgb(151, 3, 0);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.about-card-in p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.about-card-in p:last-child {
+  margin-bottom: 0;
+}
+
+.about-card-in strong {
+  color: rgb(151, 3, 0);
+}
+
+/* Official link card */
+.about-card.official {
+  border-left-color: #333;
+}
+
+.about-card.official .about-card-in h2 {
+  color: #333;
+}
+
+.about-card.official .about-card-in p {
+  margin-bottom: 1.25rem;
+}
+
+.official-link {
+  display: inline-block;
+  background: rgb(151, 3, 0);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.official-link:hover {
+  background: rgb(176, 6, 10);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(151, 3, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 2rem 1rem;
+  }
+
+  .about-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-subtitle {
+    font-size: 1rem;
+  }
+
+  .about-card-in {
+    padding: 1.5rem;
+  }
+}
