@@ -19,7 +19,12 @@
   width: 100%;
   position: fixed;
   top: 41px;
+  transition: top 0.25s ease;
   z-index: 1000;
+}
+
+body.announcement-hidden .Navbar {
+  top: 0;
 }
 
 .four {
