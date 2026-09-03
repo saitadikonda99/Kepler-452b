@@ -18,7 +18,7 @@
 .Navbar {
   width: 100%;
   position: fixed;
-  top: 1;
+  top: 41px;
   z-index: 1000;
 }
 

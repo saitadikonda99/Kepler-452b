@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import Footer from "./Components/Footer/page";
 import Navbar from "./Components/Navbar/Navbar";
+import AnnouncementBar from "./Components/AnnouncementBar/AnnouncementBar";
 
 // UI imports start here
 import Home from "./UI/home/page";
@@ -48,6 +49,7 @@ const page = () => {
   ) : (
     <div className="HomeComponent">
       <div className="HomeComponent-in">
+        <AnnouncementBar />
         <div className="Navbar">
           <Navbar />
         </div>
