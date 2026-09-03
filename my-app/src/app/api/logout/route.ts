@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import { pool } from "../../../config/db"
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export const GET = async (req: NextRequest) => {
   const connection = await pool.getConnection();
 
@@ -20,8 +22,6 @@ export const GET = async (req: NextRequest) => {
     );
 
     cookieStore.set("jwt", "", { maxAge: 0 });
-
-    connection.release();
 
     return NextResponse.redirect(new URL('/auth/login', req.url));
   } catch (error) {
