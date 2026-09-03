@@ -3,11 +3,7 @@ import Bull from 'bull';
 import nodemailer from 'nodemailer';
 
 
-const emailQueue = new Bull('emailQueue', {
-    redis: {
-        url: process.env.REDIS_URL,
-    },
-});
+const emailQueue = new Bull('emailQueue', process.env.REDIS_URL);
 
 emailQueue.process(async (job) => {
   const { email, subject, html } = job.data;
